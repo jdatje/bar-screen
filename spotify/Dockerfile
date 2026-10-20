@@ -1,4 +1,5 @@
-FROM ghcr.io/devgianlu/go-librespot:latest
+# Pinned to a stable release: "latest" is a development build
+FROM ghcr.io/devgianlu/go-librespot:v0.10.5
 
 # The config lives in the image; the /config volume keeps the Spotify login.
 # Copy the config in on every start so changes in new releases take effect.
