@@ -1,7 +1,7 @@
 # Every push to main builds the release on balenaCloud and the bar PC
 # updates itself. Needs:
 #   - repo secret   BALENA_TOKEN  (balenaCloud > Preferences > Access tokens)
-#   - repo variable BALENA_FLEET  (e.g. "jdatje/bar-screen")
+#   - repo variable BALENA_FLEET  (e.g. "jdatje/wexer")
 name: Deploy to balena
 
 on:

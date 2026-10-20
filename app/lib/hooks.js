@@ -57,7 +57,7 @@ export async function getHook(track) {
       duration: String(Math.round((track.durationMs || 0) / 1000)),
     });
     const res = await fetch(`https://lrclib.net/api/get?${q}`, {
-      headers: { 'User-Agent': 'MaisonBaron-BarScreen/1.0 (https://github.com/jdatje/bar-screen)' },
+      headers: { 'User-Agent': 'Wexer/2.0 (https://github.com/jdatje/bar-screen)' },
       signal: AbortSignal.timeout(5000),
     });
     if (res.ok) ms = chorusFromLyrics(parseLrc((await res.json()).syncedLyrics));

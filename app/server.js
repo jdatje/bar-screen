@@ -1,4 +1,4 @@
-// Bar Screen 2.0 — server for the touchscreen (/), guests' phones (/play)
+// Wexer 2.0 — server for the touchscreen (/), guests' phones (/play)
 // and the admin page (/admin).
 import express from 'express';
 import http from 'node:http';
@@ -318,6 +318,6 @@ setInterval(pollSpotify, 3000);
 cocktails.scheduleRefresh();
 bank.startTranslator();
 server.listen(PORT, () => {
-  console.log(`Bar screen listening on :${PORT}`);
+  console.log(`Wexer 2.0 listening on :${PORT}`);
   resolveJoinUrl().catch(() => {});
 });

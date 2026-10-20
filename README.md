@@ -1,4 +1,4 @@
-# Bar Screen 2.0 — Maison Baron
+# Wexer 2.0 — Maison Baron
 
 Touchscreen hub for the bar: Spotify with full controls, three quiz games guests play on their phones, a cocktail menu based on what's in stock, and ten looks.
 
@@ -43,10 +43,10 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 
 ## First-time setup
 
-1. **balenaCloud:** create a fleet (device type *Generic x86_64 (GPT)*), flash balenaOS to the mini PC, boot it on the bar network.
+1. **balenaCloud:** create a fleet named `wexer` (device type *Generic x86_64 (GPT)*), flash balenaOS to the mini PC, boot it on the bar network.
 2. **GitHub → Settings → Secrets and variables → Actions**
    - secret `BALENA_TOKEN`: balenaCloud → Preferences → Access tokens → create API key
-   - variable `BALENA_FLEET`: e.g. `jdatje/bar-screen`
+   - variable `BALENA_FLEET`: your fleet as balenaCloud names it, e.g. `jdatje/wexer`
 3. **Spotify app:** at developer.spotify.com create an app (Web API), add redirect URI
    `http://127.0.0.1/auth/spotify/callback`. Put `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` in the fleet variables in balenaCloud.
 4. **Spotify login:** on the bar screen open Settings → *Spotify koppelen* (that page runs on 127.0.0.1, which Spotify allows over plain http).

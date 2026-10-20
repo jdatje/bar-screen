@@ -1,8 +1,8 @@
 {
-  "name": "bar-screen",
+  "name": "wexer",
   "version": "0.1.0",
   "private": true,
-  "description": "Maison Baron bar screen 2.0 — touchscreen hub",
+  "description": "Wexer 2.0 — touchscreen hub for Maison Baron",
   "type": "module",
   "main": "server.js",
   "scripts": {

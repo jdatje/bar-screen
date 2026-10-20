@@ -1,4 +1,4 @@
-# Bar Screen 2.0 — balenaOS fleet (generic x86-64 mini PC)
+# Wexer 2.0 — balenaOS fleet (generic x86-64 mini PC)
 # Deployed automatically by .github/workflows/deploy.yml on every push to main.
 version: "2.1"
 
@@ -8,7 +8,7 @@ volumes:
   spotify-data:
 
 services:
-  # The bar hub: screen UI, phone UI, Spotify control, game logic
+  # Wexer: screen UI, phone UI, Spotify control, game logic
   app:
     build: ./app
     restart: always
