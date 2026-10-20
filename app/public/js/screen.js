@@ -207,7 +207,11 @@ function onGame(g) {
 
 // ---------- Socket ----------
 socket.on('connect', () => socket.emit('screen:hello'));
+let loadedBuild = null;
 socket.on('state', (s) => {
+  // the app was updated or restarted: load the new screen code
+  if (loadedBuild && s.build && s.build !== loadedBuild) return location.reload();
+  loadedBuild = s.build;
   Object.assign(state, { settings: s.settings, themes: s.themes });
   renderThemes();
   renderRoom(s.room);

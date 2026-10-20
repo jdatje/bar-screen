@@ -118,7 +118,12 @@ const publicPlayer = () => ({
   at: Date.now(),
 });
 
+// Changes on every start of the app (so on every update): the screen
+// reloads itself when it sees a different build than it loaded with.
+const BUILD = String(Date.now());
+
 const screenState = () => ({
+  build: BUILD,
   settings: publicSettings(),
   themes: THEMES,
   room: { code: room.code, joinUrl: room.joinUrl, qr: room.qr },
@@ -135,7 +140,11 @@ const broadcastPlayers = () => {
 
 // ---------- HTTP ----------
 app.use(express.json({ limit: '2mb' }));
-app.use(express.static('public', { extensions: ['html'] }));
+// Always check for newer files, so an update shows up without a stale cache
+app.use(express.static('public', {
+  extensions: ['html'],
+  setHeaders: (res) => res.setHeader('Cache-Control', 'no-cache'),
+}));
 
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
