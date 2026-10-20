@@ -43,7 +43,7 @@ async function showList() {
     </div>
     <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:10px">
       <span class="mono accent">Cocktailbibliotheek</span>
-      <span>${lib.count} recepten${lib.fetchedAt ? ` · bijgewerkt ${new Date(lib.fetchedAt).toLocaleDateString('nl-NL')}` : ' · alleen basisset, download nog niet gelukt'}</span>
+      <span>${lib.count} recepten${lib.fetchedAt ? ` · bijgewerkt ${new Date(lib.fetchedAt).toLocaleDateString('nl-NL', { timeZone: 'Europe/Amsterdam' })}` : ' · alleen basisset, download nog niet gelukt'}</span>
       <button class="btn" id="refresh-lib" style="align-self:flex-start">Nu verversen</button>
     </div>`;
 }

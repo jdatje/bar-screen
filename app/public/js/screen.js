@@ -46,10 +46,12 @@ $('back').addEventListener('click', () => go(view === 'stock' ? 'cocktails' : 'h
 document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => go(b.dataset.go)));
 
 // ---------- Clock ----------
-const fmtDate = new Intl.DateTimeFormat('nl-NL', { weekday: 'short', day: '2-digit', month: '2-digit' });
+// The bar PC runs on UTC; always show Amsterdam time (incl. summer/winter time)
+const TIME_ZONE = 'Europe/Amsterdam';
+const fmtDate = new Intl.DateTimeFormat('nl-NL', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: TIME_ZONE });
 function tickClock() {
   const now = new Date();
-  $('clock').textContent = now.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+  $('clock').textContent = now.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit', timeZone: TIME_ZONE });
   $('date').textContent = fmtDate.format(now).replace(',', '').replace('-', '.');
 }
 setInterval(tickClock, 1000);
