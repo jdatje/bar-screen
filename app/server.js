@@ -79,13 +79,12 @@ let player = { active: false, playing: false, track: null };
 let upNext = [];
 let spotifyError = null;
 
+// Polls the bar speaker itself (works for any account playing on it)
 async function pollSpotify() {
-  if (!spotify.isConfigured() || !spotify.isLoggedIn()) return;
   try {
     const next = await spotify.getPlayer();
-    const trackChanged = next.track?.id !== player.track?.id;
     player = next;
-    if (trackChanged) upNext = await spotify.getUpNext().catch(() => upNext);
+    upNext = await spotify.getUpNext().catch(() => upNext);
     spotifyError = null;
   } catch (err) {
     if (err.message !== spotifyError) console.warn('Spotify:', err.message);

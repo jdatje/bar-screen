@@ -1,5 +1,7 @@
-// Spotify Web API control (playback state, play/pause/skip, volume, queue).
-// Audio itself comes from the go-librespot "Wexer 2.0" Connect speaker.
+// Spotify for Wexer:
+//  - the bar speaker (go-librespot) for now-playing, controls and quiz playback
+//  - the Spotify Web API (the account linked on the screen) only for searching
+//    songs and reading playlists for the music quizzes
 import { load, save } from './store.js';
 
 const ACCOUNTS = 'https://accounts.spotify.com';
@@ -75,62 +77,76 @@ async function api(method, path, body) {
   return text ? JSON.parse(text) : null;
 }
 
+// ---------- The bar speaker (go-librespot local API) ----------
+// Now-playing, the screen's buttons and quiz playback talk to the speaker
+// itself, so they work for whichever Spotify account is playing on it.
+const SPEAKER = process.env.LIBRESPOT_URL || 'http://127.0.0.1:3678';
+
+async function speaker(method, path, body) {
+  const res = await fetch(`${SPEAKER}${path}`, {
+    method,
+    headers: body ? { 'Content-Type': 'application/json' } : {},
+    body: body ? JSON.stringify(body) : undefined,
+    signal: AbortSignal.timeout(5000),
+  });
+  if (res.status === 204) return null;
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Speaker ${method} ${path} → ${res.status}: ${text}`);
+  return text ? JSON.parse(text) : null;
+}
+
+const trackFromSpeaker = (t) =>
+  t
+    ? {
+        id: String(t.uri || '').split(':').pop(),
+        uri: t.uri,
+        title: t.name,
+        artist: (t.artist_names || []).join(', '),
+        album: t.album_name,
+        art: t.album_cover_url ?? null,
+        durationMs: t.duration,
+      }
+    : null;
+
+let lastStatus = null;
+
 // Compact now-playing state for the screens
 export async function getPlayer() {
-  const p = await api('GET', '/me/player');
-  if (!p || !p.item) return { active: Boolean(p), playing: false, track: null, device: p?.device?.name ?? null };
-  const t = p.item;
+  const s = await speaker('GET', '/status');
+  lastStatus = s;
+  if (!s || !s.track) return { active: Boolean(s), playing: false, track: null, device: s?.device_name ?? null };
   return {
     active: true,
-    playing: p.is_playing,
-    progressMs: p.progress_ms,
-    volume: p.device?.volume_percent ?? null,
-    device: p.device?.name ?? null,
-    track: {
-      id: t.id,
-      title: t.name,
-      artist: (t.artists || []).map((a) => a.name).join(', '),
-      album: t.album?.name,
-      art: t.album?.images?.[0]?.url ?? null,
-      durationMs: t.duration_ms,
-    },
+    playing: !s.paused && !s.stopped,
+    progressMs: s.track.position ?? 0,
+    volume: s.volume_steps ? Math.round((s.volume / s.volume_steps) * 100) : null,
+    device: s.device_name ?? null,
+    track: trackFromSpeaker(s.track),
   };
 }
 
-export async function getUpNext(limit = 3) {
-  const q = await api('GET', '/me/player/queue');
-  return (q?.queue || []).slice(0, limit).map((t) => ({
-    title: t.name,
-    artist: (t.artists || []).map((a) => a.name).join(', '),
-  }));
+export async function getUpNext() {
+  const t = lastStatus?.next_track;
+  return t ? [{ title: t.name, artist: (t.artist_names || []).join(', ') }] : [];
 }
 
 export async function command(action, value) {
   switch (action) {
-    case 'play': return api('PUT', '/me/player/play');
-    case 'pause': return api('PUT', '/me/player/pause');
-    case 'next': return api('POST', '/me/player/next');
-    case 'previous': return api('POST', '/me/player/previous');
+    case 'play': return speaker('POST', '/player/resume');
+    case 'pause': return speaker('POST', '/player/pause');
+    case 'next': return speaker('POST', '/player/next', {});
+    case 'previous': return speaker('POST', '/player/prev');
     case 'volume': {
       const v = Math.max(0, Math.min(100, Math.round(Number(value))));
-      return api('PUT', `/me/player/volume?volume_percent=${v}`);
+      const vol = await speaker('GET', '/player/volume');
+      return speaker('POST', '/player/volume', { volume: Math.round((v / 100) * (vol?.max || 100)) });
     }
-    case 'seek': return api('PUT', `/me/player/seek?position_ms=${Math.max(0, Math.round(Number(value)))}`);
+    case 'seek': return speaker('POST', '/player/seek', { position: Math.max(0, Math.round(Number(value))) });
     default: throw new Error(`Unknown player action: ${action}`);
   }
 }
 
 // ---------- Used by the music games ----------
-
-const DEVICE_NAME = process.env.SPOTIFY_DEVICE_NAME || 'Wexer 2.0';
-
-// The bar's Connect speaker, falling back to whatever device is active
-export async function getDeviceId() {
-  const res = await api('GET', '/me/player/devices');
-  const devices = res?.devices || [];
-  const bar = devices.find((d) => d.name === DEVICE_NAME) || devices.find((d) => d.is_active) || devices[0];
-  return bar?.id ?? null;
-}
 
 const mapTrack = (t) =>
   t && t.id && t.uri
@@ -178,27 +194,22 @@ export async function getPlaylistTracks(id, max = 200) {
 }
 
 export async function playTrack(uri, positionMs = 0) {
-  const deviceId = await getDeviceId();
-  const qs = deviceId ? `?device_id=${deviceId}` : '';
-  return api('PUT', `/me/player/play${qs}`, { uris: [uri], position_ms: Math.max(0, Math.round(positionMs)) });
+  return speaker('POST', '/player/play', { uri, position: Math.max(0, Math.round(positionMs)) });
 }
 
 // Remember what was playing before a game, so we can resume it afterwards
 export async function snapshot() {
-  const p = await api('GET', '/me/player');
-  if (!p?.item) return null;
-  return { contextUri: p.context?.uri ?? null, uri: p.item.uri, positionMs: p.progress_ms, playing: p.is_playing };
+  const s = await speaker('GET', '/status');
+  if (!s?.track) return null;
+  return { contextUri: s.context_uri ?? null, uri: s.track.uri, positionMs: s.track.position ?? 0, playing: !s.paused && !s.stopped };
 }
 
 export async function restore(snap) {
-  if (!snap) return api('PUT', '/me/player/pause').catch(() => {});
-  const deviceId = await getDeviceId();
-  const qs = deviceId ? `?device_id=${deviceId}` : '';
+  if (!snap) return speaker('POST', '/player/pause').catch(() => {});
   const body = snap.contextUri
-    ? { context_uri: snap.contextUri, offset: { uri: snap.uri }, position_ms: snap.positionMs }
-    : { uris: [snap.uri], position_ms: snap.positionMs };
-  await api('PUT', `/me/player/play${qs}`, body).catch(() =>
-    api('PUT', `/me/player/play${qs}`, { uris: [snap.uri], position_ms: snap.positionMs })
+    ? { uri: snap.contextUri, skip_to_uri: snap.uri, position: snap.positionMs, paused: !snap.playing }
+    : { uri: snap.uri, position: snap.positionMs, paused: !snap.playing };
+  await speaker('POST', '/player/play', body).catch(() =>
+    speaker('POST', '/player/play', { uri: snap.uri, position: snap.positionMs, paused: !snap.playing })
   );
-  if (!snap.playing) await api('PUT', '/me/player/pause').catch(() => {});
 }

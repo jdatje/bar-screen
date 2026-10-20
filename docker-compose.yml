@@ -12,10 +12,9 @@ services:
   app:
     build: ./app
     restart: always
-    ports:
-      - "80:80"
-      # Spotify login callback (http://127.0.0.1:8888/auth/spotify/callback)
-      - "8888:8888"
+    # host network: reaches the speaker's local API on 127.0.0.1:3678 and
+    # serves the screen on port 80 and the Spotify login on port 8888
+    network_mode: host
     volumes:
       - app-data:/data
     labels:

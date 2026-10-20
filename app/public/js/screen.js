@@ -60,9 +60,8 @@ function renderPlayer(p) {
   state.player = p;
   const notice = $('spotify-notice');
   notice.innerHTML = '';
-  if (!p.configured) notice.textContent = 'Spotify nog niet ingesteld (client ID/secret)';
-  else if (!p.loggedIn) notice.innerHTML = 'Spotify nog niet gekoppeld — <a href="/auth/spotify/login">koppel nu</a>';
-  else if (p.error) notice.textContent = 'Spotify niet bereikbaar';
+  // the speaker works without a linked account; the link is only for music quizzes
+  if (p.error) notice.textContent = 'Speaker niet bereikbaar';
 
   $('device').textContent = p.device ? `Spotify · ${p.device}` : 'Spotify';
   const t = p.track;
