@@ -1,5 +1,5 @@
 # Every push to main builds the release on balenaCloud and the bar PC
-# updates itself. Needs:
+# updates itself; then all containers on the bar are restarted. Needs:
 #   - repo secret   BALENA_TOKEN  (balenaCloud > Preferences > Access tokens)
 #   - repo variable BALENA_FLEET  (e.g. "jdatje/wexer")
 name: Deploy to balena
@@ -19,6 +19,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: balena-io/deploy-to-balena-action@master
+        id: build
         with:
           balena_token: ${{ secrets.BALENA_TOKEN }}
           fleet: ${{ vars.BALENA_FLEET }}
+
+      # Restart ALL containers once a device runs the new release, so the
+      # kiosk browser and the speaker start fresh too (an update only
+      # recreates the services whose image changed). Devices that are off
+      # are skipped: they start everything fresh when they boot anyway.
+      - name: Restart all containers after the update
+        if: steps.build.outputs.release_id != ''
+        timeout-minutes: 25
+        env:
+          TOKEN: ${{ secrets.BALENA_TOKEN }}
+          FLEET: ${{ vars.BALENA_FLEET }}
+          RELEASE: ${{ steps.build.outputs.release_id }}
+        run: |
+          API=https://api.balena-cloud.com
+          q() { curl -sS -m 20 -H "Authorization: Bearer $TOKEN" "$API/v7/device?\$select=uuid,is_online,status&\$expand=is_running__release(\$select=id),belongs_to__application(\$select=id)&\$filter=belongs_to__application/any(a:a/slug%20eq%20'${FLEET,,}')"; }
+          pending=$(q | jq -r '.d[] | select(.is_online) | .uuid')
+          [ -z "$pending" ] && { echo "No device online; nothing to restart."; exit 0; }
+          for i in $(seq 1 80); do
+            left=""
+            for uuid in $pending; do
+              d=$(q | jq -c --arg u "$uuid" '.d[] | select(.uuid == $u)')
+              online=$(jq -r '.is_online' <<<"$d")
+              running=$(jq -r '.is_running__release[0].id // empty' <<<"$d")
+              status=$(jq -r '.status' <<<"$d")
+              if [ "$online" != "true" ]; then
+                echo "$uuid went offline; skipping."
+              elif [ "$running" = "$RELEASE" ] && [ "$status" = "Idle" ]; then
+                app=$(jq -r '.belongs_to__application[0].id' <<<"$d")
+                echo "$uuid runs release $RELEASE; restarting all containers."
+                curl -sS -m 60 -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+                  -d "{\"uuid\":\"$uuid\",\"data\":{\"appId\":$app}}" "$API/supervisor/v1/restart"
+                echo
+              else
+                left="$left $uuid"
+              fi
+            done
+            pending=$left
+            [ -z "${pending// }" ] && exit 0
+            sleep 15
+          done
+          echo "::warning::Timed out waiting for:$pending"
