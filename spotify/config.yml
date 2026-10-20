@@ -3,7 +3,10 @@
 # the login is then remembered.
 device_name: Wexer 2.0
 device_type: speaker
-audio_backend: pulseaudio
+# Play straight to the sound card (ALSA); start.sh adds audio_device
+audio_backend: alsa
+# Half a second of buffer against hiccups when tracks change
+audio_buffer_time: 500000
 # Announce the speaker through the host's avahi daemon (reached over dbus)
 zeroconf_enabled: true
 zeroconf_backend: avahi

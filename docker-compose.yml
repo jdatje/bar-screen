@@ -36,12 +36,10 @@ services:
     volumes:
       - browser-settings:/data
     labels:
-      # dbus from the host, shared with the audio container
+      # dbus from the host
       io.balena.features.dbus: "1"
     environment:
       - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
-      # play web audio through the audio container
-      - PULSE_SERVER=tcp:localhost:4317
       - LAUNCH_URL=http://localhost
       - KIOSK=1
       # No Chrome popups, bubbles or prompts on the kiosk (added to the block's defaults)
@@ -53,19 +51,6 @@ services:
       - PERSISTENT=1
       - SHOW_CURSOR=0
 
-  # PulseAudio router for the device's audio output
-  audio:
-    # balena audio block with a fix for the amixer startup crash (see audio/Dockerfile)
-    build: ./audio
-    restart: always
-    privileged: true
-    labels:
-      io.balena.features.dbus: "1"
-    environment:
-      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
-    ports:
-      - "4317:4317"
-
   # Spotify Connect receiver: the bar shows up as a speaker in Spotify
   spotify:
     build: ./spotify
@@ -75,10 +60,9 @@ services:
       # Seeded from the image on first start; keeps the Spotify login across updates
       - spotify-data:/config
     labels:
-      # dbus from the host, shared with the audio container (also used for avahi/zeroconf)
+      # dbus from the host (avahi/zeroconf)
       io.balena.features.dbus: "1"
+    # direct access to the sound card (ALSA)
+    privileged: true
     environment:
       - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
-      - PULSE_SERVER=tcp:localhost:4317
-    depends_on:
-      - audio

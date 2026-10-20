@@ -38,8 +38,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 |-----------|--------------|
 | `app`     | Node server: screen (`/`), phones (`/play`), admin (`/admin`), Spotify control, games, cocktails. Data in the `app-data` volume. |
 | `browser` | balena browser block: Chromium full-screen kiosk opening `http://localhost`. |
-| `audio`   | balena audio block (PulseAudio) for the PC's sound output. |
-| `spotify` | go-librespot: the bar appears as the **"Wexer 2.0"** Spotify Connect speaker. |
+| `spotify` | go-librespot (pinned stable version): the bar appears as the **"Wexer 2.0"** Spotify Connect speaker. Plays straight to the USB sound card via ALSA (`spotify/start.sh` picks the card; override with the `AUDIO_DEVICE` variable). Its local API also drives the screen's now-playing and buttons. |
 
 ## First-time setup
 
