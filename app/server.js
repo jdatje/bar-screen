@@ -88,6 +88,7 @@ async function pollSpotify() {
     if (trackChanged) upNext = await spotify.getUpNext().catch(() => upNext);
     spotifyError = null;
   } catch (err) {
+    if (err.message !== spotifyError) console.warn('Spotify:', err.message);
     spotifyError = err.message;
   }
   io.to('screen').emit('player', publicPlayer());
@@ -123,6 +124,7 @@ const broadcastPlayers = () => {
 // ---------- HTTP ----------
 app.use(express.json({ limit: '2mb' }));
 app.use(express.static('public', { extensions: ['html'] }));
+
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
