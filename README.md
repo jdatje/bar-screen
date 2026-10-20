@@ -14,7 +14,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 - *Pubquiz* — general knowledge in 13 categories, 3 difficulty levels. Doesn't need Spotify. Questions from:
   - your own sets (`/admin`)
   - a built-in Dutch starter set (50)
-  - [Open Trivia DB](https://opentdb.com) — ~5,000 verified questions, bundled in `app/data-seed/opentdb.json` (CC BY-SA 4.0). They're English; with an AI key they're translated into Dutch in the background and the translations are kept. Setting *Taal*: "Alleen Nederlands" or "Ook Engelstalige vragen".
+  - [Open Trivia DB](https://opentdb.com) — ~5,000 verified questions, bundled in `app/data-seed/opentdb.json` (CC BY-SA 4.0). All 5,176 questions are translated into Dutch and bundled in `app/data-seed/opentdb-nl.json` (same licence), so no AI key is needed. If new questions are ever added and an AI key is set, those get translated in the background.
   - AI-generated questions (optional)
   - Questions aren't repeated until a category runs out.
 - Options per game: genres to include/exclude, decades, your own Spotify playlists, question types, categories, rounds, questions per round, seconds per question, clip length.
@@ -57,7 +57,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 | Variable | Needed | What for |
 |---|---|---|
 | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | yes | music + music games |
-| `ANTHROPIC_API_KEY` | optional | Dutch translation of the Open Trivia DB questions, AI pubquiz questions, Dutch recipe steps |
+| `ANTHROPIC_API_KEY` | optional | extra AI-generated pubquiz questions, Dutch recipe steps |
 | `ANTHROPIC_MODEL` | optional | defaults to `claude-haiku-5-5` |
 | `PUBLIC_URL` | optional | e.g. the balena public device URL, so guests can join without the bar wifi |
 | `LAN_URL` | optional | override the detected address in the QR code |
@@ -83,4 +83,4 @@ Each look is a token set in `app/public/css/themes.css`; layouts are shared. Add
 
 ## Credits
 
-Pubquiz questions from [Open Trivia DB](https://opentdb.com), licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Refresh them with `node tools/fetch-opentdb.mjs`. Cocktail recipes from [TheCocktailDB](https://www.thecocktaildb.com). Synced lyrics from [LRCLIB](https://lrclib.net).
+Pubquiz questions from [Open Trivia DB](https://opentdb.com), licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the Dutch translations in `opentdb-nl.json` are shared under the same licence. Refresh them with `node tools/fetch-opentdb.mjs`. Cocktail recipes from [TheCocktailDB](https://www.thecocktaildb.com). Synced lyrics from [LRCLIB](https://lrclib.net).

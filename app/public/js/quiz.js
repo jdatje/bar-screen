@@ -88,11 +88,11 @@ function renderSetup() {
       ${SOURCES.filter((x) => x.id !== 'ai' || opts.ai).map((x) => chip(x.label, `data-source="${x.id}"`, s.source === x.id)).join('')}
     </div></div>`;
     const b = opts.bank;
+    const total = b.own + b.starter + b.opentdb;
     const nlCount = b.own + b.starter + b.translated;
-    html += `<div class="opt"><span class="mono muted">Taal · ${(b.own + b.starter + b.opentdb).toLocaleString('nl-NL')} vragen, waarvan ${nlCount.toLocaleString('nl-NL')} in het Nederlands${opts.ai && b.translated < b.opentdb ? ' (rest wordt vertaald)' : ''}</span><div class="chips">
-      ${chip('Alleen Nederlands', 'data-lang="nl"', s.lang === 'nl')}
-      ${chip('Ook Engelstalige vragen', 'data-lang="all"', s.lang === 'all')}
-    </div></div>`;
+    html += `<p class="mono muted" style="margin:0">${total.toLocaleString('nl-NL')} vragen in de database${
+      nlCount < total ? ` · ${nlCount.toLocaleString('nl-NL')} in het Nederlands` : ', allemaal in het Nederlands'
+    }</p>`;
   }
 
   const steppers = Object.entries(STEPPERS).filter(([k]) => music || k !== 'clip');

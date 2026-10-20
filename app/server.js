@@ -27,8 +27,8 @@ let quizDefaults = load('quiz-settings', {
   popquiz: { genres: {}, decades: [], playlists: [], types: ['year', 'artist', 'first'], rounds: 2, perRound: 8, seconds: 20, clip: 12 },
   pubquiz: { categories: [], difficulty: '', source: 'mix', rounds: 3, perRound: 8, seconds: 25 },
 });
-// Dutch-only by default when questions can be translated, otherwise also English
-if (!quizDefaults.pubquiz.lang) quizDefaults.pubquiz.lang = bank.aiAvailable() ? 'nl' : 'all';
+// All bundled questions have a Dutch version, so Dutch is always the default
+quizDefaults.pubquiz.lang = 'nl';
 
 const publicSettings = () => ({ theme: settings.theme, language: settings.language, hasPin: Boolean(settings.pin) });
 const pinOk = (pin) => !settings.pin || String(pin || '') === settings.pin;

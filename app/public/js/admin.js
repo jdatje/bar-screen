@@ -39,7 +39,7 @@ async function showList() {
     <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:6px">
       <span class="mono accent">Vragendatabase</span>
       <span>Startset: ${info.bank.starter} · Open Trivia DB: ${info.bank.opentdb.toLocaleString('nl-NL')} (${info.bank.translated.toLocaleString('nl-NL')} vertaald) · eigen sets: ${info.bank.own}</span>
-      <span class="muted">${info.ai ? 'Open Trivia DB wordt op de achtergrond naar het Nederlands vertaald.' : 'Zonder AI-sleutel blijven de Open Trivia DB-vragen Engelstalig.'}</span>
+      <span class="muted">${info.bank.translated >= info.bank.opentdb ? 'Alle Open Trivia DB-vragen zijn vertaald naar het Nederlands.' : info.ai ? 'De rest van de Open Trivia DB-vragen wordt op de achtergrond vertaald.' : 'Een deel van de Open Trivia DB-vragen is nog Engelstalig.'}</span>
     </div>
     <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:10px">
       <span class="mono accent">Cocktailbibliotheek</span>
