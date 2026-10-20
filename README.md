@@ -1,14 +1,37 @@
 # Bar Screen 2.0 — Maison Baron
 
-Touchscreen hub for the bar: Spotify with full controls, selectable looks, quizzes guests play on their phones, and a cocktail menu based on what's in stock.
+Touchscreen hub for the bar: Spotify with full controls, three quiz games guests play on their phones, a cocktail menu based on what's in stock, and ten looks.
 
 Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automatically.
+
+## What's in it
+
+**Homescreen** — now playing with controls and volume, tiles for Quiz / Cocktails / Draai het rad, join QR + room code, guest count, clock.
+
+**Quizzes** (guests join by scanning the QR code; answers on their phones)
+- *Intro raden* — the song plays from the start; pick the right title.
+- *Popquiz* — year of release, who sings it, which came out first.
+- *Pubquiz* — general knowledge in 9 categories, 3 difficulty levels. Questions from: your own sets (`/admin`), a built-in Dutch starter set, and AI-generated questions (optional).
+- Options per game: genres to include/exclude, decades, your own Spotify playlists, question types, categories, rounds, questions per round, seconds per question, clip length.
+- Answers stay hidden until the round ends. Then the screen walks through them one by one: right answer, who got it (with points and speed), the answer distribution, and **Speel het refrein**. The chorus start comes from time-synced lyrics (LRCLIB) and can be nudged ±5 s; corrections are remembered.
+- Scoring: 500–1000 points for a correct answer, more for answering faster. Scoreboard after each round, podium at the end. The music that was playing before the quiz resumes afterwards.
+
+**Cocktails**
+- Recipe library from TheCocktailDB (~440 cocktails, refreshed every two weeks; a small offline set until the first download).
+- *Voorraad*: tick the bottles on the shelf (default list of ~60) and what else is in the house (citrus, syrup, mixers…). Bottles not on the list can be added with a "counts as" category, e.g. Plantation Pineapple → dark rum.
+- Menu: *Kan nu* and *Bijna* (one bottle short, plus which bottle would unlock the most), filters by base spirit and taste, *Onbekend terrein* for non-classics.
+- Spin the wheel, step-by-step recipe view, measures converted to cl. Guests can browse recipes on their phones too.
+- With an AI key, recipes are translated into Dutch steps (cached); otherwise they show in English.
+
+**Looks** — Industrieel (default), Maison, Neon, Bruin café, Tiki, Disco, Blue Note, Papier, Riviera, Winterchalet. Phones follow the look.
+
+**Settings** — look, new room code, optional PIN (protects stock and settings; changing the look stays open to all), Spotify login.
 
 ## Services (`docker-compose.yml`)
 
 | Service   | What it does |
 |-----------|--------------|
-| `app`     | Node server: screen UI (`/`), phone UI (`/play`), Spotify control, game logic. Data in the `app-data` volume. |
+| `app`     | Node server: screen (`/`), phones (`/play`), admin (`/admin`), Spotify control, games, cocktails. Data in the `app-data` volume. |
 | `browser` | balena browser block: Chromium full-screen kiosk opening `http://localhost`. |
 | `audio`   | balena audio block (PulseAudio) for the PC's sound output. |
 | `spotify` | go-librespot: the bar appears as the **"Maison Baron"** Spotify Connect speaker. |
@@ -24,26 +47,31 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 4. **Spotify login:** on the bar screen open Settings → *Spotify koppelen* (that page runs on 127.0.0.1, which Spotify allows over plain http).
 5. **Speaker:** in the Spotify app on a phone on the same wifi, pick *Maison Baron* once. The login is kept in the `spotify-data` volume.
 
-Optional fleet variables: `PUBLIC_URL` (e.g. the balena public device URL, so guests can join without the bar wifi), `LAN_URL` (override the detected address).
+### Fleet variables
+
+| Variable | Needed | What for |
+|---|---|---|
+| `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | yes | music + music games |
+| `ANTHROPIC_API_KEY` | optional | AI pubquiz questions and Dutch recipe steps |
+| `ANTHROPIC_MODEL` | optional | defaults to `claude-haiku-5-5` |
+| `PUBLIC_URL` | optional | e.g. the balena public device URL, so guests can join without the bar wifi |
+| `LAN_URL` | optional | override the detected address in the QR code |
+| `SPOTIFY_DEVICE_NAME` | optional | defaults to `Maison Baron` |
+
+## Spotify limits to know
+
+Spotify's hobby-app mode (2026) means: search returns max 10 songs per request (the app pages through), playlists only work if **you own or collaborate on them**, and song structure/previews aren't available — hence the lyrics-based chorus finder.
 
 ## Local development
 
 ```bash
 cd app
 npm install
-PORT=8080 npm run dev     # screen: http://localhost:8080  phone: http://localhost:8080/play
+PORT=8080 npm run dev     # screen: http://localhost:8080  phone: /play  admin: /admin
 ```
 
 For Spotify locally, register `http://127.0.0.1:8080/auth/spotify/callback` too and open the app on `127.0.0.1`.
 
-## Looks
+## Adding a look
 
-Each look is a token set in `app/public/css/themes.css`; layouts are shared. To add one: add a `[data-theme="name"]` block, add the name to `THEMES` in `server.js` and to `THEME_LABELS` in `public/js/screen.js`. Default: **Industrieel**.
-
-## Status
-
-- [x] Homescreen: clock, now playing, controls, volume, join QR + room code, look picker
-- [x] Phones join by QR/room code, reconnect automatically
-- [ ] Quizzes: intro raden, popquiz, pubquiz (+ answer walkthrough, chorus button via synced lyrics)
-- [ ] Cocktail menu, stock list, spin the wheel
-- [ ] Remaining looks (target ~10)
+Each look is a token set in `app/public/css/themes.css`; layouts are shared. Add a `[data-theme="name"]` block, add the name to `THEMES` in `server.js` and an entry (label, swatch colours, Google Fonts) in `THEMES` in `public/js/ui.js`.

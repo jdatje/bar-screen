@@ -119,3 +119,86 @@ export async function command(action, value) {
     default: throw new Error(`Unknown player action: ${action}`);
   }
 }
+
+// ---------- Used by the music games ----------
+
+const DEVICE_NAME = process.env.SPOTIFY_DEVICE_NAME || 'Maison Baron';
+
+// The bar's Connect speaker, falling back to whatever device is active
+export async function getDeviceId() {
+  const res = await api('GET', '/me/player/devices');
+  const devices = res?.devices || [];
+  const bar = devices.find((d) => d.name === DEVICE_NAME) || devices.find((d) => d.is_active) || devices[0];
+  return bar?.id ?? null;
+}
+
+const mapTrack = (t) =>
+  t && t.id && t.uri
+    ? {
+        id: t.id,
+        uri: t.uri,
+        title: t.name,
+        artist: (t.artists || []).map((a) => a.name).join(', '),
+        mainArtist: t.artists?.[0]?.name ?? '',
+        album: t.album?.name ?? '',
+        year: Number(String(t.album?.release_date || '').slice(0, 4)) || null,
+        art: t.album?.images?.[0]?.url ?? null,
+        durationMs: t.duration_ms,
+      }
+    : null;
+
+// Search is capped at 10 results per call (dev mode), so we page with offset.
+export async function searchTracks(query, { count = 30, startOffset = 0 } = {}) {
+  const out = [];
+  for (let offset = startOffset; out.length < count && offset < startOffset + count * 2; offset += 10) {
+    const q = new URLSearchParams({ q: query, type: 'track', limit: '10', offset: String(offset) });
+    const res = await api('GET', `/search?${q}`);
+    const items = res?.tracks?.items || [];
+    out.push(...items.map(mapTrack).filter(Boolean));
+    if (items.length < 10) break;
+  }
+  return out;
+}
+
+// Only works for playlists the logged-in user owns or collaborates on.
+export async function getMyPlaylists() {
+  const res = await api('GET', '/me/playlists?limit=50');
+  return (res?.items || []).map((p) => ({ id: p.id, name: p.name }));
+}
+
+export async function getPlaylistTracks(id, max = 200) {
+  const out = [];
+  for (let offset = 0; out.length < max; offset += 50) {
+    const res = await api('GET', `/playlists/${id}/items?limit=50&offset=${offset}`);
+    const items = res?.items || [];
+    out.push(...items.map((i) => mapTrack(i.item || i.track)).filter(Boolean));
+    if (items.length < 50) break;
+  }
+  return out;
+}
+
+export async function playTrack(uri, positionMs = 0) {
+  const deviceId = await getDeviceId();
+  const qs = deviceId ? `?device_id=${deviceId}` : '';
+  return api('PUT', `/me/player/play${qs}`, { uris: [uri], position_ms: Math.max(0, Math.round(positionMs)) });
+}
+
+// Remember what was playing before a game, so we can resume it afterwards
+export async function snapshot() {
+  const p = await api('GET', '/me/player');
+  if (!p?.item) return null;
+  return { contextUri: p.context?.uri ?? null, uri: p.item.uri, positionMs: p.progress_ms, playing: p.is_playing };
+}
+
+export async function restore(snap) {
+  if (!snap) return api('PUT', '/me/player/pause').catch(() => {});
+  const deviceId = await getDeviceId();
+  const qs = deviceId ? `?device_id=${deviceId}` : '';
+  const body = snap.contextUri
+    ? { context_uri: snap.contextUri, offset: { uri: snap.uri }, position_ms: snap.positionMs }
+    : { uris: [snap.uri], position_ms: snap.positionMs };
+  await api('PUT', `/me/player/play${qs}`, body).catch(() =>
+    api('PUT', `/me/player/play${qs}`, { uris: [snap.uri], position_ms: snap.positionMs })
+  );
+  if (!snap.playing) await api('PUT', '/me/player/pause').catch(() => {});
+}

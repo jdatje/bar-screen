@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="nl" data-theme="industrial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Baron — Beheer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/css/themes.css">
+<link rel="stylesheet" href="/css/app.css">
+<style>
+  .admin { max-width: 980px; margin: 0 auto; padding: 28px 18px 80px; display: flex; flex-direction: column; gap: 22px; }
+  .set-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; }
+  .q-row { padding: 16px; display: grid; gap: 10px; }
+  .q-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .q-opt { display: flex; align-items: center; gap: 8px; }
+  .q-opt input[type=text] { flex: 1; min-height: 48px; }
+  .q-opt input[type=radio] { width: 22px; height: 22px; accent-color: var(--accent); }
+  .q-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .q-meta select { min-height: 48px; }
+  @media (max-width: 640px) { .q-opts { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="phone-body">
+<main class="admin">
+  <div class="p-head">
+    <div>
+      <span class="mono accent">Beheer</span>
+      <h1 class="display p-title">Eigen quizvragen</h1>
+    </div>
+    <span class="tag">BAR 01</span>
+  </div>
+  <div id="root"><p class="muted">Laden…</p></div>
+</main>
+<script src="/js/admin.js" type="module"></script>
+</body>
+</html>

@@ -62,3 +62,52 @@
   --display-weight: 700;
   --radius: 16px;
 }
+
+[data-theme="bruin"] {
+  --bg: #2B1D14; --panel: #36261A; --panel-2: #45311F; --line: #5A4029; --line-strong: #7A5A3A;
+  --text: #F1E3CC; --text-2: #D6C1A0; --text-3: #B9A27F; --accent: #D9A066; --accent-hover: #EBC08F; --on-accent: #2B1D14;
+  --font-display: 'Libre Baskerville', Georgia, serif; --font-body: 'Source Sans 3', system-ui, sans-serif; --font-mono: 'Source Sans 3', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 4px;
+}
+
+[data-theme="tiki"] {
+  --bg: #0F3B33; --panel: #144A40; --panel-2: #1A5A4E; --line: #23705F; --line-strong: #2F8A75;
+  --text: #F7EBD3; --text-2: #D9CDB2; --text-3: #B8C9B5; --accent: #F28C38; --accent-hover: #F7AE70; --on-accent: #0F3B33;
+  --font-display: 'Lilita One', system-ui, sans-serif; --font-body: 'Nunito', system-ui, sans-serif; --font-mono: 'Nunito', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 18px;
+}
+
+[data-theme="disco"] {
+  --bg: #2A1240; --panel: #351852; --panel-2: #432066; --line: #57307E; --line-strong: #74449F;
+  --text: #FBEFFF; --text-2: #DCC7EA; --text-3: #BFA4D3; --accent: #F6B93B; --accent-hover: #FAD07A; --on-accent: #2A1240;
+  --font-display: 'Monoton', system-ui, sans-serif; --font-body: 'Poppins', system-ui, sans-serif; --font-mono: 'Poppins', system-ui, sans-serif;
+  --display-case: uppercase; --display-weight: 400; --radius: 24px;
+}
+
+[data-theme="bluenote"] {
+  --bg: #1C2433; --panel: #232D3F; --panel-2: #2B374C; --line: #39475F; --line-strong: #4C5D7A;
+  --text: #E9EEF5; --text-2: #C3CCDA; --text-3: #9AA6B8; --accent: #4F9BE8; --accent-hover: #86BAF0; --on-accent: #0E1520;
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif; --font-body: 'Work Sans', system-ui, sans-serif; --font-mono: 'Work Sans', system-ui, sans-serif;
+  --display-case: uppercase; --display-weight: 400; --radius: 2px;
+}
+
+[data-theme="papier"] {
+  --bg: #F4F1EA; --panel: #FFFFFF; --panel-2: #ECE7DC; --line: #D9D2C3; --line-strong: #B7AE9C;
+  --text: #1A1A1A; --text-2: #3E3B36; --text-3: #6B665E; --accent: #B23A48; --accent-hover: #8E2C38; --on-accent: #FFFFFF;
+  --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'DM Sans', system-ui, sans-serif; --font-mono: 'DM Mono', ui-monospace, monospace;
+  --display-case: none; --display-weight: 400; --radius: 6px;
+}
+
+[data-theme="riviera"] {
+  --bg: #F6EBDD; --panel: #FFF8EE; --panel-2: #EEDFCB; --line: #DDC9AE; --line-strong: #BFA37E;
+  --text: #1D3B4A; --text-2: #34566A; --text-3: #5A7383; --accent: #1F6F8B; --accent-hover: #165468; --on-accent: #FFF8EE;
+  --font-display: 'Playfair Display', Georgia, serif; --font-body: 'Lato', system-ui, sans-serif; --font-mono: 'Lato', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 12px;
+}
+
+[data-theme="chalet"] {
+  --bg: #1E2A24; --panel: #25332C; --panel-2: #2E3F36; --line: #3C5246; --line-strong: #52705F;
+  --text: #EDE3CF; --text-2: #D0C6B1; --text-3: #A9B3A4; --accent: #C8553D; --accent-hover: #DC7C66; --on-accent: #FFF5E8;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Karla', system-ui, sans-serif; --font-mono: 'Karla', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 8px;
+}

@@ -6,7 +6,6 @@
 <title>Maison Baron — Bar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/themes.css">
 <link rel="stylesheet" href="/css/app.css">
 </head>
@@ -14,6 +13,9 @@
 <main class="screen">
   <header class="topbar">
     <div class="brand">
+      <button class="icon-btn" id="back" aria-label="Terug naar home" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
       <h1 class="display">Maison Baron</h1>
       <span class="tag">BAR 01</span>
     </div>
@@ -27,7 +29,8 @@
     </div>
   </header>
 
-  <div class="home">
+  <!-- ================= HOME ================= -->
+  <section class="view home" data-view="home">
     <section class="panel now">
       <div class="now-head">
         <span class="mono accent">01 — Nu op de plaat</span>
@@ -66,37 +69,110 @@
     </section>
 
     <div class="tiles">
-      <button class="tile" data-soon="Quiz">
+      <button class="tile" data-go="quiz">
         <span class="mono accent">02</span>
         <span class="display">Quiz</span>
         <p>Pubquiz · Popquiz · Intro raden</p>
         <span class="mono muted go">Start een spel →</span>
       </button>
-      <button class="tile" data-soon="Cocktailkaart">
+      <button class="tile" data-go="cocktails">
         <span class="mono accent">03</span>
         <span class="display">Cocktails</span>
-        <p>Menu op basis van wat er staat</p>
+        <p id="makeable-line">Menu op basis van wat er staat</p>
         <span class="mono muted go">Open de kaart →</span>
       </button>
-      <button class="tile hot" data-soon="Het rad">
+      <button class="tile hot" data-go="wheel">
         <span class="mono">04</span>
         <span class="display">Draai het rad</span>
         <p>Laat het lot je cocktail kiezen</p>
       </button>
       <div class="tile join">
-        <img id="qr" alt="QR-code om mee te doen">
+        <img class="qr" alt="QR-code om mee te doen">
         <div style="display:flex;flex-direction:column;gap:6px">
           <span class="mono accent">05 — Meedoen</span>
-          <p>Scan voor quiz, verzoekjes en recepten</p>
-          <span class="code" id="code">····</span>
+          <p>Scan voor de quiz en cocktailrecepten</p>
+          <span class="code room-code">····</span>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ================= QUIZ SETUP ================= -->
+  <section class="view setup" data-view="quiz" hidden>
+    <div class="setup-main">
+      <div class="type-cards" id="type-cards">
+        <button class="type-card" data-type="intro"><span class="display">Intro raden</span><p>Herken het nummer aan de eerste seconden</p></button>
+        <button class="type-card" data-type="popquiz"><span class="display">Popquiz</span><p>Jaartallen, artiesten en wat kwam eerst</p></button>
+        <button class="type-card" data-type="pubquiz"><span class="display">Pubquiz</span><p>Algemene kennis in categorieën</p></button>
+      </div>
+      <div class="panel setup-options" id="setup-options"></div>
+    </div>
+    <aside class="panel setup-side">
+      <span class="mono accent">Meedoen</span>
+      <img class="qr big" alt="QR-code om mee te doen">
+      <span class="code room-code">····</span>
+      <div class="player-chips" id="player-chips"></div>
+      <button class="btn primary start" id="start-quiz">Start</button>
+    </aside>
+  </section>
+
+  <!-- ================= GAME ================= -->
+  <section class="view game" data-view="game" hidden>
+    <div id="game-root" class="game-root"></div>
+  </section>
+
+  <!-- ================= COCKTAILS ================= -->
+  <section class="view cocktails" data-view="cocktails" hidden>
+    <div class="ck-main">
+      <div class="ck-head">
+        <div>
+          <span class="mono accent">La carte</span>
+          <h2 class="display ck-title" id="ck-title">Vanavond te maken</h2>
+        </div>
+        <span class="mono muted" id="ck-counts"></span>
+      </div>
+      <div class="chips" id="ck-filters"></div>
+      <div class="ck-grid" id="ck-grid"></div>
+    </div>
+    <aside class="panel ck-side">
+      <span class="mono accent">Laat het lot kiezen</span>
+      <div class="wheel-wrap">
+        <div class="wheel-pointer" aria-hidden="true"></div>
+        <svg class="wheel" id="wheel" viewBox="0 0 300 300" role="img" aria-label="Cocktailrad"></svg>
+      </div>
+      <button class="btn primary" id="spin">Draai aan het rad</button>
+      <div class="shopping" id="shopping"></div>
+      <button class="btn" id="open-stock">Voorraad aanpassen</button>
+    </aside>
+  </section>
+
+  <!-- ================= STOCK ================= -->
+  <section class="view stock" data-view="stock" hidden>
+    <div class="stock-head">
+      <div>
+        <span class="mono accent">Voorraad</span>
+        <h2 class="display ck-title">Wat staat er op de plank?</h2>
+      </div>
+      <span class="mono muted" id="stock-count"></span>
+    </div>
+    <div class="stock-cols" id="stock-cols"></div>
+    <form class="stock-add" id="stock-add">
+      <div class="field grow">
+        <label for="custom-name">Fles die niet in de lijst staat</label>
+        <input id="custom-name" maxlength="50" placeholder="Bijv. Plantation Pineapple" autocomplete="off" inputmode="none" data-osk>
+      </div>
+      <div class="field">
+        <label for="custom-cat">Telt als</label>
+        <select id="custom-cat"></select>
+      </div>
+      <button class="btn primary" type="submit">Toevoegen</button>
+    </form>
+  </section>
 </main>
 
+<!-- Settings -->
 <div class="overlay" id="settings" role="dialog" aria-modal="true" aria-labelledby="settings-title">
-  <div class="panel sheet">
+  <div class="panel sheet wide">
     <div class="sheet-head">
       <h2 class="display" id="settings-title">Instellingen</h2>
       <button class="btn" id="close-settings">Klaar</button>
@@ -107,14 +183,21 @@
     </div>
     <div class="row">
       <button class="btn" id="new-room">Nieuwe kamercode</button>
+      <button class="btn" id="settings-stock">Voorraad</button>
+      <button class="btn" id="set-pin">Pincode instellen</button>
       <a class="btn" href="/auth/spotify/login" style="text-decoration:none">Spotify koppelen</a>
     </div>
+    <p class="notice">Eigen quizvragen beheer je op een laptop of telefoon via <span id="admin-url">/admin</span>.</p>
   </div>
 </div>
 
-<div class="toast" id="toast" role="status"></div>
+<!-- Recipe -->
+<div class="overlay" id="recipe" role="dialog" aria-modal="true" aria-labelledby="recipe-title">
+  <div class="panel sheet wide recipe" id="recipe-body"></div>
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/screen.js" type="module"></script>
+<script src="/js/keyboard.js" type="module"></script>
 </body>
 </html>
