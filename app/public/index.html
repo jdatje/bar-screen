@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="nl" data-theme="industrial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Baron — Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/themes.css">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="screen">
+  <header class="topbar">
+    <div class="brand">
+      <h1 class="display">Maison Baron</h1>
+      <span class="tag">BAR 01</span>
+    </div>
+    <div class="status">
+      <span class="mono muted" id="guests">0 gasten verbonden</span>
+      <span class="mono muted" id="date"></span>
+      <span class="clock" id="clock">--:--</span>
+      <button class="icon-btn" id="open-settings" aria-label="Instellingen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="home">
+    <section class="panel now">
+      <div class="now-head">
+        <span class="mono accent">01 — Nu op de plaat</span>
+        <span class="mono muted" id="device">Spotify</span>
+      </div>
+      <div class="now-body">
+        <div class="art" id="art"></div>
+        <div class="track">
+          <h2 class="display" id="title">Niets aan het spelen</h2>
+          <span class="artist" id="artist">Kies "Maison Baron" als speaker in Spotify</span>
+          <span class="notice" id="upnext"></span>
+          <span class="notice" id="spotify-notice"></span>
+        </div>
+      </div>
+      <div>
+        <div class="bar"><span id="progress" style="width:0%"></span></div>
+        <div class="times"><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
+      </div>
+      <div class="controls">
+        <button class="btn" data-cmd="previous" aria-label="Vorige">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 6 9 12l9 6V6Z"/><path d="M6 6v12"/></svg>
+        </button>
+        <button class="btn primary play" id="playpause" aria-label="Afspelen of pauzeren">
+          <svg id="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+          <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M7 5v14l12-7L7 5Z"/></svg>
+        </button>
+        <button class="btn" data-cmd="next" aria-label="Volgende">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 9 6-9 6V6Z"/><path d="M18 6v12"/></svg>
+        </button>
+        <label class="volume">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
+          <span hidden>Volume</span>
+          <input type="range" id="volume" min="0" max="100" value="50">
+        </label>
+      </div>
+    </section>
+
+    <div class="tiles">
+      <button class="tile" data-soon="Quiz">
+        <span class="mono accent">02</span>
+        <span class="display">Quiz</span>
+        <p>Pubquiz · Popquiz · Intro raden</p>
+        <span class="mono muted go">Start een spel →</span>
+      </button>
+      <button class="tile" data-soon="Cocktailkaart">
+        <span class="mono accent">03</span>
+        <span class="display">Cocktails</span>
+        <p>Menu op basis van wat er staat</p>
+        <span class="mono muted go">Open de kaart →</span>
+      </button>
+      <button class="tile hot" data-soon="Het rad">
+        <span class="mono">04</span>
+        <span class="display">Draai het rad</span>
+        <p>Laat het lot je cocktail kiezen</p>
+      </button>
+      <div class="tile join">
+        <img id="qr" alt="QR-code om mee te doen">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span class="mono accent">05 — Meedoen</span>
+          <p>Scan voor quiz, verzoekjes en recepten</p>
+          <span class="code" id="code">····</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="overlay" id="settings" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <div class="panel sheet">
+    <div class="sheet-head">
+      <h2 class="display" id="settings-title">Instellingen</h2>
+      <button class="btn" id="close-settings">Klaar</button>
+    </div>
+    <div>
+      <p class="mono muted">Look</p>
+      <div class="theme-grid" id="themes"></div>
+    </div>
+    <div class="row">
+      <button class="btn" id="new-room">Nieuwe kamercode</button>
+      <a class="btn" href="/auth/spotify/login" style="text-decoration:none">Spotify koppelen</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/screen.js" type="module"></script>
+</body>
+</html>

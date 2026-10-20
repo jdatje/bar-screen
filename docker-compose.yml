@@ -1,0 +1,64 @@
+# Bar Screen 2.0 — balenaOS fleet (generic x86-64 mini PC)
+# Deployed automatically by .github/workflows/deploy.yml on every push to main.
+version: "2.1"
+
+volumes:
+  app-data:
+  browser-settings:
+  spotify-data:
+
+services:
+  # The bar hub: screen UI, phone UI, Spotify control, game logic
+  app:
+    build: ./app
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - app-data:/data
+    labels:
+      # lets the app ask balena for the device's LAN IP (for the join QR code)
+      io.balena.features.supervisor-api: "1"
+    environment:
+      - PORT=80
+      - DATA_DIR=/data
+      # Set these as fleet/device variables in balenaCloud, not here:
+      # SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
+      # PUBLIC_URL (optional, e.g. the balena public device URL) for the join QR code
+
+  # Full-screen Chromium kiosk on the touchscreen
+  browser:
+    image: bh.cr/balenalabs/browser-amd64
+    restart: always
+    privileged: true
+    network_mode: host
+    volumes:
+      - browser-settings:/data
+    environment:
+      - LAUNCH_URL=http://localhost
+      - KIOSK=1
+      - PERSISTENT=1
+      - SHOW_CURSOR=0
+
+  # PulseAudio router for the device's audio output
+  audio:
+    image: bh.cr/balenalabs/audio-amd64
+    restart: always
+    privileged: true
+    labels:
+      io.balena.features.dbus: "1"
+    ports:
+      - "4317:4317"
+
+  # Spotify Connect receiver: the bar shows up as a speaker in Spotify
+  spotify:
+    build: ./spotify
+    restart: always
+    network_mode: host
+    volumes:
+      # Seeded from the image on first start; keeps the Spotify login across updates
+      - spotify-data:/config
+    environment:
+      - PULSE_SERVER=tcp:localhost:4317
+    depends_on:
+      - audio

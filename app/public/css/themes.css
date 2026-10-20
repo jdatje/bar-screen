@@ -1,0 +1,64 @@
+/* Looks. Each look is one token set; layouts stay shared.
+   Default is "industrial". Add new looks as another [data-theme] block
+   and register the name in THEMES in server.js. */
+
+:root,
+[data-theme="industrial"] {
+  --bg: #1B1C1E;
+  --panel: #232528;
+  --panel-2: #2E3034;
+  --line: #3A3D41;
+  --line-strong: #4A4E54;
+  --text: #E8E6E1;
+  --text-2: #B8B6B0;
+  --text-3: #9C9A94;
+  --accent: #F2A900;
+  --accent-hover: #FFD15C;
+  --on-accent: #1B1C1E;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --display-case: uppercase;
+  --display-weight: 700;
+  --radius: 0px;
+}
+
+[data-theme="maison"] {
+  --bg: #3A0E17;
+  --panel: #44121C;
+  --panel-2: #5C1A27;
+  --line: #6B2A35;
+  --line-strong: #8C6A3E;
+  --text: #F4EAD8;
+  --text-2: #D8C6A8;
+  --text-3: #CBB896;
+  --accent: #E2BE72;
+  --accent-hover: #F5E3B5;
+  --on-accent: #3A0E17;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', system-ui, sans-serif;
+  --font-mono: 'Jost', system-ui, sans-serif;
+  --display-case: none;
+  --display-weight: 600;
+  --radius: 0px;
+}
+
+[data-theme="neon"] {
+  --bg: #0A0A12;
+  --panel: #14141F;
+  --panel-2: #1B1B2B;
+  --line: #2E2E44;
+  --line-strong: #3E3E5A;
+  --text: #F2F2F7;
+  --text-2: #B5B5CC;
+  --text-3: #8A8AA8;
+  --accent: #FF4FB0;
+  --accent-hover: #FF8BCB;
+  --on-accent: #0A0A12;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Grotesk', system-ui, sans-serif;
+  --display-case: none;
+  --display-weight: 700;
+  --radius: 16px;
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="nl" data-theme="industrial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maison Baron — Meedoen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@500&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/themes.css">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="phone-body" style="overflow:auto">
+<main class="phone">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="display" style="font-size:24px;letter-spacing:3px">Maison Baron</span>
+    <span class="tag">BAR 01</span>
+  </div>
+
+  <form id="join" style="display:flex;flex-direction:column;gap:18px">
+    <h1 class="display" style="font-size:44px">Doe mee</h1>
+    <div class="field">
+      <label for="code">Kamercode (staat op het scherm)</label>
+      <input id="code" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" required>
+    </div>
+    <div class="field">
+      <label for="name">Je naam of teamnaam</label>
+      <input id="name" maxlength="24" autocomplete="nickname" required>
+    </div>
+    <span class="error" id="error" role="alert"></span>
+    <button class="btn primary" type="submit" style="font-size:20px">Meedoen</button>
+  </form>
+
+  <section id="joined" hidden style="display:flex;flex-direction:column;gap:14px">
+    <span class="mono accent">Verbonden</span>
+    <h1 class="display" style="font-size:44px" id="hello"></h1>
+    <p style="font-size:18px;color:var(--text-2);margin:0">Hou dit scherm open. Zodra er een quiz start, verschijnen de vragen hier.</p>
+    <p class="mono muted" id="count"></p>
+  </section>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/play.js" type="module"></script>
+</body>
+</html>

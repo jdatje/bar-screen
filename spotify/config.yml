@@ -1,0 +1,15 @@
+# go-librespot: turns the bar PC into a Spotify Connect speaker.
+# Pick "Maison Baron" once from the Spotify app on the same wifi;
+# the login is then remembered.
+device_name: Maison Baron
+device_type: speaker
+audio_backend: pulseaudio
+zeroconf_enabled: true
+credentials:
+  type: zeroconf
+  zeroconf:
+    persist_credentials: true
+server:
+  enabled: true
+  address: 0.0.0.0
+  port: 3678

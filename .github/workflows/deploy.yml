@@ -1,0 +1,24 @@
+# Every push to main builds the release on balenaCloud and the bar PC
+# updates itself. Needs:
+#   - repo secret   BALENA_TOKEN  (balenaCloud > Preferences > Access tokens)
+#   - repo variable BALENA_FLEET  (e.g. "jdatje/bar-screen")
+name: Deploy to balena
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: balena-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: balena-io/deploy-to-balena-action@master
+        with:
+          balena_token: ${{ secrets.BALENA_TOKEN }}
+          fleet: ${{ vars.BALENA_FLEET }}
