@@ -126,20 +126,26 @@ app.use(express.static('public', { extensions: ['html'] }));
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
-// Spotify login: open http://127.0.0.1/auth/spotify/login on the bar screen itself
-// (Spotify only allows plain-http redirect URIs on the loopback address).
+// Spotify login runs on the bar screen itself, on http://127.0.0.1:AUTH_PORT:
+// Spotify only allows plain-http redirect URIs on a loopback IP, and its
+// dashboard requires a port. Register exactly REDIRECT_URI in the Spotify app.
+const AUTH_PORT = Number(process.env.AUTH_PORT || 8888);
+const AUTH_ORIGIN = `http://127.0.0.1:${AUTH_PORT}`;
+const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI || `${AUTH_ORIGIN}${CALLBACK_PATH}`;
+const SCREEN_URL = process.env.SCREEN_URL || `http://localhost${PORT === 80 ? '' : `:${PORT}`}/`;
+
 app.get('/auth/spotify/login', (req, res) => {
   if (!spotify.isConfigured()) return res.status(500).send('Set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET first.');
-  const redirectUri = `${req.protocol}://${req.get('host')}${CALLBACK_PATH}`;
-  res.redirect(spotify.authUrl(redirectUri, crypto.randomUUID()));
+  // start the login on the loopback origin, so the callback lands on the same origin
+  if (req.get('host') !== new URL(AUTH_ORIGIN).host) return res.redirect(`${AUTH_ORIGIN}/auth/spotify/login`);
+  res.redirect(spotify.authUrl(REDIRECT_URI, crypto.randomUUID()));
 });
 
 app.get(CALLBACK_PATH, async (req, res) => {
   try {
-    const redirectUri = `${req.protocol}://${req.get('host')}${CALLBACK_PATH}`;
-    await spotify.exchangeCode(req.query.code, redirectUri);
+    await spotify.exchangeCode(req.query.code, REDIRECT_URI);
     await pollSpotify();
-    res.redirect('/');
+    res.redirect(SCREEN_URL);
   } catch (err) {
     res.status(500).send(`Spotify login failed: ${err.message}`);
   }
@@ -321,3 +327,7 @@ server.listen(PORT, () => {
   console.log(`Wexer 2.0 listening on :${PORT}`);
   resolveJoinUrl().catch(() => {});
 });
+// second port only for the Spotify login (see AUTH_PORT above)
+if (AUTH_PORT !== PORT) {
+  http.createServer(app).listen(AUTH_PORT, () => console.log(`Spotify login on ${AUTH_ORIGIN}`));
+}

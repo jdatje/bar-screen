@@ -14,6 +14,8 @@ services:
     restart: always
     ports:
       - "80:80"
+      # Spotify login callback (http://127.0.0.1:8888/auth/spotify/callback)
+      - "8888:8888"
     volumes:
       - app-data:/data
     labels:

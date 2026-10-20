@@ -48,8 +48,8 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
    - secret `BALENA_TOKEN`: balenaCloud → Preferences → Access tokens → create API key
    - variable `BALENA_FLEET`: your fleet as balenaCloud names it, e.g. `jdatje/wexer`
 3. **Spotify app:** at developer.spotify.com create an app (Web API), add redirect URI
-   `http://127.0.0.1/auth/spotify/callback`. Put `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` in the fleet variables in balenaCloud.
-4. **Spotify login:** on the bar screen open Settings → *Spotify koppelen* (that page runs on 127.0.0.1, which Spotify allows over plain http).
+   `http://127.0.0.1:8888/auth/spotify/callback`. Put `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` in the fleet variables in balenaCloud.
+4. **Spotify login:** on the bar screen open Settings → *Spotify koppelen* (the login runs on 127.0.0.1:8888, which Spotify allows over plain http).
 5. **Speaker:** in the Spotify app on a phone on the same wifi, pick *Wexer 2.0* once. The login is kept in the `spotify-data` volume.
 
 ### Fleet variables
@@ -75,7 +75,7 @@ npm install
 PORT=8080 npm run dev     # screen: http://localhost:8080  phone: /play  admin: /admin
 ```
 
-For Spotify locally, register `http://127.0.0.1:8080/auth/spotify/callback` too and open the app on `127.0.0.1`.
+Spotify login works locally too: the same `http://127.0.0.1:8888/auth/spotify/callback` is used, with `SCREEN_URL=http://localhost:8080/` to land back on the screen.
 
 ## Adding a look
 
