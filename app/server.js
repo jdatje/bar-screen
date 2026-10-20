@@ -79,11 +79,23 @@ const game = new Game({
 let player = { active: false, playing: false, track: null };
 let upNext = [];
 let spotifyError = null;
+let holdSince = 0;
 
 // Polls the bar speaker itself (works for any account playing on it)
 async function pollSpotify() {
   try {
     const next = await spotify.getPlayer();
+    // During a track change the speaker briefly has no track (buffering):
+    // keep showing the last one instead of flashing "nothing playing".
+    if (!next.track && player.track && next.active && !next.stopped) {
+      if (!holdSince) holdSince = Date.now();
+      if (Date.now() - holdSince < 15000) {
+        io.to('screen').emit('player', publicPlayer());
+        return;
+      }
+    } else {
+      holdSince = 0;
+    }
     player = next;
     upNext = await spotify.getUpNext().catch(() => upNext);
     spotifyError = null;

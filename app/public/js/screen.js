@@ -83,6 +83,7 @@ function renderPlayer(p) {
       return li;
     })
   );
+  fitQueue();
   $('icon-pause').toggleAttribute('hidden', !p.playing);
   $('icon-play').toggleAttribute('hidden', Boolean(p.playing));
   if (!volumeDragging && p.volume != null) $('volume').value = p.volume;
@@ -215,3 +216,14 @@ socket.on('settings', (s) => {
 
 quiz.init(ctx);
 bar.init(ctx);
+
+// Show as many upcoming songs as fit in the panel, without a half row
+function fitQueue() {
+  const ol = $('upnext');
+  if (!ol || $('queue').hidden) return;
+  const items = [...ol.children];
+  items.forEach((li) => (li.hidden = false));
+  const bottom = ol.getBoundingClientRect().bottom;
+  for (const li of items) if (li.getBoundingClientRect().bottom > bottom + 1) li.hidden = true;
+}
+window.addEventListener('resize', fitQueue);

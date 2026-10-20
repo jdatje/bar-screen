@@ -114,7 +114,8 @@ let lastStatus = null;
 export async function getPlayer() {
   const s = await speaker('GET', '/status');
   lastStatus = s;
-  if (!s || !s.track) return { active: Boolean(s), playing: false, track: null, device: s?.device_name ?? null };
+  if (!s || !s.track)
+    return { active: Boolean(s), playing: false, stopped: !s || Boolean(s.stopped), buffering: Boolean(s?.buffering), track: null, device: s?.device_name ?? null };
   return {
     active: true,
     playing: !s.paused && !s.stopped,
@@ -132,7 +133,7 @@ export async function getPlayer() {
 const ctxCache = { uri: null, tracks: [], complete: false, at: 0 };
 const brief = (t) => ({ title: t.name, artist: (t.artist_names || []).join(', ') });
 
-export async function getUpNext(limit = 4) {
+export async function getUpNext(limit = 15) {
   const s = lastStatus;
   const fallback = s?.next_track ? [brief(s.next_track)] : [];
   if (!s?.track || !s.context_uri || s.shuffle_context) return fallback;
