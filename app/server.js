@@ -81,8 +81,42 @@ let upNext = [];
 let spotifyError = null;
 let holdSince = 0;
 
-// Polls the bar speaker itself (works for any account playing on it)
+// Polls the bar speaker itself (works for any account playing on it).
+// One poll at a time; a request during a poll runs right after it.
+let polling = false;
+let pollAgain = false;
+let fastTimer = null;
 async function pollSpotify() {
+  if (polling) {
+    pollAgain = true;
+    return;
+  }
+  polling = true;
+  try {
+    await pollOnce();
+  } finally {
+    polling = false;
+    if (pollAgain) {
+      pollAgain = false;
+      setTimeout(pollSpotify, 0);
+    } else if (!fastTimer && spotify.upNextLoading()) {
+      // playlist details still loading: check again soon
+      fastTimer = setTimeout(() => {
+        fastTimer = null;
+        pollSpotify();
+      }, 1000);
+    }
+  }
+}
+
+// Speaker events (song change, play, pause...) update the screen right away
+let eventTimer = null;
+function onSpeakerEvent() {
+  clearTimeout(eventTimer);
+  eventTimer = setTimeout(pollSpotify, 200);
+}
+
+async function pollOnce() {
   try {
     const next = await spotify.getPlayer();
     // During a track change the speaker briefly has no track (buffering):
@@ -356,7 +390,7 @@ io.on('connection', (socket) => {
 });
 
 setInterval(pollSpotify, 3000);
-diag.watchSpeaker();
+diag.watchSpeaker(onSpeakerEvent);
 cocktails.scheduleRefresh();
 bank.startTranslator();
 server.listen(PORT, () => {

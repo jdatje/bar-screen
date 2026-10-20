@@ -133,12 +133,18 @@ export async function getPlayer() {
 const ctxCache = { uri: null, tracks: [], complete: false, at: 0 };
 const brief = (t, uri) => ({ title: t.name, artist: (t.artist_names || []).join(', '), uri: uri || t.uri || null });
 
+// True while the speaker is still loading the playlist's song details,
+// so the server polls faster until the "Straks" list is filled.
+export const upNextLoading = () => Boolean(lastStatus?.context_uri && !lastStatus.shuffle_context && !(ctxCache.uri === lastStatus.context_uri && ctxCache.complete));
+
 export async function getUpNext(limit = 15) {
   const s = lastStatus;
   const fallback = s?.next_track ? [brief(s.next_track)] : [];
   if (!s?.track || !s.context_uri || s.shuffle_context) return fallback;
   try {
-    const stale = ctxCache.uri !== s.context_uri || (!ctxCache.complete && Date.now() - ctxCache.at > 5000);
+    const age = Date.now() - ctxCache.at;
+    const missing = !ctxCache.tracks.some((e) => e.uri === s.track.uri);
+    const stale = ctxCache.uri !== s.context_uri || ((!ctxCache.complete || missing) && age > 1000);
     if (stale) {
       const c = await speaker('GET', `/context/tracks?uri=${encodeURIComponent(s.context_uri)}`);
       ctxCache.uri = s.context_uri;

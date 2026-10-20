@@ -9,7 +9,7 @@ function remember(type, data) {
 }
 
 // Follow the speaker's event stream (song changes, pauses, disconnects...)
-export function watchSpeaker() {
+export function watchSpeaker(onEvent) {
   if (typeof WebSocket === 'undefined') return;
   const connect = () => {
     let ws;
@@ -28,6 +28,7 @@ export function watchSpeaker() {
         ev = { type: 'raw', data: String(m.data).slice(0, 300) };
       }
       remember(ev.type || 'event', ev.data ?? null);
+      onEvent?.(ev.type);
       // also into the container log
       console.log('Speaker event:', ev.type, JSON.stringify(ev.data ?? '').slice(0, 200));
     };
