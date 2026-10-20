@@ -1,4 +1,4 @@
-# Wexer 2.0 — Maison Baron
+# Wexer 2.0
 
 Touchscreen hub for the bar: Spotify with full controls, three quiz games guests play on their phones, a cocktail menu based on what's in stock, and ten looks.
 
@@ -39,7 +39,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 | `app`     | Node server: screen (`/`), phones (`/play`), admin (`/admin`), Spotify control, games, cocktails. Data in the `app-data` volume. |
 | `browser` | balena browser block: Chromium full-screen kiosk opening `http://localhost`. |
 | `audio`   | balena audio block (PulseAudio) for the PC's sound output. |
-| `spotify` | go-librespot: the bar appears as the **"Maison Baron"** Spotify Connect speaker. |
+| `spotify` | go-librespot: the bar appears as the **"Wexer 2.0"** Spotify Connect speaker. |
 
 ## First-time setup
 
@@ -50,7 +50,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 3. **Spotify app:** at developer.spotify.com create an app (Web API), add redirect URI
    `http://127.0.0.1/auth/spotify/callback`. Put `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` in the fleet variables in balenaCloud.
 4. **Spotify login:** on the bar screen open Settings → *Spotify koppelen* (that page runs on 127.0.0.1, which Spotify allows over plain http).
-5. **Speaker:** in the Spotify app on a phone on the same wifi, pick *Maison Baron* once. The login is kept in the `spotify-data` volume.
+5. **Speaker:** in the Spotify app on a phone on the same wifi, pick *Wexer 2.0* once. The login is kept in the `spotify-data` volume.
 
 ### Fleet variables
 
@@ -61,7 +61,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 | `ANTHROPIC_MODEL` | optional | defaults to `claude-haiku-5-5` |
 | `PUBLIC_URL` | optional | e.g. the balena public device URL, so guests can join without the bar wifi |
 | `LAN_URL` | optional | override the detected address in the QR code |
-| `SPOTIFY_DEVICE_NAME` | optional | defaults to `Maison Baron` |
+| `SPOTIFY_DEVICE_NAME` | optional | defaults to `Wexer 2.0` |
 
 ## Spotify limits to know
 

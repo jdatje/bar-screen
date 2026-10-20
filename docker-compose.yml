@@ -34,7 +34,13 @@ services:
     network_mode: host
     volumes:
       - browser-settings:/data
+    labels:
+      # dbus from the host, shared with the audio container
+      io.balena.features.dbus: "1"
     environment:
+      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+      # play web audio through the audio container
+      - PULSE_SERVER=tcp:localhost:4317
       - LAUNCH_URL=http://localhost
       - KIOSK=1
       - PERSISTENT=1
@@ -47,6 +53,8 @@ services:
     privileged: true
     labels:
       io.balena.features.dbus: "1"
+    environment:
+      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
     ports:
       - "4317:4317"
 
@@ -58,7 +66,11 @@ services:
     volumes:
       # Seeded from the image on first start; keeps the Spotify login across updates
       - spotify-data:/config
+    labels:
+      # dbus from the host, shared with the audio container (also used for avahi/zeroconf)
+      io.balena.features.dbus: "1"
     environment:
+      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
       - PULSE_SERVER=tcp:localhost:4317
     depends_on:
       - audio

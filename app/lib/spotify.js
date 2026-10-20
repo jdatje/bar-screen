@@ -1,5 +1,5 @@
 // Spotify Web API control (playback state, play/pause/skip, volume, queue).
-// Audio itself comes from the go-librespot "Maison Baron" Connect speaker.
+// Audio itself comes from the go-librespot "Wexer 2.0" Connect speaker.
 import { load, save } from './store.js';
 
 const ACCOUNTS = 'https://accounts.spotify.com';
@@ -122,7 +122,7 @@ export async function command(action, value) {
 
 // ---------- Used by the music games ----------
 
-const DEVICE_NAME = process.env.SPOTIFY_DEVICE_NAME || 'Maison Baron';
+const DEVICE_NAME = process.env.SPOTIFY_DEVICE_NAME || 'Wexer 2.0';
 
 // The bar's Connect speaker, falling back to whatever device is active
 export async function getDeviceId() {

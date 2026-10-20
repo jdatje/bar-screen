@@ -67,7 +67,7 @@ function renderPlayer(p) {
   $('device').textContent = p.device ? `Spotify · ${p.device}` : 'Spotify';
   const t = p.track;
   $('title').textContent = p.hidden ? 'Quiz bezig' : t ? t.title : 'Niets aan het spelen';
-  $('artist').textContent = p.hidden ? 'Geen spoilers' : t ? t.artist : 'Kies "Maison Baron" als speaker in Spotify';
+  $('artist').textContent = p.hidden ? 'Geen spoilers' : t ? t.artist : 'Kies "Wexer 2.0" als speaker in Spotify';
   $('art').style.backgroundImage = t?.art ? `url("${t.art}")` : 'none';
   $('duration').textContent = fmtTime(t?.durationMs);
   $('upnext').textContent = p.upNext?.length ? `Straks — ${p.upNext[0].title} · ${p.upNext[0].artist}` : '';

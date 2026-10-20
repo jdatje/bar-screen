@@ -1,10 +1,12 @@
 # go-librespot: turns the bar PC into a Spotify Connect speaker.
-# Pick "Maison Baron" once from the Spotify app on the same wifi;
+# Pick "Wexer 2.0" once from the Spotify app on the same wifi;
 # the login is then remembered.
-device_name: Maison Baron
+device_name: Wexer 2.0
 device_type: speaker
 audio_backend: pulseaudio
+# Announce the speaker through the host's avahi daemon (reached over dbus)
 zeroconf_enabled: true
+zeroconf_backend: avahi
 credentials:
   type: zeroconf
   zeroconf:

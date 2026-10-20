@@ -2,7 +2,7 @@
   "name": "wexer",
   "version": "0.1.0",
   "private": true,
-  "description": "Wexer 2.0 — touchscreen hub for Maison Baron",
+  "description": "Wexer 2.0 — touchscreen hub for the bar",
   "type": "module",
   "main": "server.js",
   "scripts": {
