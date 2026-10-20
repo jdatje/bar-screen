@@ -56,7 +56,8 @@ services:
 
   # PulseAudio router for the device's audio output
   audio:
-    image: bh.cr/balenalabs/audio-amd64
+    # balena audio block with a fix for the amixer startup crash (see audio/Dockerfile)
+    build: ./audio
     restart: always
     privileged: true
     labels:
