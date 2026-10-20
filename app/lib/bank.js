@@ -63,7 +63,10 @@ const OPENTDB = readSeed('opentdb.json', []).map((r) => {
 
 let own = load('questionsets', { sets: [] }); // [{ id, name, enabled, questions: [...] }]
 let used = load('used-questions', { ids: [] });
-let nl = load('quiz-nl', {}); // qid -> { q, options } Dutch translation, options in original order
+// qid -> { q, options } Dutch translation, options in original order.
+// Bundled translations first; ones made on the device (AI) are added on top.
+const SEED_NL = readSeed('opentdb-nl.json', {});
+let nl = { ...SEED_NL, ...load('quiz-nl', {}) };
 
 const catLabel = (id) => CATEGORIES.find((c) => c.id === id)?.label || id || '';
 const shuffle = (a) => {
@@ -159,7 +162,7 @@ ${JSON.stringify(input)}`,
       n++;
     }
   }
-  if (n) save('quiz-nl', nl);
+  if (n) save('quiz-nl', Object.fromEntries(Object.entries(nl).filter(([id]) => !SEED_NL[id])));
 }
 
 // Slowly translate the whole Open Trivia DB set in the background
