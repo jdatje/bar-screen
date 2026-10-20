@@ -12,6 +12,7 @@ import * as cocktails from './lib/cocktails.js';
 import { getSourceOptions } from './lib/musicpool.js';
 import { Game } from './lib/game.js';
 import { load, save } from './lib/store.js';
+import * as diag from './lib/diag.js';
 
 const PORT = Number(process.env.PORT || 80);
 export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet'];
@@ -126,6 +127,18 @@ app.use(express.static('public', { extensions: ['html'] }));
 
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
+
+// Diagnostics (PIN-protected when a PIN is set): /diag?pin=1234&lines=300&grep=spotify
+app.get('/diag', async (req, res) => {
+  if (!pinOk(req.query.pin)) return res.status(401).send('PIN required: /diag?pin=...');
+  const r = await diag.report({ lines: req.query.lines, grep: req.query.grep });
+  if (req.query.format === 'json') return res.json(r);
+  res.type('text/plain').send(
+    `Wexer 2.0 diagnostics — ${r.time}\n\n== Speaker status ==\n${JSON.stringify(r.speaker, null, 2)}\n\n` +
+      `== Speaker events (latest last) ==\n${r.events.map((e) => `${e.at} ${e.type} ${JSON.stringify(e.data ?? '')}`).join('\n')}\n\n` +
+      `== Device logs ==\n${r.logs}\n`
+  );
+});
 
 // Spotify login runs on the bar screen itself, on http://127.0.0.1:AUTH_PORT:
 // Spotify only allows plain-http redirect URIs on a loopback IP, and its
@@ -322,6 +335,7 @@ io.on('connection', (socket) => {
 });
 
 setInterval(pollSpotify, 3000);
+diag.watchSpeaker();
 cocktails.scheduleRefresh();
 bank.startTranslator();
 server.listen(PORT, () => {

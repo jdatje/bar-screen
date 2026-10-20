@@ -121,6 +121,8 @@ export async function getPlayer() {
     progressMs: s.track.position ?? 0,
     volume: s.volume_steps ? Math.round((s.volume / s.volume_steps) * 100) : null,
     device: s.device_name ?? null,
+    context: s.context_name ?? null,
+    shuffle: Boolean(s.shuffle_context),
     track: trackFromSpeaker(s.track),
   };
 }

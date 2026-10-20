@@ -63,7 +63,7 @@ function renderPlayer(p) {
   // the speaker works without a linked account; the link is only for music quizzes
   if (p.error) notice.textContent = 'Speaker niet bereikbaar';
 
-  $('device').textContent = p.device ? `Spotify · ${p.device}` : 'Spotify';
+  $('device').textContent = p.context ? `${p.context}${p.shuffle ? ' · shuffle' : ''}` : p.device ? `Spotify · ${p.device}` : 'Spotify';
   const t = p.track;
   $('title').textContent = p.hidden ? 'Quiz bezig' : t ? t.title : 'Niets aan het spelen';
   $('artist').textContent = p.hidden ? 'Geen spoilers' : t ? t.artist : 'Kies "Wexer 2.0" als speaker in Spotify';
