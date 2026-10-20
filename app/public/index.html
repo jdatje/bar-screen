@@ -42,9 +42,12 @@
         <div class="track">
           <h2 class="display" id="title">Niets aan het spelen</h2>
           <span class="artist" id="artist">Kies "Wexer 2.0" als speaker in Spotify</span>
-          <span class="notice" id="upnext"></span>
           <span class="notice" id="spotify-notice"></span>
         </div>
+      </div>
+      <div class="queue" id="queue" hidden>
+        <span class="mono muted">Straks</span>
+        <ol id="upnext"></ol>
       </div>
       <div>
         <div class="bar"><span id="progress" style="width:0%"></span></div>
@@ -71,27 +74,31 @@
 
     <div class="tiles">
       <button class="tile" data-go="quiz">
+        <span class="tile-bg bg-quiz" aria-hidden="true"><i>?</i><i>?</i><i>?</i><i>?</i><i>?</i></span>
         <span class="mono accent">02</span>
         <span class="display">Quiz</span>
         <p>Pubquiz · Popquiz · Intro raden</p>
         <span class="mono muted go">Start een spel →</span>
       </button>
       <button class="tile" data-go="cocktails">
+        <span class="tile-bg bg-bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         <span class="mono accent">03</span>
         <span class="display">Cocktails</span>
         <p id="makeable-line">Menu op basis van wat er staat</p>
         <span class="mono muted go">Open de kaart →</span>
       </button>
       <button class="tile hot" data-go="wheel">
+        <span class="tile-bg bg-wheel" aria-hidden="true"><i></i></span>
         <span class="mono">04</span>
         <span class="display">Draai het rad</span>
         <p>Laat het lot je cocktail kiezen</p>
       </button>
       <div class="tile join">
+        <span class="tile-bg bg-rings" aria-hidden="true"><i></i><i></i><i></i></span>
         <img class="qr" alt="QR-code om mee te doen">
         <div style="display:flex;flex-direction:column;gap:6px">
           <span class="mono accent">05 — Meedoen</span>
-          <p>Scan voor de quiz en cocktailrecepten</p>
+          <p>Scan voor de quiz en recepten</p>
           <span class="code room-code">····</span>
         </div>
       </div>

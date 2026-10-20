@@ -69,7 +69,20 @@ function renderPlayer(p) {
   $('artist').textContent = p.hidden ? 'Geen spoilers' : t ? t.artist : 'Kies "Wexer 2.0" als speaker in Spotify';
   $('art').style.backgroundImage = t?.art ? `url("${t.art}")` : 'none';
   $('duration').textContent = fmtTime(t?.durationMs);
-  $('upnext').textContent = p.upNext?.length ? `Straks — ${p.upNext[0].title} · ${p.upNext[0].artist}` : '';
+  const queue = p.upNext || [];
+  $('queue').hidden = !t || queue.length === 0;
+  $('upnext').replaceChildren(
+    ...queue.map((q) => {
+      const li = document.createElement('li');
+      const title = document.createElement('span');
+      const artist = document.createElement('span');
+      title.textContent = q.title;
+      artist.textContent = q.artist;
+      artist.className = 'muted';
+      li.append(title, artist);
+      return li;
+    })
+  );
   $('icon-pause').toggleAttribute('hidden', !p.playing);
   $('icon-play').toggleAttribute('hidden', Boolean(p.playing));
   if (!volumeDragging && p.volume != null) $('volume').value = p.volume;

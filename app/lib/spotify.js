@@ -125,9 +125,31 @@ export async function getPlayer() {
   };
 }
 
-export async function getUpNext() {
-  const t = lastStatus?.next_track;
-  return t ? [{ title: t.name, artist: (t.artist_names || []).join(', ') }] : [];
+// Next songs of the playing playlist/album, in order. With shuffle on the
+// order is unknown, so only the speaker's own next_track is shown.
+const ctxCache = { uri: null, tracks: [], complete: false, at: 0 };
+const brief = (t) => ({ title: t.name, artist: (t.artist_names || []).join(', ') });
+
+export async function getUpNext(limit = 4) {
+  const s = lastStatus;
+  const fallback = s?.next_track ? [brief(s.next_track)] : [];
+  if (!s?.track || !s.context_uri || s.shuffle_context) return fallback;
+  try {
+    const stale = ctxCache.uri !== s.context_uri || (!ctxCache.complete && Date.now() - ctxCache.at > 5000);
+    if (stale) {
+      const c = await speaker('GET', `/context/tracks?uri=${encodeURIComponent(s.context_uri)}`);
+      ctxCache.uri = s.context_uri;
+      ctxCache.tracks = c?.tracks || [];
+      ctxCache.complete = Boolean(c?.ready && c.cached >= c.length);
+      ctxCache.at = Date.now();
+    }
+    const i = ctxCache.tracks.findIndex((e) => e.uri === s.track.uri);
+    if (i < 0) return fallback;
+    const next = ctxCache.tracks.slice(i + 1, i + 1 + limit).filter((e) => e.track).map((e) => brief(e.track));
+    return next.length ? next : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 export async function command(action, value) {
