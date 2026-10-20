@@ -11,7 +11,12 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 **Quizzes** (guests join by scanning the QR code; answers on their phones)
 - *Intro raden* — the song plays from the start; pick the right title.
 - *Popquiz* — year of release, who sings it, which came out first.
-- *Pubquiz* — general knowledge in 9 categories, 3 difficulty levels. Questions from: your own sets (`/admin`), a built-in Dutch starter set, and AI-generated questions (optional).
+- *Pubquiz* — general knowledge in 13 categories, 3 difficulty levels. Doesn't need Spotify. Questions from:
+  - your own sets (`/admin`)
+  - a built-in Dutch starter set (50)
+  - [Open Trivia DB](https://opentdb.com) — ~5,000 verified questions, bundled in `app/data-seed/opentdb.json` (CC BY-SA 4.0). They're English; with an AI key they're translated into Dutch in the background and the translations are kept. Setting *Taal*: "Alleen Nederlands" or "Ook Engelstalige vragen".
+  - AI-generated questions (optional)
+  - Questions aren't repeated until a category runs out.
 - Options per game: genres to include/exclude, decades, your own Spotify playlists, question types, categories, rounds, questions per round, seconds per question, clip length.
 - Answers stay hidden until the round ends. Then the screen walks through them one by one: right answer, who got it (with points and speed), the answer distribution, and **Speel het refrein**. The chorus start comes from time-synced lyrics (LRCLIB) and can be nudged ±5 s; corrections are remembered.
 - Scoring: 500–1000 points for a correct answer, more for answering faster. Scoreboard after each round, podium at the end. The music that was playing before the quiz resumes afterwards.
@@ -52,7 +57,7 @@ Runs on **balenaOS** on the bar's mini PC. Every push to `main` deploys automati
 | Variable | Needed | What for |
 |---|---|---|
 | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | yes | music + music games |
-| `ANTHROPIC_API_KEY` | optional | AI pubquiz questions and Dutch recipe steps |
+| `ANTHROPIC_API_KEY` | optional | Dutch translation of the Open Trivia DB questions, AI pubquiz questions, Dutch recipe steps |
 | `ANTHROPIC_MODEL` | optional | defaults to `claude-haiku-5-5` |
 | `PUBLIC_URL` | optional | e.g. the balena public device URL, so guests can join without the bar wifi |
 | `LAN_URL` | optional | override the detected address in the QR code |
@@ -75,3 +80,7 @@ For Spotify locally, register `http://127.0.0.1:8080/auth/spotify/callback` too 
 ## Adding a look
 
 Each look is a token set in `app/public/css/themes.css`; layouts are shared. Add a `[data-theme="name"]` block, add the name to `THEMES` in `server.js` and an entry (label, swatch colours, Google Fonts) in `THEMES` in `public/js/ui.js`.
+
+## Credits
+
+Pubquiz questions from [Open Trivia DB](https://opentdb.com), licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Refresh them with `node tools/fetch-opentdb.mjs`. Cocktail recipes from [TheCocktailDB](https://www.thecocktaildb.com). Synced lyrics from [LRCLIB](https://lrclib.net).

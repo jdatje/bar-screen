@@ -27,6 +27,8 @@ let quizDefaults = load('quiz-settings', {
   popquiz: { genres: {}, decades: [], playlists: [], types: ['year', 'artist', 'first'], rounds: 2, perRound: 8, seconds: 20, clip: 12 },
   pubquiz: { categories: [], difficulty: '', source: 'mix', rounds: 3, perRound: 8, seconds: 25 },
 });
+// Dutch-only by default when questions can be translated, otherwise also English
+if (!quizDefaults.pubquiz.lang) quizDefaults.pubquiz.lang = bank.aiAvailable() ? 'nl' : 'all';
 
 const publicSettings = () => ({ theme: settings.theme, language: settings.language, hasPin: Boolean(settings.pin) });
 const pinOk = (pin) => !settings.pin || String(pin || '') === settings.pin;
@@ -147,7 +149,7 @@ app.get(CALLBACK_PATH, async (req, res) => {
 const admin = express.Router();
 admin.use((req, res, next) => (pinOk(req.get('x-admin-pin')) ? next() : res.status(401).json({ error: 'pin' })));
 admin.get('/info', (_req, res) =>
-  res.json({ categories: bank.CATEGORIES, difficulties: bank.DIFFICULTIES, ai: bank.aiAvailable(), library: cocktails.libraryInfo() })
+  res.json({ categories: bank.CATEGORIES, difficulties: bank.DIFFICULTIES, ai: bank.aiAvailable(), bank: bank.stats(), library: cocktails.libraryInfo() })
 );
 admin.get('/sets', (_req, res) => res.json(bank.listSets()));
 admin.get('/sets/:id', (req, res) => {
@@ -223,6 +225,7 @@ io.on('connection', (socket) => {
       categories: bank.CATEGORIES,
       difficulties: bank.DIFFICULTIES,
       ai: bank.aiAvailable(),
+      bank: bank.stats(),
       spotifyReady: spotify.isConfigured() && spotify.isLoggedIn(),
       defaults: quizDefaults,
     });
@@ -313,6 +316,7 @@ io.on('connection', (socket) => {
 
 setInterval(pollSpotify, 3000);
 cocktails.scheduleRefresh();
+bank.startTranslator();
 server.listen(PORT, () => {
   console.log(`Bar screen listening on :${PORT}`);
   resolveJoinUrl().catch(() => {});

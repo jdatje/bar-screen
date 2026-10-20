@@ -113,6 +113,7 @@ export async function triviaQuestions(settings, count) {
     source: settings.source,
     categories: settings.categories,
     difficulty: settings.difficulty,
+    lang: settings.lang,
     count,
   });
   return items.map((it) => {

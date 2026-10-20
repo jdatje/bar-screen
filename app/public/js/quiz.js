@@ -21,6 +21,7 @@ const SOURCES = [
   { id: 'mix', label: 'Mix' },
   { id: 'own', label: 'Eigen sets' },
   { id: 'starter', label: 'Startset' },
+  { id: 'opentdb', label: 'Open Trivia DB' },
   { id: 'ai', label: 'AI' },
 ];
 
@@ -86,6 +87,12 @@ function renderSetup() {
     html += `<div class="opt"><span class="mono muted">Vragen uit</span><div class="chips">
       ${SOURCES.filter((x) => x.id !== 'ai' || opts.ai).map((x) => chip(x.label, `data-source="${x.id}"`, s.source === x.id)).join('')}
     </div></div>`;
+    const b = opts.bank;
+    const nlCount = b.own + b.starter + b.translated;
+    html += `<div class="opt"><span class="mono muted">Taal · ${(b.own + b.starter + b.opentdb).toLocaleString('nl-NL')} vragen, waarvan ${nlCount.toLocaleString('nl-NL')} in het Nederlands${opts.ai && b.translated < b.opentdb ? ' (rest wordt vertaald)' : ''}</span><div class="chips">
+      ${chip('Alleen Nederlands', 'data-lang="nl"', s.lang === 'nl')}
+      ${chip('Ook Engelstalige vragen', 'data-lang="all"', s.lang === 'all')}
+    </div></div>`;
   }
 
   const steppers = Object.entries(STEPPERS).filter(([k]) => music || k !== 'clip');
@@ -129,6 +136,7 @@ function onOptionClick(e) {
   if (d.cat) s.categories = toggle(s.categories, d.cat);
   if ('diff' in d) s.difficulty = d.diff;
   if (d.source) s.source = d.source;
+  if (d.lang) s.lang = d.lang;
   if (d.step) {
     const cfg = STEPPERS[d.step];
     s[d.step] = Math.max(cfg.min, Math.min(cfg.max, Number(s[d.step]) + cfg.step * Number(d.dir)));

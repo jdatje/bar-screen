@@ -36,6 +36,11 @@ async function showList() {
         </div>`).join('') : '<p class="muted">Nog geen eigen sets. De quiz gebruikt dan de startset' + (info.ai ? ' en AI-vragen' : '') + '.</p>'}
     </div>
     <button class="btn primary" id="new-set">Nieuwe set</button>
+    <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:6px">
+      <span class="mono accent">Vragendatabase</span>
+      <span>Startset: ${info.bank.starter} · Open Trivia DB: ${info.bank.opentdb.toLocaleString('nl-NL')} (${info.bank.translated.toLocaleString('nl-NL')} vertaald) · eigen sets: ${info.bank.own}</span>
+      <span class="muted">${info.ai ? 'Open Trivia DB wordt op de achtergrond naar het Nederlands vertaald.' : 'Zonder AI-sleutel blijven de Open Trivia DB-vragen Engelstalig.'}</span>
+    </div>
     <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:10px">
       <span class="mono accent">Cocktailbibliotheek</span>
       <span>${lib.count} recepten${lib.fetchedAt ? ` · bijgewerkt ${new Date(lib.fetchedAt).toLocaleDateString('nl-NL')}` : ' · alleen basisset, download nog niet gelukt'}</span>
