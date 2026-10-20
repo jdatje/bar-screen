@@ -131,7 +131,7 @@ export async function getPlayer() {
 // Next songs of the playing playlist/album, in order. With shuffle on the
 // order is unknown, so only the speaker's own next_track is shown.
 const ctxCache = { uri: null, tracks: [], complete: false, at: 0 };
-const brief = (t) => ({ title: t.name, artist: (t.artist_names || []).join(', ') });
+const brief = (t, uri) => ({ title: t.name, artist: (t.artist_names || []).join(', '), uri: uri || t.uri || null });
 
 export async function getUpNext(limit = 15) {
   const s = lastStatus;
@@ -148,7 +148,7 @@ export async function getUpNext(limit = 15) {
     }
     const i = ctxCache.tracks.findIndex((e) => e.uri === s.track.uri);
     if (i < 0) return fallback;
-    const next = ctxCache.tracks.slice(i + 1, i + 1 + limit).filter((e) => e.track).map((e) => brief(e.track));
+    const next = ctxCache.tracks.slice(i + 1, i + 1 + limit).filter((e) => e.track).map((e) => brief(e.track, e.uri));
     return next.length ? next : fallback;
   } catch {
     return fallback;
@@ -167,6 +167,15 @@ export async function command(action, value) {
       return speaker('POST', '/player/volume', { volume: Math.round((v / 100) * (vol?.max || 100)) });
     }
     case 'seek': return speaker('POST', '/player/seek', { position: Math.max(0, Math.round(Number(value))) });
+    case 'jump': {
+      // play a song from the "Straks" list, staying in the same playlist/album
+      const uri = String(value || '');
+      if (!/^spotify:(track|episode):[A-Za-z0-9]+$/.test(uri)) throw new Error('Invalid track');
+      const s = await speaker('GET', '/status');
+      return s?.context_uri
+        ? speaker('POST', '/player/play', { uri: s.context_uri, skip_to_uri: uri })
+        : speaker('POST', '/player/play', { uri });
+    }
     default: throw new Error(`Unknown player action: ${action}`);
   }
 }

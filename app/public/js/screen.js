@@ -74,12 +74,21 @@ function renderPlayer(p) {
   $('upnext').replaceChildren(
     ...queue.map((q) => {
       const li = document.createElement('li');
+      const btn = document.createElement('button');
       const title = document.createElement('span');
       const artist = document.createElement('span');
       title.textContent = q.title;
       artist.textContent = q.artist;
       artist.className = 'muted';
-      li.append(title, artist);
+      btn.className = 'queue-item';
+      btn.disabled = !q.uri;
+      btn.setAttribute('aria-label', `Speel ${q.title} van ${q.artist}`);
+      btn.addEventListener('click', () => {
+        btn.classList.add('picked');
+        cmd('jump', q.uri);
+      });
+      btn.append(title, artist);
+      li.append(btn);
       return li;
     })
   );
