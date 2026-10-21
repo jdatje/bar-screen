@@ -1,0 +1,1436 @@
+[
+{
+"title": "Bohemian Rhapsody",
+"artist": "Queen",
+"year": 1975,
+"nl": false
+},
+{
+"title": "Don't Stop Me Now",
+"artist": "Queen",
+"year": 1979,
+"nl": false
+},
+{
+"title": "We Will Rock You",
+"artist": "Queen",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Another One Bites the Dust",
+"artist": "Queen",
+"year": 1980,
+"nl": false
+},
+{
+"title": "Hotel California",
+"artist": "Eagles",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Stairway to Heaven",
+"artist": "Led Zeppelin",
+"year": 1971,
+"nl": false
+},
+{
+"title": "Imagine",
+"artist": "John Lennon",
+"year": 1971,
+"nl": false
+},
+{
+"title": "Hey Jude",
+"artist": "The Beatles",
+"year": 1968,
+"nl": false
+},
+{
+"title": "Let It Be",
+"artist": "The Beatles",
+"year": 1970,
+"nl": false
+},
+{
+"title": "Here Comes the Sun",
+"artist": "The Beatles",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Yesterday",
+"artist": "The Beatles",
+"year": 1965,
+"nl": false
+},
+{
+"title": "(I Can't Get No) Satisfaction",
+"artist": "The Rolling Stones",
+"year": 1965,
+"nl": false
+},
+{
+"title": "Paint It Black",
+"artist": "The Rolling Stones",
+"year": 1966,
+"nl": false
+},
+{
+"title": "Billie Jean",
+"artist": "Michael Jackson",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Thriller",
+"artist": "Michael Jackson",
+"year": 1982,
+"nl": false
+},
+{
+"title": "Beat It",
+"artist": "Michael Jackson",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Smooth Criminal",
+"artist": "Michael Jackson",
+"year": 1988,
+"nl": false
+},
+{
+"title": "Like a Prayer",
+"artist": "Madonna",
+"year": 1989,
+"nl": false
+},
+{
+"title": "Like a Virgin",
+"artist": "Madonna",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Purple Rain",
+"artist": "Prince",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Kiss",
+"artist": "Prince",
+"year": 1986,
+"nl": false
+},
+{
+"title": "Sweet Child O' Mine",
+"artist": "Guns N' Roses",
+"year": 1987,
+"nl": false
+},
+{
+"title": "Livin' on a Prayer",
+"artist": "Bon Jovi",
+"year": 1986,
+"nl": false
+},
+{
+"title": "It's My Life",
+"artist": "Bon Jovi",
+"year": 2000,
+"nl": false
+},
+{
+"title": "Smells Like Teen Spirit",
+"artist": "Nirvana",
+"year": 1991,
+"nl": false
+},
+{
+"title": "Wonderwall",
+"artist": "Oasis",
+"year": 1995,
+"nl": false
+},
+{
+"title": "Don't Look Back in Anger",
+"artist": "Oasis",
+"year": 1996,
+"nl": false
+},
+{
+"title": "Mr. Brightside",
+"artist": "The Killers",
+"year": 2004,
+"nl": false
+},
+{
+"title": "Seven Nation Army",
+"artist": "The White Stripes",
+"year": 2003,
+"nl": false
+},
+{
+"title": "Africa",
+"artist": "Toto",
+"year": 1982,
+"nl": false
+},
+{
+"title": "Take On Me",
+"artist": "a-ha",
+"year": 1985,
+"nl": false
+},
+{
+"title": "Sweet Dreams (Are Made of This)",
+"artist": "Eurythmics",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Girls Just Want to Have Fun",
+"artist": "Cyndi Lauper",
+"year": 1983,
+"nl": false
+},
+{
+"title": "I Wanna Dance with Somebody (Who Loves Me)",
+"artist": "Whitney Houston",
+"year": 1987,
+"nl": false
+},
+{
+"title": "I Will Always Love You",
+"artist": "Whitney Houston",
+"year": 1992,
+"nl": false
+},
+{
+"title": "Dancing Queen",
+"artist": "ABBA",
+"year": 1976,
+"nl": false
+},
+{
+"title": "Mamma Mia",
+"artist": "ABBA",
+"year": 1975,
+"nl": false
+},
+{
+"title": "Waterloo",
+"artist": "ABBA",
+"year": 1974,
+"nl": false
+},
+{
+"title": "Gimme! Gimme! Gimme! (A Man After Midnight)",
+"artist": "ABBA",
+"year": 1979,
+"nl": false
+},
+{
+"title": "Stayin' Alive",
+"artist": "Bee Gees",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Night Fever",
+"artist": "Bee Gees",
+"year": 1977,
+"nl": false
+},
+{
+"title": "I Will Survive",
+"artist": "Gloria Gaynor",
+"year": 1978,
+"nl": false
+},
+{
+"title": "Le Freak",
+"artist": "Chic",
+"year": 1978,
+"nl": false
+},
+{
+"title": "September",
+"artist": "Earth, Wind & Fire",
+"year": 1978,
+"nl": false
+},
+{
+"title": "Y.M.C.A.",
+"artist": "Village People",
+"year": 1978,
+"nl": false
+},
+{
+"title": "Dancing in the Dark",
+"artist": "Bruce Springsteen",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Born in the U.S.A.",
+"artist": "Bruce Springsteen",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Every Breath You Take",
+"artist": "The Police",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Roxanne",
+"artist": "The Police",
+"year": 1978,
+"nl": false
+},
+{
+"title": "Sultans of Swing",
+"artist": "Dire Straits",
+"year": 1978,
+"nl": false
+},
+{
+"title": "Money for Nothing",
+"artist": "Dire Straits",
+"year": 1985,
+"nl": false
+},
+{
+"title": "Wish You Were Here",
+"artist": "Pink Floyd",
+"year": 1975,
+"nl": false
+},
+{
+"title": "Another Brick in the Wall, Pt. 2",
+"artist": "Pink Floyd",
+"year": 1979,
+"nl": false
+},
+{
+"title": "Highway to Hell",
+"artist": "AC/DC",
+"year": 1979,
+"nl": false
+},
+{
+"title": "Back in Black",
+"artist": "AC/DC",
+"year": 1980,
+"nl": false
+},
+{
+"title": "Thunderstruck",
+"artist": "AC/DC",
+"year": 1990,
+"nl": false
+},
+{
+"title": "Enter Sandman",
+"artist": "Metallica",
+"year": 1991,
+"nl": false
+},
+{
+"title": "Nothing Else Matters",
+"artist": "Metallica",
+"year": 1991,
+"nl": false
+},
+{
+"title": "Zombie",
+"artist": "The Cranberries",
+"year": 1994,
+"nl": false
+},
+{
+"title": "Linger",
+"artist": "The Cranberries",
+"year": 1993,
+"nl": false
+},
+{
+"title": "With or Without You",
+"artist": "U2",
+"year": 1987,
+"nl": false
+},
+{
+"title": "One",
+"artist": "U2",
+"year": 1991,
+"nl": false
+},
+{
+"title": "Under the Bridge",
+"artist": "Red Hot Chili Peppers",
+"year": 1992,
+"nl": false
+},
+{
+"title": "Californication",
+"artist": "Red Hot Chili Peppers",
+"year": 1999,
+"nl": false
+},
+{
+"title": "Losing My Religion",
+"artist": "R.E.M.",
+"year": 1991,
+"nl": false
+},
+{
+"title": "Creep",
+"artist": "Radiohead",
+"year": 1992,
+"nl": false
+},
+{
+"title": "Yellow",
+"artist": "Coldplay",
+"year": 2000,
+"nl": false
+},
+{
+"title": "Viva la Vida",
+"artist": "Coldplay",
+"year": 2008,
+"nl": false
+},
+{
+"title": "Fix You",
+"artist": "Coldplay",
+"year": 2005,
+"nl": false
+},
+{
+"title": "Clocks",
+"artist": "Coldplay",
+"year": 2002,
+"nl": false
+},
+{
+"title": "Rolling in the Deep",
+"artist": "Adele",
+"year": 2010,
+"nl": false
+},
+{
+"title": "Someone Like You",
+"artist": "Adele",
+"year": 2011,
+"nl": false
+},
+{
+"title": "Hello",
+"artist": "Adele",
+"year": 2015,
+"nl": false
+},
+{
+"title": "Rehab",
+"artist": "Amy Winehouse",
+"year": 2006,
+"nl": false
+},
+{
+"title": "Back to Black",
+"artist": "Amy Winehouse",
+"year": 2006,
+"nl": false
+},
+{
+"title": "Valerie",
+"artist": "Mark Ronson",
+"year": 2007,
+"nl": false
+},
+{
+"title": "Crazy in Love",
+"artist": "Beyoncé",
+"year": 2003,
+"nl": false
+},
+{
+"title": "Single Ladies (Put a Ring on It)",
+"artist": "Beyoncé",
+"year": 2008,
+"nl": false
+},
+{
+"title": "Umbrella",
+"artist": "Rihanna",
+"year": 2007,
+"nl": false
+},
+{
+"title": "Toxic",
+"artist": "Britney Spears",
+"year": 2003,
+"nl": false
+},
+{
+"title": "...Baby One More Time",
+"artist": "Britney Spears",
+"year": 1998,
+"nl": false
+},
+{
+"title": "Wannabe",
+"artist": "Spice Girls",
+"year": 1996,
+"nl": false
+},
+{
+"title": "I Want It That Way",
+"artist": "Backstreet Boys",
+"year": 1999,
+"nl": false
+},
+{
+"title": "Everybody (Backstreet's Back)",
+"artist": "Backstreet Boys",
+"year": 1997,
+"nl": false
+},
+{
+"title": "Bye Bye Bye",
+"artist": "*NSYNC",
+"year": 2000,
+"nl": false
+},
+{
+"title": "Hey Ya!",
+"artist": "OutKast",
+"year": 2003,
+"nl": false
+},
+{
+"title": "In Da Club",
+"artist": "50 Cent",
+"year": 2003,
+"nl": false
+},
+{
+"title": "Lose Yourself",
+"artist": "Eminem",
+"year": 2002,
+"nl": false
+},
+{
+"title": "Without Me",
+"artist": "Eminem",
+"year": 2002,
+"nl": false
+},
+{
+"title": "Gangsta's Paradise",
+"artist": "Coolio",
+"year": 1995,
+"nl": false
+},
+{
+"title": "Empire State of Mind",
+"artist": "JAY-Z",
+"year": 2009,
+"nl": false
+},
+{
+"title": "Get Lucky",
+"artist": "Daft Punk",
+"year": 2013,
+"nl": false
+},
+{
+"title": "One More Time",
+"artist": "Daft Punk",
+"year": 2000,
+"nl": false
+},
+{
+"title": "Happy",
+"artist": "Pharrell Williams",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Uptown Funk",
+"artist": "Mark Ronson",
+"year": 2014,
+"nl": false
+},
+{
+"title": "Shape of You",
+"artist": "Ed Sheeran",
+"year": 2017,
+"nl": false
+},
+{
+"title": "Perfect",
+"artist": "Ed Sheeran",
+"year": 2017,
+"nl": false
+},
+{
+"title": "Thinking Out Loud",
+"artist": "Ed Sheeran",
+"year": 2014,
+"nl": false
+},
+{
+"title": "Blinding Lights",
+"artist": "The Weeknd",
+"year": 2019,
+"nl": false
+},
+{
+"title": "Levitating",
+"artist": "Dua Lipa",
+"year": 2020,
+"nl": false
+},
+{
+"title": "Don't Start Now",
+"artist": "Dua Lipa",
+"year": 2019,
+"nl": false
+},
+{
+"title": "Bad Guy",
+"artist": "Billie Eilish",
+"year": 2019,
+"nl": false
+},
+{
+"title": "Shake It Off",
+"artist": "Taylor Swift",
+"year": 2014,
+"nl": false
+},
+{
+"title": "Blank Space",
+"artist": "Taylor Swift",
+"year": 2014,
+"nl": false
+},
+{
+"title": "Like a Rolling Stone",
+"artist": "Bob Dylan",
+"year": 1965,
+"nl": false
+},
+{
+"title": "Hallelujah",
+"artist": "Jeff Buckley",
+"year": 1994,
+"nl": false
+},
+{
+"title": "Hurt",
+"artist": "Johnny Cash",
+"year": 2002,
+"nl": false
+},
+{
+"title": "Sweet Caroline",
+"artist": "Neil Diamond",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Dancing On My Own",
+"artist": "Robyn",
+"year": 2010,
+"nl": false
+},
+{
+"title": "Poker Face",
+"artist": "Lady Gaga",
+"year": 2008,
+"nl": false
+},
+{
+"title": "Bad Romance",
+"artist": "Lady Gaga",
+"year": 2009,
+"nl": false
+},
+{
+"title": "Shallow",
+"artist": "Lady Gaga",
+"year": 2018,
+"nl": false
+},
+{
+"title": "Somebody That I Used to Know",
+"artist": "Gotye",
+"year": 2011,
+"nl": false
+},
+{
+"title": "Proud Mary",
+"artist": "Creedence Clearwater Revival",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Fortunate Son",
+"artist": "Creedence Clearwater Revival",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Bad Moon Rising",
+"artist": "Creedence Clearwater Revival",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Respect",
+"artist": "Aretha Franklin",
+"year": 1967,
+"nl": false
+},
+{
+"title": "What a Wonderful World",
+"artist": "Louis Armstrong",
+"year": 1967,
+"nl": false
+},
+{
+"title": "Feeling Good",
+"artist": "Nina Simone",
+"year": 1965,
+"nl": false
+},
+{
+"title": "Stand by Me",
+"artist": "Ben E. King",
+"year": 1961,
+"nl": false
+},
+{
+"title": "Johnny B. Goode",
+"artist": "Chuck Berry",
+"year": 1958,
+"nl": false
+},
+{
+"title": "Jailhouse Rock",
+"artist": "Elvis Presley",
+"year": 1957,
+"nl": false
+},
+{
+"title": "Suspicious Minds",
+"artist": "Elvis Presley",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Can't Help Falling in Love",
+"artist": "Elvis Presley",
+"year": 1961,
+"nl": false
+},
+{
+"title": "Heroes",
+"artist": "David Bowie",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Let's Dance",
+"artist": "David Bowie",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Space Oddity",
+"artist": "David Bowie",
+"year": 1969,
+"nl": false
+},
+{
+"title": "Rocket Man",
+"artist": "Elton John",
+"year": 1972,
+"nl": false
+},
+{
+"title": "Your Song",
+"artist": "Elton John",
+"year": 1970,
+"nl": false
+},
+{
+"title": "I'm Still Standing",
+"artist": "Elton John",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Careless Whisper",
+"artist": "George Michael",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Wake Me Up Before You Go-Go",
+"artist": "Wham!",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Last Christmas",
+"artist": "Wham!",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Tainted Love",
+"artist": "Soft Cell",
+"year": 1981,
+"nl": false
+},
+{
+"title": "Don't You Want Me",
+"artist": "The Human League",
+"year": 1981,
+"nl": false
+},
+{
+"title": "Relax",
+"artist": "Frankie Goes to Hollywood",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Never Gonna Give You Up",
+"artist": "Rick Astley",
+"year": 1987,
+"nl": false
+},
+{
+"title": "Total Eclipse of the Heart",
+"artist": "Bonnie Tyler",
+"year": 1983,
+"nl": false
+},
+{
+"title": "Eye of the Tiger",
+"artist": "Survivor",
+"year": 1982,
+"nl": false
+},
+{
+"title": "Don't Stop Believin'",
+"artist": "Journey",
+"year": 1981,
+"nl": false
+},
+{
+"title": "Jump",
+"artist": "Van Halen",
+"year": 1984,
+"nl": false
+},
+{
+"title": "The Final Countdown",
+"artist": "Europe",
+"year": 1986,
+"nl": false
+},
+{
+"title": "Black or White",
+"artist": "Michael Jackson",
+"year": 1991,
+"nl": false
+},
+{
+"title": "No Woman, No Cry",
+"artist": "Bob Marley & The Wailers",
+"year": 1974,
+"nl": false
+},
+{
+"title": "Three Little Birds",
+"artist": "Bob Marley & The Wailers",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Superstition",
+"artist": "Stevie Wonder",
+"year": 1972,
+"nl": false
+},
+{
+"title": "Ain't No Mountain High Enough",
+"artist": "Marvin Gaye",
+"year": 1967,
+"nl": false
+},
+{
+"title": "My Girl",
+"artist": "The Temptations",
+"year": 1964,
+"nl": false
+},
+{
+"title": "Mr. Blue Sky",
+"artist": "Electric Light Orchestra",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Go Your Own Way",
+"artist": "Fleetwood Mac",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Dreams",
+"artist": "Fleetwood Mac",
+"year": 1977,
+"nl": false
+},
+{
+"title": "Summer of '69",
+"artist": "Bryan Adams",
+"year": 1984,
+"nl": false
+},
+{
+"title": "Everybody Hurts",
+"artist": "R.E.M.",
+"year": 1992,
+"nl": false
+},
+{
+"title": "Song 2",
+"artist": "Blur",
+"year": 1997,
+"nl": false
+},
+{
+"title": "Bitter Sweet Symphony",
+"artist": "The Verve",
+"year": 1997,
+"nl": false
+},
+{
+"title": "Torn",
+"artist": "Natalie Imbruglia",
+"year": 1997,
+"nl": false
+},
+{
+"title": "Believe",
+"artist": "Cher",
+"year": 1998,
+"nl": false
+},
+{
+"title": "Mambo No. 5 (a Little Bit of...)",
+"artist": "Lou Bega",
+"year": 1999,
+"nl": false
+},
+{
+"title": "Macarena",
+"artist": "Los Del Rio",
+"year": 1993,
+"nl": false
+},
+{
+"title": "Barbie Girl",
+"artist": "Aqua",
+"year": 1997,
+"nl": false
+},
+{
+"title": "Blue (Da Ba Dee)",
+"artist": "Eiffel 65",
+"year": 1998,
+"nl": false
+},
+{
+"title": "Freed from Desire",
+"artist": "Gala",
+"year": 1996,
+"nl": false
+},
+{
+"title": "What Is Love",
+"artist": "Haddaway",
+"year": 1993,
+"nl": false
+},
+{
+"title": "Rhythm Is a Dancer",
+"artist": "Snap!",
+"year": 1992,
+"nl": false
+},
+{
+"title": "Sandstorm",
+"artist": "Darude",
+"year": 1999,
+"nl": false
+},
+{
+"title": "Levels",
+"artist": "Avicii",
+"year": 2011,
+"nl": false
+},
+{
+"title": "Wake Me Up",
+"artist": "Avicii",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Titanium",
+"artist": "David Guetta",
+"year": 2011,
+"nl": false
+},
+{
+"title": "Despacito",
+"artist": "Luis Fonsi",
+"year": 2017,
+"nl": false
+},
+{
+"title": "Counting Stars",
+"artist": "OneRepublic",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Radioactive",
+"artist": "Imagine Dragons",
+"year": 2012,
+"nl": false
+},
+{
+"title": "Believer",
+"artist": "Imagine Dragons",
+"year": 2017,
+"nl": false
+},
+{
+"title": "Take Me to Church",
+"artist": "Hozier",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Riptide",
+"artist": "Vance Joy",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Pompeii",
+"artist": "Bastille",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Rather Be",
+"artist": "Clean Bandit",
+"year": 2014,
+"nl": false
+},
+{
+"title": "Royals",
+"artist": "Lorde",
+"year": 2013,
+"nl": false
+},
+{
+"title": "Watermelon Sugar",
+"artist": "Harry Styles",
+"year": 2019,
+"nl": false
+},
+{
+"title": "As It Was",
+"artist": "Harry Styles",
+"year": 2022,
+"nl": false
+},
+{
+"title": "drivers license",
+"artist": "Olivia Rodrigo",
+"year": 2021,
+"nl": false
+},
+{
+"title": "Flowers",
+"artist": "Miley Cyrus",
+"year": 2023,
+"nl": false
+},
+{
+"title": "Dance Monkey",
+"artist": "Tones And I",
+"year": 2019,
+"nl": false
+},
+{
+"title": "Old Town Road",
+"artist": "Lil Nas X",
+"year": 2019,
+"nl": false
+},
+{
+"title": "Zoutelande",
+"artist": "BLØF",
+"year": 2017,
+"nl": true
+},
+{
+"title": "Aan de kust",
+"artist": "BLØF",
+"year": 1997,
+"nl": true
+},
+{
+"title": "Liefs uit Londen",
+"artist": "Racoon",
+"year": 2007,
+"nl": true
+},
+{
+"title": "Oceaan",
+"artist": "Racoon",
+"year": 2010,
+"nl": true
+},
+{
+"title": "Het is een nacht... (Levensecht)",
+"artist": "Guus Meeuwis",
+"year": 1995,
+"nl": true
+},
+{
+"title": "Zij gelooft in mij",
+"artist": "André Hazes",
+"year": 1981,
+"nl": true
+},
+{
+"title": "Bloed, zweet en tranen",
+"artist": "André Hazes",
+"year": 2002,
+"nl": true
+},
+{
+"title": "Een beetje verliefd",
+"artist": "André Hazes",
+"year": 1984,
+"nl": true
+},
+{
+"title": "Leef",
+"artist": "André Hazes Jr.",
+"year": 2014,
+"nl": true
+},
+{
+"title": "Dromen zijn bedrog",
+"artist": "Marco Borsato",
+"year": 1994,
+"nl": true
+},
+{
+"title": "Rood",
+"artist": "Marco Borsato",
+"year": 2006,
+"nl": true
+},
+{
+"title": "Afscheid nemen bestaat niet",
+"artist": "Marco Borsato",
+"year": 2005,
+"nl": true
+},
+{
+"title": "Binnen",
+"artist": "Marco Borsato",
+"year": 2000,
+"nl": true
+},
+{
+"title": "Avond",
+"artist": "Boudewijn de Groot",
+"year": 1997,
+"nl": true
+},
+{
+"title": "Het land van Maas en Waal",
+"artist": "Boudewijn de Groot",
+"year": 1967,
+"nl": true
+},
+{
+"title": "Roller Coaster",
+"artist": "Danny Vera",
+"year": 2019,
+"nl": true
+},
+{
+"title": "Nobody's Wife",
+"artist": "Anouk",
+"year": 1997,
+"nl": true
+},
+{
+"title": "Girl",
+"artist": "Anouk",
+"year": 2004,
+"nl": true
+},
+{
+"title": "Birds",
+"artist": "Anouk",
+"year": 2013,
+"nl": true
+},
+{
+"title": "Calm After the Storm",
+"artist": "The Common Linnets",
+"year": 2014,
+"nl": true
+},
+{
+"title": "Arcade",
+"artist": "Duncan Laurence",
+"year": 2019,
+"nl": true
+},
+{
+"title": "Europapa",
+"artist": "Joost Klein",
+"year": 2024,
+"nl": true
+},
+{
+"title": "Venus",
+"artist": "Shocking Blue",
+"year": 1969,
+"nl": true
+},
+{
+"title": "Radar Love",
+"artist": "Golden Earring",
+"year": 1973,
+"nl": true
+},
+{
+"title": "Twilight Zone",
+"artist": "Golden Earring",
+"year": 1982,
+"nl": true
+},
+{
+"title": "Pa",
+"artist": "Doe Maar",
+"year": 1983,
+"nl": true
+},
+{
+"title": "Is dit alles",
+"artist": "Doe Maar",
+"year": 1982,
+"nl": true
+},
+{
+"title": "De bom",
+"artist": "Doe Maar",
+"year": 1983,
+"nl": true
+},
+{
+"title": "Oerend hard",
+"artist": "Normaal",
+"year": 1977,
+"nl": true
+},
+{
+"title": "Mag ik dan bij jou",
+"artist": "Claudia de Breij",
+"year": 2011,
+"nl": true
+},
+{
+"title": "Zing, vecht, huil, bid, lach, werk en bewonder",
+"artist": "Ramses Shaffy",
+"year": 1969,
+"nl": true
+},
+{
+"title": "Laat me",
+"artist": "Ramses Shaffy",
+"year": 1978,
+"nl": true
+},
+{
+"title": "Het dorp",
+"artist": "Wim Sonneveld",
+"year": 1974,
+"nl": true
+},
+{
+"title": "15 miljoen mensen",
+"artist": "Fluitsma & Van Tijn",
+"year": 1996,
+"nl": true
+},
+{
+"title": "Kom van dat dak af",
+"artist": "Peter Koelewijn",
+"year": 1961,
+"nl": true
+},
+{
+"title": "Drank & Drugs",
+"artist": "Lil Kleine",
+"year": 2015,
+"nl": true
+},
+{
+"title": "Reünie",
+"artist": "Snelle",
+"year": 2019,
+"nl": true
+},
+{
+"title": "Smoorverliefd",
+"artist": "Snelle",
+"year": 2019,
+"nl": true
+},
+{
+"title": "Blauwe dag",
+"artist": "Suzan & Freek",
+"year": 2019,
+"nl": true
+},
+{
+"title": "Als het avond is",
+"artist": "Suzan & Freek",
+"year": 2018,
+"nl": true
+},
+{
+"title": "Streets",
+"artist": "Kensington",
+"year": 2014,
+"nl": true
+},
+{
+"title": "World of Hurt",
+"artist": "Ilse DeLange",
+"year": 1998,
+"nl": true
+},
+{
+"title": "A Night Like This",
+"artist": "Caro Emerald",
+"year": 2009,
+"nl": true
+},
+{
+"title": "Back It Up",
+"artist": "Caro Emerald",
+"year": 2009,
+"nl": true
+},
+{
+"title": "Ding-a-dong",
+"artist": "Teach-In",
+"year": 1975,
+"nl": true
+},
+{
+"title": "Een beetje",
+"artist": "Teddy Scholten",
+"year": 1959,
+"nl": true
+},
+{
+"title": "Amsterdam",
+"artist": "Maggie MacNeal",
+"year": 1980,
+"nl": true
+},
+{
+"title": "Als de morgen is gekomen",
+"artist": "Jan Smit",
+"year": 2006,
+"nl": true
+},
+{
+"title": "Wit licht",
+"artist": "Marco Borsato",
+"year": 2008,
+"nl": true
+},
+{
+"title": "Ik leef niet meer voor jou",
+"artist": "Marco Borsato",
+"year": 2008,
+"nl": true
+},
+{
+"title": "Toen ik je zag",
+"artist": "Hero",
+"year": 2007,
+"nl": true
+},
+{
+"title": "Outlaw in 'Em",
+"artist": "Waylon",
+"year": 2018,
+"nl": true
+},
+{
+"title": "Ik neem je mee",
+"artist": "Gers Pardoel",
+"year": 2011,
+"nl": true
+},
+{
+"title": "Bagagedrager",
+"artist": "Gers Pardoel",
+"year": 2011,
+"nl": true
+},
+{
+"title": "Kronenburg Park",
+"artist": "Frank Boeijen Groep",
+"year": 1985,
+"nl": true
+},
+{
+"title": "Zwart wit",
+"artist": "Frank Boeijen Groep",
+"year": 1984,
+"nl": true
+}
+]

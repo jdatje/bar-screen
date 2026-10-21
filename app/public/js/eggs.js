@@ -38,6 +38,7 @@ export function init(c) {
   // a certain date as a code
   window.addEventListener('wexer:pin', (e) => {
     if (e.detail === '1031') fx.pumpkinRain();
+    if (e.detail === '2704') fx.oranjeRain();
   });
 
   // eight-legged visitors, now and then, in the Halloween looks
@@ -62,4 +63,6 @@ export function onPlayer(p) {
   const t = p?.track;
   const haunted = Boolean(t && !p.hidden && SPOOKY_SONGS.test(`${t.title} ${t.album || ''}`));
   $('art')?.classList.toggle('haunted', haunted);
+  // a toast to the king of the levenslied
+  $('art')?.classList.toggle('proost', Boolean(t && !p.hidden && /\bhazes\b/i.test(t.artist || '')));
 }

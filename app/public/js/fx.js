@@ -39,6 +39,20 @@ export const pumpkinRain = once(() => {
   }).join('');
 }, 6500);
 
+// Orange fever: hearts, crowns and flags
+export const oranjeRain = once(() => {
+  const el = layer('fx-rain', 6500);
+  const bits = ['🧡', '👑', '🇳🇱', '🧡', '🍊'];
+  el.innerHTML = Array.from({ length: 30 }, (_, i) => {
+    const left = Math.random() * 100;
+    const size = 26 + Math.random() * 40;
+    const delay = Math.random() * 2.2;
+    const dur = 2.6 + Math.random() * 1.8;
+    const spin = (Math.random() * 2 - 1) * 300;
+    return `<i style="left:${left}%;font-size:${size}px;animation-delay:${delay}s;animation-duration:${dur}s;--spin:${spin}deg">${bits[i % bits.length]}</i>`;
+  }).join('');
+}, 6500);
+
 // Lights out... and something is watching
 export const eyes = once(() => {
   const el = layer('fx-eyes', 6000);

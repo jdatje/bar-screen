@@ -284,3 +284,52 @@
 @media (prefers-reduced-motion: reduce) {
   .tile-bg i, .tile-bg svg, .tile-bg * { animation: none !important; }
 }
+
+/* ===== Dutch party ===== */
+/* Vlaggetjes: little Dutch flags waving their way up */
+.tbg-flags i { bottom: -60px; width: 40px; opacity: 0; animation: tb-flag-up 15s linear infinite; }
+.tbg-flags svg { position: static; width: 100%; }
+.tbg-flags .cloth { transform-box: fill-box; transform-origin: left center; animation: tb-wave 1.6s ease-in-out infinite alternate; }
+.tbg-flags i:nth-child(1) { left: 58%; }
+.tbg-flags i:nth-child(2) { left: 78%; width: 30px; animation-delay: -4s; animation-duration: 17s; }
+.tbg-flags i:nth-child(3) { left: 68%; width: 52px; animation-delay: -8s; animation-duration: 19s; }
+.tbg-flags i:nth-child(4) { left: 88%; width: 34px; animation-delay: -11s; }
+.tbg-flags i:nth-child(5) { left: 48%; width: 26px; animation-delay: -13s; animation-duration: 16s; }
+@keyframes tb-flag-up { 0% { transform: translateY(0) rotate(-6deg); opacity: 0; } 12%, 82% { opacity: 0.35; } 100% { transform: translateY(-360px) rotate(6deg); opacity: 0; } }
+@keyframes tb-wave { from { transform: skewY(-6deg) scaleX(0.92); } to { transform: skewY(6deg) scaleX(1); } }
+
+/* Tulpen: a row of tulips swaying at the bottom */
+.tbg-tulips i { bottom: -8px; width: 34px; opacity: 0.32; transform-origin: bottom center; animation: tb-sway-tulip 4s ease-in-out infinite alternate; }
+.tbg-tulips svg { position: static; width: 100%; }
+.tbg-tulips i:nth-child(1) { left: 52%; }
+.tbg-tulips i:nth-child(2) { left: 60%; width: 28px; animation-delay: -1s; }
+.tbg-tulips i:nth-child(3) { left: 68%; width: 38px; animation-delay: -2.2s; }
+.tbg-tulips i:nth-child(4) { left: 77%; width: 30px; animation-delay: -0.5s; }
+.tbg-tulips i:nth-child(5) { left: 85%; width: 36px; animation-delay: -3s; }
+.tbg-tulips i:nth-child(6) { left: 93%; width: 26px; animation-delay: -1.6s; }
+@keyframes tb-sway-tulip { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+
+/* Molen: a windmill turning in the corner */
+.tbg-windmill svg { right: 4%; bottom: -4%; width: 44%; opacity: 0.2; }
+.tbg-windmill .body, .tbg-windmill .hub { fill: currentColor; }
+.tbg-windmill .sails { fill: none; stroke: currentColor; stroke-width: 3; transform-origin: 80px 76px; animation: tb-spin 14s linear infinite; }
+
+/* Confetti: orange, red, white and blue snippets drifting down */
+.tbg-confetti i { top: -20px; width: 10px; height: 16px; border-radius: 2px; opacity: 0; animation: tb-confetti 9s linear infinite; }
+.tbg-confetti i:nth-child(4n+1) { background: #FF7A00; }
+.tbg-confetti i:nth-child(4n+2) { background: #AE1C28; }
+.tbg-confetti i:nth-child(4n+3) { background: #21468B; }
+.tbg-confetti i:nth-child(4n) { background: #FFFFFF; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08); }
+.tbg-confetti i:nth-child(1) { left: 40%; } .tbg-confetti i:nth-child(2) { left: 52%; animation-delay: -1s; animation-duration: 10s; }
+.tbg-confetti i:nth-child(3) { left: 62%; animation-delay: -2s; } .tbg-confetti i:nth-child(4) { left: 70%; animation-delay: -3s; animation-duration: 11s; }
+.tbg-confetti i:nth-child(5) { left: 78%; animation-delay: -4s; } .tbg-confetti i:nth-child(6) { left: 86%; animation-delay: -5s; animation-duration: 8s; }
+.tbg-confetti i:nth-child(7) { left: 94%; animation-delay: -6s; } .tbg-confetti i:nth-child(8) { left: 46%; animation-delay: -7s; animation-duration: 12s; }
+.tbg-confetti i:nth-child(9) { left: 57%; animation-delay: -8s; } .tbg-confetti i:nth-child(10) { left: 66%; animation-delay: -1.5s; animation-duration: 9.5s; }
+.tbg-confetti i:nth-child(11) { left: 74%; animation-delay: -3.5s; } .tbg-confetti i:nth-child(12) { left: 82%; animation-delay: -5.5s; animation-duration: 10.5s; }
+.tbg-confetti i:nth-child(13) { left: 90%; animation-delay: -7.5s; } .tbg-confetti i:nth-child(14) { left: 98%; animation-delay: -2.5s; animation-duration: 11.5s; }
+@keyframes tb-confetti {
+  0% { transform: translate(0, 0) rotate(0) rotateX(0); opacity: 0; }
+  10%, 85% { opacity: 0.5; }
+  50% { transform: translate(-16px, 200px) rotate(200deg) rotateX(180deg); }
+  100% { transform: translate(10px, 420px) rotate(400deg) rotateX(360deg); opacity: 0; }
+}

@@ -193,13 +193,14 @@ const splitSteps = (text) =>
     .map((s) => s.trim())
     .filter((s) => s.length > 2);
 
-export async function recipe(id) {
+export async function recipe(id, want = 'nl') {
   const d = library.drinks.find((x) => x.id === id);
   if (!d) return null;
   const e = evaluate(d, bar.availableBottles(), bar.availablePantry());
-  let steps = translations[id]?.steps;
+  // English: the original method; Dutch: translated steps when available
+  let steps = want === 'en' ? null : translations[id]?.steps;
   let lang = 'nl';
-  if (!steps && aiAvailable()) {
+  if (!steps && want !== 'en' && aiAvailable()) {
     try {
       const text = await ask(
         `Vertaal deze cocktailbereiding naar natuurlijk Nederlands en splits haar in korte, genummerde stappen voor een bar zonder garnituur-voorraad (garnering mag als optioneel). Antwoord alleen met een JSON-array van strings.\n\nCocktail: ${d.name}\nIngrediënten: ${d.ingredients.map((i) => `${i.measure} ${i.name}`).join(', ')}\nBereiding: ${d.instructions}`,

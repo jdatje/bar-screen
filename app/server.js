@@ -9,14 +9,14 @@ import * as spotify from './lib/spotify.js';
 import * as bank from './lib/bank.js';
 import * as bar from './lib/bar.js';
 import * as cocktails from './lib/cocktails.js';
-import { getSourceOptions } from './lib/musicpool.js';
+import { getSourceOptions, MUSIC_SETS } from './lib/musicpool.js';
 import { Game } from './lib/game.js';
 import { load, save } from './lib/store.js';
 import * as diag from './lib/diag.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
 const PORT = Number(process.env.PORT || 80);
-export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks'];
+export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
 const app = express();
@@ -31,8 +31,14 @@ settings.tiles = { ...DEFAULT_TILES, ...(settings.tiles || {}) };
 let quizDefaults = load('quiz-settings', {
   intro: { genres: {}, decades: [], playlists: [], rounds: 2, perRound: 8, seconds: 20, clip: 10 },
   popquiz: { genres: {}, decades: [], playlists: [], types: ['year', 'artist', 'first'], rounds: 2, perRound: 8, seconds: 20, clip: 12 },
-  pubquiz: { categories: [], difficulty: '', source: 'mix', rounds: 3, perRound: 8, seconds: 25 },
+  pubquiz: { categories: [], difficulty: '', source: 'cafe', rounds: 3, perRound: 8, seconds: 25 },
 });
+// New: question sets. Music games default to well-known hits; the pubquiz to the café mix.
+for (const t of ['intro', 'popquiz']) quizDefaults[t].set ||= 'hits';
+if (!quizDefaults.pubquiz.setChosen) {
+  quizDefaults.pubquiz.source = 'cafe';
+  quizDefaults.pubquiz.setChosen = true;
+}
 // All bundled questions have a Dutch version, so Dutch is always the default
 quizDefaults.pubquiz.lang = 'nl';
 
@@ -231,6 +237,8 @@ app.use(express.static('public', {
 
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
+// look and language, for pages that aren't unlocked yet
+app.get('/api/look', (_req, res) => res.json({ theme: settings.theme, language: settings.language }));
 
 // Diagnostics (PIN-protected when a PIN is set): /diag?pin=1234&lines=300&grep=spotify
 app.get('/diag', async (req, res) => {
@@ -302,6 +310,8 @@ app.use('/api/admin', admin);
 
 // ---------- Sockets ----------
 io.on('connection', (socket) => {
+  // look and language for every page, right away (also before joining)
+  socket.emit('settings', publicSettings());
   const isScreen = () => socket.rooms.has('screen');
   const isPlayer = () => players.has(socket.data.playerId);
 
@@ -342,8 +352,12 @@ io.on('connection', (socket) => {
   socket.on('quiz:options', async (_p, ack) => {
     ack?.({
       ...(await getSourceOptions()),
-      categories: bank.CATEGORIES,
+      categories: bank.categories(settings.language),
       difficulties: bank.DIFFICULTIES,
+      difficultyLabels: settings.language === 'en' ? bank.DIFFICULTY_EN : null,
+      sets: bank.SETS,
+      musicSets: MUSIC_SETS,
+      lang: settings.language,
       ai: bank.aiAvailable(),
       bank: bank.stats(),
       spotifyReady: spotify.isConfigured() && spotify.isLoggedIn(),
@@ -355,7 +369,7 @@ io.on('connection', (socket) => {
     if (!isScreen() || !['intro', 'popquiz', 'pubquiz'].includes(type)) return ack?.({ ok: false });
     quizDefaults[type] = { ...quizDefaults[type], ...s };
     save('quiz-settings', quizDefaults);
-    game.start(type, quizDefaults[type]);
+    game.start(type, { ...quizDefaults[type], lang: settings.language });
     setTimeout(pollSpotify, 500);
     ack?.({ ok: true });
   });
@@ -388,7 +402,7 @@ io.on('connection', (socket) => {
   });
   socket.on('cocktails:recipe', async ({ id } = {}, ack) => {
     if (!isScreen() && !isPlayer()) return ack?.(null);
-    ack?.(await cocktails.recipe(String(id || '')));
+    ack?.(await cocktails.recipe(String(id || ''), settings.language));
   });
 
   // ----- Stock (screen only, PIN when set) -----

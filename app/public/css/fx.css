@@ -70,3 +70,14 @@
   91% { transform: translateX(3px); text-shadow: -3px 0 var(--accent); }
   93% { transform: none; opacity: 0.4; }
 }
+
+/* cheers! glasses rising next to the album art */
+.art.proost { position: relative; box-shadow: 0 0 40px rgba(255, 140, 0, 0.55); }
+.art.proost::before, .art.proost::after {
+  content: '🍻'; position: absolute; bottom: 4px; font-size: 34px; line-height: 1; opacity: 0;
+  animation: fx-proost 3.2s ease-out infinite;
+}
+.art.proost::before { left: 8%; }
+.art.proost::after { right: 8%; animation-delay: -1.6s; font-size: 26px; }
+@keyframes fx-proost { 0% { transform: translateY(0) rotate(-10deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-160px) rotate(10deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .art.proost::before, .art.proost::after { display: none; } }

@@ -1,6 +1,48 @@
 // Builds a pool of songs for the music games from genre/decade searches
 // and the user's own playlists, with include/exclude per genre.
+import fs from 'node:fs';
 import * as spotify from './spotify.js';
+
+// Well-known hits (title, artist, original year), so the music games use
+// songs everybody knows. `nl` marks Dutch hits.
+const HITS = JSON.parse(fs.readFileSync(new URL('../data-seed/hits.json', import.meta.url), 'utf8'));
+
+export const MUSIC_SETS = [
+  { id: 'hits', nl: 'Bekende hits', en: 'Well-known hits', nlInfo: 'Klassiekers en hits die iedereen kent', enInfo: 'Classics and hits everybody knows' },
+  { id: 'nlhits', nl: 'Hollandse hits', en: 'Dutch hits', nlInfo: 'Alleen Nederlandse nummers', enInfo: 'Dutch songs only' },
+  { id: 'spotify', nl: 'Zelf kiezen', en: 'Choose yourself', nlInfo: 'Genres, decennia en eigen playlists via Spotify', enInfo: 'Genres, decades and own playlists via Spotify' },
+];
+
+const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+
+// Finds one hit on Spotify (best effort)
+async function resolveHit(h) {
+  const want = norm(h.artist).split(' ').find((w) => w.length > 2) || norm(h.artist);
+  const pickFrom = (list) => list.find((x) => norm(x.artist).includes(want) && !JUNK.test(x.title)) || list.find((x) => norm(x.artist).includes(want));
+  let t = pickFrom(await spotify.searchTracks(`track:${h.title} artist:${h.artist}`, { count: 10 }).catch(() => []));
+  // field search can miss on punctuation; try a plain search too
+  if (!t) t = pickFrom(await spotify.searchTracks(`${h.title.replace(/[()'.!]/g, ' ')} ${h.artist}`, { count: 10 }).catch(() => []));
+  return t ? { ...t, title: cleanTitle(t.title), mainArtist: h.artist, year: h.year, compilation: false } : null;
+}
+
+/**
+ * Pool from the hits list. Only the songs that will be played are looked up
+ * on Spotify; the rest serve as answer options (no uri).
+ */
+export async function hitsPool({ dutchOnly = false, need = 20 }) {
+  const list = shuffle(HITS.filter((h) => !dutchOnly || h.nl).map((h) => ({ ...h, mainArtist: h.artist })));
+  const playable = [];
+  let i = 0;
+  while (playable.length < need && i < list.length) {
+    const batch = list.slice(i, i + 6);
+    i += batch.length;
+    const found = await Promise.all(batch.map(resolveHit));
+    for (const t of found) if (t) playable.push(t);
+  }
+  const used = new Set(playable.map((t) => `${t.title}|${t.mainArtist}`));
+  const rest = list.slice(i).filter((h) => !used.has(`${h.title}|${h.mainArtist}`)).map((h) => ({ ...h, uri: null }));
+  return [...playable, ...rest];
+}
 
 export const GENRES = [
   { id: 'pop', label: 'Pop', queries: ['genre:pop'] },

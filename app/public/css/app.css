@@ -379,3 +379,8 @@ body.phone-body { overflow: auto; user-select: auto; -webkit-user-select: auto; 
 .admin-link .qr { width: 96px; height: 96px; flex-shrink: 0; }
 .admin-link .notice { margin: 0; line-height: 1.5; }
 .pin-grid [data-x="cancel"] { font-size: 17px; padding: 0 4px; }
+
+/* Question set picker at the top of the quiz setup */
+.set-pick { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.set-pick .chip { min-height: 56px; font-size: 19px; padding: 0 22px; }
+.set-info { font-size: 16px; }

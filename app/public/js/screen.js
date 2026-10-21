@@ -4,6 +4,7 @@ import * as quiz from './quiz.js';
 import * as bar from './cocktails.js';
 import { TILE_KEYS, TILE_LABELS, TILE_STYLES, resolveTile, tileMarkup } from './tiles.js';
 import * as eggs from './eggs.js';
+import { setLang, getLang } from './i18n.js';
 
 const socket = io();
 const state = { settings: { theme: 'industrial' }, themes: [], player: null, room: null, players: [], game: { active: false } };
@@ -50,11 +51,14 @@ document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click'
 // ---------- Clock ----------
 // The bar PC runs on UTC; always show Amsterdam time (incl. summer/winter time)
 const TIME_ZONE = 'Europe/Amsterdam';
-const fmtDate = new Intl.DateTimeFormat('nl-NL', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: TIME_ZONE });
+const fmtDates = {
+  nl: new Intl.DateTimeFormat('nl-NL', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: TIME_ZONE }),
+  en: new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: TIME_ZONE }),
+};
 function tickClock() {
   const now = new Date();
   $('clock').textContent = now.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit', timeZone: TIME_ZONE });
-  $('date').textContent = document.documentElement.hasAttribute('data-witching') ? '☾ spookuur' : fmtDate.format(now).replace(',', '').replace('-', '.');
+  $('date').textContent = document.documentElement.hasAttribute('data-witching') ? (getLang() === 'en' ? '☾ witching hour' : '☾ spookuur') : fmtDates[getLang()].format(now).replace(',', '').replace('-', '.').replace('/', '.');
 }
 setInterval(tickClock, 1000);
 tickClock();
@@ -156,6 +160,9 @@ function renderThemes() {
 }
 function markTheme() {
   applyTheme(state.settings.theme);
+  setLang(state.settings.language);
+  document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
+  tickClock();
   document.querySelectorAll('.theme-card').forEach((c) => c.classList.toggle('on', c.dataset.theme === state.settings.theme));
   renderTiles();
   renderTileChoices();
@@ -186,6 +193,10 @@ function renderTileChoices() {
     })
   );
 }
+$('lang-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-lang]');
+  if (b) setSetting({ language: b.dataset.lang });
+});
 $('tile-choices').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-style]');
   if (b) setSetting({ tiles: { [b.dataset.key]: b.dataset.style } });

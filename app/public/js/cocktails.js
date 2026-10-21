@@ -1,4 +1,5 @@
 // Cocktail menu, spin-the-wheel, recipe view and the stock list.
+import { getLang } from './i18n.js';
 import { $, esc, call, toast } from './ui.js';
 
 let ctx;
@@ -201,7 +202,7 @@ function renderRecipe() {
           .join('')}</ul>
       </div>
       <div class="recipe-steps">
-        <span class="mono muted">Stap ${step + 1} van ${steps.length}${r.lang === 'en' ? ' · Engelstalig' : ''}</span>
+        <span class="mono muted">Stap ${step + 1} van ${steps.length}${r.lang === 'en' && getLang() === 'nl' ? ' · Engelstalig' : ''}</span>
         <p class="step-text">${esc(steps[step])}</p>
         <div class="step-dots">${steps.map((_, i) => `<span class="${i === step ? 'on' : ''}"></span>`).join('')}</div>
         <div class="row">

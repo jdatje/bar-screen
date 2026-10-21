@@ -9,6 +9,24 @@ import crypto from 'node:crypto';
 import { load, save } from './store.js';
 import { ask, extractJson, aiAvailable } from './ai.js';
 
+// Category labels in English (for the English language setting)
+const CATEGORY_EN = {
+  algemeen: 'General', aardrijkskunde: 'Geography', geschiedenis: 'History', nederland: 'The Netherlands', sport: 'Sport',
+  wetenschap: 'Science', 'dieren-natuur': 'Animals & nature', techniek: 'Technology', 'film-tv': 'Film & TV', muziek: 'Music',
+  'kunst-cultuur': 'Art & culture', games: 'Games', 'eten-drinken': 'Food & drink',
+};
+export const categories = (lang = 'nl') => CATEGORIES.map((c) => ({ id: c.id, label: lang === 'en' ? CATEGORY_EN[c.id] || c.label : c.label }));
+export const DIFFICULTY_EN = { makkelijk: 'easy', gemiddeld: 'medium', moeilijk: 'hard' };
+
+// Question sets to pick from before a pubquiz
+export const SETS = [
+  { id: 'cafe', nl: 'Café-mix', en: 'Pub mix', nlInfo: 'Hollandse vragen + makkelijke internationale', enInfo: 'Dutch questions + easy international ones' },
+  { id: 'hollands', nl: 'Hollands', en: 'Dutch', nlInfo: 'Over Nederland, Nederlandse muziek, tv en eten', enInfo: 'About the Netherlands, Dutch music, TV and food' },
+  { id: 'opentdb', nl: 'Internationaal', en: 'International', nlInfo: 'Open Trivia DB: ruim 5000 vragen, vaak lastig', enInfo: 'Open Trivia DB: 5000+ questions, often tricky' },
+  { id: 'own', nl: 'Eigen sets', en: 'Own sets', nlInfo: 'Jullie eigen vragen (/admin)', enInfo: 'Your own questions (/admin)' },
+  { id: 'mix', nl: 'Alles', en: 'Everything', nlInfo: 'Alle bronnen door elkaar', enInfo: 'All sources mixed' },
+];
+
 export const CATEGORIES = [
   { id: 'algemeen', label: 'Algemeen' },
   { id: 'aardrijkskunde', label: 'Aardrijkskunde' },
@@ -45,7 +63,13 @@ const readSeed = (name, fallback) => {
   }
 };
 
+// Bilingual local questions: { q, options } in Dutch plus an `en` version
 const STARTER = readSeed('starter-questions.json', []).map((q) => ({ ...q, lang: 'nl', source: 'starter' }));
+const HOLLANDS = readSeed('hollands.json', []).map((q) => ({
+  id: q.id, q: q.nl.q, options: q.nl.options, en: q.en, answer: q.answer, category: q.category, difficulty: q.difficulty, lang: 'nl', source: 'hollands',
+}));
+// Open Trivia DB categories most people at a Dutch bar will know something about
+const FAMILIAR = new Set([9, 11, 12, 17, 20, 21, 22, 23, 27]);
 const OPENTDB = readSeed('opentdb.json', []).map((r) => {
   const isBool = r.type === 'boolean';
   const options = isBool ? ['True', 'False'] : [r.correct, ...r.wrong];
@@ -58,6 +82,7 @@ const OPENTDB = readSeed('opentdb.json', []).map((r) => {
     difficulty: OTDB_DIFF[r.difficulty] || 'gemiddeld',
     lang: 'en',
     source: 'opentdb',
+    familiar: FAMILIAR.has(r.cat) && r.difficulty === 'easy',
   };
 });
 
@@ -68,7 +93,7 @@ let used = load('used-questions', { ids: [] });
 const SEED_NL = readSeed('opentdb-nl.json', {});
 let nl = { ...SEED_NL, ...load('quiz-nl', {}) };
 
-const catLabel = (id) => CATEGORIES.find((c) => c.id === id)?.label || id || '';
+const catLabel = (id, lang = 'nl') => (lang === 'en' ? CATEGORY_EN[id] : CATEGORIES.find((c) => c.id === id)?.label) || id || '';
 const shuffle = (a) => {
   const b = [...a];
   for (let i = b.length - 1; i > 0; i--) {
@@ -83,9 +108,10 @@ export { aiAvailable };
 export function stats() {
   const own_ = own.sets.filter((s) => s.enabled).reduce((n, s) => n + s.questions.length, 0);
   const perCat = {};
-  for (const q of [...STARTER, ...OPENTDB]) perCat[q.category] = (perCat[q.category] || 0) + 1;
+  for (const q of [...HOLLANDS, ...STARTER, ...OPENTDB]) perCat[q.category] = (perCat[q.category] || 0) + 1;
   return {
     own: own_,
+    hollands: HOLLANDS.length,
     starter: STARTER.length,
     opentdb: OPENTDB.length,
     translated: OPENTDB.filter((q) => nl[q.id]).length,
@@ -181,25 +207,35 @@ export function startTranslator() {
   setTimeout(run, 10000);
 }
 
-const display = (q) => (q.lang === 'en' && nl[q.id] ? { ...q, ...nl[q.id], lang: 'nl' } : q);
+// The question in the language of the game
+function display(q, lang) {
+  if (lang === 'en') {
+    if (q.en) return { ...q, ...q.en, lang: 'en' };
+    return q; // English original, or an own (Dutch) question
+  }
+  return q.lang === 'en' && nl[q.id] ? { ...q, ...nl[q.id], lang: 'nl' } : q;
+}
 
 // ---------- Picking questions for a game ----------
 /**
- * source: 'mix' (everything) | 'own' | 'starter' | 'opentdb' | 'ai'
- * lang:   'nl' (Dutch only; English questions are translated on the fly with AI) | 'all'
+ * source: a SETS id ('cafe' | 'hollands' | 'opentdb' | 'own' | 'mix') or 'starter' | 'ai'
+ * lang:   'nl' (Dutch; English questions translated, by AI on the fly if needed) | 'en' | 'all'
  */
-export async function getQuestions({ source = 'mix', categories = [], difficulty = '', count = 10, lang = 'nl' }) {
+export async function getQuestions({ source = 'cafe', categories = [], difficulty = '', count = 10, lang = 'nl' }) {
   const catOk = (q) => !categories.length || categories.includes(q.category);
   const diffOk = (q) => !difficulty || q.difficulty === difficulty;
   const canTranslate = aiAvailable();
-  const langOk = (q) => lang === 'all' || q.lang !== 'en' || nl[q.id] || canTranslate;
+  const ownQs = () => own.sets.filter((s) => s.enabled).flatMap((s) => s.questions.map((q) => ({ ...q, lang: 'nl', source: 'own' })));
+  // English game: questions need an English version (own sets are shown as written)
+  const langOk = (q) =>
+    lang === 'all' || (lang === 'en' ? q.lang === 'en' || q.en || q.source === 'own' : q.lang !== 'en' || nl[q.id] || canTranslate);
 
   let candidates = [];
-  if (source === 'own' || source === 'mix') {
-    candidates.push(...own.sets.filter((s) => s.enabled).flatMap((s) => s.questions.map((q) => ({ ...q, lang: 'nl', source: 'own' }))));
-  }
-  if (source === 'starter' || source === 'mix') candidates.push(...STARTER);
+  if (source === 'own' || source === 'mix') candidates.push(...ownQs());
+  if (source === 'hollands' || source === 'cafe' || source === 'mix') candidates.push(...HOLLANDS);
+  if (source === 'starter' || source === 'cafe' || source === 'mix') candidates.push(...STARTER);
   if (source === 'opentdb' || source === 'mix') candidates.push(...OPENTDB);
+  if (source === 'cafe') candidates.push(...OPENTDB.filter((q) => q.familiar));
   candidates = candidates.filter((q) => catOk(q) && diffOk(q) && langOk(q));
 
   const usedSet = new Set(used.ids);
@@ -211,13 +247,20 @@ export async function getQuestions({ source = 'mix', categories = [], difficulty
     fresh = candidates;
   }
 
-  // prefer Dutch questions; with lang 'all' mix freely
   let chosen = [];
   if (source !== 'ai') {
     const pool = shuffle(fresh);
-    chosen = lang === 'nl'
-      ? [...pool.filter((q) => q.lang !== 'en' || nl[q.id]), ...pool.filter((q) => q.lang === 'en' && !nl[q.id])].slice(0, count)
-      : pool.slice(0, count);
+    if (source === 'cafe') {
+      // about two thirds Dutch-themed, the rest easy international
+      const local = pool.filter((q) => q.source !== 'opentdb');
+      const intl = pool.filter((q) => q.source === 'opentdb' && (lang !== 'nl' || nl[q.id]));
+      const nIntl = Math.min(intl.length, Math.round(count / 3));
+      chosen = [...intl.slice(0, nIntl), ...local.slice(0, count - nIntl)];
+    } else {
+      chosen = lang === 'nl'
+        ? [...pool.filter((q) => q.lang !== 'en' || nl[q.id]), ...pool.filter((q) => q.lang === 'en' && !nl[q.id])].slice(0, count)
+        : pool.slice(0, count);
+    }
     chosen = shuffle(chosen);
   }
 
@@ -234,7 +277,7 @@ export async function getQuestions({ source = 'mix', categories = [], difficulty
     }
   }
 
-  if (chosen.length < count && aiAvailable() && (source === 'ai' || source === 'mix')) {
+  if (chosen.length < count && aiAvailable() && lang !== 'en' && (source === 'ai' || source === 'mix')) {
     try {
       chosen.push(...(await generate({ categories, difficulty, count: count - chosen.length + 2 })).slice(0, count - chosen.length));
     } catch (err) {
@@ -243,9 +286,9 @@ export async function getQuestions({ source = 'mix', categories = [], difficulty
   }
   if (!chosen.length) {
     throw new Error(
-      lang === 'nl' && !canTranslate
-        ? 'Te weinig Nederlandse vragen voor deze keuze. Zet "Ook Engelstalige vragen" aan of kies meer categorieën.'
-        : 'Geen vragen gevonden voor deze keuze. Kies meer categorieën of een andere bron.'
+      lang === 'en'
+        ? 'No questions found for this choice. Pick more categories or another set.'
+        : 'Geen vragen gevonden voor deze keuze. Kies meer categorieën of een andere set.'
     );
   }
 
@@ -253,7 +296,7 @@ export async function getQuestions({ source = 'mix', categories = [], difficulty
   used.ids = used.ids.slice(-8000);
   save('used-questions', used);
   return chosen.map((q) => {
-    const d = display(q);
-    return { ...d, category: catLabel(q.category), lang: d.lang || 'nl' };
+    const d = display(q, lang);
+    return { ...d, category: catLabel(q.category, lang) };
   });
 }

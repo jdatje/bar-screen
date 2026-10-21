@@ -1,5 +1,6 @@
 // Guest phone: join with the room code, answer quiz questions, browse recipes.
 import { $, esc, call, applyTheme, LETTERS, remaining } from './ui.js';
+import { setLang } from './i18n.js';
 
 const socket = io();
 const store = {
@@ -33,6 +34,7 @@ async function join(silent) {
   store.set('name', name);
   store.set('playerId', res.playerId);
   applyTheme(res.settings?.theme);
+  setLang(res.settings?.language);
   $('me').textContent = name;
   setJoined(true);
   onGame(res.game);
@@ -222,7 +224,10 @@ socket.on('players', (n) => {
   playerCount = n;
   if (!game.active) renderGame();
 });
-socket.on('settings', (s) => applyTheme(s.theme));
+socket.on('settings', (s) => {
+  applyTheme(s.theme);
+  setLang(s.language);
+});
 socket.on('room:closed', () => {
   $('error').textContent = 'Er is een nieuwe kamercode — kijk op het scherm';
   $('code').value = '';

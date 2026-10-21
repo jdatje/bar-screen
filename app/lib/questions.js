@@ -1,6 +1,6 @@
 // Turns song pools and question banks into quiz questions.
 // Every question: { kind, prompt, options[], answer, track?, audio?, reveal{title, sub}, category? }
-import { buildPool } from './musicpool.js';
+import { buildPool, hitsPool } from './musicpool.js';
 import * as bank from './bank.js';
 
 const shuffle = (a) => {
@@ -19,6 +19,13 @@ function withOptions(correct, distractors) {
 }
 
 const songLabel = (t) => `${t.title} — ${t.mainArtist}`;
+const TEXT = {
+  nl: { intro: 'Welk nummer hoor je?', year: 'In welk jaar kwam dit nummer uit?', artist: 'Wie zingt dit?', first: 'Welk nummer kwam als eerste uit?',
+    tooFew: 'Te weinig nummers gevonden voor deze keuze. Kies meer genres of decennia.', tooFewHits: 'Te weinig nummers gevonden op Spotify. Is Spotify gekoppeld?' },
+  en: { intro: 'Which song is this?', year: 'In which year was this song released?', artist: 'Who sings this?', first: 'Which song came out first?',
+    tooFew: 'Not enough songs found for this choice. Pick more genres or decades.', tooFewHits: 'Not enough songs found on Spotify. Is Spotify linked?' },
+};
+let T = TEXT.nl;
 const reveal = (t) => ({ title: t.title, sub: `${t.artist}${t.year ? ` · ${t.year}` : ''}`, art: t.art });
 
 // ---------- Intro raden ----------
@@ -29,7 +36,7 @@ function introQuestion(t, pool) {
   if (others.length < 3) others = pick(pool, 3, (o) => o === t || o.mainArtist === t.mainArtist);
   return {
     kind: 'intro',
-    prompt: 'Welk nummer hoor je?',
+    prompt: T.intro,
     ...withOptions(songLabel(t), others.map(songLabel)),
     track: t,
     audio: 'intro',
@@ -44,7 +51,7 @@ function yearQuestion(t) {
   const years = offsets.map((o) => t.year + o).map((y) => (y > thisYear ? y - 10 : y));
   return {
     kind: 'year',
-    prompt: 'In welk jaar kwam dit nummer uit?',
+    prompt: T.year,
     ...withOptions(String(t.year), years.map(String)),
     track: t,
     audio: 'hook',
@@ -56,7 +63,7 @@ function artistQuestion(t, pool) {
   const artists = [...new Set(pool.map((o) => o.mainArtist))].filter((a) => a !== t.mainArtist);
   return {
     kind: 'artist',
-    prompt: 'Wie zingt dit?',
+    prompt: T.artist,
     ...withOptions(t.mainArtist, pick(artists, 3)),
     track: t,
     audio: 'hook',
@@ -75,7 +82,7 @@ function firstQuestion(t, pool) {
   const oldest = set.reduce((a, b) => (a.year <= b.year ? a : b));
   return {
     kind: 'first',
-    prompt: 'Welk nummer kwam als eerste uit?',
+    prompt: T.first,
     ...withOptions(songLabel(oldest), set.filter((s) => s !== oldest).map(songLabel)),
     track: oldest,
     audio: null,
@@ -84,18 +91,19 @@ function firstQuestion(t, pool) {
 }
 
 export async function musicQuestions(type, settings, count) {
-  const pool = await buildPool({
-    genres: settings.genres,
-    decades: settings.decades,
-    playlists: settings.playlists,
-    min: Math.max(30, count + 10),
-  });
-  if (pool.length < 8) throw new Error('Te weinig nummers gevonden voor deze keuze. Kies meer genres of decennia.');
+  T = TEXT[settings.lang] || TEXT.nl;
+  const set = settings.set || 'hits';
+  const pool =
+    set === 'spotify'
+      ? await buildPool({ genres: settings.genres, decades: settings.decades, playlists: settings.playlists, min: Math.max(30, count + 10) })
+      : await hitsPool({ dutchOnly: set === 'nlhits', need: count + 4 });
+  if (pool.filter((t) => t.uri).length < Math.min(8, count)) throw new Error(set === 'spotify' ? T.tooFew : T.tooFewHits);
 
   const out = [];
   const types = type === 'popquiz' ? (settings.types?.length ? settings.types : ['year', 'artist', 'first']) : ['intro'];
   for (const t of pool) {
     if (out.length >= count) break;
+    if (!t.uri) continue; // answer option only
     const kind = types[out.length % types.length];
     let q = null;
     if (kind === 'intro') q = introQuestion(t, pool);
@@ -113,7 +121,7 @@ export async function triviaQuestions(settings, count) {
     source: settings.source,
     categories: settings.categories,
     difficulty: settings.difficulty,
-    lang: settings.lang,
+    lang: settings.lang === 'en' ? 'en' : 'nl',
     count,
   });
   return items.map((it) => {

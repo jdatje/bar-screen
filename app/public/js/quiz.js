@@ -17,13 +17,15 @@ const POP_TYPES = [
   { id: 'artist', label: 'Artiest' },
   { id: 'first', label: 'Wat kwam eerst' },
 ];
-const SOURCES = [
-  { id: 'mix', label: 'Mix' },
-  { id: 'own', label: 'Eigen sets' },
-  { id: 'starter', label: 'Startset' },
-  { id: 'opentdb', label: 'Open Trivia DB' },
-  { id: 'ai', label: 'AI' },
-];
+// label of a question set in the bar's language
+const setLabel = (x) => (opts?.lang === 'en' ? x.en : x.nl);
+const setInfo = (x) => (opts?.lang === 'en' ? x.enInfo : x.nlInfo);
+function setPicker(title, list, attr, current) {
+  const on = list.find((x) => x.id === current) || list[0];
+  return `<div class="opt set-pick"><span class="mono accent">${title}</span><div class="chips">
+      ${list.map((x) => chip(setLabel(x), `${attr}="${x.id}"`, x.id === on.id)).join('')}
+    </div><span class="muted set-info">${esc(setInfo(on))}</span></div>`;
+}
 
 export function init(c) {
   ctx = c;
@@ -60,6 +62,9 @@ function renderSetup() {
 
   if (music) {
     if (!opts.spotifyReady) html += `<p class="warn">Spotify is nog niet gekoppeld; muziekspellen werken pas daarna.</p>`;
+    html += setPicker('Muziek', opts.musicSets, 'data-mset', s.set || 'hits');
+  }
+  if (music && s.set === 'spotify') {
     html += `<div class="opt"><span class="mono muted">Genres · tik = mee, nog eens = uitsluiten, niets gekozen = alles</span><div class="chips">
       ${opts.genres.map((g) => chip(g.label, `data-genre="${g.id}"`, s.genres?.[g.id] === 'in', s.genres?.[g.id])).join('')}
     </div></div>`;
@@ -71,12 +76,15 @@ function renderSetup() {
         ${opts.playlists.map((p) => chip(p.name, `data-playlist="${p.id}"`, s.playlists?.includes(p.id))).join('')}
       </div></div>`;
     }
+  }
+  if (music) {
     if (type === 'popquiz') {
       html += `<div class="opt"><span class="mono muted">Soorten vragen</span><div class="chips">
         ${POP_TYPES.map((t) => chip(t.label, `data-qtype="${t.id}"`, s.types?.includes(t.id))).join('')}
       </div></div>`;
     }
   } else {
+    html += setPicker('Vragenset', opts.sets.filter((x) => x.id !== 'own' || opts.bank.own), 'data-source', s.source || 'cafe');
     html += `<div class="opt"><span class="mono muted">Categorieën · niets gekozen = alles</span><div class="chips">
       ${opts.categories.map((c) => chip(c.label, `data-cat="${c.id}"`, s.categories?.includes(c.id))).join('')}
     </div></div>`;
@@ -84,15 +92,6 @@ function renderSetup() {
       ${chip('Alles', 'data-diff=""', !s.difficulty)}
       ${opts.difficulties.map((d) => chip(d[0].toUpperCase() + d.slice(1), `data-diff="${d}"`, s.difficulty === d)).join('')}
     </div></div>`;
-    html += `<div class="opt"><span class="mono muted">Vragen uit</span><div class="chips">
-      ${SOURCES.filter((x) => x.id !== 'ai' || opts.ai).map((x) => chip(x.label, `data-source="${x.id}"`, s.source === x.id)).join('')}
-    </div></div>`;
-    const b = opts.bank;
-    const total = b.own + b.starter + b.opentdb;
-    const nlCount = b.own + b.starter + b.translated;
-    html += `<p class="mono muted" style="margin:0">${total.toLocaleString('nl-NL')} vragen in de database${
-      nlCount < total ? ` · ${nlCount.toLocaleString('nl-NL')} in het Nederlands` : ', allemaal in het Nederlands'
-    }</p>`;
   }
 
   const steppers = Object.entries(STEPPERS).filter(([k]) => music || k !== 'clip');
@@ -136,6 +135,7 @@ function onOptionClick(e) {
   if (d.cat) s.categories = toggle(s.categories, d.cat);
   if ('diff' in d) s.difficulty = d.diff;
   if (d.source) s.source = d.source;
+  if (d.mset) s.set = d.mset;
   if (d.lang) s.lang = d.lang;
   if (d.step) {
     const cfg = STEPPERS[d.step];

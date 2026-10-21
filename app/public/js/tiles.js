@@ -2,6 +2,8 @@
 // server can import it too (to check settings) and the screen can draw it.
 
 export const SPOOKY_THEMES = ['spookhuis', 'pompoen', 'heks'];
+// party looks and which backgrounds "automatic" picks in them
+export const PARTY_OF_THEME = { spookhuis: 'spooky', pompoen: 'spooky', heks: 'spooky', oranje: 'dutch' };
 
 export const TILE_KEYS = ['quiz', 'cocktails', 'wheel', 'join'];
 export const TILE_LABELS = { quiz: 'Quiz', cocktails: 'Cocktails', wheel: 'Draai het rad', join: 'Meedoen' };
@@ -14,24 +16,28 @@ export const TILE_STYLES = {
     { id: 'paper', label: 'Schrijven op papier' },
     { id: 'bulb', label: 'Gloeilamp' },
     { id: 'ghosts', label: 'Spookjes', spooky: true },
+    { id: 'flags', label: 'Vlaggetjes', party: 'dutch' },
   ],
   cocktails: [
     { id: 'bubbles', label: 'Bubbels' },
     { id: 'ice', label: 'IJsblokjes' },
     { id: 'citrus', label: 'Citroenschijfjes' },
     { id: 'cauldron', label: 'Heksenketel', spooky: true },
+    { id: 'tulips', label: 'Tulpen', party: 'dutch' },
   ],
   wheel: [
     { id: 'wheel', label: 'Draaiend rad' },
     { id: 'lights', label: 'Kermislampjes' },
     { id: 'dice', label: 'Dobbelstenen' },
     { id: 'bats', label: 'Vleermuizen', spooky: true },
+    { id: 'windmill', label: 'Molen', party: 'dutch' },
   ],
   join: [
     { id: 'rings', label: 'Ringen' },
     { id: 'scan', label: 'Scanlijn' },
     { id: 'sparkle', label: 'Sterretjes' },
     { id: 'web', label: 'Spinnenweb', spooky: true },
+    { id: 'confetti', label: 'Confetti', party: 'dutch' },
   ],
 };
 
@@ -40,11 +46,13 @@ export const DEFAULT_TILES = { quiz: 'auto', cocktails: 'auto', wheel: 'auto', j
 export const validTileChoice = (key, choice) =>
   choice === 'auto' || choice === 'off' || Boolean(TILE_STYLES[key]?.some((s) => s.id === choice));
 
-// "auto" = the normal style, or the spooky one in a Halloween look
+// "auto" = the normal style, or the matching one in a party look
 export function resolveTile(key, choice, theme) {
   if (choice && choice !== 'auto') return choice;
   const list = TILE_STYLES[key];
-  return (SPOOKY_THEMES.includes(theme) ? list.find((s) => s.spooky) : list[0]).id;
+  const party = PARTY_OF_THEME[theme];
+  const match = party && list.find((s) => (s.party || (s.spooky && 'spooky')) === party);
+  return (match || list[0]).id;
 }
 
 const rep = (n, html) => Array.from({ length: n }, () => html).join('');
@@ -52,7 +60,19 @@ const rep = (n, html) => Array.from({ length: n }, () => html).join('');
 const GHOST = `<svg viewBox="0 0 48 56"><path d="M6 52V24a18 18 0 0 1 36 0v28l-6-5-6 5-6-5-6 5-6-5z" fill="currentColor"/><circle cx="18" cy="24" r="3.4" class="eye"/><circle cx="30" cy="24" r="3.4" class="eye"/><ellipse cx="24" cy="34" rx="3" ry="4" class="eye"/></svg>`;
 const BAT = `<svg viewBox="0 0 64 32"><path class="wing l" d="M32 14C26 6 14 4 2 8c6 2 8 6 8 10 4-3 8-2 10 2 2-4 8-5 12-6z" fill="currentColor"/><path class="wing r" d="M32 14c6-8 18-10 30-6-6 2-8 6-8 10-4-3-8-2-10 2-2-4-8-5-12-6z" fill="currentColor"/><path d="M28 12l1-5 3 3 3-3 1 5c0 4-2 7-4 7s-4-3-4-7z" fill="currentColor"/></svg>`;
 
+const FLAG = '<svg viewBox="0 0 40 46"><path d="M3 2v44" stroke="currentColor" stroke-width="2.5"/><g class="cloth"><path d="M4 3h33v8H4z" fill="#AE1C28"/><path d="M4 11h33v8H4z" fill="#FFFFFF"/><path d="M4 19h33v8H4z" fill="#21468B"/></g></svg>';
+const TULIP = (c) => `<svg viewBox="0 0 30 90"><path d="M15 34v56" stroke="#3E8E41" stroke-width="3"/><path d="M15 66c-8-2-12-10-12-16 6 2 11 7 12 16z" fill="#3E8E41"/><path d="M5 12c0 14 4 22 10 22s10-8 10-22l-5 6-5-10-5 10z" fill="${c}"/></svg>`;
+
 const MARKUP = {
+  flags: Array.from({ length: 5 }, () => `<i>${FLAG}</i>`).join(''),
+  tulips: ['#E8412C', '#FF8F1F', '#F7C948', '#D6336C', '#E8412C', '#FF8F1F'].map((c) => `<i>${TULIP(c)}</i>`).join(''),
+  windmill: `<svg class="mill" viewBox="0 0 160 200">
+      <path class="body" d="M62 200l8-110h20l8 110z"/>
+      <path class="body" d="M58 92l22-22 22 22z"/>
+      <g class="sails"><path d="M80 76V6h12v58z"/><path d="M80 76h70v12H92z"/><path d="M80 76v70H68V88z"/><path d="M80 76H10V64h58z"/></g>
+      <circle cx="80" cy="76" r="5" class="hub"/>
+    </svg>`,
+  confetti: rep(14, '<i></i>'),
   marks: rep(5, '<i>?</i>'),
   paper: `<svg class="paper" viewBox="0 0 200 170">
       <rect x="20" y="8" width="160" height="160" rx="3" class="pp-sheet"/>

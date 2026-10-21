@@ -11,6 +11,7 @@ const BETWEEN_MS = 2500;
 const MUSIC_TYPES = ['intro', 'popquiz'];
 
 export const TYPE_LABELS = { intro: 'Intro raden', popquiz: 'Popquiz', pubquiz: 'Pubquiz' };
+const TYPE_LABELS_EN = { intro: 'Name that intro', popquiz: 'Pop quiz', pubquiz: 'Pub quiz' };
 
 export class Game {
   /**
@@ -238,7 +239,7 @@ export class Game {
     return [...this.scores.entries()]
       .map(([id, score]) => ({
         id,
-        name: names.get(id)?.name || 'Gast',
+        name: names.get(id)?.name || (this.settings?.lang === 'en' ? 'Guest' : 'Gast'),
         score,
         delta: score - (this.roundStartScores.get(id) || 0),
       }))
@@ -253,7 +254,7 @@ export class Game {
     return {
       active: true,
       type: this.type,
-      typeLabel: TYPE_LABELS[this.type],
+      typeLabel: (this.settings?.lang === 'en' ? TYPE_LABELS_EN : TYPE_LABELS)[this.type],
       phase: this.phase,
       error: this.error,
       round: this.round + 1,
@@ -285,13 +286,13 @@ export class Game {
         options: q.options,
         answer: q.answer,
         info: q.reveal,
-        hasAudio: Boolean(q.track),
+        hasAudio: Boolean(q.track?.uri),
         hookMs: this.hookMs,
         distribution: q.options.map((_, i) => answers.filter(([, a]) => a.choice === i).length),
         correct: answers
           .filter(([, a]) => a.correct)
           .sort((a, b) => a[1].ms - b[1].ms)
-          .map(([id, a]) => ({ name: names.get(id)?.name || 'Gast', points: a.points, secs: (a.ms / 1000).toFixed(1) })),
+          .map(([id, a]) => ({ name: names.get(id)?.name || (this.settings?.lang === 'en' ? 'Guest' : 'Gast'), points: a.points, secs: (a.ms / 1000).toFixed(1) })),
       };
     }
     if (['question', 'between', 'roundEnd', 'scoreboard', 'final'].includes(this.phase)) v.standings = this.standings();

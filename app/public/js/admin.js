@@ -3,6 +3,7 @@
 import { $, esc, toast, applyTheme, askPin, THEMES } from './ui.js';
 import { TILE_KEYS, TILE_LABELS, TILE_STYLES } from './tiles.js';
 import * as fx from './fx.js';
+import { setLang } from './i18n.js';
 
 applyTheme('industrial');
 const store = {
@@ -13,7 +14,10 @@ let pin = store.get();
 let info = null;
 let editing = null; // set being edited
 let tab = 'screen';
-window.addEventListener('wexer:pin', (e) => e.detail === '1031' && fx.pumpkinRain());
+window.addEventListener('wexer:pin', (e) => {
+  if (e.detail === '1031') fx.pumpkinRain();
+  if (e.detail === '2704') fx.oranjeRain();
+});
 
 class Locked extends Error {}
 
@@ -51,6 +55,7 @@ function showLocked() {
 async function showScreen() {
   const s = await api('GET', '/settings');
   applyTheme(s.theme);
+  setLang(s.language);
   $('admin-title').textContent = 'Scherm';
   $('root').innerHTML = `
     <section class="panel a-sec">
@@ -61,6 +66,10 @@ async function showScreen() {
       }).join('')}</div>
     </section>
     <section class="panel a-sec">
+      <span class="mono accent">Taal</span>
+      <div class="chips">${[['nl', '🇳🇱 Nederlands'], ['en', '🇬🇧 English']].map(([id, label]) => `<button class="chip${s.language === id ? ' on' : ''}" data-lang-id="${id}">${label}</button>`).join('')}</div>
+    </section>
+    <section class="panel a-sec">
       <span class="mono accent">Achtergrond van de knoppen</span>
       ${TILE_KEYS.map((key) => {
         const opts = [{ id: 'auto', label: 'Automatisch' }, ...TILE_STYLES[key], { id: 'off', label: 'Uit' }];
@@ -68,7 +77,7 @@ async function showScreen() {
           .map((o) => `<button class="chip${(s.tiles[key] || 'auto') === o.id ? ' on' : ''}" data-key="${key}" data-style="${o.id}">${o.label}</button>`)
           .join('')}</div></div>`;
       }).join('')}
-      <p class="muted" style="margin:0">Automatisch = de gewone achtergrond, of de griezelige in een Halloween-look.</p>
+      <p class="muted" style="margin:0">Automatisch = de gewone achtergrond, of die van een feest-look.</p>
     </section>
     <section class="panel a-sec">
       <span class="mono accent">Kamer</span>
@@ -95,6 +104,11 @@ function setTab(next) {
 }
 document.querySelectorAll('#admin-tabs button').forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
 $('lock').addEventListener('click', showLocked);
+
+fetch('/api/look').then((r) => r.json()).then((l) => {
+  applyTheme(l.theme);
+  setLang(l.language);
+}).catch(() => {});
 
 async function start() {
   try {
@@ -127,7 +141,7 @@ async function showList() {
     <button class="btn primary" id="new-set">Nieuwe set</button>
     <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:6px">
       <span class="mono accent">Vragendatabase</span>
-      <span>Startset: ${info.bank.starter} · Open Trivia DB: ${info.bank.opentdb.toLocaleString('nl-NL')} (${info.bank.translated.toLocaleString('nl-NL')} vertaald) · eigen sets: ${info.bank.own}</span>
+      <span>Hollands: ${info.bank.hollands} · Startset: ${info.bank.starter} · Open Trivia DB: ${info.bank.opentdb.toLocaleString('nl-NL')} (${info.bank.translated.toLocaleString('nl-NL')} vertaald) · eigen sets: ${info.bank.own}</span>
       <span class="muted">${info.bank.translated >= info.bank.opentdb ? 'Alle Open Trivia DB-vragen zijn vertaald naar het Nederlands.' : info.ai ? 'De rest van de Open Trivia DB-vragen wordt op de achtergrond vertaald.' : 'Een deel van de Open Trivia DB-vragen is nog Engelstalig.'}</span>
     </div>
     <div class="panel" style="padding:18px;display:flex;flex-direction:column;gap:10px">
@@ -212,6 +226,11 @@ document.addEventListener('click', async (e) => {
   if (t.dataset.edit) return showEditor(t.dataset.edit);
   if (t.dataset.themeId) {
     const r = await saveSettings({ theme: t.dataset.themeId });
+    if (r.ok) showScreen();
+    return;
+  }
+  if (t.dataset.langId) {
+    const r = await saveSettings({ language: t.dataset.langId });
     if (r.ok) showScreen();
     return;
   }

@@ -1,0 +1,6218 @@
+[
+{
+"id": "nl:bc77cc1574",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Nederland?",
+"options": [
+"Amsterdam",
+"Den Haag",
+"Rotterdam",
+"Utrecht"
+]
+},
+"en": {
+"q": "What is the capital of the Netherlands?",
+"options": [
+"Amsterdam",
+"The Hague",
+"Rotterdam",
+"Utrecht"
+]
+}
+},
+{
+"id": "nl:2ffef268dd",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad zetelt de Nederlandse regering?",
+"options": [
+"Den Haag",
+"Amsterdam",
+"Utrecht",
+"Rotterdam"
+]
+},
+"en": {
+"q": "In which city is the Dutch government seated?",
+"options": [
+"The Hague",
+"Amsterdam",
+"Utrecht",
+"Rotterdam"
+]
+}
+},
+{
+"id": "nl:9b5926e230",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de jongste provincie van Nederland?",
+"options": [
+"Flevoland",
+"Zeeland",
+"Drenthe",
+"Limburg"
+]
+},
+"en": {
+"q": "Which is the youngest province of the Netherlands?",
+"options": [
+"Flevoland",
+"Zeeland",
+"Drenthe",
+"Limburg"
+]
+}
+},
+{
+"id": "nl:842b6c4f70",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van de provincie Drenthe?",
+"options": [
+"Assen",
+"Emmen",
+"Meppel",
+"Hoogeveen"
+]
+},
+"en": {
+"q": "What is the capital of the province of Drenthe?",
+"options": [
+"Assen",
+"Emmen",
+"Meppel",
+"Hoogeveen"
+]
+}
+},
+{
+"id": "nl:ae28a0530f",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Friesland?",
+"options": [
+"Leeuwarden",
+"Sneek",
+"Heerenveen",
+"Drachten"
+]
+},
+"en": {
+"q": "What is the capital of Friesland?",
+"options": [
+"Leeuwarden",
+"Sneek",
+"Heerenveen",
+"Drachten"
+]
+}
+},
+{
+"id": "nl:414193e25a",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Limburg?",
+"options": [
+"Maastricht",
+"Venlo",
+"Heerlen",
+"Roermond"
+]
+},
+"en": {
+"q": "What is the capital of Limburg?",
+"options": [
+"Maastricht",
+"Venlo",
+"Heerlen",
+"Roermond"
+]
+}
+},
+{
+"id": "nl:7b6d45cdd7",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Noord-Brabant?",
+"options": [
+"'s-Hertogenbosch",
+"Eindhoven",
+"Tilburg",
+"Breda"
+]
+},
+"en": {
+"q": "What is the capital of North Brabant?",
+"options": [
+"'s-Hertogenbosch",
+"Eindhoven",
+"Tilburg",
+"Breda"
+]
+}
+},
+{
+"id": "nl:abd1799b66",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Zeeland?",
+"options": [
+"Middelburg",
+"Vlissingen",
+"Goes",
+"Terneuzen"
+]
+},
+"en": {
+"q": "What is the capital of Zeeland?",
+"options": [
+"Middelburg",
+"Vlissingen",
+"Goes",
+"Terneuzen"
+]
+}
+},
+{
+"id": "nl:5816eff650",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Overijssel?",
+"options": [
+"Zwolle",
+"Enschede",
+"Deventer",
+"Almelo"
+]
+},
+"en": {
+"q": "What is the capital of Overijssel?",
+"options": [
+"Zwolle",
+"Enschede",
+"Deventer",
+"Almelo"
+]
+}
+},
+{
+"id": "nl:d9b92690ed",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Gelderland?",
+"options": [
+"Arnhem",
+"Nijmegen",
+"Apeldoorn",
+"Ede"
+]
+},
+"en": {
+"q": "What is the capital of Gelderland?",
+"options": [
+"Arnhem",
+"Nijmegen",
+"Apeldoorn",
+"Ede"
+]
+}
+},
+{
+"id": "nl:41fe48b139",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van Noord-Holland?",
+"options": [
+"Haarlem",
+"Amsterdam",
+"Alkmaar",
+"Hoorn"
+]
+},
+"en": {
+"q": "What is the capital of North Holland?",
+"options": [
+"Haarlem",
+"Amsterdam",
+"Alkmaar",
+"Hoorn"
+]
+}
+},
+{
+"id": "nl:287df14c7e",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoe hoog is de Vaalserberg ongeveer?",
+"options": [
+"323 meter",
+"210 meter",
+"412 meter",
+"118 meter"
+]
+},
+"en": {
+"q": "Roughly how high is the Vaalserberg?",
+"options": [
+"323 metres",
+"210 metres",
+"412 metres",
+"118 metres"
+]
+}
+},
+{
+"id": "nl:a106d84056",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Op welk Waddeneiland mogen bezoekers geen eigen auto meenemen?",
+"options": [
+"Vlieland",
+"Texel",
+"Ameland",
+"Terschelling"
+]
+},
+"en": {
+"q": "On which Wadden island are visitors not allowed to bring their own car?",
+"options": [
+"Vlieland",
+"Texel",
+"Ameland",
+"Terschelling"
+]
+}
+},
+{
+"id": "nl:54b28b5b56",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke rivier stroomt door Rotterdam?",
+"options": [
+"Nieuwe Maas",
+"IJssel",
+"Waal",
+"Amstel"
+]
+},
+"en": {
+"q": "Which river flows through Rotterdam?",
+"options": [
+"Nieuwe Maas",
+"IJssel",
+"Waal",
+"Amstel"
+]
+}
+},
+{
+"id": "nl:b43fe851c4",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Aan welke rivier ligt Nijmegen?",
+"options": [
+"Waal",
+"Maas",
+"Rijn",
+"IJssel"
+]
+},
+"en": {
+"q": "On which river is Nijmegen located?",
+"options": [
+"Waal",
+"Maas",
+"Rhine",
+"IJssel"
+]
+}
+},
+{
+"id": "nl:1b441f3b86",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke dijk verbindt Noord-Holland met Friesland?",
+"options": [
+"Afsluitdijk",
+"Houtribdijk",
+"Brouwersdam",
+"Oosterscheldekering"
+]
+},
+"en": {
+"q": "Which dike connects North Holland with Friesland?",
+"options": [
+"Afsluitdijk",
+"Houtribdijk",
+"Brouwersdam",
+"Oosterscheldekering"
+]
+}
+},
+{
+"id": "nl:e0f63ee40f",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk jaar werd de Afsluitdijk gesloten?",
+"options": [
+"1932",
+"1953",
+"1912",
+"1967"
+]
+},
+"en": {
+"q": "In which year was the Afsluitdijk closed?",
+"options": [
+"1932",
+"1953",
+"1912",
+"1967"
+]
+}
+},
+{
+"id": "nl:fcaab5e5db",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke ramp trof Zeeland en Zuid-Holland in 1953?",
+"options": [
+"De Watersnoodramp",
+"De Sint-Elisabethsvloed",
+"De Bijlmerramp",
+"De Vuurwerkramp"
+]
+},
+"en": {
+"q": "Which disaster struck Zeeland and South Holland in 1953?",
+"options": [
+"The North Sea flood",
+"The St. Elizabeth's flood",
+"The Bijlmer disaster",
+"The fireworks disaster"
+]
+}
+},
+{
+"id": "nl:31acca266c",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoe heten de grote waterwerken die na de ramp van 1953 werden gebouwd?",
+"options": [
+"Deltawerken",
+"Zuiderzeewerken",
+"Maaswerken",
+"Kustwerken"
+]
+},
+"en": {
+"q": "What are the large flood defences built after the 1953 flood called?",
+"options": [
+"Delta Works",
+"Zuiderzee Works",
+"Meuse Works",
+"Coastal Works"
+]
+}
+},
+{
+"id": "nl:a98d252b14",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk meer ontstond door de aanleg van de Afsluitdijk?",
+"options": [
+"IJsselmeer",
+"Markermeer",
+"Veluwemeer",
+"Lauwersmeer"
+]
+},
+"en": {
+"q": "Which lake was created by building the Afsluitdijk?",
+"options": [
+"IJsselmeer",
+"Markermeer",
+"Veluwemeer",
+"Lauwersmeer"
+]
+}
+},
+{
+"id": "nl:8baae15971",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de grootste stad van Nederland qua inwoners?",
+"options": [
+"Amsterdam",
+"Rotterdam",
+"Den Haag",
+"Utrecht"
+]
+},
+"en": {
+"q": "What is the largest city in the Netherlands by population?",
+"options": [
+"Amsterdam",
+"Rotterdam",
+"The Hague",
+"Utrecht"
+]
+}
+},
+{
+"id": "nl:aa7d17f9e7",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad staat de Erasmusbrug?",
+"options": [
+"Rotterdam",
+"Amsterdam",
+"Nijmegen",
+"Zwolle"
+]
+},
+"en": {
+"q": "In which city is the Erasmus Bridge?",
+"options": [
+"Rotterdam",
+"Amsterdam",
+"Nijmegen",
+"Zwolle"
+]
+}
+},
+{
+"id": "nl:8cbc788aa4",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke stad staat bekend om de Dom-toren?",
+"options": [
+"Utrecht",
+"Haarlem",
+"Delft",
+"Leiden"
+]
+},
+"en": {
+"q": "Which city is known for the Dom Tower?",
+"options": [
+"Utrecht",
+"Haarlem",
+"Delft",
+"Leiden"
+]
+}
+},
+{
+"id": "nl:123b3a52df",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad staat de Martinitoren?",
+"options": [
+"Groningen",
+"Leeuwarden",
+"Zwolle",
+"Deventer"
+]
+},
+"en": {
+"q": "In which city is the Martini Tower?",
+"options": [
+"Groningen",
+"Leeuwarden",
+"Zwolle",
+"Deventer"
+]
+}
+},
+{
+"id": "nl:5d0acbf45d",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad ligt het Binnenhof?",
+"options": [
+"Den Haag",
+"Amsterdam",
+"Utrecht",
+"Leiden"
+]
+},
+"en": {
+"q": "In which city is the Binnenhof?",
+"options": [
+"The Hague",
+"Amsterdam",
+"Utrecht",
+"Leiden"
+]
+}
+},
+{
+"id": "nl:04f79c1364",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Waar ligt het attractiepark de Efteling?",
+"options": [
+"Kaatsheuvel",
+"Biddinghuizen",
+"Hellendoorn",
+"Slagharen"
+]
+},
+"en": {
+"q": "Where is the Efteling theme park?",
+"options": [
+"Kaatsheuvel",
+"Biddinghuizen",
+"Hellendoorn",
+"Slagharen"
+]
+}
+},
+{
+"id": "nl:0776964dec",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk park heeft attracties als De Python, Baron 1898 en Joris en de Draak?",
+"options": [
+"Efteling",
+"Walibi Holland",
+"Toverland",
+"Duinrell"
+]
+},
+"en": {
+"q": "Which park has rides such as De Python, Baron 1898 and Joris en de Draak?",
+"options": [
+"Efteling",
+"Walibi Holland",
+"Toverland",
+"Duinrell"
+]
+}
+},
+{
+"id": "nl:9bd6225af5",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Waar staan de bekende windmolens van Kinderdijk?",
+"options": [
+"Zuid-Holland",
+"Noord-Holland",
+"Gelderland",
+"Friesland"
+]
+},
+"en": {
+"q": "In which province are the famous windmills of Kinderdijk?",
+"options": [
+"South Holland",
+"North Holland",
+"Gelderland",
+"Friesland"
+]
+}
+},
+{
+"id": "nl:93726ab5aa",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke bloemententoonstelling is elk voorjaar in Lisse te zien?",
+"options": [
+"Keukenhof",
+"Floriade",
+"Bloemencorso",
+"Flora Holland"
+]
+},
+"en": {
+"q": "Which flower park is open every spring in Lisse?",
+"options": [
+"Keukenhof",
+"Floriade",
+"Bloemencorso",
+"Flora Holland"
+]
+}
+},
+{
+"id": "nl:4dba843dfd",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het nationale park op de Veluwe met het Kröller-Müller Museum?",
+"options": [
+"De Hoge Veluwe",
+"De Biesbosch",
+"De Weerribben",
+"Dwingelderveld"
+]
+},
+"en": {
+"q": "What is the national park on the Veluwe with the Kröller-Müller Museum called?",
+"options": [
+"De Hoge Veluwe",
+"De Biesbosch",
+"De Weerribben",
+"Dwingelderveld"
+]
+}
+},
+{
+"id": "nl:b56049b36f",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse stad heeft de bijnaam 'Mokum'?",
+"options": [
+"Amsterdam",
+"Rotterdam",
+"Groningen",
+"Den Bosch"
+]
+},
+"en": {
+"q": "Which Dutch city has the nickname 'Mokum'?",
+"options": [
+"Amsterdam",
+"Rotterdam",
+"Groningen",
+"Den Bosch"
+]
+}
+},
+{
+"id": "nl:ce6135190a",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke stad wordt ook wel 'Oeteldonk' genoemd tijdens carnaval?",
+"options": [
+"'s-Hertogenbosch",
+"Maastricht",
+"Breda",
+"Tilburg"
+]
+},
+"en": {
+"q": "Which city is called 'Oeteldonk' during carnival?",
+"options": [
+"'s-Hertogenbosch",
+"Maastricht",
+"Breda",
+"Tilburg"
+]
+}
+},
+{
+"id": "nl:a0ed6ac867",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke stad heet tijdens carnaval 'Kruikenstad'?",
+"options": [
+"Tilburg",
+"Breda",
+"Eindhoven",
+"Venlo"
+]
+},
+"en": {
+"q": "Which city is called 'Kruikenstad' during carnival?",
+"options": [
+"Tilburg",
+"Breda",
+"Eindhoven",
+"Venlo"
+]
+}
+},
+{
+"id": "nl:a3ecb18a46",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke stad staat bekend als 'Lichtstad'?",
+"options": [
+"Eindhoven",
+"Delft",
+"Arnhem",
+"Leiden"
+]
+},
+"en": {
+"q": "Which city is known as the 'City of Light'?",
+"options": [
+"Eindhoven",
+"Delft",
+"Arnhem",
+"Leiden"
+]
+}
+},
+{
+"id": "nl:ed96f0729b",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk bedrijf is in Eindhoven groot geworden?",
+"options": [
+"Philips",
+"Shell",
+"Heineken",
+"Unilever"
+]
+},
+"en": {
+"q": "Which company grew big in Eindhoven?",
+"options": [
+"Philips",
+"Shell",
+"Heineken",
+"Unilever"
+]
+}
+},
+{
+"id": "nl:68b018fc7b",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke stad is bekend om zijn blauw-wit aardewerk?",
+"options": [
+"Delft",
+"Gouda",
+"Makkum",
+"Leerdam"
+]
+},
+"en": {
+"q": "Which city is famous for its blue and white pottery?",
+"options": [
+"Delft",
+"Gouda",
+"Makkum",
+"Leerdam"
+]
+}
+},
+{
+"id": "nl:075ed95673",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke stad is bekend van de kaasmarkt en de stroopwafel?",
+"options": [
+"Gouda",
+"Edam",
+"Alkmaar",
+"Leiden"
+]
+},
+"en": {
+"q": "Which city is known for its cheese market and the stroopwafel?",
+"options": [
+"Gouda",
+"Edam",
+"Alkmaar",
+"Leiden"
+]
+}
+},
+{
+"id": "nl:1cecb2187c",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de oudste universiteit van Nederland?",
+"options": [
+"Universiteit Leiden",
+"Universiteit Utrecht",
+"Rijksuniversiteit Groningen",
+"Universiteit van Amsterdam"
+]
+},
+"en": {
+"q": "What is the oldest university in the Netherlands?",
+"options": [
+"Leiden University",
+"Utrecht University",
+"University of Groningen",
+"University of Amsterdam"
+]
+}
+},
+{
+"id": "nl:ed19cc14f3",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk eiland in het Caribisch gebied is een land binnen het Koninkrijk der Nederlanden?",
+"options": [
+"Aruba",
+"Bonaire",
+"Saba",
+"Sint Eustatius"
+]
+},
+"en": {
+"q": "Which Caribbean island is a country within the Kingdom of the Netherlands?",
+"options": [
+"Aruba",
+"Bonaire",
+"Saba",
+"Sint Eustatius"
+]
+}
+},
+{
+"id": "nl:3c6bd2cf72",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke drie Caribische eilanden zijn bijzondere gemeenten van Nederland?",
+"options": [
+"Bonaire, Sint Eustatius en Saba",
+"Aruba, Curaçao en Sint Maarten",
+"Bonaire, Curaçao en Aruba",
+"Saba, Aruba en Sint Maarten"
+]
+},
+"en": {
+"q": "Which three Caribbean islands are special municipalities of the Netherlands?",
+"options": [
+"Bonaire, Sint Eustatius and Saba",
+"Aruba, Curaçao and Sint Maarten",
+"Bonaire, Curaçao and Aruba",
+"Saba, Aruba and Sint Maarten"
+]
+}
+},
+{
+"id": "nl:abee037332",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie wordt de 'Vader des Vaderlands' genoemd?",
+"options": [
+"Willem van Oranje",
+"Johan de Witt",
+"Michiel de Ruyter",
+"Johan van Oldenbarnevelt"
+]
+},
+"en": {
+"q": "Who is called the 'Father of the Fatherland'?",
+"options": [
+"William of Orange",
+"Johan de Witt",
+"Michiel de Ruyter",
+"Johan van Oldenbarnevelt"
+]
+}
+},
+{
+"id": "nl:e071b1e473",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welke stad werd Willem van Oranje in 1584 vermoord?",
+"options": [
+"Delft",
+"Den Haag",
+"Leiden",
+"Breda"
+]
+},
+"en": {
+"q": "In which city was William of Orange assassinated in 1584?",
+"options": [
+"Delft",
+"The Hague",
+"Leiden",
+"Breda"
+]
+}
+},
+{
+"id": "nl:83629b4809",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het Nederlandse volkslied?",
+"options": [
+"Het Wilhelmus",
+"Wien Neêrlands Bloed",
+"Waar de blanke top der duinen",
+"Mijn Nederland"
+]
+},
+"en": {
+"q": "What is the Dutch national anthem called?",
+"options": [
+"Het Wilhelmus",
+"Wien Neêrlands Bloed",
+"Waar de blanke top der duinen",
+"Mijn Nederland"
+]
+}
+},
+{
+"id": "nl:9e49b0fbd0",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoeveel coupletten heeft het volledige Wilhelmus?",
+"options": [
+"15",
+"6",
+"8",
+"12"
+]
+},
+"en": {
+"q": "How many verses does the complete Wilhelmus have?",
+"options": [
+"15",
+"6",
+"8",
+"12"
+]
+}
+},
+{
+"id": "nl:902dbb01ed",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoe lang duurde de oorlog tegen Spanje waarin de Republiek ontstond?",
+"options": [
+"Tachtig jaar",
+"Dertig jaar",
+"Honderd jaar",
+"Zeven jaar"
+]
+},
+"en": {
+"q": "How long did the war against Spain that created the Dutch Republic last?",
+"options": [
+"Eighty years",
+"Thirty years",
+"A hundred years",
+"Seven years"
+]
+}
+},
+{
+"id": "nl:2123f97490",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke stad viert elk jaar op 3 oktober het einde van het Spaanse beleg van 1574?",
+"options": [
+"Leiden",
+"Haarlem",
+"Alkmaar",
+"Den Briel"
+]
+},
+"en": {
+"q": "Which city celebrates the end of the Spanish siege of 1574 every 3 October?",
+"options": [
+"Leiden",
+"Haarlem",
+"Alkmaar",
+"Den Briel"
+]
+}
+},
+{
+"id": "nl:115b27871e",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat eet men traditioneel op 3 oktober in Leiden?",
+"options": [
+"Hutspot met haring en wittebrood",
+"Erwtensoep met roggebrood",
+"Stamppot boerenkool met worst",
+"Poffertjes met suiker"
+]
+},
+"en": {
+"q": "What is traditionally eaten in Leiden on 3 October?",
+"options": [
+"Hotchpotch with herring and white bread",
+"Pea soup with rye bread",
+"Kale mash with sausage",
+"Poffertjes with sugar"
+]
+}
+},
+{
+"id": "nl:c6fd91cb6e",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de 17e eeuw, toen de Republiek rijk en machtig was?",
+"options": [
+"De Gouden Eeuw",
+"De Zilveren Eeuw",
+"De Verlichting",
+"De Renaissance"
+]
+},
+"en": {
+"q": "What is the 17th century called, when the Dutch Republic was rich and powerful?",
+"options": [
+"The Golden Age",
+"The Silver Age",
+"The Enlightenment",
+"The Renaissance"
+]
+}
+},
+{
+"id": "nl:849e4e81c2",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Waar staat de afkorting VOC voor?",
+"options": [
+"Verenigde Oostindische Compagnie",
+"Vereniging Oost-Caraïbische Compagnie",
+"Vrije Oceaan Compagnie",
+"Verenigde Overzeese Commissie"
+]
+},
+"en": {
+"q": "What does the abbreviation VOC stand for?",
+"options": [
+"Dutch East India Company",
+"Dutch East Caribbean Company",
+"Free Ocean Company",
+"United Overseas Commission"
+]
+}
+},
+{
+"id": "nl:ecd488c545",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk jaar werd de VOC opgericht?",
+"options": [
+"1602",
+"1588",
+"1648",
+"1672"
+]
+},
+"en": {
+"q": "In which year was the Dutch East India Company (VOC) founded?",
+"options": [
+"1602",
+"1588",
+"1648",
+"1672"
+]
+}
+},
+{
+"id": "nl:5cfc3c13ee",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk Nederlands jaar staat bekend als het 'Rampjaar'?",
+"options": [
+"1672",
+"1648",
+"1795",
+"1830"
+]
+},
+"en": {
+"q": "Which year is known in Dutch history as the 'Disaster Year' (Rampjaar)?",
+"options": [
+"1672",
+"1648",
+"1795",
+"1830"
+]
+}
+},
+{
+"id": "nl:88f915f7ef",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke stad in Amerika heette oorspronkelijk Nieuw-Amsterdam?",
+"options": [
+"New York",
+"Boston",
+"Philadelphia",
+"Baltimore"
+]
+},
+"en": {
+"q": "Which American city was originally called New Amsterdam?",
+"options": [
+"New York",
+"Boston",
+"Philadelphia",
+"Baltimore"
+]
+}
+},
+{
+"id": "nl:0ad8bcfca8",
+"category": "geschiedenis",
+"difficulty": "moeilijk",
+"answer": 0,
+"nl": {
+"q": "Welke ontdekkingsreiziger gaf Nieuw-Zeeland zijn naam (naar de provincie Zeeland)?",
+"options": [
+"Abel Tasman",
+"Willem Barentsz",
+"Jan van Riebeeck",
+"Cornelis de Houtman"
+]
+},
+"en": {
+"q": "Which explorer gave New Zealand its name (after the Dutch province of Zeeland)?",
+"options": [
+"Abel Tasman",
+"Willem Barentsz",
+"Jan van Riebeeck",
+"Cornelis de Houtman"
+]
+}
+},
+{
+"id": "nl:6b6d1d76ce",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke zeeheld voer in 1667 met de vloot de Medway op en kaapte de Engelse 'Royal Charles'?",
+"options": [
+"Michiel de Ruyter",
+"Maarten Tromp",
+"Piet Hein",
+"Witte de With"
+]
+},
+"en": {
+"q": "Which admiral raided the Medway in 1667 and captured the English 'Royal Charles'?",
+"options": [
+"Michiel de Ruyter",
+"Maarten Tromp",
+"Piet Hein",
+"Witte de With"
+]
+}
+},
+{
+"id": "nl:b17a89b8af",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie veroverde in 1628 de Spaanse zilvervloot?",
+"options": [
+"Piet Hein",
+"Michiel de Ruyter",
+"Maarten Tromp",
+"Jan Pieterszoon Coen"
+]
+},
+"en": {
+"q": "Who captured the Spanish silver fleet in 1628?",
+"options": [
+"Piet Hein",
+"Michiel de Ruyter",
+"Maarten Tromp",
+"Jan Pieterszoon Coen"
+]
+}
+},
+{
+"id": "nl:09aa86eeff",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Op welke datum begon de Duitse inval in Nederland in de Tweede Wereldoorlog?",
+"options": [
+"10 mei 1940",
+"1 september 1939",
+"5 mei 1940",
+"14 mei 1940"
+]
+},
+"en": {
+"q": "On what date did the German invasion of the Netherlands begin in WWII?",
+"options": [
+"10 May 1940",
+"1 September 1939",
+"5 May 1940",
+"14 May 1940"
+]
+}
+},
+{
+"id": "nl:35a3ac79c2",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke stad werd op 14 mei 1940 zwaar gebombardeerd?",
+"options": [
+"Rotterdam",
+"Amsterdam",
+"Arnhem",
+"Middelburg"
+]
+},
+"en": {
+"q": "Which city was heavily bombed on 14 May 1940?",
+"options": [
+"Rotterdam",
+"Amsterdam",
+"Arnhem",
+"Middelburg"
+]
+}
+},
+{
+"id": "nl:85ed752249",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welke datum vieren we Bevrijdingsdag?",
+"options": [
+"5 mei",
+"4 mei",
+"27 april",
+"15 augustus"
+]
+},
+"en": {
+"q": "On what date is Liberation Day celebrated?",
+"options": [
+"5 May",
+"4 May",
+"27 April",
+"15 August"
+]
+}
+},
+{
+"id": "nl:ee7fbe4544",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat herdenken we op 4 mei?",
+"options": [
+"De oorlogsslachtoffers",
+"Het einde van de Watersnoodramp",
+"De troonsafstand",
+"De val van de Berlijnse Muur"
+]
+},
+"en": {
+"q": "What is commemorated in the Netherlands on 4 May?",
+"options": [
+"The victims of war",
+"The end of the 1953 flood",
+"The abdication",
+"The fall of the Berlin Wall"
+]
+}
+},
+{
+"id": "nl:a3d434e998",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad staat het Anne Frank Huis?",
+"options": [
+"Amsterdam",
+"Rotterdam",
+"Utrecht",
+"Den Haag"
+]
+},
+"en": {
+"q": "In which city is the Anne Frank House?",
+"options": [
+"Amsterdam",
+"Rotterdam",
+"Utrecht",
+"The Hague"
+]
+}
+},
+{
+"id": "nl:bb34404529",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de winter van 1944-1945 waarin in het westen van Nederland veel honger was?",
+"options": [
+"Hongerwinter",
+"IJswinter",
+"Bittere winter",
+"Stille winter"
+]
+},
+"en": {
+"q": "What is the winter of 1944-1945, with severe famine in the western Netherlands, called?",
+"options": [
+"Hunger Winter",
+"Ice Winter",
+"Bitter Winter",
+"Silent Winter"
+]
+}
+},
+{
+"id": "nl:be5252aeed",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Rond welke stad vond in september 1944 de Slag om 'de brug te ver' plaats?",
+"options": [
+"Arnhem",
+"Nijmegen",
+"Venlo",
+"Eindhoven"
+]
+},
+"en": {
+"q": "Around which city was the 1944 battle of 'A Bridge Too Far' fought?",
+"options": [
+"Arnhem",
+"Nijmegen",
+"Venlo",
+"Eindhoven"
+]
+}
+},
+{
+"id": "nl:af106f9ac0",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk jaar werd de euro als munt in Nederland ingevoerd?",
+"options": [
+"2002",
+"1999",
+"2000",
+"2004"
+]
+},
+"en": {
+"q": "In which year were euro coins and notes introduced in the Netherlands?",
+"options": [
+"2002",
+"1999",
+"2000",
+"2004"
+]
+}
+},
+{
+"id": "nl:982303487b",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke munt had Nederland vóór de euro?",
+"options": [
+"Gulden",
+"Daalder",
+"Kroon",
+"Frank"
+]
+},
+"en": {
+"q": "What currency did the Netherlands use before the euro?",
+"options": [
+"Guilder",
+"Daalder",
+"Krone",
+"Franc"
+]
+}
+},
+{
+"id": "nl:45f535daa1",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoeveel cent was een 'dubbeltje'?",
+"options": [
+"10 cent",
+"25 cent",
+"5 cent",
+"2,5 cent"
+]
+},
+"en": {
+"q": "How many cents was a Dutch 'dubbeltje'?",
+"options": [
+"10 cents",
+"25 cents",
+"5 cents",
+"2.5 cents"
+]
+}
+},
+{
+"id": "nl:d475083983",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat was een 'knaak'?",
+"options": [
+"Een munt van 2,5 gulden",
+"Een munt van 1 gulden",
+"Een briefje van 10 gulden",
+"Een munt van 25 cent"
+]
+},
+"en": {
+"q": "What was a 'knaak'?",
+"options": [
+"A 2.5 guilder coin",
+"A 1 guilder coin",
+"A 10 guilder note",
+"A 25 cent coin"
+]
+}
+},
+{
+"id": "nl:8b30a7e214",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk dier stond op het oude briefje van 100 gulden (1977)?",
+"options": [
+"Een snip",
+"Een vuurtoren",
+"Een zonnebloem",
+"Een kievit"
+]
+},
+"en": {
+"q": "What was pictured on the old 100 guilder note (1977)?",
+"options": [
+"A snipe",
+"A lighthouse",
+"A sunflower",
+"A lapwing"
+]
+}
+},
+{
+"id": "nl:a05a628529",
+"category": "geschiedenis",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welk jaar werd het verdrag van Maastricht getekend, dat de EU oprichtte?",
+"options": [
+"1992",
+"1985",
+"1999",
+"2004"
+]
+},
+"en": {
+"q": "In which year was the Maastricht Treaty, which founded the EU, signed?",
+"options": [
+"1992",
+"1985",
+"1999",
+"2004"
+]
+}
+},
+{
+"id": "nl:25e0f16348",
+"category": "geschiedenis",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk land werd in 2001 als eerste ter wereld voor het homohuwelijk opengesteld?",
+"options": [
+"Nederland",
+"België",
+"Denemarken",
+"Canada"
+]
+},
+"en": {
+"q": "Which country was the first in the world to open marriage to same-sex couples, in 2001?",
+"options": [
+"The Netherlands",
+"Belgium",
+"Denmark",
+"Canada"
+]
+}
+},
+{
+"id": "nl:e1eb553ed5",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de huidige koning van Nederland?",
+"options": [
+"Willem-Alexander",
+"Willem III",
+"Bernhard",
+"Claus"
+]
+},
+"en": {
+"q": "What is the name of the King of the Netherlands who took the throne in 2013?",
+"options": [
+"Willem-Alexander",
+"William III",
+"Bernhard",
+"Claus"
+]
+}
+},
+{
+"id": "nl:a8f24d0ae0",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welke dag wordt Koningsdag gevierd?",
+"options": [
+"27 april",
+"30 april",
+"5 mei",
+"31 augustus"
+]
+},
+"en": {
+"q": "On what day is King's Day celebrated?",
+"options": [
+"27 April",
+"30 April",
+"5 May",
+"31 August"
+]
+}
+},
+{
+"id": "nl:1ddf1312ca",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welke dag viel Koninginnedag onder koningin Beatrix?",
+"options": [
+"30 april",
+"27 april",
+"31 augustus",
+"5 mei"
+]
+},
+"en": {
+"q": "On which day was Queen's Day under Queen Beatrix?",
+"options": [
+"30 April",
+"27 April",
+"31 August",
+"5 May"
+]
+}
+},
+{
+"id": "nl:223786a764",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk jaar werd Willem-Alexander koning?",
+"options": [
+"2013",
+"2010",
+"2016",
+"2005"
+]
+},
+"en": {
+"q": "In which year did Willem-Alexander become king?",
+"options": [
+"2013",
+"2010",
+"2016",
+"2005"
+]
+}
+},
+{
+"id": "nl:4aa1f5932e",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Uit welk land komt koningin Máxima?",
+"options": [
+"Argentinië",
+"Spanje",
+"Chili",
+"Uruguay"
+]
+},
+"en": {
+"q": "Which country is Queen Máxima from?",
+"options": [
+"Argentina",
+"Spain",
+"Chile",
+"Uruguay"
+]
+}
+},
+{
+"id": "nl:aaab1d704e",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de oudste dochter van koning Willem-Alexander?",
+"options": [
+"Amalia",
+"Alexia",
+"Ariane",
+"Juliana"
+]
+},
+"en": {
+"q": "What is the name of King Willem-Alexander's eldest daughter?",
+"options": [
+"Amalia",
+"Alexia",
+"Ariane",
+"Juliana"
+]
+}
+},
+{
+"id": "nl:33badf5932",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke titel heeft de troonopvolger van Nederland?",
+"options": [
+"Prins(es) van Oranje",
+"Hertog(in) van Brabant",
+"Prins(es) van Nassau",
+"Graaf/gravin van Holland"
+]
+},
+"en": {
+"q": "What title does the heir to the Dutch throne carry?",
+"options": [
+"Prince(ss) of Orange",
+"Duke/Duchess of Brabant",
+"Prince(ss) of Nassau",
+"Count(ess) of Holland"
+]
+}
+},
+{
+"id": "nl:5a6bc4af05",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke koningin regeerde het langst van Nederland (58 jaar)?",
+"options": [
+"Wilhelmina",
+"Juliana",
+"Beatrix",
+"Emma"
+]
+},
+"en": {
+"q": "Which Dutch queen reigned the longest (58 years)?",
+"options": [
+"Wilhelmina",
+"Juliana",
+"Beatrix",
+"Emma"
+]
+}
+},
+{
+"id": "nl:1bf44bb45c",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welke dinsdag in september is Prinsjesdag?",
+"options": [
+"De derde",
+"De eerste",
+"De tweede",
+"De laatste"
+]
+},
+"en": {
+"q": "Prinsjesdag is held on which Tuesday of September?",
+"options": [
+"The third",
+"The first",
+"The second",
+"The last"
+]
+}
+},
+{
+"id": "nl:77dc07ce88",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoeveel zetels heeft de Tweede Kamer?",
+"options": [
+"150",
+"75",
+"100",
+"225"
+]
+},
+"en": {
+"q": "How many seats does the Dutch House of Representatives have?",
+"options": [
+"150",
+"75",
+"100",
+"225"
+]
+}
+},
+{
+"id": "nl:3883ae840d",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoeveel zetels heeft de Eerste Kamer?",
+"options": [
+"75",
+"50",
+"100",
+"150"
+]
+},
+"en": {
+"q": "How many seats does the Dutch Senate have?",
+"options": [
+"75",
+"50",
+"100",
+"150"
+]
+}
+},
+{
+"id": "nl:f85a9b4dfb",
+"category": "nederland",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de werkkamer van de premier aan het Binnenhof?",
+"options": [
+"Het Torentje",
+"De Ridderzaal",
+"Het Catshuis",
+"Paleis Noordeinde"
+]
+},
+"en": {
+"q": "What is the Dutch prime minister's office at the Binnenhof called?",
+"options": [
+"Het Torentje",
+"The Ridderzaal",
+"The Catshuis",
+"Noordeinde Palace"
+]
+}
+},
+{
+"id": "nl:146710d477",
+"category": "nederland",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Waar wordt de Troonrede uitgesproken?",
+"options": [
+"In de Ridderzaal (of de vervangende zaal)",
+"In het Koninklijk Paleis op de Dam",
+"In Paleis Het Loo",
+"In de Nieuwe Kerk"
+]
+},
+"en": {
+"q": "Where is the Speech from the Throne delivered?",
+"options": [
+"In the Ridderzaal (or its temporary replacement)",
+"In the Royal Palace on Dam Square",
+"In Het Loo Palace",
+"In the Nieuwe Kerk"
+]
+}
+},
+{
+"id": "nl:980f6b4e72",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke kleur draagt het Nederlands elftal traditioneel?",
+"options": [
+"Oranje",
+"Rood",
+"Blauw",
+"Wit"
+]
+},
+"en": {
+"q": "What colour does the Dutch national football team traditionally wear?",
+"options": [
+"Orange",
+"Red",
+"Blue",
+"White"
+]
+}
+},
+{
+"id": "nl:8e28323ba0",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk toernooi won het Nederlands elftal (mannen) in 1988?",
+"options": [
+"Het EK",
+"Het WK",
+"De Olympische Spelen",
+"De Nations League"
+]
+},
+"en": {
+"q": "Which tournament did the Dutch men's football team win in 1988?",
+"options": [
+"The European Championship",
+"The World Cup",
+"The Olympic Games",
+"The Nations League"
+]
+}
+},
+{
+"id": "nl:dc5fcc05bc",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie scoorde de beroemde volley in de EK-finale van 1988?",
+"options": [
+"Marco van Basten",
+"Ruud Gullit",
+"Frank Rijkaard",
+"Ronald Koeman"
+]
+},
+"en": {
+"q": "Who scored the famous volley in the 1988 European Championship final?",
+"options": [
+"Marco van Basten",
+"Ruud Gullit",
+"Frank Rijkaard",
+"Ronald Koeman"
+]
+}
+},
+{
+"id": "nl:a08395b3b9",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Tegen welk land verloor Nederland de WK-finale van 2010?",
+"options": [
+"Spanje",
+"Duitsland",
+"Brazilië",
+"Argentinië"
+]
+},
+"en": {
+"q": "Which country beat the Netherlands in the 2010 World Cup final?",
+"options": [
+"Spain",
+"Germany",
+"Brazil",
+"Argentina"
+]
+}
+},
+{
+"id": "nl:445a4fc649",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoeveel WK-finales speelde het Nederlandse mannenelftal (allemaal verloren)?",
+"options": [
+"3",
+"2",
+"4",
+"1"
+]
+},
+"en": {
+"q": "How many World Cup finals have the Dutch men played (and lost)?",
+"options": [
+"3",
+"2",
+"4",
+"1"
+]
+}
+},
+{
+"id": "nl:a61a027fea",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk land versloeg Nederland in de WK-finale van 1974?",
+"options": [
+"West-Duitsland",
+"Argentinië",
+"Italië",
+"Brazilië"
+]
+},
+"en": {
+"q": "Which country beat the Netherlands in the 1974 World Cup final?",
+"options": [
+"West Germany",
+"Argentina",
+"Italy",
+"Brazil"
+]
+}
+},
+{
+"id": "nl:64d89c04fe",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk toernooi wonnen de Oranjeleeuwinnen in 2017 in eigen land?",
+"options": [
+"Het EK",
+"Het WK",
+"De Olympische Spelen",
+"De Algarve Cup"
+]
+},
+"en": {
+"q": "Which tournament did the Dutch women's team win on home soil in 2017?",
+"options": [
+"The European Championship",
+"The World Cup",
+"The Olympic Games",
+"The Algarve Cup"
+]
+}
+},
+{
+"id": "nl:5b307073ae",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Met welk nummer speelde Johan Cruijff meestal?",
+"options": [
+"14",
+"10",
+"9",
+"7"
+]
+},
+"en": {
+"q": "Which shirt number did Johan Cruyff usually wear?",
+"options": [
+"14",
+"10",
+"9",
+"7"
+]
+}
+},
+{
+"id": "nl:3eb5185d12",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de speelstijl waar Nederland in de jaren 70 bekend om werd?",
+"options": [
+"Totaalvoetbal",
+"Catenaccio",
+"Tiki-taka",
+"Kick and rush"
+]
+},
+"en": {
+"q": "What playing style made the Netherlands famous in the 1970s?",
+"options": [
+"Total Football",
+"Catenaccio",
+"Tiki-taka",
+"Kick and rush"
+]
+}
+},
+{
+"id": "nl:c21b58417f",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het stadion van Feyenoord?",
+"options": [
+"De Kuip",
+"De Galgenwaard",
+"Het Philips Stadion",
+"De Grolsch Veste"
+]
+},
+"en": {
+"q": "What is Feyenoord's stadium called?",
+"options": [
+"De Kuip",
+"De Galgenwaard",
+"Philips Stadion",
+"De Grolsch Veste"
+]
+}
+},
+{
+"id": "nl:571e5e2dd3",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad speelt PSV?",
+"options": [
+"Eindhoven",
+"Arnhem",
+"Enschede",
+"Tilburg"
+]
+},
+"en": {
+"q": "In which city does PSV play?",
+"options": [
+"Eindhoven",
+"Arnhem",
+"Enschede",
+"Tilburg"
+]
+}
+},
+{
+"id": "nl:56170864bd",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de wedstrijd tussen Ajax en Feyenoord?",
+"options": [
+"De Klassieker",
+"De Topper",
+"De Derby",
+"De Clash"
+]
+},
+"en": {
+"q": "What is the match between Ajax and Feyenoord called?",
+"options": [
+"De Klassieker",
+"De Topper",
+"The Derby",
+"The Clash"
+]
+}
+},
+{
+"id": "nl:d80b0d3d22",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse club won de Europa Cup I / Champions League het vaakst?",
+"options": [
+"Ajax",
+"Feyenoord",
+"PSV",
+"AZ"
+]
+},
+"en": {
+"q": "Which Dutch club has won the European Cup / Champions League the most times?",
+"options": [
+"Ajax",
+"Feyenoord",
+"PSV",
+"AZ"
+]
+}
+},
+{
+"id": "nl:802cd2a268",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk jaar won Ajax de Champions League met onder anderen Van der Sar en Kluivert?",
+"options": [
+"1995",
+"1992",
+"1998",
+"2001"
+]
+},
+"en": {
+"q": "In which year did Ajax win the Champions League with Van der Sar and Kluivert?",
+"options": [
+"1995",
+"1992",
+"1998",
+"2001"
+]
+}
+},
+{
+"id": "nl:e9207215d7",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse coureur werd wereldkampioen Formule 1 in 2021?",
+"options": [
+"Max Verstappen",
+"Jos Verstappen",
+"Nyck de Vries",
+"Robert Doornbos"
+]
+},
+"en": {
+"q": "Which Dutch driver became Formula 1 world champion in 2021?",
+"options": [
+"Max Verstappen",
+"Jos Verstappen",
+"Nyck de Vries",
+"Robert Doornbos"
+]
+}
+},
+{
+"id": "nl:948ebf863b",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welk circuit wordt de Grand Prix van Nederland verreden?",
+"options": [
+"Zandvoort",
+"Assen",
+"Zolder",
+"Spa-Francorchamps"
+]
+},
+"en": {
+"q": "At which circuit is the Dutch Grand Prix held?",
+"options": [
+"Zandvoort",
+"Assen",
+"Zolder",
+"Spa-Francorchamps"
+]
+}
+},
+{
+"id": "nl:7d1e8cd039",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Waar wordt de 'TT' voor motoren verreden?",
+"options": [
+"Assen",
+"Zandvoort",
+"Emmen",
+"Hengelo"
+]
+},
+"en": {
+"q": "Where is the motorcycle 'TT' held in the Netherlands?",
+"options": [
+"Assen",
+"Zandvoort",
+"Emmen",
+"Hengelo"
+]
+}
+},
+{
+"id": "nl:68c17b758e",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel kilometer is de Elfstedentocht ongeveer?",
+"options": [
+"200",
+"100",
+"150",
+"300"
+]
+},
+"en": {
+"q": "Roughly how many kilometres is the Elfstedentocht?",
+"options": [
+"200",
+"100",
+"150",
+"300"
+]
+}
+},
+{
+"id": "nl:4fa45a7f22",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk jaar werd de laatste Elfstedentocht op natuurijs verreden?",
+"options": [
+"1997",
+"1985",
+"2006",
+"1963"
+]
+},
+"en": {
+"q": "In which year was the most recent Elfstedentocht held?",
+"options": [
+"1997",
+"1985",
+"2006",
+"1963"
+]
+}
+},
+{
+"id": "nl:1bc7a16169",
+"category": "sport",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad begint en eindigt de Elfstedentocht?",
+"options": [
+"Leeuwarden",
+"Sneek",
+"Franeker",
+"Dokkum"
+]
+},
+"en": {
+"q": "In which city does the Elfstedentocht start and finish?",
+"options": [
+"Leeuwarden",
+"Sneek",
+"Franeker",
+"Dokkum"
+]
+}
+},
+{
+"id": "nl:3c8ed1a94e",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke schaatser won vier olympische titels en werd negen keer wereldkampioen allround?",
+"options": [
+"Sven Kramer",
+"Ard Schenk",
+"Rintje Ritsma",
+"Bob de Jong"
+]
+},
+"en": {
+"q": "Which Dutch skater won four Olympic titles and nine allround world championships?",
+"options": [
+"Sven Kramer",
+"Ard Schenk",
+"Rintje Ritsma",
+"Bob de Jong"
+]
+}
+},
+{
+"id": "nl:f53d5bb564",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse zwemster won in 2000 in Sydney drie keer goud?",
+"options": [
+"Inge de Bruijn",
+"Ranomi Kromowidjojo",
+"Femke Heemskerk",
+"Marleen Veldhuis"
+]
+},
+"en": {
+"q": "Which Dutch swimmer won three gold medals at Sydney 2000?",
+"options": [
+"Inge de Bruijn",
+"Ranomi Kromowidjojo",
+"Femke Heemskerk",
+"Marleen Veldhuis"
+]
+}
+},
+{
+"id": "nl:72593493be",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welke sport is Nederland bij de vrouwen bijna altijd wereldtop, met veel olympisch goud?",
+"options": [
+"Hockey",
+"Handbal",
+"Volleybal",
+"Waterpolo"
+]
+},
+"en": {
+"q": "In which sport are the Dutch women almost always world top, with many Olympic golds?",
+"options": [
+"Field hockey",
+"Handball",
+"Volleyball",
+"Water polo"
+]
+}
+},
+{
+"id": "nl:f782d98889",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse atlete won in Tokio 2021 drie olympische medailles op de 1500, 5000 en 10.000 meter?",
+"options": [
+"Sifan Hassan",
+"Dafne Schippers",
+"Femke Bol",
+"Nadine Visser"
+]
+},
+"en": {
+"q": "Which Dutch athlete won three Olympic medals in Tokyo 2021 over 1500, 5000 and 10,000 metres?",
+"options": [
+"Sifan Hassan",
+"Dafne Schippers",
+"Femke Bol",
+"Nadine Visser"
+]
+}
+},
+{
+"id": "nl:8f4fbb6aa3",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke typisch Nederlandse sport speel je met een korf?",
+"options": [
+"Korfbal",
+"Kaatsen",
+"Klootschieten",
+"Fierljeppen"
+]
+},
+"en": {
+"q": "Which typically Dutch sport is played with a basket?",
+"options": [
+"Korfball",
+"Kaatsen",
+"Klootschieten",
+"Fierljeppen"
+]
+}
+},
+{
+"id": "nl:de02bfcb30",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat doe je bij fierljeppen?",
+"options": [
+"Met een polsstok over een sloot springen",
+"Met een kloot zo ver mogelijk gooien",
+"Op klompen hardlopen",
+"Op een ton staan in het water"
+]
+},
+"en": {
+"q": "What do you do in 'fierljeppen'?",
+"options": [
+"Vault over a ditch with a pole",
+"Throw a ball as far as possible",
+"Run in clogs",
+"Balance on a barrel in the water"
+]
+}
+},
+{
+"id": "nl:b07f49049a",
+"category": "sport",
+"difficulty": "moeilijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse tennisser won in 1996 Wimbledon?",
+"options": [
+"Richard Krajicek",
+"Paul Haarhuis",
+"Jacco Eltingh",
+"Sjeng Schalken"
+]
+},
+"en": {
+"q": "Which Dutch tennis player won Wimbledon in 1996?",
+"options": [
+"Richard Krajicek",
+"Paul Haarhuis",
+"Jacco Eltingh",
+"Sjeng Schalken"
+]
+}
+},
+{
+"id": "nl:ce8edae112",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke darter, bijgenaamd 'Barney', werd vijf keer wereldkampioen?",
+"options": [
+"Raymond van Barneveld",
+"Michael van Gerwen",
+"Co Stompé",
+"Vincent van der Voort"
+]
+},
+"en": {
+"q": "Which Dutch darts player, nicknamed 'Barney', won five world titles?",
+"options": [
+"Raymond van Barneveld",
+"Michael van Gerwen",
+"Co Stompé",
+"Vincent van der Voort"
+]
+}
+},
+{
+"id": "nl:cec6f453c3",
+"category": "sport",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is de bijnaam van darter Michael van Gerwen?",
+"options": [
+"Mighty Mike",
+"The Green Machine",
+"Mr. 180",
+"The Flying Dutchman"
+]
+},
+"en": {
+"q": "What is darts player Michael van Gerwen's nickname?",
+"options": [
+"Mighty Mike",
+"The Green Machine",
+"Mr. 180",
+"The Flying Dutchman"
+]
+}
+},
+{
+"id": "nl:9b5f8a2813",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat eet je traditioneel op oudejaarsavond?",
+"options": [
+"Oliebollen",
+"Poffertjes",
+"Pannenkoeken",
+"Stroopwafels"
+]
+},
+"en": {
+"q": "What is traditionally eaten on New Year's Eve in the Netherlands?",
+"options": [
+"Oliebollen",
+"Poffertjes",
+"Pancakes",
+"Stroopwafels"
+]
+}
+},
+{
+"id": "nl:bb02003167",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat eet je bij de geboorte van een baby op beschuit?",
+"options": [
+"Muisjes",
+"Hagelslag",
+"Vlokken",
+"Gestampte muisjes"
+]
+},
+"en": {
+"q": "What do Dutch people eat on rusks to celebrate the birth of a baby?",
+"options": [
+"Muisjes (aniseed sprinkles)",
+"Hagelslag",
+"Chocolate flakes",
+"Ground muisjes"
+]
+}
+},
+{
+"id": "nl:d5d102e1ed",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is 'hagelslag'?",
+"options": [
+"Chocoladestrooisel voor op brood",
+"Een soort ijs",
+"Een koekje",
+"Een soort drop"
+]
+},
+"en": {
+"q": "What is 'hagelslag'?",
+"options": [
+"Chocolate sprinkles for bread",
+"A kind of ice cream",
+"A biscuit",
+"A type of liquorice"
+]
+}
+},
+{
+"id": "nl:fbf4a3d31f",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke kaas komt oorspronkelijk uit Noord-Holland en heeft een rode korst?",
+"options": [
+"Edammer",
+"Goudse",
+"Leerdammer",
+"Maasdammer"
+]
+},
+"en": {
+"q": "Which cheese from North Holland is known for its red wax coating?",
+"options": [
+"Edam",
+"Gouda",
+"Leerdammer",
+"Maasdam"
+]
+}
+},
+{
+"id": "nl:71aca29238",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe eet je haring 'op z'n Hollands'?",
+"options": [
+"Bij de staart, met uitjes",
+"Gebakken met friet",
+"In een soep",
+"Gerookt op toast"
+]
+},
+"en": {
+"q": "How do you eat herring the Dutch way?",
+"options": [
+"Held by the tail, with onions",
+"Fried with chips",
+"In a soup",
+"Smoked on toast"
+]
+}
+},
+{
+"id": "nl:8a9ce94121",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de eerste nieuwe haring van het seizoen?",
+"options": [
+"Hollandse Nieuwe",
+"Zilveren Haring",
+"Groene Haring",
+"Vlaggetjesharing"
+]
+},
+"en": {
+"q": "What is the first new herring of the season called?",
+"options": [
+"Hollandse Nieuwe",
+"Silver Herring",
+"Green Herring",
+"Flag Herring"
+]
+}
+},
+{
+"id": "nl:952c8c0bb1",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is een 'kroket' meestal gevuld met?",
+"options": [
+"Ragout",
+"Aardappelpuree",
+"Kaas",
+"Gehakt"
+]
+},
+"en": {
+"q": "What is a Dutch 'kroket' usually filled with?",
+"options": [
+"Ragout",
+"Mashed potato",
+"Cheese",
+"Minced meat"
+]
+}
+},
+{
+"id": "nl:6ea1b2c86f",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is een 'frikandel speciaal'?",
+"options": [
+"Frikandel met mayonaise, curry en uitjes",
+"Frikandel met kaas",
+"Frikandel in bladerdeeg",
+"Frikandel met pindasaus"
+]
+},
+"en": {
+"q": "What is a 'frikandel speciaal'?",
+"options": [
+"A frikandel with mayo, curry ketchup and onions",
+"A frikandel with cheese",
+"A frikandel in puff pastry",
+"A frikandel with satay sauce"
+]
+}
+},
+{
+"id": "nl:bdc3d6453b",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is een 'patatje oorlog'?",
+"options": [
+"Friet met mayonaise, pindasaus en uitjes",
+"Friet met curry en kaas",
+"Friet met ketchup en mosterd",
+"Friet met knoflooksaus"
+]
+},
+"en": {
+"q": "What is 'patatje oorlog'?",
+"options": [
+"Fries with mayo, satay sauce and onions",
+"Fries with curry and cheese",
+"Fries with ketchup and mustard",
+"Fries with garlic sauce"
+]
+}
+},
+{
+"id": "nl:85ff182097",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is 'snert'?",
+"options": [
+"Erwtensoep",
+"Groentesoep",
+"Bruine bonensoep",
+"Mosterdsoep"
+]
+},
+"en": {
+"q": "What is 'snert'?",
+"options": [
+"Pea soup",
+"Vegetable soup",
+"Brown bean soup",
+"Mustard soup"
+]
+}
+},
+{
+"id": "nl:cb67c8e16a",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke stamppot maak je met boerenkool?",
+"options": [
+"Boerenkoolstamppot",
+"Hutspot",
+"Hete bliksem",
+"Zuurkool"
+]
+},
+"en": {
+"q": "Which mash is made with kale?",
+"options": [
+"Boerenkool stamppot",
+"Hutspot",
+"Hete bliksem",
+"Sauerkraut"
+]
+}
+},
+{
+"id": "nl:f01f36a68a",
+"category": "eten-drinken",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat gaat er in 'hete bliksem'?",
+"options": [
+"Aardappel en appel",
+"Aardappel en wortel",
+"Aardappel en andijvie",
+"Aardappel en zuurkool"
+]
+},
+"en": {
+"q": "What goes into the Dutch mash 'hete bliksem' (hot lightning)?",
+"options": [
+"Potato and apple",
+"Potato and carrot",
+"Potato and endive",
+"Potato and sauerkraut"
+]
+}
+},
+{
+"id": "nl:1975610e5c",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de basis van 'hutspot'?",
+"options": [
+"Aardappel, wortel en ui",
+"Aardappel en boerenkool",
+"Aardappel en zuurkool",
+"Aardappel en spinazie"
+]
+},
+"en": {
+"q": "What is 'hutspot' made of?",
+"options": [
+"Potato, carrot and onion",
+"Potato and kale",
+"Potato and sauerkraut",
+"Potato and spinach"
+]
+}
+},
+{
+"id": "nl:8742bf1471",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is 'drop'?",
+"options": [
+"Zoethout-snoep",
+"Pepermunt",
+"Toffee",
+"Zuurtjes"
+]
+},
+"en": {
+"q": "What is Dutch 'drop'?",
+"options": [
+"Liquorice",
+"Peppermint",
+"Toffee",
+"Boiled sweets"
+]
+}
+},
+{
+"id": "nl:dc7aca11fd",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk Nederlands bier heeft een groen flesje met een rode ster?",
+"options": [
+"Heineken",
+"Grolsch",
+"Bavaria",
+"Amstel"
+]
+},
+"en": {
+"q": "Which Dutch beer comes in a green bottle with a red star?",
+"options": [
+"Heineken",
+"Grolsch",
+"Bavaria",
+"Amstel"
+]
+}
+},
+{
+"id": "nl:bf3050a56e",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk bier staat bekend om de beugelfles?",
+"options": [
+"Grolsch",
+"Hertog Jan",
+"Brand",
+"Bavaria"
+]
+},
+"en": {
+"q": "Which Dutch beer is famous for its swing-top bottle?",
+"options": [
+"Grolsch",
+"Hertog Jan",
+"Brand",
+"Bavaria"
+]
+}
+},
+{
+"id": "nl:279db9b741",
+"category": "eten-drinken",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Uit welke plaats komt Grolsch oorspronkelijk?",
+"options": [
+"Groenlo",
+"Groningen",
+"Grou",
+"Grave"
+]
+},
+"en": {
+"q": "Which town does Grolsch originally come from?",
+"options": [
+"Groenlo",
+"Groningen",
+"Grou",
+"Grave"
+]
+}
+},
+{
+"id": "nl:5b27b2e871",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is een 'kopstootje'?",
+"options": [
+"Een biertje met een jenever",
+"Een kopje koffie met cognac",
+"Een shotje tequila",
+"Een glas advocaat"
+]
+},
+"en": {
+"q": "What is a 'kopstootje'?",
+"options": [
+"A beer with a jenever",
+"Coffee with cognac",
+"A tequila shot",
+"A glass of advocaat"
+]
+}
+},
+{
+"id": "nl:1132f1d2ff",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Van welk ingrediënt wordt advocaat vooral gemaakt?",
+"options": [
+"Eieren",
+"Melk",
+"Room",
+"Banaan"
+]
+},
+"en": {
+"q": "What is advocaat mainly made from?",
+"options": [
+"Eggs",
+"Milk",
+"Cream",
+"Banana"
+]
+}
+},
+{
+"id": "nl:2ce1b1ac34",
+"category": "eten-drinken",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is jenever van oudsher?",
+"options": [
+"Een graanbrandewijn met jeneverbes",
+"Een vruchtenlikeur",
+"Een kruidenbitter met anijs",
+"Gedistilleerde wijn"
+]
+},
+"en": {
+"q": "What is jenever traditionally?",
+"options": [
+"A grain spirit with juniper",
+"A fruit liqueur",
+"An aniseed herbal bitter",
+"Distilled wine"
+]
+}
+},
+{
+"id": "nl:0399c0839e",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk koekje hoort bij de Nederlandse koffie op verjaardagen?",
+"options": [
+"Een 'koekje uit de trommel'",
+"Een cannoli",
+"Een scone",
+"Een macaron"
+]
+},
+"en": {
+"q": "At Dutch birthday parties, coffee traditionally comes with...?",
+"options": [
+"One biscuit from the tin",
+"A cannoli",
+"A scone",
+"A macaron"
+]
+}
+},
+{
+"id": "nl:4c7c452b67",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat zijn 'bitterballen'?",
+"options": [
+"Kleine ronde kroketjes",
+"Gefrituurde kaasballetjes",
+"Gehaktballetjes in saus",
+"Zoute koekjes"
+]
+},
+"en": {
+"q": "What are 'bitterballen'?",
+"options": [
+"Small round croquettes",
+"Deep-fried cheese balls",
+"Meatballs in sauce",
+"Savoury biscuits"
+]
+}
+},
+{
+"id": "nl:6cf6af713a",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat eet je traditioneel met Sinterklaas?",
+"options": [
+"Pepernoten",
+"Oliebollen",
+"Paaseitjes",
+"Tompoucen"
+]
+},
+"en": {
+"q": "What is traditionally eaten around Sinterklaas?",
+"options": [
+"Pepernoten",
+"Oliebollen",
+"Easter eggs",
+"Tompouces"
+]
+}
+},
+{
+"id": "nl:de8fecc250",
+"category": "eten-drinken",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke kleur heeft het glazuur van een tompouce rond Koningsdag?",
+"options": [
+"Oranje",
+"Roze",
+"Wit",
+"Rood-wit-blauw"
+]
+},
+"en": {
+"q": "What colour is the icing on a tompouce around King's Day?",
+"options": [
+"Orange",
+"Pink",
+"White",
+"Red, white and blue"
+]
+}
+},
+{
+"id": "nl:58309bab0a",
+"category": "eten-drinken",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat zijn 'poffertjes'?",
+"options": [
+"Kleine dikke pannenkoekjes",
+"Gevulde koeken",
+"Gebakken appelflappen",
+"Kleine wafels"
+]
+},
+"en": {
+"q": "What are 'poffertjes'?",
+"options": [
+"Small fluffy pancakes",
+"Filled cookies",
+"Apple turnovers",
+"Small waffles"
+]
+}
+},
+{
+"id": "nl:1fba107d96",
+"category": "eten-drinken",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wat is een 'ontbijtkoek' vooral op smaak gebracht met?",
+"options": [
+"Speculaaskruiden en roggemeel",
+"Kaneel en appel",
+"Anijs en citroen",
+"Vanille en rozijnen"
+]
+},
+"en": {
+"q": "What gives Dutch 'ontbijtkoek' its flavour?",
+"options": [
+"Spices and rye flour",
+"Cinnamon and apple",
+"Aniseed and lemon",
+"Vanilla and raisins"
+]
+}
+},
+{
+"id": "nl:65508a7ad8",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welke datum is pakjesavond?",
+"options": [
+"5 december",
+"6 december",
+"25 december",
+"1 december"
+]
+},
+"en": {
+"q": "On what date is 'pakjesavond' (Sinterklaas gift evening)?",
+"options": [
+"5 December",
+"6 December",
+"25 December",
+"1 December"
+]
+}
+},
+{
+"id": "nl:8dc66b4edb",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het paard van Sinterklaas (sinds 2019)?",
+"options": [
+"Ozosnel",
+"Amerigo",
+"Slechtweervandaag",
+"Witte Willem"
+]
+},
+"en": {
+"q": "What is the name of Sinterklaas's horse (since 2019)?",
+"options": [
+"Ozosnel",
+"Amerigo",
+"Slechtweervandaag",
+"Witte Willem"
+]
+}
+},
+{
+"id": "nl:e3e420fb01",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heette het paard van Sinterklaas vóór Ozosnel?",
+"options": [
+"Amerigo",
+"Pegasus",
+"Bucephalus",
+"Schimmel"
+]
+},
+"en": {
+"q": "What was the name of Sinterklaas's horse before Ozosnel?",
+"options": [
+"Amerigo",
+"Pegasus",
+"Bucephalus",
+"Schimmel"
+]
+}
+},
+{
+"id": "nl:d4823dd0d6",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Uit welk land komt Sinterklaas volgens de traditie?",
+"options": [
+"Spanje",
+"Turkije",
+"Italië",
+"Portugal"
+]
+},
+"en": {
+"q": "According to Dutch tradition, which country does Sinterklaas come from?",
+"options": [
+"Spain",
+"Turkey",
+"Italy",
+"Portugal"
+]
+}
+},
+{
+"id": "nl:7ead91ddb9",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat zet je bij de schoorsteen voor Sinterklaas?",
+"options": [
+"Je schoen",
+"Een sok",
+"Een mandje",
+"Een emmer"
+]
+},
+"en": {
+"q": "What do Dutch children put by the fireplace for Sinterklaas?",
+"options": [
+"Their shoe",
+"A sock",
+"A basket",
+"A bucket"
+]
+}
+},
+{
+"id": "nl:00aad836a6",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke provincies is carnaval het grootst?",
+"options": [
+"Limburg en Noord-Brabant",
+"Groningen en Drenthe",
+"Utrecht en Gelderland",
+"Zeeland en Zuid-Holland"
+]
+},
+"en": {
+"q": "In which provinces is carnival celebrated the most?",
+"options": [
+"Limburg and North Brabant",
+"Groningen and Drenthe",
+"Utrecht and Gelderland",
+"Zeeland and South Holland"
+]
+}
+},
+{
+"id": "nl:79a79fe645",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat hang je uit als iemand geslaagd is voor zijn examen?",
+"options": [
+"De vlag met een schooltas",
+"Een oranje wimpel",
+"Slingers op het dak",
+"Een bord met een ooievaar"
+]
+},
+"en": {
+"q": "What do Dutch families hang out when someone passes their exams?",
+"options": [
+"The flag with a school bag",
+"An orange pennant",
+"Garlands on the roof",
+"A stork sign"
+]
+}
+},
+{
+"id": "nl:4a9d188269",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie schilderde 'De Nachtwacht'?",
+"options": [
+"Rembrandt",
+"Vermeer",
+"Van Gogh",
+"Frans Hals"
+]
+},
+"en": {
+"q": "Who painted 'The Night Watch'?",
+"options": [
+"Rembrandt",
+"Vermeer",
+"Van Gogh",
+"Frans Hals"
+]
+}
+},
+{
+"id": "nl:3ab87f429b",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welk museum hangt 'De Nachtwacht'?",
+"options": [
+"Rijksmuseum",
+"Mauritshuis",
+"Van Gogh Museum",
+"Stedelijk Museum"
+]
+},
+"en": {
+"q": "In which museum does 'The Night Watch' hang?",
+"options": [
+"Rijksmuseum",
+"Mauritshuis",
+"Van Gogh Museum",
+"Stedelijk Museum"
+]
+}
+},
+{
+"id": "nl:a8eaf8d492",
+"category": "kunst-cultuur",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welk museum hangt 'Het meisje met de parel'?",
+"options": [
+"Mauritshuis",
+"Rijksmuseum",
+"Frans Hals Museum",
+"Museum Boijmans"
+]
+},
+"en": {
+"q": "In which museum hangs 'Girl with a Pearl Earring'?",
+"options": [
+"Mauritshuis",
+"Rijksmuseum",
+"Frans Hals Museum",
+"Museum Boijmans"
+]
+}
+},
+{
+"id": "nl:f742e1ccec",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse schilder sneed een stuk van zijn oor af?",
+"options": [
+"Vincent van Gogh",
+"Piet Mondriaan",
+"Karel Appel",
+"M.C. Escher"
+]
+},
+"en": {
+"q": "Which Dutch painter cut off part of his own ear?",
+"options": [
+"Vincent van Gogh",
+"Piet Mondrian",
+"Karel Appel",
+"M.C. Escher"
+]
+}
+},
+{
+"id": "nl:44df70d866",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke kunstenaar is bekend van rechte zwarte lijnen met rode, gele en blauwe vlakken?",
+"options": [
+"Piet Mondriaan",
+"Karel Appel",
+"Kees van Dongen",
+"Theo van Doesburg"
+]
+},
+"en": {
+"q": "Which artist is known for black lines with red, yellow and blue blocks?",
+"options": [
+"Piet Mondrian",
+"Karel Appel",
+"Kees van Dongen",
+"Theo van Doesburg"
+]
+}
+},
+{
+"id": "nl:8eb4105b53",
+"category": "kunst-cultuur",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse kunstenaar maakte onmogelijke trappen en in elkaar passende figuren?",
+"options": [
+"M.C. Escher",
+"Jheronimus Bosch",
+"Kees van Dongen",
+"Jan Toorop"
+]
+},
+"en": {
+"q": "Which Dutch artist drew impossible staircases and interlocking figures?",
+"options": [
+"M.C. Escher",
+"Hieronymus Bosch",
+"Kees van Dongen",
+"Jan Toorop"
+]
+}
+},
+{
+"id": "nl:c2290b2b92",
+"category": "kunst-cultuur",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Uit welke stad kwam de schilder Jheronimus Bosch?",
+"options": [
+"'s-Hertogenbosch",
+"Bergen op Zoom",
+"Boxtel",
+"Bergen"
+]
+},
+"en": {
+"q": "Which city was the painter Hieronymus Bosch from?",
+"options": [
+"'s-Hertogenbosch",
+"Bergen op Zoom",
+"Boxtel",
+"Bergen"
+]
+}
+},
+{
+"id": "nl:41096ee1e5",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie schreef het boek 'Het Achterhuis'?",
+"options": [
+"Anne Frank",
+"Etty Hillesum",
+"Annie M.G. Schmidt",
+"Corrie ten Boom"
+]
+},
+"en": {
+"q": "Who wrote the diary published as 'Het Achterhuis'?",
+"options": [
+"Anne Frank",
+"Etty Hillesum",
+"Annie M.G. Schmidt",
+"Corrie ten Boom"
+]
+}
+},
+{
+"id": "nl:e3cb91c5e7",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie schreef 'Jip en Janneke'?",
+"options": [
+"Annie M.G. Schmidt",
+"Dick Bruna",
+"Paul Biegel",
+"Thea Beckman"
+]
+},
+"en": {
+"q": "Who wrote 'Jip and Janneke'?",
+"options": [
+"Annie M.G. Schmidt",
+"Dick Bruna",
+"Paul Biegel",
+"Thea Beckman"
+]
+}
+},
+{
+"id": "nl:477b7a4519",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke tekenaar bedacht Nijntje?",
+"options": [
+"Dick Bruna",
+"Marten Toonder",
+"Jan Kruis",
+"Fiep Westendorp"
+]
+},
+"en": {
+"q": "Which illustrator created Miffy (Nijntje)?",
+"options": [
+"Dick Bruna",
+"Marten Toonder",
+"Jan Kruis",
+"Fiep Westendorp"
+]
+}
+},
+{
+"id": "nl:a781f70f07",
+"category": "kunst-cultuur",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wie schreef 'Max Havelaar' onder het pseudoniem Multatuli?",
+"options": [
+"Eduard Douwes Dekker",
+"Gerard Reve",
+"Harry Mulisch",
+"Willem Frederik Hermans"
+]
+},
+"en": {
+"q": "Who wrote 'Max Havelaar' under the pen name Multatuli?",
+"options": [
+"Eduard Douwes Dekker",
+"Gerard Reve",
+"Harry Mulisch",
+"Willem Frederik Hermans"
+]
+}
+},
+{
+"id": "nl:626a23682d",
+"category": "kunst-cultuur",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de beer die bevriend is met Tom Poes in de strips van Marten Toonder?",
+"options": [
+"Olivier B. Bommel",
+"Wammes Waggel",
+"Bul Super",
+"Joost"
+]
+},
+"en": {
+"q": "What is the bear who is friends with Tom Poes in Marten Toonder's comics called?",
+"options": [
+"Olivier B. Bommel",
+"Wammes Waggel",
+"Bul Super",
+"Joost"
+]
+}
+},
+{
+"id": "nl:b7f338439b",
+"category": "kunst-cultuur",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke jongen stak volgens een bekend verhaal zijn vinger in een dijk?",
+"options": [
+"Hansje Brinker",
+"Pietje Bell",
+"Kruimeltje",
+"Dik Trom"
+]
+},
+"en": {
+"q": "Which boy, in a famous story, stuck his finger in a dike?",
+"options": [
+"Hans Brinker",
+"Pietje Bell",
+"Kruimeltje",
+"Dik Trom"
+]
+}
+},
+{
+"id": "nl:1fa98b4419",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat betekent 'gezellig' het best?",
+"options": [
+"Knus en plezierig samen",
+"Druk en lawaaierig",
+"Rustig en alleen",
+"Netjes en opgeruimd"
+]
+},
+"en": {
+"q": "What does the Dutch word 'gezellig' mean best?",
+"options": [
+"Cosy and fun together",
+"Busy and noisy",
+"Quiet and alone",
+"Neat and tidy"
+]
+}
+},
+{
+"id": "nl:1c4b1551ce",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat zeg je in het Nederlands als iemand niest?",
+"options": [
+"Gezondheid",
+"Proost",
+"Eet smakelijk",
+"Sterkte"
+]
+},
+"en": {
+"q": "What do you say in Dutch when someone sneezes?",
+"options": [
+"Gezondheid",
+"Proost",
+"Eet smakelijk",
+"Sterkte"
+]
+}
+},
+{
+"id": "nl:d3788e65be",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het typisch Nederlandse houten schoeisel?",
+"options": [
+"Klompen",
+"Muilen",
+"Slippers",
+"Sloffen"
+]
+},
+"en": {
+"q": "What are traditional Dutch wooden shoes called?",
+"options": [
+"Klompen",
+"Muilen",
+"Slippers",
+"Sloffen"
+]
+}
+},
+{
+"id": "nl:292fdda9ed",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is het alarmnummer in Nederland?",
+"options": [
+"112",
+"911",
+"999",
+"110"
+]
+},
+"en": {
+"q": "What is the emergency number in the Netherlands?",
+"options": [
+"112",
+"911",
+"999",
+"110"
+]
+}
+},
+{
+"id": "nl:e9dd23eed0",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke kleuren heeft de Nederlandse vlag, van boven naar beneden?",
+"options": [
+"Rood, wit, blauw",
+"Blauw, wit, rood",
+"Oranje, wit, blauw",
+"Wit, rood, blauw"
+]
+},
+"en": {
+"q": "What are the colours of the Dutch flag, from top to bottom?",
+"options": [
+"Red, white, blue",
+"Blue, white, red",
+"Orange, white, blue",
+"White, red, blue"
+]
+}
+},
+{
+"id": "nl:4aa6b813cf",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk vervoermiddel heeft Nederland meer dan inwoners?",
+"options": [
+"Fietsen",
+"Auto's",
+"Boten",
+"Scooters"
+]
+},
+"en": {
+"q": "Which vehicle does the Netherlands have more of than people?",
+"options": [
+"Bicycles",
+"Cars",
+"Boats",
+"Scooters"
+]
+}
+},
+{
+"id": "nl:1a56e891ec",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke bloem wordt het meest met Nederland geassocieerd?",
+"options": [
+"Tulp",
+"Roos",
+"Zonnebloem",
+"Narcis"
+]
+},
+"en": {
+"q": "Which flower is most associated with the Netherlands?",
+"options": [
+"Tulip",
+"Rose",
+"Sunflower",
+"Daffodil"
+]
+}
+},
+{
+"id": "nl:1dff66c9cd",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Uit welk gebied kwam de tulp oorspronkelijk naar Nederland?",
+"options": [
+"Het Ottomaanse Rijk (Turkije)",
+"China",
+"Zuid-Amerika",
+"Egypte"
+]
+},
+"en": {
+"q": "Where did the tulip originally come from before reaching the Netherlands?",
+"options": [
+"The Ottoman Empire (Turkey)",
+"China",
+"South America",
+"Egypt"
+]
+}
+},
+{
+"id": "nl:89444ec44b",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoeveel procent van Nederland ligt ongeveer onder zeeniveau?",
+"options": [
+"Ongeveer een kwart",
+"Ongeveer de helft",
+"Ongeveer tien procent",
+"Ongeveer driekwart"
+]
+},
+"en": {
+"q": "Roughly how much of the Netherlands lies below sea level?",
+"options": [
+"About a quarter",
+"About half",
+"About ten percent",
+"About three quarters"
+]
+}
+},
+{
+"id": "nl:68032f214e",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Waar staat NAP voor?",
+"options": [
+"Normaal Amsterdams Peil",
+"Nationaal Afwateringspunt",
+"Nieuw Algemeen Peil",
+"Noordzee Algemeen Peil"
+]
+},
+"en": {
+"q": "What does the Dutch abbreviation NAP stand for?",
+"options": [
+"Amsterdam Ordnance Datum",
+"National Drainage Point",
+"New General Level",
+"North Sea General Level"
+]
+}
+},
+{
+"id": "nl:2c5e0888f7",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke taal wordt naast Nederlands officieel gesproken in Friesland?",
+"options": [
+"Fries",
+"Gronings",
+"Nedersaksisch",
+"Limburgs"
+]
+},
+"en": {
+"q": "Besides Dutch, which official language is spoken in Friesland?",
+"options": [
+"Frisian",
+"Gronings",
+"Low Saxon",
+"Limburgish"
+]
+}
+},
+{
+"id": "nl:59a6dc2855",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de afkorting van de Nederlandse Spoorwegen?",
+"options": [
+"NS",
+"KLM",
+"RET",
+"GVB"
+]
+},
+"en": {
+"q": "What is the abbreviation of the Dutch national railways?",
+"options": [
+"NS",
+"KLM",
+"RET",
+"GVB"
+]
+}
+},
+{
+"id": "nl:751ae28428",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Waar staat KLM voor?",
+"options": [
+"Koninklijke Luchtvaart Maatschappij",
+"Koninklijke Lucht Mobiliteit",
+"Kroon Luchtvaart Maatschappij",
+"Klasse Lucht Maatschappij"
+]
+},
+"en": {
+"q": "What does KLM stand for?",
+"options": [
+"Royal Aviation Company",
+"Royal Air Mobility",
+"Crown Aviation Company",
+"Class Air Company"
+]
+}
+},
+{
+"id": "nl:c201443373",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de grootste luchthaven van Nederland?",
+"options": [
+"Schiphol",
+"Eindhoven Airport",
+"Rotterdam The Hague Airport",
+"Lelystad Airport"
+]
+},
+"en": {
+"q": "What is the largest airport in the Netherlands?",
+"options": [
+"Schiphol",
+"Eindhoven Airport",
+"Rotterdam The Hague Airport",
+"Lelystad Airport"
+]
+}
+},
+{
+"id": "nl:779e3da864",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke haven was decennialang de grootste ter wereld en is nog steeds de grootste van Europa?",
+"options": [
+"Rotterdam",
+"Antwerpen",
+"Hamburg",
+"Amsterdam"
+]
+},
+"en": {
+"q": "Which port is the largest in Europe?",
+"options": [
+"Rotterdam",
+"Antwerp",
+"Hamburg",
+"Amsterdam"
+]
+}
+},
+{
+"id": "nl:7303148d9a",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zanger had een hit met 'Zij gelooft in mij'?",
+"options": [
+"André Hazes",
+"Frans Bauer",
+"Jan Smit",
+"René Froger"
+]
+},
+"en": {
+"q": "Which singer had a hit with 'Zij gelooft in mij'?",
+"options": [
+"André Hazes",
+"Frans Bauer",
+"Jan Smit",
+"René Froger"
+]
+}
+},
+{
+"id": "nl:8612ac406c",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke band zong 'Zoutelande'?",
+"options": [
+"BLØF",
+"Racoon",
+"Kensington",
+"Di-rect"
+]
+},
+"en": {
+"q": "Which band sang 'Zoutelande'?",
+"options": [
+"BLØF",
+"Racoon",
+"Kensington",
+"Di-rect"
+]
+}
+},
+{
+"id": "nl:17b22e41a5",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Uit welke stad komt de band BLØF?",
+"options": [
+"Vlissingen",
+"Middelburg",
+"Goes",
+"Zierikzee"
+]
+},
+"en": {
+"q": "Which town is the band BLØF from?",
+"options": [
+"Vlissingen",
+"Middelburg",
+"Goes",
+"Zierikzee"
+]
+}
+},
+{
+"id": "nl:30f456a3c4",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zanger zong 'Het is een nacht'?",
+"options": [
+"Guus Meeuwis",
+"Marco Borsato",
+"Nick & Simon",
+"Rob de Nijs"
+]
+},
+"en": {
+"q": "Which singer sang 'Het is een nacht'?",
+"options": [
+"Guus Meeuwis",
+"Marco Borsato",
+"Nick & Simon",
+"Rob de Nijs"
+]
+}
+},
+{
+"id": "nl:5030d5dec9",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heten de grote jaarlijkse concerten van Guus Meeuwis in het PSV-stadion?",
+"options": [
+"Groots met een zachte G",
+"Toppers in Concert",
+"Holland zingt Hazes",
+"Vrienden van Amstel Live"
+]
+},
+"en": {
+"q": "What are Guus Meeuwis's big yearly concerts in the PSV stadium called?",
+"options": [
+"Groots met een zachte G",
+"Toppers in Concert",
+"Holland zingt Hazes",
+"Vrienden van Amstel Live"
+]
+}
+},
+{
+"id": "nl:175d5978e5",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse act won het Eurovisiesongfestival in 2019?",
+"options": [
+"Duncan Laurence",
+"Anouk",
+"The Common Linnets",
+"Joost Klein"
+]
+},
+"en": {
+"q": "Which Dutch act won the Eurovision Song Contest in 2019?",
+"options": [
+"Duncan Laurence",
+"Anouk",
+"The Common Linnets",
+"Joost Klein"
+]
+}
+},
+{
+"id": "nl:b3464cdb5f",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Met welk nummer won Duncan Laurence het Songfestival?",
+"options": [
+"Arcade",
+"Calm After the Storm",
+"Birds",
+"Europapa"
+]
+},
+"en": {
+"q": "With which song did Duncan Laurence win Eurovision?",
+"options": [
+"Arcade",
+"Calm After the Storm",
+"Birds",
+"Europapa"
+]
+}
+},
+{
+"id": "nl:154e15f118",
+"category": "muziek",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Met welk nummer won Teach-In in 1975 het Songfestival?",
+"options": [
+"Ding-a-dong",
+"Een beetje",
+"Shalala lie",
+"Amsterdam"
+]
+},
+"en": {
+"q": "With which song did Teach-In win Eurovision in 1975?",
+"options": [
+"Ding-a-dong",
+"Een beetje",
+"Shalala lie",
+"Amsterdam"
+]
+}
+},
+{
+"id": "nl:7c2fd465eb",
+"category": "muziek",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse groep had in 1969 een wereldhit met 'Venus'?",
+"options": [
+"Shocking Blue",
+"Golden Earring",
+"Focus",
+"The Cats"
+]
+},
+"en": {
+"q": "Which Dutch band had a worldwide hit with 'Venus' in 1969?",
+"options": [
+"Shocking Blue",
+"Golden Earring",
+"Focus",
+"The Cats"
+]
+}
+},
+{
+"id": "nl:ec123f75c4",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse band scoorde in Amerika met 'Radar Love'?",
+"options": [
+"Golden Earring",
+"Shocking Blue",
+"Normaal",
+"Doe Maar"
+]
+},
+"en": {
+"q": "Which Dutch band scored in America with 'Radar Love'?",
+"options": [
+"Golden Earring",
+"Shocking Blue",
+"Normaal",
+"Doe Maar"
+]
+}
+},
+{
+"id": "nl:74228885a2",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke band zong 'Pa' en 'Is dit alles'?",
+"options": [
+"Doe Maar",
+"Normaal",
+"De Dijk",
+"Het Goede Doel"
+]
+},
+"en": {
+"q": "Which band sang 'Pa' and 'Is dit alles'?",
+"options": [
+"Doe Maar",
+"Normaal",
+"De Dijk",
+"Het Goede Doel"
+]
+}
+},
+{
+"id": "nl:0b775398c9",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Uit welke regio komt de band Normaal ('Oerend hard')?",
+"options": [
+"De Achterhoek",
+"Twente",
+"Brabant",
+"West-Friesland"
+]
+},
+"en": {
+"q": "Which region is the band Normaal ('Oerend hard') from?",
+"options": [
+"The Achterhoek",
+"Twente",
+"Brabant",
+"West Friesland"
+]
+}
+},
+{
+"id": "nl:91c130e5b0",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse DJ werd vaak tot beste DJ ter wereld verkozen en draaide bij de opening van de Olympische Spelen van 2004?",
+"options": [
+"Tiësto",
+"Armin van Buuren",
+"Hardwell",
+"Martin Garrix"
+]
+},
+"en": {
+"q": "Which Dutch DJ played at the opening ceremony of the 2004 Olympics?",
+"options": [
+"Tiësto",
+"Armin van Buuren",
+"Hardwell",
+"Martin Garrix"
+]
+}
+},
+{
+"id": "nl:dc17350540",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse DJ scoorde als tiener een wereldhit met 'Animals'?",
+"options": [
+"Martin Garrix",
+"Afrojack",
+"Oliver Heldens",
+"Don Diablo"
+]
+},
+"en": {
+"q": "Which Dutch DJ had a worldwide hit as a teenager with 'Animals'?",
+"options": [
+"Martin Garrix",
+"Afrojack",
+"Oliver Heldens",
+"Don Diablo"
+]
+}
+},
+{
+"id": "nl:8ebe8de56b",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de jaarlijkse lijst van 2000 nummers op NPO Radio 2 rond kerst?",
+"options": [
+"Top 2000",
+"Top 40",
+"Mega Top 100",
+"Tijdloze 100"
+]
+},
+"en": {
+"q": "What is the yearly countdown of 2000 songs on NPO Radio 2 around Christmas called?",
+"options": [
+"Top 2000",
+"Top 40",
+"Mega Top 100",
+"Tijdloze 100"
+]
+}
+},
+{
+"id": "nl:573068251a",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk nummer stond het vaakst op 1 in de Top 2000?",
+"options": [
+"Bohemian Rhapsody",
+"Hotel California",
+"Stairway to Heaven",
+"Avond"
+]
+},
+"en": {
+"q": "Which song has been number 1 in the Top 2000 most often?",
+"options": [
+"Bohemian Rhapsody",
+"Hotel California",
+"Stairway to Heaven",
+"Avond"
+]
+}
+},
+{
+"id": "nl:72bb01f6fc",
+"category": "muziek",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Avond', dat ook een keer op 1 stond in de Top 2000?",
+"options": [
+"Boudewijn de Groot",
+"Danny Vera",
+"De Dijk",
+"Bløf"
+]
+},
+"en": {
+"q": "Who sang 'Avond', which also reached number 1 in the Top 2000?",
+"options": [
+"Boudewijn de Groot",
+"Danny Vera",
+"De Dijk",
+"Bløf"
+]
+}
+},
+{
+"id": "nl:21d80eb185",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zanger stond met 'Roller Coaster' op 1 in de Top 2000?",
+"options": [
+"Danny Vera",
+"Douwe Bob",
+"Waylon",
+"Ilse DeLange"
+]
+},
+"en": {
+"q": "Which singer reached number 1 in the Top 2000 with 'Roller Coaster'?",
+"options": [
+"Danny Vera",
+"Douwe Bob",
+"Waylon",
+"Ilse DeLange"
+]
+}
+},
+{
+"id": "nl:63bcf0d1ec",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Nobody's Wife' (1997)?",
+"options": [
+"Anouk",
+"Ilse DeLange",
+"Trijntje Oosterhuis",
+"Caro Emerald"
+]
+},
+"en": {
+"q": "Who sang 'Nobody's Wife' (1997)?",
+"options": [
+"Anouk",
+"Ilse DeLange",
+"Trijntje Oosterhuis",
+"Caro Emerald"
+]
+}
+},
+{
+"id": "nl:eabb499da7",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk duo vormde 'The Common Linnets' ('Calm After the Storm')?",
+"options": [
+"Ilse DeLange en Waylon",
+"Anouk en Douwe Bob",
+"Trijntje Oosterhuis en Marco Borsato",
+"Glennis Grace en Jan Smit"
+]
+},
+"en": {
+"q": "Which duo were 'The Common Linnets' ('Calm After the Storm')?",
+"options": [
+"Ilse DeLange and Waylon",
+"Anouk and Douwe Bob",
+"Trijntje Oosterhuis and Marco Borsato",
+"Glennis Grace and Jan Smit"
+]
+}
+},
+{
+"id": "nl:ef8e7a593b",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Uit welk dorp komt Jan Smit?",
+"options": [
+"Volendam",
+"Edam",
+"Marken",
+"Monnickendam"
+]
+},
+"en": {
+"q": "Which village is Jan Smit from?",
+"options": [
+"Volendam",
+"Edam",
+"Marken",
+"Monnickendam"
+]
+}
+},
+{
+"id": "nl:54d986a288",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Laat me' en 'Zing, vecht, huil, bid, lach, werk en bewonder'?",
+"options": [
+"Ramses Shaffy",
+"Herman van Veen",
+"Boudewijn de Groot",
+"Wim Sonneveld"
+]
+},
+"en": {
+"q": "Who sang 'Laat me' and 'Zing, vecht, huil, bid, lach, werk en bewonder'?",
+"options": [
+"Ramses Shaffy",
+"Herman van Veen",
+"Boudewijn de Groot",
+"Wim Sonneveld"
+]
+}
+},
+{
+"id": "nl:53ed534a99",
+"category": "muziek",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke cabaretier zong 'Het dorp'?",
+"options": [
+"Wim Sonneveld",
+"Toon Hermans",
+"Youp van 't Hek",
+"Herman Finkers"
+]
+},
+"en": {
+"q": "Which comedian sang 'Het dorp'?",
+"options": [
+"Wim Sonneveld",
+"Toon Hermans",
+"Youp van 't Hek",
+"Herman Finkers"
+]
+}
+},
+{
+"id": "nl:9e32508001",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zangeres scoorde in 2009 met 'Back It Up' en 'A Night Like This'?",
+"options": [
+"Caro Emerald",
+"Anouk",
+"Glennis Grace",
+"Sharon den Adel"
+]
+},
+"en": {
+"q": "Which singer scored in 2009 with 'Back It Up' and 'A Night Like This'?",
+"options": [
+"Caro Emerald",
+"Anouk",
+"Glennis Grace",
+"Sharon den Adel"
+]
+}
+},
+{
+"id": "nl:f0d19ec46c",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke rapper had een hit met 'Drank & Drugs'?",
+"options": [
+"Lil Kleine & Ronnie Flex",
+"Snelle",
+"Frenna",
+"Boef"
+]
+},
+"en": {
+"q": "Who had a hit with 'Drank & Drugs'?",
+"options": [
+"Lil Kleine & Ronnie Flex",
+"Snelle",
+"Frenna",
+"Boef"
+]
+}
+},
+{
+"id": "nl:436cd6cdcb",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk nummer van Snelle stond in 2019 wekenlang op 1?",
+"options": [
+"Reünie",
+"Smoorverliefd",
+"Blauwe dag",
+"Plankgas"
+]
+},
+"en": {
+"q": "Which song by Snelle was number 1 for weeks in 2019?",
+"options": [
+"Reünie",
+"Smoorverliefd",
+"Blauwe dag",
+"Plankgas"
+]
+}
+},
+{
+"id": "nl:b788cdd28b",
+"category": "muziek",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Met welk nummer kwam Joost Klein in 2024 naar het Songfestival?",
+"options": [
+"Europapa",
+"Arcade",
+"Birds",
+"Outlaw in 'Em"
+]
+},
+"en": {
+"q": "With which song did Joost Klein go to Eurovision in 2024?",
+"options": [
+"Europapa",
+"Arcade",
+"Birds",
+"Outlaw in 'Em"
+]
+}
+},
+{
+"id": "nl:b570a69892",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Britse band zong 'Bohemian Rhapsody'?",
+"options": [
+"Queen",
+"The Beatles",
+"Pink Floyd",
+"The Rolling Stones"
+]
+},
+"en": {
+"q": "Which British band sang 'Bohemian Rhapsody'?",
+"options": [
+"Queen",
+"The Beatles",
+"Pink Floyd",
+"The Rolling Stones"
+]
+}
+},
+{
+"id": "nl:5b60cbcd35",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie wordt de 'King of Pop' genoemd?",
+"options": [
+"Michael Jackson",
+"Elvis Presley",
+"Prince",
+"Justin Timberlake"
+]
+},
+"en": {
+"q": "Who is called the 'King of Pop'?",
+"options": [
+"Michael Jackson",
+"Elvis Presley",
+"Prince",
+"Justin Timberlake"
+]
+}
+},
+{
+"id": "nl:f5fe043504",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Uit welke stad kwamen The Beatles?",
+"options": [
+"Liverpool",
+"Londen",
+"Manchester",
+"Birmingham"
+]
+},
+"en": {
+"q": "Which city were The Beatles from?",
+"options": [
+"Liverpool",
+"London",
+"Manchester",
+"Birmingham"
+]
+}
+},
+{
+"id": "nl:2d9a27ebaf",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Zweedse groep won in 1974 het Songfestival met 'Waterloo'?",
+"options": [
+"ABBA",
+"Roxette",
+"Ace of Base",
+"Europe"
+]
+},
+"en": {
+"q": "Which Swedish group won Eurovision in 1974 with 'Waterloo'?",
+"options": [
+"ABBA",
+"Roxette",
+"Ace of Base",
+"Europe"
+]
+}
+},
+{
+"id": "nl:8753e6c8f3",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zangeres zong 'Rolling in the Deep' en 'Someone Like You'?",
+"options": [
+"Adele",
+"Amy Winehouse",
+"Duffy",
+"Dua Lipa"
+]
+},
+"en": {
+"q": "Which singer sang 'Rolling in the Deep' and 'Someone Like You'?",
+"options": [
+"Adele",
+"Amy Winehouse",
+"Duffy",
+"Dua Lipa"
+]
+}
+},
+{
+"id": "nl:bf4931c2fe",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke band zong 'Hotel California'?",
+"options": [
+"Eagles",
+"Fleetwood Mac",
+"The Doors",
+"Dire Straits"
+]
+},
+"en": {
+"q": "Which band sang 'Hotel California'?",
+"options": [
+"Eagles",
+"Fleetwood Mac",
+"The Doors",
+"Dire Straits"
+]
+}
+},
+{
+"id": "nl:97738bbd41",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Purple Rain'?",
+"options": [
+"Prince",
+"Jimi Hendrix",
+"Lenny Kravitz",
+"David Bowie"
+]
+},
+"en": {
+"q": "Who sang 'Purple Rain'?",
+"options": [
+"Prince",
+"Jimi Hendrix",
+"Lenny Kravitz",
+"David Bowie"
+]
+}
+},
+{
+"id": "nl:729ba83a00",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke band zong 'Smells Like Teen Spirit'?",
+"options": [
+"Nirvana",
+"Pearl Jam",
+"Foo Fighters",
+"Green Day"
+]
+},
+"en": {
+"q": "Which band sang 'Smells Like Teen Spirit'?",
+"options": [
+"Nirvana",
+"Pearl Jam",
+"Foo Fighters",
+"Green Day"
+]
+}
+},
+{
+"id": "nl:84e84c2bcc",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Shape of You'?",
+"options": [
+"Ed Sheeran",
+"Sam Smith",
+"Lewis Capaldi",
+"Shawn Mendes"
+]
+},
+"en": {
+"q": "Who sang 'Shape of You'?",
+"options": [
+"Ed Sheeran",
+"Sam Smith",
+"Lewis Capaldi",
+"Shawn Mendes"
+]
+}
+},
+{
+"id": "nl:8e7a217ff9",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Billie Jean'?",
+"options": [
+"Michael Jackson",
+"Lionel Richie",
+"Stevie Wonder",
+"George Michael"
+]
+},
+"en": {
+"q": "Who sang 'Billie Jean'?",
+"options": [
+"Michael Jackson",
+"Lionel Richie",
+"Stevie Wonder",
+"George Michael"
+]
+}
+},
+{
+"id": "nl:74a6236fa6",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zangeres zong 'Like a Prayer' en 'Material Girl'?",
+"options": [
+"Madonna",
+"Cyndi Lauper",
+"Whitney Houston",
+"Kylie Minogue"
+]
+},
+"en": {
+"q": "Which singer sang 'Like a Prayer' and 'Material Girl'?",
+"options": [
+"Madonna",
+"Cyndi Lauper",
+"Whitney Houston",
+"Kylie Minogue"
+]
+}
+},
+{
+"id": "nl:aa1ddf2f53",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Ierse band zong 'With or Without You'?",
+"options": [
+"U2",
+"The Cranberries",
+"The Corrs",
+"Westlife"
+]
+},
+"en": {
+"q": "Which Irish band sang 'With or Without You'?",
+"options": [
+"U2",
+"The Cranberries",
+"The Corrs",
+"Westlife"
+]
+}
+},
+{
+"id": "nl:cd2d4192f7",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Rehab' en 'Back to Black'?",
+"options": [
+"Amy Winehouse",
+"Adele",
+"Lily Allen",
+"Duffy"
+]
+},
+"en": {
+"q": "Who sang 'Rehab' and 'Back to Black'?",
+"options": [
+"Amy Winehouse",
+"Adele",
+"Lily Allen",
+"Duffy"
+]
+}
+},
+{
+"id": "nl:42ce90200c",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke band zong 'Wonderwall'?",
+"options": [
+"Oasis",
+"Blur",
+"Coldplay",
+"Radiohead"
+]
+},
+"en": {
+"q": "Which band sang 'Wonderwall'?",
+"options": [
+"Oasis",
+"Blur",
+"Coldplay",
+"Radiohead"
+]
+}
+},
+{
+"id": "nl:730f765aec",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Uptown Funk' samen met Mark Ronson?",
+"options": [
+"Bruno Mars",
+"Pharrell Williams",
+"Justin Timberlake",
+"The Weeknd"
+]
+},
+"en": {
+"q": "Who sang 'Uptown Funk' with Mark Ronson?",
+"options": [
+"Bruno Mars",
+"Pharrell Williams",
+"Justin Timberlake",
+"The Weeknd"
+]
+}
+},
+{
+"id": "nl:accb04fb06",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie zong 'Blinding Lights'?",
+"options": [
+"The Weeknd",
+"Drake",
+"Post Malone",
+"Harry Styles"
+]
+},
+"en": {
+"q": "Who sang 'Blinding Lights'?",
+"options": [
+"The Weeknd",
+"Drake",
+"Post Malone",
+"Harry Styles"
+]
+}
+},
+{
+"id": "nl:5d69f61aa0",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zangeres zong '...Baby One More Time'?",
+"options": [
+"Britney Spears",
+"Christina Aguilera",
+"Jessica Simpson",
+"Mandy Moore"
+]
+},
+"en": {
+"q": "Which singer sang '...Baby One More Time'?",
+"options": [
+"Britney Spears",
+"Christina Aguilera",
+"Jessica Simpson",
+"Mandy Moore"
+]
+}
+},
+{
+"id": "nl:aa6db92189",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke band zong 'Mr. Brightside'?",
+"options": [
+"The Killers",
+"Franz Ferdinand",
+"Arctic Monkeys",
+"Kings of Leon"
+]
+},
+"en": {
+"q": "Which band sang 'Mr. Brightside'?",
+"options": [
+"The Killers",
+"Franz Ferdinand",
+"Arctic Monkeys",
+"Kings of Leon"
+]
+}
+},
+{
+"id": "nl:8325d60e22",
+"category": "muziek",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Spice Girl had de bijnaam 'Posh Spice'?",
+"options": [
+"Victoria Beckham",
+"Geri Halliwell",
+"Mel B",
+"Emma Bunton"
+]
+},
+"en": {
+"q": "Which Spice Girl was 'Posh Spice'?",
+"options": [
+"Victoria Beckham",
+"Geri Halliwell",
+"Mel B",
+"Emma Bunton"
+]
+}
+},
+{
+"id": "nl:c99260812d",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zanger zong 'Rocket Man' en 'Your Song'?",
+"options": [
+"Elton John",
+"Billy Joel",
+"Rod Stewart",
+"Phil Collins"
+]
+},
+"en": {
+"q": "Which singer sang 'Rocket Man' and 'Your Song'?",
+"options": [
+"Elton John",
+"Billy Joel",
+"Rod Stewart",
+"Phil Collins"
+]
+}
+},
+{
+"id": "nl:2a7e0410db",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zangeres zong 'I Will Always Love You' in 'The Bodyguard'?",
+"options": [
+"Whitney Houston",
+"Mariah Carey",
+"Celine Dion",
+"Tina Turner"
+]
+},
+"en": {
+"q": "Which singer performed 'I Will Always Love You' in 'The Bodyguard'?",
+"options": [
+"Whitney Houston",
+"Mariah Carey",
+"Celine Dion",
+"Tina Turner"
+]
+}
+},
+{
+"id": "nl:1ead079761",
+"category": "muziek",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zangeres zong 'My Heart Will Go On' uit Titanic?",
+"options": [
+"Celine Dion",
+"Whitney Houston",
+"Mariah Carey",
+"Shania Twain"
+]
+},
+"en": {
+"q": "Who sang 'My Heart Will Go On' from Titanic?",
+"options": [
+"Celine Dion",
+"Whitney Houston",
+"Mariah Carey",
+"Shania Twain"
+]
+}
+},
+{
+"id": "nl:ef5cca4dae",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welk programma van Linda de Mol kiezen kandidaten uit 26 koffers?",
+"options": [
+"Miljoenenjacht",
+"Lingo",
+"Wie is de Mol?",
+"Ik hou van Holland"
+]
+},
+"en": {
+"q": "In which Linda de Mol show do contestants pick from 26 cases?",
+"options": [
+"Miljoenenjacht (Deal or No Deal)",
+"Lingo",
+"Wie is de Mol?",
+"Ik hou van Holland"
+]
+}
+},
+{
+"id": "nl:f4e9579409",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de populaire tv-show waarin kandidaten een saboteur moeten ontmaskeren?",
+"options": [
+"Wie is de Mol?",
+"Expeditie Robinson",
+"De Slimste Mens",
+"Boer zoekt Vrouw"
+]
+},
+"en": {
+"q": "What is the popular Dutch TV show where contestants must unmask a saboteur?",
+"options": [
+"Wie is de Mol?",
+"Expeditie Robinson",
+"De Slimste Mens",
+"Boer zoekt Vrouw"
+]
+}
+},
+{
+"id": "nl:6dbb4e75af",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk Nederlands tv-format werd wereldwijd een succes, met een huis vol camera's?",
+"options": [
+"Big Brother",
+"The Voice",
+"Fear Factor",
+"Idols"
+]
+},
+"en": {
+"q": "Which Dutch TV format with a house full of cameras became a global hit?",
+"options": [
+"Big Brother",
+"The Voice",
+"Fear Factor",
+"Idols"
+]
+}
+},
+{
+"id": "nl:8654de4fda",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke tv-producent bedacht Big Brother en The Voice?",
+"options": [
+"John de Mol",
+"Joop van den Ende",
+"Ivo Niehe",
+"Paul de Leeuw"
+]
+},
+"en": {
+"q": "Which TV producer came up with Big Brother and The Voice?",
+"options": [
+"John de Mol",
+"Joop van den Ende",
+"Ivo Niehe",
+"Paul de Leeuw"
+]
+}
+},
+{
+"id": "nl:ed31bb41cb",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het oudste nog lopende nieuwsprogramma op de Nederlandse tv?",
+"options": [
+"Het NOS Journaal",
+"RTL Nieuws",
+"EenVandaag",
+"Nieuwsuur"
+]
+},
+"en": {
+"q": "What is the oldest news programme still running on Dutch TV?",
+"options": [
+"NOS Journaal",
+"RTL Nieuws",
+"EenVandaag",
+"Nieuwsuur"
+]
+}
+},
+{
+"id": "nl:d873f66b9b",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de langstlopende Nederlandse soap?",
+"options": [
+"Goede Tijden, Slechte Tijden",
+"Onderweg naar Morgen",
+"Goudkust",
+"Westenwind"
+]
+},
+"en": {
+"q": "What is the longest-running Dutch soap opera?",
+"options": [
+"Goede Tijden, Slechte Tijden",
+"Onderweg naar Morgen",
+"Goudkust",
+"Westenwind"
+]
+}
+},
+{
+"id": "nl:2a67c713b3",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse regisseur maakte 'Soldaat van Oranje' en later 'Basic Instinct'?",
+"options": [
+"Paul Verhoeven",
+"Dick Maas",
+"Fons Rademakers",
+"Alex van Warmerdam"
+]
+},
+"en": {
+"q": "Which Dutch director made 'Soldier of Orange' and later 'Basic Instinct'?",
+"options": [
+"Paul Verhoeven",
+"Dick Maas",
+"Fons Rademakers",
+"Alex van Warmerdam"
+]
+}
+},
+{
+"id": "nl:d0bbf5a88a",
+"category": "film-tv",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse film won in 1987 de Oscar voor beste buitenlandse film?",
+"options": [
+"De Aanslag",
+"Turks Fruit",
+"Karakter",
+"Antonia"
+]
+},
+"en": {
+"q": "Which Dutch film won the Oscar for Best Foreign Language Film in 1987?",
+"options": [
+"De Aanslag (The Assault)",
+"Turks Fruit",
+"Karakter",
+"Antonia"
+]
+}
+},
+{
+"id": "nl:a36ce981da",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse actrice speelde in 'Black Book' en 'Game of Thrones' (Melisandre)?",
+"options": [
+"Carice van Houten",
+"Famke Janssen",
+"Halina Reijn",
+"Monic Hendrickx"
+]
+},
+"en": {
+"q": "Which Dutch actress starred in 'Black Book' and played Melisandre in 'Game of Thrones'?",
+"options": [
+"Carice van Houten",
+"Famke Janssen",
+"Halina Reijn",
+"Monic Hendrickx"
+]
+}
+},
+{
+"id": "nl:af56a25f95",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke Nederlandse acteur speelde Roy Batty in 'Blade Runner'?",
+"options": [
+"Rutger Hauer",
+"Jeroen Krabbé",
+"Huub Stapel",
+"Derek de Lint"
+]
+},
+"en": {
+"q": "Which Dutch actor played Roy Batty in 'Blade Runner'?",
+"options": [
+"Rutger Hauer",
+"Jeroen Krabbé",
+"Huub Stapel",
+"Derek de Lint"
+]
+}
+},
+{
+"id": "nl:78fdd9fa19",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het kinderprogramma met de bekende 'Pino' en 'Tommie'?",
+"options": [
+"Sesamstraat",
+"Het Klokhuis",
+"Pipo de Clown",
+"De Fabeltjeskrant"
+]
+},
+"en": {
+"q": "Which children's programme features 'Pino' and 'Tommie'?",
+"options": [
+"Sesamstraat",
+"Het Klokhuis",
+"Pipo de Clown",
+"De Fabeltjeskrant"
+]
+}
+},
+{
+"id": "nl:c2ac1ca90e",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welk kinderprogramma zitten Meneer de Uil en Bor de Wolf?",
+"options": [
+"De Fabeltjeskrant",
+"Sesamstraat",
+"Paulus de boskabouter",
+"Swiebertje"
+]
+},
+"en": {
+"q": "In which children's programme do Meneer de Uil and Bor de Wolf appear?",
+"options": [
+"De Fabeltjeskrant",
+"Sesamstraat",
+"Paulus de boskabouter",
+"Swiebertje"
+]
+}
+},
+{
+"id": "nl:02161efc5f",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet het Sinterklaasprogramma voor kinderen dat elk jaar op tv is?",
+"options": [
+"Het Sinterklaasjournaal",
+"Het Pietenjournaal",
+"Sint & Piet TV",
+"De Club van Sinterklaas"
+]
+},
+"en": {
+"q": "What is the yearly Sinterklaas news show for children called?",
+"options": [
+"Het Sinterklaasjournaal",
+"Het Pietenjournaal",
+"Sint & Piet TV",
+"De Club van Sinterklaas"
+]
+}
+},
+{
+"id": "nl:deff072bd8",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke cabaretier geeft traditioneel de oudejaarsconference op tv?",
+"options": [
+"Een wisselende cabaretier (bijv. Youp van 't Hek)",
+"Altijd Herman Finkers",
+"Altijd Paul de Leeuw",
+"Altijd Claudia de Breij"
+]
+},
+"en": {
+"q": "Who traditionally performs the New Year's Eve comedy show on Dutch TV?",
+"options": [
+"A different comedian each year (e.g. Youp van 't Hek)",
+"Always Herman Finkers",
+"Always Paul de Leeuw",
+"Always Claudia de Breij"
+]
+}
+},
+{
+"id": "nl:a01c1e72f4",
+"category": "film-tv",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "In welke Nederlandse film uit 1973 speelden Rutger Hauer en Monique van de Ven?",
+"options": [
+"Turks Fruit",
+"Keetje Tippel",
+"Soldaat van Oranje",
+"Spetters"
+]
+},
+"en": {
+"q": "In which 1973 Dutch film did Rutger Hauer and Monique van de Ven star?",
+"options": [
+"Turks Fruit",
+"Keetje Tippel",
+"Soldaat van Oranje",
+"Spetters"
+]
+}
+},
+{
+"id": "nl:0db41aafc6",
+"category": "film-tv",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke presentator maakte 'Zondag met Lubach'?",
+"options": [
+"Arjen Lubach",
+"Jandino Asporaat",
+"Tim Hofman",
+"Klikbeet"
+]
+},
+"en": {
+"q": "Who made the satirical TV show 'Zondag met Lubach'?",
+"options": [
+"Arjen Lubach",
+"Jandino Asporaat",
+"Tim Hofman",
+"Klikbeet"
+]
+}
+},
+{
+"id": "nl:b426e298b1",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel poten heeft een spin?",
+"options": [
+"8",
+"6",
+"10",
+"12"
+]
+},
+"en": {
+"q": "How many legs does a spider have?",
+"options": [
+"8",
+"6",
+"10",
+"12"
+]
+}
+},
+{
+"id": "nl:ce9dbf9010",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de hoofdstad van België?",
+"options": [
+"Brussel",
+"Antwerpen",
+"Gent",
+"Luik"
+]
+},
+"en": {
+"q": "What is the capital of Belgium?",
+"options": [
+"Brussels",
+"Antwerp",
+"Ghent",
+"Liège"
+]
+}
+},
+{
+"id": "nl:679cc8f2f1",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel minuten duurt een voetbalwedstrijd (zonder blessuretijd)?",
+"options": [
+"90",
+"80",
+"100",
+"60"
+]
+},
+"en": {
+"q": "How many minutes does a football match last (without stoppage time)?",
+"options": [
+"90",
+"80",
+"100",
+"60"
+]
+}
+},
+{
+"id": "nl:6e3f1f9f76",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is H2O?",
+"options": [
+"Water",
+"Waterstof",
+"Zuurstof",
+"Zout"
+]
+},
+"en": {
+"q": "What is H2O?",
+"options": [
+"Water",
+"Hydrogen",
+"Oxygen",
+"Salt"
+]
+}
+},
+{
+"id": "nl:d4689a1c02",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welk land staat de Eiffeltoren?",
+"options": [
+"Frankrijk",
+"België",
+"Italië",
+"Spanje"
+]
+},
+"en": {
+"q": "In which country is the Eiffel Tower?",
+"options": [
+"France",
+"Belgium",
+"Italy",
+"Spain"
+]
+}
+},
+{
+"id": "nl:c92aedfb96",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is het snelste landdier?",
+"options": [
+"Jachtluipaard",
+"Leeuw",
+"Paard",
+"Antilope"
+]
+},
+"en": {
+"q": "What is the fastest land animal?",
+"options": [
+"Cheetah",
+"Lion",
+"Horse",
+"Antelope"
+]
+}
+},
+{
+"id": "nl:3c498d2705",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke zee ligt ten westen van Nederland?",
+"options": [
+"Noordzee",
+"Oostzee",
+"Waddenzee",
+"Ierse Zee"
+]
+},
+"en": {
+"q": "Which sea lies to the west of the Netherlands?",
+"options": [
+"North Sea",
+"Baltic Sea",
+"Wadden Sea",
+"Irish Sea"
+]
+}
+},
+{
+"id": "nl:6ff03cd77f",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk land is het grootst qua oppervlakte?",
+"options": [
+"Rusland",
+"Canada",
+"China",
+"Verenigde Staten"
+]
+},
+"en": {
+"q": "Which country is the largest by area?",
+"options": [
+"Russia",
+"Canada",
+"China",
+"United States"
+]
+}
+},
+{
+"id": "nl:9baaf06af6",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "In welke stad staat het Colosseum?",
+"options": [
+"Rome",
+"Athene",
+"Napels",
+"Milaan"
+]
+},
+"en": {
+"q": "In which city is the Colosseum?",
+"options": [
+"Rome",
+"Athens",
+"Naples",
+"Milan"
+]
+}
+},
+{
+"id": "nl:b8a70fe3e5",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel dagen heeft een schrikkeljaar?",
+"options": [
+"366",
+"365",
+"364",
+"367"
+]
+},
+"en": {
+"q": "How many days does a leap year have?",
+"options": [
+"366",
+"365",
+"364",
+"367"
+]
+}
+},
+{
+"id": "nl:be27cf6a5d",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de langste rivier van Europa?",
+"options": [
+"Wolga",
+"Donau",
+"Rijn",
+"Seine"
+]
+},
+"en": {
+"q": "What is the longest river in Europe?",
+"options": [
+"Volga",
+"Danube",
+"Rhine",
+"Seine"
+]
+}
+},
+{
+"id": "nl:a37b031e67",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk land heeft de meeste inwoners ter wereld?",
+"options": [
+"India",
+"China",
+"Verenigde Staten",
+"Indonesië"
+]
+},
+"en": {
+"q": "Which country has the largest population in the world?",
+"options": [
+"India",
+"China",
+"United States",
+"Indonesia"
+]
+}
+},
+{
+"id": "nl:8a09d1029a",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welke kleur krijg je als je blauw en geel mengt?",
+"options": [
+"Groen",
+"Paars",
+"Oranje",
+"Bruin"
+]
+},
+"en": {
+"q": "What colour do you get when you mix blue and yellow?",
+"options": [
+"Green",
+"Purple",
+"Orange",
+"Brown"
+]
+}
+},
+{
+"id": "nl:edee3b57a6",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel seconden zitten er in een uur?",
+"options": [
+"3600",
+"360",
+"6000",
+"1000"
+]
+},
+"en": {
+"q": "How many seconds are there in an hour?",
+"options": [
+"3600",
+"360",
+"6000",
+"1000"
+]
+}
+},
+{
+"id": "nl:9afc58defd",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wat is de valuta van het Verenigd Koninkrijk?",
+"options": [
+"Pond sterling",
+"Euro",
+"Dollar",
+"Kroon"
+]
+},
+"en": {
+"q": "What is the currency of the United Kingdom?",
+"options": [
+"Pound sterling",
+"Euro",
+"Dollar",
+"Krone"
+]
+}
+},
+{
+"id": "nl:ed9b94d1e0",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Op welk continent ligt Egypte?",
+"options": [
+"Afrika",
+"Azië",
+"Europa",
+"Zuid-Amerika"
+]
+},
+"en": {
+"q": "On which continent is Egypt?",
+"options": [
+"Africa",
+"Asia",
+"Europe",
+"South America"
+]
+}
+},
+{
+"id": "nl:f334abab28",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel hoeken heeft een zeshoek?",
+"options": [
+"6",
+"5",
+"8",
+"7"
+]
+},
+"en": {
+"q": "How many corners does a hexagon have?",
+"options": [
+"6",
+"5",
+"8",
+"7"
+]
+}
+},
+{
+"id": "nl:d9e7150c6a",
+"category": "algemeen",
+"difficulty": "gemiddeld",
+"answer": 0,
+"nl": {
+"q": "Welk element heeft het chemische symbool 'Au'?",
+"options": [
+"Goud",
+"Zilver",
+"Aluminium",
+"Argon"
+]
+},
+"en": {
+"q": "Which element has the chemical symbol 'Au'?",
+"options": [
+"Gold",
+"Silver",
+"Aluminium",
+"Argon"
+]
+}
+},
+{
+"id": "nl:aa91d46e00",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoe heet de beroemde klok in Londen?",
+"options": [
+"Big Ben",
+"Tower Bell",
+"London Eye",
+"St Paul"
+]
+},
+"en": {
+"q": "What is the famous clock tower bell in London called?",
+"options": [
+"Big Ben",
+"Tower Bell",
+"London Eye",
+"St Paul"
+]
+}
+},
+{
+"id": "nl:c2d6500b64",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Welk dier is het symbool van het WNF/WWF?",
+"options": [
+"Panda",
+"Tijger",
+"Ijsbeer",
+"Olifant"
+]
+},
+"en": {
+"q": "Which animal is the symbol of the WWF?",
+"options": [
+"Panda",
+"Tiger",
+"Polar bear",
+"Elephant"
+]
+}
+},
+{
+"id": "nl:21098e7e01",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Wie schilderde de Mona Lisa?",
+"options": [
+"Leonardo da Vinci",
+"Michelangelo",
+"Rafaël",
+"Rembrandt"
+]
+},
+"en": {
+"q": "Who painted the Mona Lisa?",
+"options": [
+"Leonardo da Vinci",
+"Michelangelo",
+"Raphael",
+"Rembrandt"
+]
+}
+},
+{
+"id": "nl:62f748d36a",
+"category": "algemeen",
+"difficulty": "makkelijk",
+"answer": 0,
+"nl": {
+"q": "Hoeveel continenten zijn er (meest gebruikte indeling)?",
+"options": [
+"7",
+"5",
+"6",
+"8"
+]
+},
+"en": {
+"q": "How many continents are there (most common division)?",
+"options": [
+"7",
+"5",
+"6",
+"8"
+]
+}
+}
+]

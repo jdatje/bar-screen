@@ -167,3 +167,34 @@
 [data-theme="pompoen"] .tile .display, [data-theme="pompoen"] .brand .display { text-shadow: 0 0 20px rgba(255, 143, 31, 0.35); }
 [data-theme="spookhuis"] .brand .display { text-shadow: 0 0 22px rgba(255, 122, 26, 0.3); }
 @media (prefers-reduced-motion: reduce) { .spooky-decor * , .clock { animation: none !important; } }
+
+/* ---------- Oranjegekte (Dutch party) ---------- */
+[data-theme="oranje"] {
+  --bg: #FF7A00; --panel: #FFF6EC; --panel-2: #FFE6CC; --line: #F2B880; --line-strong: #D9874A;
+  --text: #14204A; --text-2: #2E3A66; --text-3: #5A6283; --accent: #21468B; --accent-hover: #2F5DB0; --on-accent: #FFFFFF;
+  --font-display: 'Titan One', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Nunito', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Nunito', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 16px;
+}
+[data-theme="oranje"] body { font-weight: 600; }
+[data-theme="oranje"] .topbar .muted, [data-theme="oranje"] .topbar .mono { color: var(--text); }
+[data-theme="oranje"] .tag { background: #AE1C28; color: #fff; }
+[data-theme="oranje"] .qr { box-shadow: 0 0 0 2px var(--line); }
+
+/* Bunting (vlaggetjes) along the top of the touchscreen */
+.party-decor { display: none; }
+[data-theme="oranje"] .party-decor { display: block; position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+.party-decor .bunting {
+  position: absolute; left: -10px; right: -10px; top: -4px; height: 46px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 46'%3E%3Cpath d='M0 6Q60 16 120 6' fill='none' stroke='%2314204A' stroke-width='1.5'/%3E%3Cpath d='M4 7l14 26 14-25z' fill='%23AE1C28'/%3E%3Cpath d='M44 10l14 28 14-28z' fill='%23FFFFFF'/%3E%3Cpath d='M84 9l14 26 14-26z' fill='%2321468B'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 46px;
+  transform-origin: top; animation: bunting 5s ease-in-out infinite alternate;
+}
+.party-decor .bunting.b2 { top: 1050px; display: none; }
+@keyframes bunting { from { transform: rotate(-0.4deg) translateY(0); } to { transform: rotate(0.4deg) translateY(2px); } }
+[data-theme="oranje"] .screen { padding-top: calc(2.2vw + 18px); }
+@media (prefers-reduced-motion: reduce) { .party-decor * { animation: none !important; } }
+/* on the orange background, boxes get a light fill so text stays readable */
+[data-theme="oranje"] .option, [data-theme="oranje"] .p-option:not(.on), [data-theme="oranje"] .p-result:not(.good),
+[data-theme="oranje"] .btn:not(.primary), [data-theme="oranje"] .chip:not(.on), [data-theme="oranje"] .icon-btn,
+[data-theme="oranje"] .scoreboard li, [data-theme="oranje"] .podium-step, [data-theme="oranje"] .field input,
+[data-theme="oranje"] .field select, [data-theme="oranje"] .field textarea { background: var(--panel); }
+[data-theme="oranje"] .muted { color: var(--text-2); }
