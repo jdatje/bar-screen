@@ -81,3 +81,13 @@
 .art.proost::after { right: 8%; animation-delay: -1.6s; font-size: 26px; }
 @keyframes fx-proost { 0% { transform: translateY(0) rotate(-10deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-160px) rotate(10deg); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .art.proost::before, .art.proost::after { display: none; } }
+
+/* celebration banner sliding across the screen */
+.fx-banner div {
+  position: absolute; top: 38%; left: 100%; white-space: nowrap; display: flex; gap: 28px; align-items: center;
+  padding: 22px 48px; border-radius: 999px; background: var(--accent); color: var(--on-accent);
+  font-family: var(--font-display); font-size: 64px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  animation: fx-banner 9s linear forwards;
+}
+.fx-banner span { font-size: 70px; }
+@keyframes fx-banner { to { transform: translateX(calc(-100vw - 100%)); } }

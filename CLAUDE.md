@@ -11,7 +11,7 @@
 
 ## Easter eggs
 Jeroen wants surprises added now and then: tell him HOW MANY there are, never WHERE.
-Current total: 8 (all in `app/public/js/eggs.js` + `fx.js`):
+Current total: 9 (all in `app/public/js/eggs.js` + `fx.js`):
 1. Tap the "BAR 01" tag 7× within 3 s → "BAR 13" + a ghost floats by
 2. Hold the "Wexer 2.0" logo 2 s → lights out, glowing eyes
 3. Enter 1031 on any code pad → pumpkin rain (screen and /admin)
@@ -20,6 +20,7 @@ Current total: 8 (all in `app/public/js/eggs.js` + `fx.js`):
 6. 00:00–00:59 Amsterdam time → "spookuur" instead of the date, glitching clock
 7. Enter 2704 on any code pad → orange rain (hearts, crowns, flags)
 8. A song by Hazes playing → orange glow and 🍻 rising next to the album art
+9. Friday 17:00–17:05 Amsterdam time → a "vrijdagmiddagborrel" banner slides across
 
 ## Language
 - The pages are written in Dutch; `app/public/js/i18n.js` translates every text to

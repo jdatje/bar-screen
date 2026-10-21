@@ -71,6 +71,8 @@ const EN = {
   '🎃 Pompoenveld': '🎃 Pumpkin patch',
   '🎃 Heksenketel': "🎃 Witch's brew",
   '🇳🇱 Oranjegekte': '🇳🇱 Orange fever',
+  '🇳🇱 Delfts Blauw': '🇳🇱 Delft Blue',
+  '🇳🇱 Oranje Boven': '🇳🇱 Orange on top',
   // button backgrounds
   'Vraagtekens': 'Question marks',
   'Schrijven op papier': 'Writing on paper',
@@ -92,6 +94,7 @@ const EN = {
   'Vlaggetjes': 'Little flags',
   'Molen': 'Windmill',
   'Confetti': 'Confetti',
+  'Het is vrijdagmiddagborrel!': "It's Friday drinks o'clock!",
   // ---------- quiz setup ----------
   'Intro raden': 'Name that intro',
   'Herken het nummer aan de eerste seconden': 'Recognise the song from the first seconds',

@@ -3,7 +3,7 @@
 
 export const SPOOKY_THEMES = ['spookhuis', 'pompoen', 'heks'];
 // party looks and which backgrounds "automatic" picks in them
-export const PARTY_OF_THEME = { spookhuis: 'spooky', pompoen: 'spooky', heks: 'spooky', oranje: 'dutch' };
+export const PARTY_OF_THEME = { spookhuis: 'spooky', pompoen: 'spooky', heks: 'spooky', oranje: 'dutch', delft: 'dutch', oranjeboven: 'dutch' };
 
 export const TILE_KEYS = ['quiz', 'cocktails', 'wheel', 'join'];
 export const TILE_LABELS = { quiz: 'Quiz', cocktails: 'Cocktails', wheel: 'Draai het rad', join: 'Meedoen' };

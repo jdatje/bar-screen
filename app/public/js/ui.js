@@ -15,6 +15,8 @@ export const THEMES = {
   spookhuis: { label: '🎃 Spookhuis', bg: '#0E0A14', fg: '#EFE9F7', ac: '#FF7A1A', fonts: 'Creepster&family=Rubik:wght@400;500;600&family=Special+Elite', spooky: true },
   pompoen: { label: '🎃 Pompoenveld', bg: '#1C1008', fg: '#FFEBD2', ac: '#FF8F1F', fonts: 'Griffy&family=Quicksand:wght@500;600;700', spooky: true },
   oranje: { label: '🇳🇱 Oranjegekte', bg: '#FF7A00', fg: '#14204A', ac: '#21468B', fonts: 'Titan+One&family=Nunito:wght@500;600;700;800' },
+  delft: { label: '🇳🇱 Delfts Blauw', bg: '#F3F6FB', fg: '#12306B', ac: '#1B3F9C', fonts: 'Yeseva+One&family=Mulish:wght@400;500;600;700' },
+  oranjeboven: { label: '🇳🇱 Oranje Boven', bg: '#0B1630', fg: '#F4F6FF', ac: '#FF7A00', fonts: 'Bungee&family=Rubik:wght@400;500;600' },
   heks: { label: '🎃 Heksenketel', bg: '#0A120D', fg: '#E6F5E1', ac: '#8CFF3F', fonts: 'Jolly+Lodger&family=Rubik:wght@400;500;600', spooky: true },
 };
 

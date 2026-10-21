@@ -16,7 +16,7 @@ import * as diag from './lib/diag.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
 const PORT = Number(process.env.PORT || 80);
-export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje'];
+export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
 const app = express();

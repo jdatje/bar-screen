@@ -48,6 +48,20 @@ export function init(c) {
   };
   setTimeout(visit, (3 + Math.random() * 5) * 60 * 1000);
 
+  // the most Dutch moment of the week
+  let toasted = '';
+  setInterval(() => {
+    const parts = Object.fromEntries(
+      new Intl.DateTimeFormat('en-GB', { weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Amsterdam' })
+        .formatToParts(new Date()).map((p) => [p.type, p.value])
+    );
+    const day = new Date().toDateString();
+    if (parts.weekday === 'Fri' && Number(parts.hour) === 17 && Number(parts.minute) < 5 && toasted !== day) {
+      toasted = day;
+      fx.banner('Het is vrijdagmiddagborrel!');
+    }
+  }, 30000);
+
   // the witching hour
   const witching = () => {
     const h = Number(new Intl.DateTimeFormat('nl-NL', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Amsterdam' }).format(new Date()));

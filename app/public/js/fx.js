@@ -53,6 +53,13 @@ export const oranjeRain = once(() => {
   }).join('');
 }, 6500);
 
+// A banner sliding across with something to celebrate
+export const banner = once((text) => {
+  const el = layer('fx-banner', 9000);
+  el.innerHTML = `<div><span>🍻</span><b></b><span>🍻</span></div>`;
+  el.querySelector('b').textContent = text;
+}, 9000);
+
 // Lights out... and something is watching
 export const eyes = once(() => {
   const el = layer('fx-eyes', 6000);

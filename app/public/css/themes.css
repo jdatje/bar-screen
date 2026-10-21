@@ -198,3 +198,52 @@
 [data-theme="oranje"] .scoreboard li, [data-theme="oranje"] .podium-step, [data-theme="oranje"] .field input,
 [data-theme="oranje"] .field select, [data-theme="oranje"] .field textarea { background: var(--panel); }
 [data-theme="oranje"] .muted { color: var(--text-2); }
+
+
+/* ---------- Delfts Blauw (Dutch party, light) ---------- */
+[data-theme="delft"] {
+  --bg: #F3F6FB; --panel: #FFFFFF; --panel-2: #E8EEF8; --line: #C9D5EA; --line-strong: #8FA6CF;
+  --text: #12306B; --text-2: #2C4A87; --text-3: #5A73A6; --accent: #1B3F9C; --accent-hover: #2A55C4; --on-accent: #FFFFFF;
+  --font-display: 'Yeseva One', 'Wexer Emoji', Georgia, serif; --font-body: 'Mulish', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Mulish', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 4px;
+}
+/* a field of Delft tiles behind everything */
+[data-theme="delft"] body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none' stroke='%23C3D0EA' stroke-width='1.6'%3E%3Crect x='0.8' y='0.8' width='118.4' height='118.4' stroke-opacity='.35'/%3E%3Cpath d='M0 14Q10 10 14 0M120 14Q110 10 106 0M0 106Q10 110 14 120M120 106Q110 110 106 120' stroke-opacity='.7'/%3E%3Ccircle cx='60' cy='60' r='9'/%3E%3Cpath d='M60 51C55 40 60 30 60 30S65 40 60 51M60 69C55 80 60 90 60 90S65 80 60 69M51 60C40 55 30 60 30 60S40 65 51 60M69 60C80 55 90 60 90 60S80 65 69 60'/%3E%3Cpath d='M45 45l-6-6M75 45l6-6M45 75l-6 6M75 75l6 6' stroke-linecap='round'/%3E%3C/svg%3E"); background-size: 120px 120px; font-weight: 500; }
+[data-theme="delft"] .tile, [data-theme="delft"] .now { box-shadow: 0 2px 0 var(--line), 0 10px 30px rgba(18, 48, 107, 0.08); }
+[data-theme="delft"] .tile.hot { background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none' stroke='%23345BB8' stroke-width='1.6'%3E%3Crect x='0.8' y='0.8' width='118.4' height='118.4' stroke-opacity='.35'/%3E%3Cpath d='M0 14Q10 10 14 0M120 14Q110 10 106 0M0 106Q10 110 14 120M120 106Q110 110 106 120' stroke-opacity='.7'/%3E%3Ccircle cx='60' cy='60' r='9'/%3E%3Cpath d='M60 51C55 40 60 30 60 30S65 40 60 51M60 69C55 80 60 90 60 90S65 80 60 69M51 60C40 55 30 60 30 60S40 65 51 60M69 60C80 55 90 60 90 60S80 65 69 60'/%3E%3Cpath d='M45 45l-6-6M75 45l6-6M45 75l-6 6M75 75l6 6' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 120px 120px; }
+[data-theme="delft"] .tag { background: #FF7A00; color: #fff; }
+
+/* ---------- Oranje Boven (Dutch party, night with fireworks) ---------- */
+[data-theme="oranjeboven"] {
+  --bg: #0B1630; --panel: #121F45; --panel-2: #1A2B5C; --line: #26397A; --line-strong: #3A4F96;
+  --text: #F4F6FF; --text-2: #C9D1EE; --text-3: #98A3CC; --accent: #FF7A00; --accent-hover: #FF9A3D; --on-accent: #0B1630;
+  --font-display: 'Bungee', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Rubik', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Rubik', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: uppercase; --display-weight: 400; --radius: 10px;
+}
+[data-theme="oranjeboven"] .tile .display, [data-theme="oranjeboven"] .brand .display, [data-theme="oranjeboven"] .clock { text-shadow: 0 0 22px rgba(255, 122, 0, 0.45); }
+[data-theme="oranjeboven"] .tag { background: #AE1C28; color: #fff; }
+.party-decor .flagline, .party-decor .burst { display: none; }
+[data-theme="oranjeboven"] .party-decor, [data-theme="delft"] .party-decor { display: block; position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+[data-theme="delft"] .party-decor .bunting, [data-theme="oranjeboven"] .party-decor .bunting { display: none; }
+[data-theme="oranjeboven"] .party-decor .flagline {
+  display: block; position: absolute; left: 0; right: 0; top: 0; height: 6px;
+  background: linear-gradient(#AE1C28 0 33%, #FFFFFF 33% 66%, #21468B 66%);
+}
+[data-theme="oranjeboven"] .party-decor .burst {
+  display: block; position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  --c: #FF7A00; --c2: #FFFFFF;
+  box-shadow: 70.0px 0.0px 0 var(--c), 63.1px 30.4px 0 var(--c), 43.6px 54.7px 0 var(--c), 15.6px 68.2px 0 var(--c), -15.6px 68.2px 0 var(--c), -43.6px 54.7px 0 var(--c), -63.1px 30.4px 0 var(--c), -70.0px 0.0px 0 var(--c), -63.1px -30.4px 0 var(--c), -43.6px -54.7px 0 var(--c), -15.6px -68.2px 0 var(--c), 15.6px -68.2px 0 var(--c), 43.6px -54.7px 0 var(--c), 63.1px -30.4px 0 var(--c), 42.0px 0.0px 0 var(--c2), 34.0px 24.7px 0 var(--c2), 13.0px 39.9px 0 var(--c2), -13.0px 39.9px 0 var(--c2), -34.0px 24.7px 0 var(--c2), -42.0px 0.0px 0 var(--c2), -34.0px -24.7px 0 var(--c2), -13.0px -39.9px 0 var(--c2), 13.0px -39.9px 0 var(--c2), 34.0px -24.7px 0 var(--c2);
+  opacity: 0; transform: scale(0.1); animation: firework 7s ease-out infinite;
+}
+[data-theme="oranjeboven"] .party-decor .burst:nth-child(2) { left: 12%; top: 18%; }
+[data-theme="oranjeboven"] .party-decor .burst:nth-child(3) { left: 46%; top: 9%; --c: #AE1C28; --c2: #FFB259; animation-delay: -2.3s; animation-duration: 8s; }
+[data-theme="oranjeboven"] .party-decor .burst:nth-child(4) { left: 84%; top: 22%; --c: #4F7BE0; --c2: #FFFFFF; animation-delay: -4.6s; }
+[data-theme="oranjeboven"] .party-decor .burst:nth-child(5) { left: 64%; top: 62%; --c: #FF7A00; --c2: #FFD15C; animation-delay: -5.8s; animation-duration: 9s; }
+[data-theme="oranjeboven"] .party-decor .burst:nth-child(6) { left: 28%; top: 70%; --c: #FFFFFF; --c2: #FF7A00; animation-delay: -1.2s; animation-duration: 10s; }
+@keyframes firework {
+  0%, 58% { opacity: 0; transform: scale(0.1); }
+  62% { opacity: 0.55; }
+  80% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.15) translateY(14px); }
+}
+@media (prefers-reduced-motion: reduce) { .party-decor .burst { animation: none; opacity: 0; } }
