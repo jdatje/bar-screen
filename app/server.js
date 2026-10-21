@@ -13,16 +13,21 @@ import { getSourceOptions } from './lib/musicpool.js';
 import { Game } from './lib/game.js';
 import { load, save } from './lib/store.js';
 import * as diag from './lib/diag.js';
+import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
 const PORT = Number(process.env.PORT || 80);
-export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet'];
+export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-let settings = load('settings', { theme: 'industrial', language: 'nl', pin: '' });
+// The settings are locked with a code; 252525 unless the admins changed it
+const DEFAULT_PIN = '252525';
+let settings = load('settings', { theme: 'industrial', language: 'nl', pin: DEFAULT_PIN });
+if (!settings.pin) settings.pin = DEFAULT_PIN;
+settings.tiles = { ...DEFAULT_TILES, ...(settings.tiles || {}) };
 let quizDefaults = load('quiz-settings', {
   intro: { genres: {}, decades: [], playlists: [], rounds: 2, perRound: 8, seconds: 20, clip: 10 },
   popquiz: { genres: {}, decades: [], playlists: [], types: ['year', 'artist', 'first'], rounds: 2, perRound: 8, seconds: 20, clip: 12 },
@@ -31,13 +36,45 @@ let quizDefaults = load('quiz-settings', {
 // All bundled questions have a Dutch version, so Dutch is always the default
 quizDefaults.pubquiz.lang = 'nl';
 
-const publicSettings = () => ({ theme: settings.theme, language: settings.language, hasPin: Boolean(settings.pin) });
-const pinOk = (pin) => !settings.pin || String(pin || '') === settings.pin;
+const publicSettings = () => ({ theme: settings.theme, language: settings.language, tiles: settings.tiles, hasPin: Boolean(settings.pin) });
+
+// Code check with a brake on guessing: 5 wrong codes = 30 s wait
+const guesses = { wrong: 0, until: 0 };
+function pinOk(pin) {
+  if (!settings.pin) return true;
+  if (Date.now() < guesses.until) return false;
+  if (String(pin || '') === settings.pin) {
+    guesses.wrong = 0;
+    return true;
+  }
+  if (++guesses.wrong >= 5) {
+    guesses.wrong = 0;
+    guesses.until = Date.now() + 30000;
+  }
+  return false;
+}
+
+// One place that changes settings, for the screen and the phone admin page
+function applySettings(patch = {}) {
+  if (patch.theme && THEMES.includes(patch.theme)) settings.theme = patch.theme;
+  if (patch.language && ['nl', 'en'].includes(patch.language)) settings.language = patch.language;
+  if (patch.tiles && typeof patch.tiles === 'object') {
+    for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
+  }
+  if ('newPin' in patch) {
+    const pin = String(patch.newPin || '').replace(/\D/g, '').slice(0, 8);
+    if (pin.length < 4) return { ok: false, error: 'pin_too_short' };
+    settings.pin = pin;
+  }
+  save('settings', settings);
+  io.emit('settings', publicSettings());
+  return { ok: true, settings: publicSettings() };
+}
 
 // ---------- Room & players ----------
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no I, O, 0, 1
 const newCode = () => Array.from({ length: 4 }, () => CODE_CHARS[crypto.randomInt(CODE_CHARS.length)]).join('');
-const room = { code: newCode(), joinUrl: null, qr: null };
+const room = { code: newCode(), joinUrl: null, qr: null, adminUrl: null, adminQr: null };
 const players = new Map(); // playerId -> { name, sockets: Set }
 
 const playerList = () =>
@@ -64,6 +101,18 @@ async function resolveJoinUrl() {
     room.joinUrl = url;
     room.qr = await QRCode.toDataURL(url, { margin: 1, width: 320, color: { dark: '#111111', light: '#FFFFFF' } });
   }
+  if (`${base}/admin` !== room.adminUrl) {
+    room.adminUrl = `${base}/admin`;
+    room.adminQr = await QRCode.toDataURL(room.adminUrl, { margin: 1, width: 240, color: { dark: '#111111', light: '#FFFFFF' } });
+  }
+}
+
+async function newRoom() {
+  room.code = newCode();
+  players.clear();
+  await resolveJoinUrl();
+  io.to('phones').emit('room:closed');
+  io.to('screen').emit('state', screenState());
 }
 
 // ---------- Game ----------
@@ -160,7 +209,7 @@ const screenState = () => ({
   build: BUILD,
   settings: publicSettings(),
   themes: THEMES,
-  room: { code: room.code, joinUrl: room.joinUrl, qr: room.qr },
+  room: { code: room.code, joinUrl: room.joinUrl, qr: room.qr, adminUrl: room.adminUrl, adminQr: room.adminQr },
   players: playerList(),
   player: publicPlayer(),
   game: game.screenView(),
@@ -243,6 +292,12 @@ admin.post('/cocktails/refresh', async (_req, res) => {
     res.status(502).json({ ok: false, error: err.message });
   }
 });
+admin.get('/settings', (_req, res) => res.json({ ...publicSettings(), themes: THEMES, room: room.code }));
+admin.post('/settings', (req, res) => res.json(applySettings(req.body || {})));
+admin.post('/room/new', async (_req, res) => {
+  await newRoom();
+  res.json({ ok: true, room: room.code });
+});
 app.use('/api/admin', admin);
 
 // ---------- Sockets ----------
@@ -272,24 +327,14 @@ io.on('connection', (socket) => {
   socket.on('settings:unlock', ({ pin } = {}, ack) => ack?.({ ok: pinOk(pin) }));
   socket.on('settings:set', ({ pin, ...patch } = {}, ack) => {
     if (!isScreen()) return ack?.({ ok: false });
-    // switching looks is open to everyone; the rest needs the PIN
-    const protectedChange = 'language' in patch || 'newPin' in patch;
-    if (protectedChange && !pinOk(pin)) return ack?.({ ok: false, error: 'pin' });
-    if (patch.theme && THEMES.includes(patch.theme)) settings.theme = patch.theme;
-    if (patch.language && ['nl', 'en'].includes(patch.language)) settings.language = patch.language;
-    if ('newPin' in patch) settings.pin = String(patch.newPin || '').replace(/\D/g, '').slice(0, 8);
-    save('settings', settings);
-    io.emit('settings', publicSettings());
-    ack?.({ ok: true, settings: publicSettings() });
+    // all settings sit behind the code
+    if (!pinOk(pin)) return ack?.({ ok: false, error: 'pin' });
+    ack?.(applySettings(patch));
   });
 
-  socket.on('room:new', async (_p, ack) => {
-    if (!isScreen()) return ack?.({ ok: false });
-    room.code = newCode();
-    players.clear();
-    await resolveJoinUrl();
-    io.to('phones').emit('room:closed');
-    io.to('screen').emit('state', screenState());
+  socket.on('room:new', async ({ pin } = {}, ack) => {
+    if (!isScreen() || !pinOk(pin)) return ack?.({ ok: false, error: 'pin' });
+    await newRoom();
     ack?.({ ok: true });
   });
 

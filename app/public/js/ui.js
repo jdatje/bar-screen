@@ -11,6 +11,10 @@ export const THEMES = {
   papier: { label: 'Papier', bg: '#F4F1EA', fg: '#1A1A1A', ac: '#B23A48', fonts: 'DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500' },
   riviera: { label: 'Riviera', bg: '#F6EBDD', fg: '#1D3B4A', ac: '#1F6F8B', fonts: 'Playfair+Display:wght@500;700&family=Lato:wght@400;700' },
   chalet: { label: 'Winterchalet', bg: '#1E2A24', fg: '#EDE3CF', ac: '#C8553D', fonts: 'Fraunces:wght@500;700&family=Karla:wght@400;500;600' },
+  // Halloween
+  spookhuis: { label: '🎃 Spookhuis', bg: '#0E0A14', fg: '#EFE9F7', ac: '#FF7A1A', fonts: 'Creepster&family=Rubik:wght@400;500;600&family=Special+Elite', spooky: true },
+  pompoen: { label: '🎃 Pompoenveld', bg: '#1C1008', fg: '#FFEBD2', ac: '#FF8F1F', fonts: 'Griffy&family=Quicksand:wght@500;600;700', spooky: true },
+  heks: { label: '🎃 Heksenketel', bg: '#0A120D', fg: '#E6F5E1', ac: '#8CFF3F', fonts: 'Jolly+Lodger&family=Rubik:wght@400;500;600', spooky: true },
 };
 
 export function applyTheme(theme) {
@@ -90,7 +94,10 @@ export function askPin(title = 'Pincode') {
       if (!b) return;
       if (b.dataset.n && pin.length < 8) pin += b.dataset.n;
       if (b.dataset.x === 'cancel') return close(null);
-      if (b.dataset.x === 'ok') return close(pin);
+      if (b.dataset.x === 'ok') {
+        window.dispatchEvent(new CustomEvent('wexer:pin', { detail: pin }));
+        return close(pin);
+      }
       render();
     });
     function close(v) {

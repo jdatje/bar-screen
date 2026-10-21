@@ -1,0 +1,286 @@
+/* ---------- Home button backgrounds: subtle, slow, in the look's colours ----------
+   Chosen per button in the settings (see js/tiles.js). */
+.tile { position: relative; overflow: hidden; isolation: isolate; }
+.tile > :not(.tile-bg) { position: relative; z-index: 1; }
+.tile-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; color: var(--accent); }
+.tile.hot .tile-bg { color: var(--on-accent); }
+.tile-bg i { position: absolute; display: block; font-style: normal; }
+.tile-bg svg { position: absolute; display: block; overflow: visible; }
+
+/* ===== Quiz ===== */
+/* Vraagtekens: drifting and bobbing up */
+.tbg-marks i {
+  bottom: -60px; font-family: var(--font-display); font-weight: 700; font-size: 64px; line-height: 1;
+  opacity: 0; animation: tb-drift 14s linear infinite;
+}
+.tbg-marks i:nth-child(1) { left: 58%; }
+.tbg-marks i:nth-child(2) { left: 80%; font-size: 40px; animation-delay: -3s; animation-duration: 17s; }
+.tbg-marks i:nth-child(3) { left: 68%; font-size: 90px; animation-delay: -7s; animation-duration: 19s; }
+.tbg-marks i:nth-child(4) { left: 88%; font-size: 52px; animation-delay: -10s; }
+.tbg-marks i:nth-child(5) { left: 46%; font-size: 34px; animation-delay: -12s; animation-duration: 16s; }
+@keyframes tb-drift {
+  0% { transform: translateY(0) rotate(-8deg); opacity: 0; }
+  15% { opacity: 0.1; }
+  35% { transform: translateY(-120px) rotate(6deg); }
+  55% { transform: translateY(-170px) rotate(-6deg); }
+  85% { opacity: 0.1; }
+  100% { transform: translateY(-340px) rotate(8deg); opacity: 0; }
+}
+
+/* Schrijven op papier: lines being written on a sheet, then a tick */
+.tbg-paper svg { right: -6%; bottom: -12%; width: 62%; transform: rotate(-7deg); opacity: 0.16; }
+.tbg-paper .pp-sheet { fill: none; stroke: currentColor; stroke-width: 2; }
+.tbg-paper .pp-line { stroke: currentColor; stroke-width: 1; opacity: 0.5; }
+.tbg-paper .pp-margin { stroke: currentColor; stroke-width: 1.2; opacity: 0.7; }
+.tbg-paper .pp-ink {
+  fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; animation: tb-write 12s ease-in-out infinite;
+}
+.tbg-paper .i2 { animation-name: tb-write2; }
+.tbg-paper .i3 { animation-name: tb-write3; }
+.tbg-paper .i4 { stroke-width: 4; animation-name: tb-write4; }
+@keyframes tb-write  { 0% { stroke-dashoffset: 1; opacity: 1; } 15%, 85% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes tb-write2 { 0%, 18% { stroke-dashoffset: 1; opacity: 1; } 33%, 85% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes tb-write3 { 0%, 36% { stroke-dashoffset: 1; opacity: 1; } 46%, 85% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes tb-write4 { 0%, 52% { stroke-dashoffset: 1; opacity: 1; } 58%, 85% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+
+/* Gloeilamp: an idea lighting up now and then */
+.tbg-bulb svg { right: 4%; bottom: -8%; width: 34%; opacity: 0.14; animation: tb-bulb 8s ease-in-out infinite; }
+.tbg-bulb path { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.tbg-bulb .glass { fill: currentColor; fill-opacity: 0; animation: tb-glow 8s ease-in-out infinite; }
+.tbg-bulb .rays { opacity: 0; animation: tb-rays 8s ease-in-out infinite; }
+@keyframes tb-bulb { 0%, 55%, 100% { opacity: 0.12; } 62%, 80% { opacity: 0.22; } }
+@keyframes tb-glow { 0%, 55%, 100% { fill-opacity: 0; } 62%, 80% { fill-opacity: 0.35; } }
+@keyframes tb-rays { 0%, 58%, 100% { opacity: 0; } 64%, 78% { opacity: 1; } }
+
+/* Spookjes: little ghosts floating up and swaying */
+.tbg-ghosts i { bottom: -70px; width: 54px; opacity: 0; animation: tb-ghost-up 16s linear infinite; }
+.tbg-ghosts svg { position: static; width: 100%; animation: tb-sway 3.4s ease-in-out infinite alternate; }
+.tbg-ghosts .eye { fill: var(--panel); }
+.tbg-ghosts i:nth-child(1) { left: 60%; }
+.tbg-ghosts i:nth-child(2) { left: 82%; width: 38px; animation-delay: -5s; animation-duration: 19s; }
+.tbg-ghosts i:nth-child(3) { left: 70%; width: 72px; animation-delay: -9s; animation-duration: 21s; }
+.tbg-ghosts i:nth-child(4) { left: 48%; width: 32px; animation-delay: -13s; animation-duration: 17s; }
+.tbg-ghosts i:nth-child(2) svg { animation-duration: 2.8s; }
+.tbg-ghosts i:nth-child(3) svg { animation-duration: 4.2s; }
+@keyframes tb-ghost-up {
+  0% { transform: translateY(0); opacity: 0; }
+  12%, 80% { opacity: 0.16; }
+  100% { transform: translateY(-360px); opacity: 0; }
+}
+@keyframes tb-sway { from { transform: translateX(-14px) rotate(-6deg); } to { transform: translateX(14px) rotate(6deg); } }
+
+/* ===== Cocktails ===== */
+/* Bubbels */
+.tbg-bubbles i {
+  bottom: -20px; width: 14px; aspect-ratio: 1; border-radius: 50%; border: 2px solid currentColor;
+  opacity: 0; animation: tb-bubble 9s ease-in infinite;
+}
+.tbg-bubbles i:nth-child(2) { left: 74%; width: 8px; animation-delay: -1.5s; animation-duration: 7s; }
+.tbg-bubbles i:nth-child(1) { left: 62%; }
+.tbg-bubbles i:nth-child(3) { left: 85%; width: 20px; animation-delay: -3s; animation-duration: 11s; }
+.tbg-bubbles i:nth-child(4) { left: 68%; width: 10px; animation-delay: -4.5s; }
+.tbg-bubbles i:nth-child(5) { left: 90%; width: 12px; animation-delay: -6s; animation-duration: 8s; }
+.tbg-bubbles i:nth-child(6) { left: 56%; width: 6px; animation-delay: -7.5s; animation-duration: 10s; }
+.tbg-bubbles i:nth-child(7) { left: 79%; width: 16px; animation-delay: -2.2s; animation-duration: 12s; }
+@keyframes tb-bubble {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 0.16; }
+  50% { transform: translate(8px, -150px); }
+  90% { opacity: 0.12; }
+  100% { transform: translate(-4px, -320px); opacity: 0; }
+}
+
+/* IJsblokjes: cubes bobbing in a drink */
+.tbg-ice i {
+  width: 64px; aspect-ratio: 1; border: 2px solid currentColor; border-radius: 12px; opacity: 0.13;
+  animation: tb-bob 6s ease-in-out infinite alternate;
+}
+.tbg-ice i::after { content: ''; position: absolute; left: 10px; top: 8px; width: 18px; height: 6px; border-radius: 3px; background: currentColor; opacity: 0.8; transform: rotate(-20deg); }
+.tbg-ice i:nth-child(1) { right: 8%; bottom: 18%; }
+.tbg-ice i:nth-child(2) { right: 26%; bottom: 4%; width: 48px; animation-delay: -2s; animation-duration: 7s; }
+.tbg-ice i:nth-child(3) { right: -2%; bottom: -6%; width: 78px; animation-delay: -4s; animation-duration: 8s; }
+@keyframes tb-bob { from { transform: translateY(0) rotate(-10deg); } to { transform: translateY(-16px) rotate(12deg); } }
+
+/* Citroenschijfjes: slices drifting down, slowly turning */
+.tbg-citrus i {
+  top: -90px; width: 80px; aspect-ratio: 1; border-radius: 50%;
+  background: repeating-conic-gradient(currentColor 0deg 26deg, transparent 26deg 36deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 7%, #000 8% 78%, transparent 79% 86%, #000 87% 100%);
+  mask: radial-gradient(circle, transparent 0 7%, #000 8% 78%, transparent 79% 86%, #000 87% 100%);
+  opacity: 0; animation: tb-fall 18s linear infinite;
+}
+.tbg-citrus i:nth-child(1) { left: 64%; }
+.tbg-citrus i:nth-child(2) { left: 84%; width: 56px; animation-delay: -6s; animation-duration: 15s; }
+.tbg-citrus i:nth-child(3) { left: 48%; width: 44px; animation-delay: -11s; animation-duration: 21s; }
+@keyframes tb-fall {
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  12%, 85% { opacity: 0.12; }
+  100% { transform: translateY(400px) rotate(220deg); opacity: 0; }
+}
+
+/* Heksenketel: bubbles popping at the bottom, wisps rising */
+.tbg-cauldron i.b {
+  bottom: 6px; width: 18px; aspect-ratio: 1; border-radius: 50%; border: 2px solid currentColor;
+  opacity: 0; animation: tb-pop 4s ease-out infinite;
+}
+.tbg-cauldron i.b:nth-child(1) { left: 58%; }
+.tbg-cauldron i.b:nth-child(2) { left: 70%; width: 26px; animation-delay: -0.8s; }
+.tbg-cauldron i.b:nth-child(3) { left: 82%; width: 14px; animation-delay: -1.7s; animation-duration: 3.4s; }
+.tbg-cauldron i.b:nth-child(4) { left: 64%; width: 12px; animation-delay: -2.4s; }
+.tbg-cauldron i.b:nth-child(5) { left: 90%; width: 22px; animation-delay: -3.1s; animation-duration: 4.6s; }
+.tbg-cauldron i.b:nth-child(6) { left: 76%; width: 10px; animation-delay: -1.2s; animation-duration: 3s; }
+@keyframes tb-pop {
+  0% { transform: translateY(10px) scale(0.4); opacity: 0; }
+  30% { opacity: 0.22; }
+  80% { transform: translateY(-26px) scale(1); opacity: 0.18; }
+  90% { transform: translateY(-30px) scale(1.5); opacity: 0.1; border-style: dotted; }
+  100% { transform: translateY(-32px) scale(1.8); opacity: 0; }
+}
+.tbg-cauldron i.w {
+  bottom: -40px; width: 90px; height: 90px; border-radius: 50%; background: currentColor; filter: blur(18px);
+  opacity: 0; animation: tb-wisp 10s ease-in infinite;
+}
+.tbg-cauldron i.w:nth-child(7) { left: 60%; }
+.tbg-cauldron i.w:nth-child(8) { left: 76%; animation-delay: -3.5s; animation-duration: 12s; }
+.tbg-cauldron i.w:nth-child(9) { left: 88%; width: 60px; height: 60px; animation-delay: -7s; }
+@keyframes tb-wisp {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  25% { opacity: 0.14; }
+  100% { transform: translate(-30px, -300px) scale(1.6); opacity: 0; }
+}
+
+/* ===== Draai het rad ===== */
+/* Draaiend rad */
+.tbg-wheel i {
+  right: -38%; bottom: -46%; width: 105%; aspect-ratio: 1; border-radius: 50%;
+  background: repeating-conic-gradient(currentColor 0deg 22.5deg, transparent 22.5deg 45deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 9%, #000 9.5% 70%, transparent 70.5%);
+  mask: radial-gradient(circle, transparent 0 9%, #000 9.5% 70%, transparent 70.5%);
+  opacity: 0.08; animation: tb-spin 40s linear infinite;
+}
+@keyframes tb-spin { to { transform: rotate(360deg); } }
+
+/* Kermislampjes: bulbs around the edge, chasing */
+.tbg-lights i {
+  inset: 7px; border-radius: var(--radius);
+  --dots: radial-gradient(circle, currentColor 0 4px, transparent 4.5px);
+  background:
+    var(--dots) 0 0 / 28px 14px repeat-x,
+    var(--dots) 0 100% / 28px 14px repeat-x,
+    var(--dots) 0 0 / 14px 28px repeat-y,
+    var(--dots) 100% 0 / 14px 28px repeat-y;
+  opacity: 0.08; animation: tb-chase 1.6s steps(1) infinite;
+}
+.tbg-lights i:nth-child(2) { inset: 7px 7px 7px 7px; background-position: 14px 0, 14px 100%, 0 14px, 100% 14px; animation-delay: -0.8s; }
+@keyframes tb-chase { 0% { opacity: 0.26; } 50% { opacity: 0.06; } }
+
+/* Dobbelstenen: two dice tumbling */
+.tbg-dice i {
+  width: 70px; aspect-ratio: 1; border: 3px solid currentColor; border-radius: 14px; opacity: 0.14;
+  --pip: radial-gradient(circle, currentColor 0 6px, transparent 6.5px);
+}
+.tbg-dice .d5 {
+  right: 12%; bottom: 14%;
+  background: var(--pip) 22% 22% / 24px 24px no-repeat, var(--pip) 78% 22% / 24px 24px no-repeat,
+    var(--pip) 50% 50% / 24px 24px no-repeat, var(--pip) 22% 78% / 24px 24px no-repeat, var(--pip) 78% 78% / 24px 24px no-repeat;
+  animation: tb-tumble 9s ease-in-out infinite;
+}
+.tbg-dice .d3 {
+  right: 34%; bottom: -10%; width: 54px;
+  background: var(--pip) 20% 20% / 20px 20px no-repeat, var(--pip) 50% 50% / 20px 20px no-repeat, var(--pip) 80% 80% / 20px 20px no-repeat;
+  animation: tb-tumble 11s ease-in-out infinite reverse;
+}
+@keyframes tb-tumble {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  20% { transform: translate(-30px, -40px) rotate(-120deg); }
+  30% { transform: translate(-40px, 0) rotate(-180deg); }
+  60% { transform: translate(-10px, -20px) rotate(-260deg); }
+  70% { transform: translate(0, 0) rotate(-360deg); }
+}
+
+/* Vleermuizen: bats fluttering across */
+.tbg-bats i { width: 64px; opacity: 0; animation: tb-bat 13s linear infinite; }
+.tbg-bats svg { position: static; width: 100%; }
+.tbg-bats .wing { transform-box: fill-box; animation: tb-flap 0.32s ease-in-out infinite alternate; }
+.tbg-bats .wing.l { transform-origin: right center; }
+.tbg-bats .wing.r { transform-origin: left center; }
+.tbg-bats i:nth-child(1) { top: 20%; }
+.tbg-bats i:nth-child(2) { top: 55%; width: 44px; animation-delay: -4s; animation-duration: 10s; }
+.tbg-bats i:nth-child(3) { top: 35%; width: 80px; animation-delay: -8s; animation-duration: 16s; }
+.tbg-bats i:nth-child(4) { top: 72%; width: 36px; animation-delay: -11s; animation-duration: 12s; }
+@keyframes tb-bat {
+  0% { left: -20%; transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.3; }
+  30% { transform: translateY(-30px); }
+  55% { transform: translateY(20px); }
+  80% { transform: translateY(-14px); opacity: 0.3; }
+  100% { left: 110%; transform: translateY(0); opacity: 0; }
+}
+@keyframes tb-flap { from { transform: scaleY(1) rotate(0); } to { transform: scaleY(0.55) rotate(6deg); } }
+
+/* ===== Meedoen ===== */
+.tbg-rings i {
+  left: calc(22px + min(110px, 8vw) / 2); top: 50%; width: 60px; aspect-ratio: 1; margin: -30px 0 0 -30px;
+  border-radius: 50%; border: 2px solid currentColor; opacity: 0; animation: tb-ring 6s ease-out infinite;
+}
+.tbg-rings i:nth-child(2) { animation-delay: -2s; }
+.tbg-rings i:nth-child(3) { animation-delay: -4s; }
+@keyframes tb-ring {
+  0% { transform: scale(1); opacity: 0; }
+  15% { opacity: 0.14; }
+  100% { transform: scale(7); opacity: 0; }
+}
+
+/* Scanlijn: a light sweeping over the QR code (drawn on top, faint enough to scan through) */
+.tile-bg.tbg-scan { z-index: 2; }
+.tbg-scan i {
+  left: 12px; width: calc(min(110px, 8vw) + 20px); height: 3px; top: 50%;
+  background: currentColor; box-shadow: 0 0 18px 6px currentColor; border-radius: 2px;
+  opacity: 0.35; animation: tb-scan 4s ease-in-out infinite alternate;
+}
+@keyframes tb-scan {
+  from { transform: translateY(calc(min(110px, 8vw) / -2 - 6px)); }
+  to { transform: translateY(calc(min(110px, 8vw) / 2 + 6px)); }
+}
+
+/* Sterretjes: twinkling */
+.tbg-sparkle i { font-size: 22px; line-height: 1; opacity: 0; animation: tb-twinkle 4s ease-in-out infinite; }
+.tbg-sparkle i:nth-child(1) { left: 54%; top: 14%; }
+.tbg-sparkle i:nth-child(2) { left: 72%; top: 30%; font-size: 14px; animation-delay: -0.6s; }
+.tbg-sparkle i:nth-child(3) { left: 88%; top: 12%; font-size: 30px; animation-delay: -1.3s; }
+.tbg-sparkle i:nth-child(4) { left: 64%; top: 70%; font-size: 16px; animation-delay: -2s; }
+.tbg-sparkle i:nth-child(5) { left: 92%; top: 62%; animation-delay: -2.6s; }
+.tbg-sparkle i:nth-child(6) { left: 80%; top: 84%; font-size: 12px; animation-delay: -3.1s; }
+.tbg-sparkle i:nth-child(7) { left: 48%; top: 86%; font-size: 18px; animation-delay: -1.8s; }
+.tbg-sparkle i:nth-child(8) { left: 96%; top: 38%; font-size: 12px; animation-delay: -3.5s; }
+@keyframes tb-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0); }
+  50% { opacity: 0.5; transform: scale(1.3) rotate(45deg); }
+}
+
+/* Spinnenweb: a web in the corner and a spider on a thread */
+.tbg-web svg { right: -2px; top: -2px; width: 46%; max-width: 190px; opacity: 0.14; }
+.tbg-web path { fill: none; stroke: currentColor; stroke-width: 1.4; }
+.tbg-web .spider {
+  right: 24%; top: 0; width: 2px; height: 30px; background: currentColor; opacity: 0.3;
+  transform-origin: top; animation: tb-thread 11s ease-in-out infinite;
+}
+.tbg-web .spider b {
+  position: absolute; left: -9px; bottom: -14px; width: 20px; height: 16px; border-radius: 50% 50% 45% 45%;
+  background: currentColor;
+}
+.tbg-web .spider b::before, .tbg-web .spider b::after {
+  content: ''; position: absolute; top: 4px; width: 34px; height: 8px; left: -7px;
+  border: 2px solid currentColor; border-top: 0; border-bottom: 0; border-radius: 4px;
+}
+.tbg-web .spider b::after { top: 9px; width: 30px; left: -5px; }
+@keyframes tb-thread {
+  0%, 100% { height: 20px; }
+  35%, 55% { height: 120px; }
+  45% { height: 112px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-bg i, .tile-bg svg, .tile-bg * { animation: none !important; }
+}

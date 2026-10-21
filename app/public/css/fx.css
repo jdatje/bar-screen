@@ -1,0 +1,72 @@
+/* Full-screen effects for the surprises (see js/fx.js) */
+.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; overflow: hidden; }
+
+.fx-ghost i {
+  position: absolute; left: -220px; top: 30%; width: 180px; color: rgba(255, 255, 255, 0.85);
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5)); animation: fx-ghost-x 6.8s ease-in-out forwards;
+}
+.fx-ghost svg { display: block; width: 100%; animation: fx-ghost-y 1.7s ease-in-out infinite alternate; }
+@keyframes fx-ghost-x {
+  0% { left: -220px; opacity: 0; transform: rotate(-8deg); }
+  10% { opacity: 1; }
+  50% { transform: rotate(6deg) scale(1.1); }
+  90% { opacity: 1; }
+  100% { left: calc(100% + 40px); opacity: 0; transform: rotate(-4deg); }
+}
+@keyframes fx-ghost-y { from { transform: translateY(-40px); } to { transform: translateY(40px); } }
+
+.fx-rain i { position: absolute; top: -90px; line-height: 1; animation: fx-fall 3s cubic-bezier(.4, 0, .9, .6) forwards; opacity: 0.95; }
+@keyframes fx-fall { to { transform: translateY(calc(100vh + 120px)) rotate(var(--spin)); } }
+
+.fx-eyes { background: rgba(0, 0, 0, 0); animation: fx-dark 6s ease-in-out forwards; }
+@keyframes fx-dark { 0% { background: rgba(0, 0, 0, 0); } 12%, 82% { background: rgba(0, 0, 0, 0.93); } 100% { background: rgba(0, 0, 0, 0); } }
+.fx-eyes i { position: absolute; display: flex; gap: calc(14px * var(--s)); opacity: 0; animation: fx-eyes 4.4s ease-in-out forwards; }
+.fx-eyes b {
+  width: calc(22px * var(--s)); height: calc(12px * var(--s)); border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  background: radial-gradient(circle at 50% 55%, #111 0 22%, #FFD23F 26% 100%);
+  box-shadow: 0 0 calc(16px * var(--s)) rgba(255, 210, 63, 0.8);
+}
+.fx-eyes b:last-child { transform: scaleX(-1); }
+@keyframes fx-eyes {
+  0% { opacity: 0; } 15% { opacity: 1; transform: scaleY(1); } 35% { transform: scaleY(0.1); } 40% { transform: scaleY(1); }
+  70% { opacity: 1; transform: scaleY(1); } 74% { transform: scaleY(0.1); } 78% { transform: scaleY(1); } 100% { opacity: 0; }
+}
+
+.fx-spider { inset: 0 auto auto auto; width: 40px; height: 100vh; }
+.fx-spider i { position: absolute; left: 19px; top: 0; width: 2px; height: 0; background: rgba(255, 255, 255, 0.5); animation: fx-thread 9s ease-in-out forwards; }
+.fx-spider b {
+  position: absolute; left: 6px; top: 0; width: 28px; height: 24px; border-radius: 50% 50% 45% 45%;
+  background: #0B0B0B; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15); animation: fx-spider 9s ease-in-out forwards;
+}
+.fx-spider b::before, .fx-spider b::after {
+  content: ''; position: absolute; left: -12px; top: 5px; width: 48px; height: 10px;
+  border: 3px solid #0B0B0B; border-top: 0; border-bottom: 0; border-radius: 6px; animation: fx-legs 0.4s ease-in-out infinite alternate;
+}
+.fx-spider b::after { top: 12px; left: -9px; width: 42px; animation-delay: -0.2s; }
+@keyframes fx-thread { 0% { height: 0; } 35%, 65% { height: 38vh; } 45% { height: 34vh; } 100% { height: 0; } }
+@keyframes fx-spider { 0% { transform: translateY(-30px); } 35%, 65% { transform: translateY(38vh); } 45% { transform: translateY(34vh) rotate(8deg); } 55% { transform: translateY(36vh) rotate(-8deg); } 100% { transform: translateY(-30px); } }
+@keyframes fx-legs { to { transform: scaleY(0.6); } }
+
+/* bats circling the album art while a spooky song plays */
+.art.haunted { position: relative; animation: fx-haunt 4s ease-in-out infinite alternate; }
+.art.haunted::before, .art.haunted::after {
+  content: '🦇'; position: absolute; left: 50%; top: 50%; font-size: 30px; line-height: 1;
+  animation: fx-orbit 5s linear infinite; filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.6));
+}
+.art.haunted::after { animation-duration: 7s; animation-direction: reverse; font-size: 22px; }
+@keyframes fx-orbit { from { transform: translate(-50%, -50%) rotate(0) translateX(calc(min(220px, 28vh) * 0.62)) rotate(0); } to { transform: translate(-50%, -50%) rotate(360deg) translateX(calc(min(220px, 28vh) * 0.62)) rotate(-360deg); } }
+@keyframes fx-haunt { from { filter: none; transform: rotate(-1deg); } to { filter: hue-rotate(40deg) saturate(1.4); transform: rotate(1deg); } }
+
+/* the BAR 13 tag */
+.tag.cursed { background: #8B0000; color: #fff; animation: flicker 3s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) { .fx, .art.haunted::before, .art.haunted::after { display: none; } .art.haunted { animation: none; } }
+
+/* after midnight the clock gets restless */
+[data-witching] .clock { animation: fx-glitch 7s steps(1) infinite; }
+@keyframes fx-glitch {
+  0%, 88%, 100% { transform: none; text-shadow: none; }
+  89% { transform: translateX(-3px) skewX(-8deg); text-shadow: 3px 0 var(--accent); }
+  91% { transform: translateX(3px); text-shadow: -3px 0 var(--accent); }
+  93% { transform: none; opacity: 0.4; }
+}

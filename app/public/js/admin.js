@@ -1,10 +1,21 @@
-// /admin: manage your own pubquiz question sets.
-import { $, esc, toast, applyTheme } from './ui.js';
+// /admin (phone or laptop, behind the code): the screen's settings and
+// your own pubquiz question sets.
+import { $, esc, toast, applyTheme, askPin, THEMES } from './ui.js';
+import { TILE_KEYS, TILE_LABELS, TILE_STYLES } from './tiles.js';
+import * as fx from './fx.js';
 
 applyTheme('industrial');
-let pin = sessionStorage.getItem('pin') || '';
+const store = {
+  get: () => { try { return sessionStorage.getItem('pin') || ''; } catch { return ''; } },
+  set: (v) => { try { v ? sessionStorage.setItem('pin', v) : sessionStorage.removeItem('pin'); } catch { /* private mode */ } },
+};
+let pin = store.get();
 let info = null;
 let editing = null; // set being edited
+let tab = 'screen';
+window.addEventListener('wexer:pin', (e) => e.detail === '1031' && fx.pumpkinRain());
+
+class Locked extends Error {}
 
 async function api(method, path, body) {
   const res = await fetch(`/api/admin${path}`, {
@@ -13,11 +24,88 @@ async function api(method, path, body) {
     body: body ? JSON.stringify(body) : undefined,
   });
   if (res.status === 401) {
-    pin = prompt('Pincode van de bar') || '';
-    sessionStorage.setItem('pin', pin);
+    if (pin) toast('Code klopt niet');
+    const next = await askPin('Code');
+    if (next == null) {
+      showLocked();
+      throw new Locked();
+    }
+    pin = next;
+    store.set(pin);
     return api(method, path, body);
   }
   return res.json();
+}
+
+function showLocked() {
+  pin = '';
+  store.set('');
+  $('admin-tabs').hidden = true;
+  $('lock').hidden = true;
+  $('admin-title').textContent = 'Op slot';
+  $('root').innerHTML = `<div class="panel a-sec"><p style="margin:0">Alleen voor de beheerders. Je hebt de code nodig.</p>
+    <button class="btn primary" id="unlock">Ontgrendelen</button></div>`;
+}
+
+// ---------- Screen settings ----------
+async function showScreen() {
+  const s = await api('GET', '/settings');
+  applyTheme(s.theme);
+  $('admin-title').textContent = 'Scherm';
+  $('root').innerHTML = `
+    <section class="panel a-sec">
+      <span class="mono accent">Look</span>
+      <div class="a-themes">${s.themes.map((id) => {
+        const t = THEMES[id] || { label: id, bg: '#222', fg: '#fff', ac: '#fff' };
+        return `<button class="theme-card${id === s.theme ? ' on' : ''}" data-theme-id="${id}" style="background:${t.bg};color:${t.fg};border-bottom:10px solid ${t.ac}"><span>${esc(t.label)}</span></button>`;
+      }).join('')}</div>
+    </section>
+    <section class="panel a-sec">
+      <span class="mono accent">Achtergrond van de knoppen</span>
+      ${TILE_KEYS.map((key) => {
+        const opts = [{ id: 'auto', label: 'Automatisch' }, ...TILE_STYLES[key], { id: 'off', label: 'Uit' }];
+        return `<div class="a-tile"><strong>${TILE_LABELS[key]}</strong><div class="chips">${opts
+          .map((o) => `<button class="chip${(s.tiles[key] || 'auto') === o.id ? ' on' : ''}" data-key="${key}" data-style="${o.id}">${o.label}</button>`)
+          .join('')}</div></div>`;
+      }).join('')}
+      <p class="muted" style="margin:0">Automatisch = de gewone achtergrond, of de griezelige in een Halloween-look.</p>
+    </section>
+    <section class="panel a-sec">
+      <span class="mono accent">Kamer</span>
+      <span>Kamercode nu: <strong class="code" style="font-size:26px">${esc(s.room)}</strong></span>
+      <button class="btn" id="new-room">Nieuwe kamercode</button>
+      <span class="mono accent">Code</span>
+      <button class="btn" id="change-pin">Code wijzigen</button>
+    </section>`;
+}
+
+async function saveSettings(patch) {
+  const r = await api('POST', '/settings', patch);
+  if (!r.ok) toast(r.error === 'pin_too_short' ? 'Minstens 4 cijfers' : 'Lukt niet');
+  return r;
+}
+
+function setTab(next) {
+  tab = next;
+  document.querySelectorAll('#admin-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
+  window.scrollTo(0, 0);
+  return (tab === 'screen' ? showScreen() : showList()).catch((e) => {
+    if (!(e instanceof Locked)) throw e;
+  });
+}
+document.querySelectorAll('#admin-tabs button').forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
+$('lock').addEventListener('click', showLocked);
+
+async function start() {
+  try {
+    await api('GET', '/settings');
+  } catch (e) {
+    if (e instanceof Locked) return;
+    throw e;
+  }
+  $('admin-tabs').hidden = false;
+  $('lock').hidden = false;
+  setTab(tab);
 }
 
 const blankQ = () => ({ q: '', options: ['', '', '', ''], answer: 0, category: 'algemeen', difficulty: 'gemiddeld' });
@@ -27,6 +115,7 @@ async function showList() {
   info = info || (await api('GET', '/info'));
   const sets = await api('GET', '/sets');
   const lib = info.library;
+  $('admin-title').textContent = 'Quizvragen';
   $('root').innerHTML = `
     <div style="display:flex;flex-direction:column;gap:10px">
       ${sets.length ? sets.map((s) => `<div class="panel set-row">
@@ -121,7 +210,34 @@ document.addEventListener('click', async (e) => {
   const t = e.target.closest('button');
   if (!t) return;
   if (t.dataset.edit) return showEditor(t.dataset.edit);
+  if (t.dataset.themeId) {
+    const r = await saveSettings({ theme: t.dataset.themeId });
+    if (r.ok) showScreen();
+    return;
+  }
+  if (t.dataset.style && t.dataset.key) {
+    const r = await saveSettings({ tiles: { [t.dataset.key]: t.dataset.style } });
+    if (r.ok) showScreen();
+    return;
+  }
   switch (t.id) {
+    case 'unlock': return start();
+    case 'new-room': {
+      const r = await api('POST', '/room/new');
+      toast(r.ok ? `Nieuwe kamercode: ${r.room}` : 'Lukt niet');
+      return showScreen();
+    }
+    case 'change-pin': {
+      const next = await askPin('Nieuwe code (minstens 4 cijfers)');
+      if (next == null) return;
+      const r = await saveSettings({ newPin: next });
+      if (r.ok) {
+        pin = next;
+        store.set(pin);
+        toast('Nieuwe code ingesteld');
+      }
+      return;
+    }
     case 'new-set': return showEditor(null);
     case 'back': return showList();
     case 'refresh-lib': {
@@ -169,4 +285,4 @@ document.addEventListener('click', async (e) => {
   }
 });
 
-showList();
+start();

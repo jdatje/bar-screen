@@ -111,3 +111,59 @@
   --font-display: 'Fraunces', 'Wexer Emoji', Georgia, serif; --font-body: 'Karla', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Karla', 'Wexer Emoji', system-ui, sans-serif;
   --display-case: none; --display-weight: 700; --radius: 8px;
 }
+
+/* ---------- Halloween ---------- */
+[data-theme="spookhuis"] {
+  --bg: #0E0A14; --panel: #17111F; --panel-2: #221830; --line: #33264A; --line-strong: #4A3868;
+  --text: #EFE9F7; --text-2: #C9BDDB; --text-3: #A08FB8; --accent: #FF7A1A; --accent-hover: #FFA25C; --on-accent: #140B05;
+  --font-display: 'Creepster', 'Wexer Emoji', 'Arial Narrow', sans-serif; --font-body: 'Rubik', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Special Elite', 'Wexer Emoji', ui-monospace, monospace;
+  --display-case: uppercase; --display-weight: 400; --radius: 6px;
+}
+
+[data-theme="pompoen"] {
+  --bg: #1C1008; --panel: #27170B; --panel-2: #342010; --line: #4D2F17; --line-strong: #6E4423;
+  --text: #FFEBD2; --text-2: #EBCBA4; --text-3: #C49F78; --accent: #FF8F1F; --accent-hover: #FFB259; --on-accent: #1C1008;
+  --font-display: 'Griffy', 'Wexer Emoji', Georgia, serif; --font-body: 'Quicksand', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Quicksand', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 18px;
+}
+
+[data-theme="heks"] {
+  --bg: #0A120D; --panel: #101C15; --panel-2: #18281E; --line: #23392B; --line-strong: #34543E;
+  --text: #E6F5E1; --text-2: #BAD5B2; --text-3: #8FAD88; --accent: #8CFF3F; --accent-hover: #B4FF85; --on-accent: #0A120D;
+  --font-display: 'Jolly Lodger', 'Wexer Emoji', 'Arial Narrow', sans-serif; --font-body: 'Rubik', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Rubik', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 4px;
+}
+/* Quicksand & Rubik are lighter than the other body fonts */
+[data-theme="pompoen"] body { font-weight: 600; }
+
+/* Spooky dressing on the touchscreen: cobwebs in the corners, fog creeping
+   along the bottom and a dim vignette. Never blocks a tap. */
+.spooky-decor { display: none; }
+[data-theme="spookhuis"] .spooky-decor, [data-theme="pompoen"] .spooky-decor, [data-theme="heks"] .spooky-decor {
+  display: block; position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden;
+}
+.spooky-decor .web {
+  position: absolute; width: 190px; height: 190px; background: var(--text); opacity: 0.12;
+  -webkit-mask: var(--web-svg) center / contain no-repeat; mask: var(--web-svg) center / contain no-repeat;
+  --web-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23000' stroke-width='1'%3E%3Cpath d='M0 0L100 0M0 0L95 31M0 0L81 59M0 0L59 81M0 0L31 95M0 0L0 100'/%3E%3Cpath d='M20 0Q17 4 19 6Q14 9 16 12Q10 13 12 16Q5 15 6 19Q2 17 0 20'/%3E%3Cpath d='M42 0Q36 8 40 13Q30 18 34 25Q22 27 25 34Q12 31 13 40Q6 35 0 42'/%3E%3Cpath d='M66 0Q58 12 62 21Q48 28 52 38Q36 41 38 52Q20 47 21 62Q9 55 0 66'/%3E%3Cpath d='M90 0Q80 16 86 29Q66 38 71 52Q50 56 52 71Q29 65 29 86Q15 78 0 90'/%3E%3C/svg%3E");
+}
+.spooky-decor .web.tl { left: 0; top: 0; }
+.spooky-decor .web.br { right: 0; bottom: 0; transform: rotate(180deg); width: 140px; height: 140px; }
+.spooky-decor .fog {
+  position: absolute; left: -20%; right: -20%; bottom: -60px; height: 200px;
+  background:
+    radial-gradient(ellipse 30% 50% at 20% 60%, var(--text) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 45% at 55% 70%, var(--text) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 50% at 85% 60%, var(--text) 0%, transparent 70%);
+  filter: blur(24px); opacity: 0.07; animation: fog-drift 40s ease-in-out infinite alternate;
+}
+.spooky-decor .fog.f2 { bottom: -90px; opacity: 0.05; animation-duration: 55s; animation-direction: alternate-reverse; }
+.spooky-decor .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%); }
+@keyframes fog-drift { from { transform: translateX(-8%); } to { transform: translateX(8%); } }
+/* the clock flickers like a dying lamp, once in a while */
+[data-theme="spookhuis"] .clock, [data-theme="heks"] .clock { animation: flicker 13s linear infinite; }
+@keyframes flicker { 0%, 91%, 93%, 95%, 100% { opacity: 1; } 92%, 94% { opacity: 0.35; } }
+[data-theme="heks"] .tile .display, [data-theme="heks"] .brand .display { text-shadow: 0 0 18px rgba(140, 255, 63, 0.35); }
+[data-theme="pompoen"] .tile .display, [data-theme="pompoen"] .brand .display { text-shadow: 0 0 20px rgba(255, 143, 31, 0.35); }
+[data-theme="spookhuis"] .brand .display { text-shadow: 0 0 22px rgba(255, 122, 26, 0.3); }
+@media (prefers-reduced-motion: reduce) { .spooky-decor * , .clock { animation: none !important; } }

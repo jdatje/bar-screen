@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/fonts/emoji.css">
 <link rel="stylesheet" href="/css/themes.css">
 <link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/fx.css">
 <style>
   .admin { max-width: 980px; margin: 0 auto; padding: 28px 18px 80px; display: flex; flex-direction: column; gap: 22px; }
   .set-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; }
@@ -20,19 +21,32 @@
   .q-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .q-meta select { min-height: 48px; }
   @media (max-width: 640px) { .q-opts { grid-template-columns: 1fr; } }
+  .admin { padding-bottom: 110px; }
+  .a-sec { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .a-themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .a-themes .theme-card { min-height: 76px; }
+  .a-themes .theme-card span { font-size: 16px; }
+  .a-tile { display: flex; flex-direction: column; gap: 8px; }
+  .a-tile .chip { min-height: 44px; padding: 0 14px; font-size: 16px; }
 </style>
 </head>
 <body class="phone-body">
 <main class="admin">
   <div class="p-head">
     <div>
-      <span class="mono accent">Beheer</span>
-      <h1 class="display p-title">Eigen quizvragen</h1>
+      <span class="mono accent">Wexer 2.0 · Beheer</span>
+      <h1 class="display p-title" id="admin-title">Instellingen</h1>
     </div>
-    <span class="tag">BAR 01</span>
+    <button class="icon-btn" id="lock" aria-label="Vergrendelen" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v2.5"/></svg>
+    </button>
   </div>
   <div id="root"><p class="muted">Laden…</p></div>
 </main>
+<nav class="p-tabs" id="admin-tabs" hidden>
+  <button data-tab="screen" class="on">Scherm</button>
+  <button data-tab="quiz">Quizvragen</button>
+</nav>
 <script src="/js/admin.js" type="module"></script>
 </body>
 </html>
