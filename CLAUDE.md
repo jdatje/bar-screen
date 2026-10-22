@@ -10,7 +10,9 @@
   changeable in the settings).
 
 ## Easter eggs
-Jeroen wants surprises added now and then: tell him HOW MANY there are, never WHERE.
+Jeroen wants surprises: tell him HOW MANY there are, never WHERE.
+Policy (from Jeroen): keep it at 10 for now, don't add new ones. When he reports one found,
+remove that one in the next build; add a new one later when a good opportunity comes up.
 Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 1. Tap the "BAR 01" tag 7× within 3 s → "BAR 13" + a ghost floats by
 2. Hold the "Wexer 2.0" logo 2 s → lights out, glowing eyes
