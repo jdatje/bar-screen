@@ -173,6 +173,18 @@ export async function command(action, value) {
       return speaker('POST', '/player/volume', { volume: Math.round((v / 100) * (vol?.max || 100)) });
     }
     case 'seek': return speaker('POST', '/player/seek', { position: Math.max(0, Math.round(Number(value))) });
+    case 'queue': {
+      // a song request: add it after the current song
+      const uri = String(value || '');
+      if (!/^spotify:track:[A-Za-z0-9]+$/.test(uri)) throw new Error('Invalid track');
+      return speaker('POST', '/player/add_to_queue', { uri });
+    }
+    case 'setVolume': {
+      // absolute volume 0-100 (used when a game starts)
+      const v = Math.max(0, Math.min(100, Math.round(Number(value))));
+      const vol = await speaker('GET', '/player/volume');
+      return speaker('POST', '/player/volume', { volume: Math.round((v / 100) * (vol?.max || 100)) });
+    }
     case 'jump': {
       // play a song from the "Straks" list, staying in the same playlist/album
       const uri = String(value || '');

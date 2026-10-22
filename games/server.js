@@ -68,7 +68,7 @@ function sendRom(req, res, game) {
 
 // The page that runs one game. Exit: the button on the touchscreen, or hold
 // SELECT + START on a controller for 2 seconds.
-function playerPage(game) {
+function playerPage(game, vol = 25) {
   const romUrl = `/games/rom/${game.id}/${encodeURIComponent(game.original || game.file)}`;
   return `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,9 +85,18 @@ function playerPage(game) {
   EJS_startOnLoaded = true;
   EJS_color = '#F2A900';
   EJS_backgroundColor = '#000';
-  EJS_volume = 0.8;
+  EJS_volume = ${Math.max(0, Math.min(100, Number(vol) || 0)) / 100};
   // tell the touchscreen when the game runs (it pauses the music)
   EJS_onGameStart = () => parent.postMessage({ type: 'wexer:game-started' }, '*');
+  // volume from the touchscreen's slider
+  window.addEventListener('message', (e) => {
+    if (e.origin !== location.origin || e.data?.type !== 'wexer:volume') return;
+    const v = Math.max(0, Math.min(1, Number(e.data.value)));
+    try {
+      if (window.EJS_emulator?.setVolume) window.EJS_emulator.setVolume(v);
+      else if (window.EJS_emulator) window.EJS_emulator.volume = v;
+    } catch {}
+  });
   // hold SELECT + START (buttons 8 and 9) for 2 seconds to go back
   let held = 0;
   setInterval(() => {
@@ -174,7 +183,7 @@ const server = http.createServer(async (req, res) => {
       const game = library.find((g) => g.id === parts[1]);
       if (!game) return json(res, 404, { error: 'not_found' });
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' });
-      return res.end(playerPage(game));
+      return res.end(playerPage(game, url.searchParams.get('vol') ?? 25));
     }
     json(res, 404, { error: 'not_found' });
   } catch (err) {

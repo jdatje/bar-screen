@@ -39,7 +39,10 @@
     <section class="panel now">
       <div class="now-head">
         <span class="mono accent">01 — Nu op de plaat</span>
-        <span class="mono muted" id="device">Spotify</span>
+        <span class="now-right">
+          <button class="req-pill" id="req-pill" hidden></button>
+          <span class="mono muted" id="device">Spotify</span>
+        </span>
       </div>
       <div class="now-body">
         <div class="art" id="art"></div>
@@ -77,12 +80,12 @@
     </section>
 
     <div class="tiles">
-      <button class="tile" data-go="quiz">
+      <button class="tile hot" data-go="hub">
         <span class="tile-bg" data-tile="quiz" aria-hidden="true"></span>
-        <span class="mono accent">02</span>
-        <span class="display">Quiz</span>
-        <p>Pubquiz · Popquiz · Intro raden</p>
-        <span class="mono muted go">Start een spel →</span>
+        <span class="mono">02</span>
+        <span class="display">Spelletjes</span>
+        <p>Pubquiz · Popquiz · Intro raden · Retro games</p>
+        <span class="mono go">Kies een spel →</span>
       </button>
       <button class="tile" data-go="cocktails">
         <span class="tile-bg" data-tile="cocktails" aria-hidden="true"></span>
@@ -91,25 +94,26 @@
         <p id="makeable-line">Menu op basis van wat er staat</p>
         <span class="mono muted go">Open de kaart →</span>
       </button>
-      <button class="tile" data-go="games">
-        <span class="tile-bg" data-tile="games" aria-hidden="true"></span>
+      <button class="tile" data-go="karaoke">
+        <span class="tile-bg" data-tile="karaoke" aria-hidden="true"></span>
         <span class="mono accent">04</span>
-        <span class="display">Games</span>
-        <p>Retro spelletjes met de controllers</p>
-        <span class="mono muted go">Kies een spel →</span>
+        <span class="display">Karaoke</span>
+        <p>Zing mee met de tekst op het scherm</p>
+        <span class="mono muted go">Zing mee →</span>
       </button>
-      <button class="tile hot" data-go="wheel">
-        <span class="tile-bg" data-tile="wheel" aria-hidden="true"></span>
-        <span class="mono">05</span>
-        <span class="display">Draai het rad</span>
-        <p>Laat het lot je cocktail kiezen</p>
+      <button class="tile" data-go="photos">
+        <span class="tile-bg" data-tile="photos" aria-hidden="true"></span>
+        <span class="mono accent">05</span>
+        <span class="display">Fotomuur</span>
+        <p id="photos-line">Stuur foto's vanaf je telefoon</p>
+        <span class="mono muted go">Bekijk de muur →</span>
       </button>
       <div class="tile join wide">
         <span class="tile-bg" data-tile="join" aria-hidden="true"></span>
         <img class="qr" alt="QR-code om mee te doen">
         <div style="display:flex;flex-direction:column;gap:6px">
           <span class="mono accent">06 — Meedoen</span>
-          <p>Scan voor de quiz en recepten</p>
+          <p>Scan voor de quiz, verzoekjes, foto's en recepten</p>
           <span class="code room-code">····</span>
         </div>
       </div>
@@ -165,6 +169,36 @@
     </aside>
   </section>
 
+  <!-- ================= SPELLETJES (hub) ================= -->
+  <section class="view hub" data-view="hub" hidden>
+    <div>
+      <span class="mono accent">Spelletjes</span>
+      <h2 class="display ck-title">Waar hebben jullie zin in?</h2>
+    </div>
+    <div class="hub-grid">
+      <button class="hub-card" data-hub="pubquiz"><span class="hub-icon" aria-hidden="true">🧠</span><span class="display">Pubquiz</span><p>Algemene kennis in categorieën</p></button>
+      <button class="hub-card" data-hub="popquiz"><span class="hub-icon" aria-hidden="true">🎤</span><span class="display">Popquiz</span><p>Jaartallen, artiesten en wat kwam eerst</p></button>
+      <button class="hub-card" data-hub="intro"><span class="hub-icon" aria-hidden="true">🎧</span><span class="display">Intro raden</span><p>Herken het nummer aan de eerste seconden</p></button>
+      <button class="hub-card" data-hub="games"><span class="hub-icon" aria-hidden="true">🕹️</span><span class="display">Retro games</span><p>N64, SNES en meer met de controllers</p></button>
+      <button class="hub-card" data-hub="wheel"><span class="hub-icon" aria-hidden="true">🎡</span><span class="display">Draai het rad</span><p>Laat het lot je cocktail kiezen</p></button>
+    </div>
+  </section>
+
+  <!-- ================= FOTOMUUR ================= -->
+  <section class="view photos" data-view="photos" hidden>
+    <div class="games-head">
+      <div>
+        <span class="mono accent">Fotomuur</span>
+        <h2 class="display ck-title">Foto's van vanavond</h2>
+      </div>
+      <div class="row">
+        <span class="mono muted" id="photos-count"></span>
+        <button class="btn primary" id="slideshow-start">▶ Diashow</button>
+      </div>
+    </div>
+    <div class="photo-grid" id="photo-grid"></div>
+  </section>
+
   <!-- ================= GAMES ================= -->
   <section class="view games" data-view="games" hidden>
     <div class="games-head">
@@ -172,7 +206,10 @@
         <span class="mono accent">Games</span>
         <h2 class="display ck-title">Kies een spel</h2>
       </div>
-      <span class="mono muted" id="games-count"></span>
+      <div class="pads-status" id="pads-status">
+        <span class="mono muted" id="games-count"></span>
+        <span class="pads" id="pads">🎮 Druk op een knop van je controller om hem te testen</span>
+      </div>
     </div>
     <div class="games-grid" id="games-grid"></div>
   </section>
@@ -227,6 +264,23 @@
       <p class="mono muted">Screensaver na</p>
       <div class="chips" id="saver-choices"></div>
     </div>
+    <div class="row" style="align-items:flex-start;gap:40px">
+      <div>
+        <p class="mono muted">Verzoekjes van telefoons</p>
+        <div class="chips" id="req-choices">
+          <button class="chip" data-req="off">Uit</button>
+          <button class="chip" data-req="approve">Goedkeuren op het scherm</button>
+          <button class="chip" data-req="auto">Meteen in de wachtrij</button>
+        </div>
+      </div>
+      <div>
+        <p class="mono muted">Foto's in de screensaver</p>
+        <div class="chips" id="saverphoto-choices">
+          <button class="chip" data-sp="1">Aan</button>
+          <button class="chip" data-sp="0">Uit</button>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <button class="btn" id="new-room">Nieuwe kamercode</button>
       <button class="btn" id="settings-stock">Voorraad</button>
@@ -251,7 +305,53 @@
 <div class="game-frame" id="game-frame" hidden>
   <iframe id="game-iframe" title="Game" allow="gamepad; fullscreen; autoplay"></iframe>
   <button class="game-exit" id="game-exit">✕ Stoppen</button>
+  <button class="game-vol-btn" id="game-vol-btn" aria-label="Volume">🔊</button>
+  <div class="game-vol" id="game-vol" hidden>
+    <label><span>🎵 Muziek</span><input type="range" id="vol-music" min="0" max="100"><b id="vol-music-val"></b></label>
+    <label><span>🕹️ Spel</span><input type="range" id="vol-game" min="0" max="100"><b id="vol-game-val"></b></label>
+  </div>
   <span class="game-hint">SELECT + START vasthouden = stoppen</span>
+</div>
+
+<!-- Karaoke -->
+<div class="karaoke" id="karaoke" hidden>
+  <div class="kar-bg" id="kar-bg"></div>
+  <div class="kar-shade"></div>
+  <button class="kar-close" id="kar-close" aria-label="Karaoke sluiten">✕</button>
+  <div class="kar-lines" id="kar-lines"></div>
+  <div class="kar-foot"><span class="display" id="kar-title"></span><span id="kar-artist"></span></div>
+</div>
+
+<!-- Photo slideshow -->
+<div class="slideshow" id="slideshow" hidden>
+  <div class="slide-bg" id="slide-bg"></div>
+  <img class="slide-img" id="slide-img" alt="">
+  <span class="slide-by" id="slide-by"></span>
+</div>
+
+<!-- One photo -->
+<div class="overlay" id="photo-box" role="dialog" aria-modal="true" aria-label="Foto">
+  <div class="panel sheet wide photo-sheet">
+    <img id="photo-big" alt="">
+    <div class="row" style="justify-content:space-between">
+      <span class="muted" id="photo-by"></span>
+      <div class="row">
+        <button class="btn" id="photo-delete">Verwijderen</button>
+        <button class="btn primary" id="photo-close">Sluiten</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Song requests waiting for approval -->
+<div class="overlay" id="req-box" role="dialog" aria-modal="true" aria-labelledby="req-title">
+  <div class="panel sheet">
+    <div class="sheet-head">
+      <h2 class="display" id="req-title">Verzoekjes</h2>
+      <button class="btn" id="req-close">Klaar</button>
+    </div>
+    <div class="req-list" id="req-list"></div>
+  </div>
 </div>
 
 <!-- Screensaver -->
@@ -264,6 +364,7 @@
     <h2 class="display saver-title" id="saver-title"></h2>
     <p class="saver-artist" id="saver-artist"></p>
   </div>
+  <div class="saver-photo" id="saver-photo"><div class="saver-photo-bg" id="saver-photo-bg"></div><img id="saver-photo-img" alt=""><span id="saver-photo-by"></span></div>
   <div class="saver-next" id="saver-next"></div>
   <div class="saver-clock" id="saver-clock"></div>
 </div>

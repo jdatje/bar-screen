@@ -13,6 +13,9 @@ import { getSourceOptions, MUSIC_SETS } from './lib/musicpool.js';
 import { Game } from './lib/game.js';
 import { load, save } from './lib/store.js';
 import * as diag from './lib/diag.js';
+import * as requests from './lib/requests.js';
+import * as photos from './lib/photos.js';
+import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
 const PORT = Number(process.env.PORT || 80);
@@ -27,6 +30,9 @@ const io = new Server(server);
 const DEFAULT_PIN = '252525';
 let settings = load('settings', { theme: 'industrial', language: 'nl', pin: DEFAULT_PIN, screensaver: 5 });
 if (settings.screensaver == null) settings.screensaver = 5; // minutes, 0 = off
+settings.requests ||= 'approve'; // song requests: 'off' | 'approve' | 'auto'
+if (settings.saverPhotos == null) settings.saverPhotos = true; // photo wall in the screensaver
+settings.gameVolume = { music: 75, game: 25, ...(settings.gameVolume || {}) };
 if (!settings.pin) settings.pin = DEFAULT_PIN;
 settings.tiles = { ...DEFAULT_TILES, ...(settings.tiles || {}) };
 let quizDefaults = load('quiz-settings', {
@@ -43,7 +49,10 @@ if (!quizDefaults.pubquiz.setChosen) {
 // All bundled questions have a Dutch version, so Dutch is always the default
 quizDefaults.pubquiz.lang = 'nl';
 
-const publicSettings = () => ({ theme: settings.theme, language: settings.language, tiles: settings.tiles, screensaver: settings.screensaver, hasPin: Boolean(settings.pin) });
+const publicSettings = () => ({
+  theme: settings.theme, language: settings.language, tiles: settings.tiles, screensaver: settings.screensaver,
+  requests: settings.requests, saverPhotos: settings.saverPhotos, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
+});
 const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
 
 // Code check with a brake on guessing: 5 wrong codes = 30 s wait
@@ -67,6 +76,8 @@ function applySettings(patch = {}) {
   if (patch.theme && THEMES.includes(patch.theme)) settings.theme = patch.theme;
   if (patch.language && ['nl', 'en'].includes(patch.language)) settings.language = patch.language;
   if (SAVER_MINUTES.includes(Number(patch.screensaver))) settings.screensaver = Number(patch.screensaver);
+  if (['off', 'approve', 'auto'].includes(patch.requests)) settings.requests = patch.requests;
+  if (typeof patch.saverPhotos === 'boolean') settings.saverPhotos = patch.saverPhotos;
   if (patch.tiles && typeof patch.tiles === 'object') {
     for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
   }
@@ -223,7 +234,11 @@ const screenState = () => ({
   player: publicPlayer(),
   game: game.screenView(),
   makeable: cocktails.menu({ status: 'now' }).counts.now,
+  requests: requests.pending(),
+  photos: photos.list(),
 });
+const broadcastRequests = () => io.to('screen').emit('requests', requests.pending());
+const broadcastPhotos = () => io.to('screen').emit('photos', photos.list());
 
 const broadcastPlayers = () => {
   io.to('screen').emit('players', playerList());
@@ -278,6 +293,28 @@ app.get(CALLBACK_PATH, async (req, res) => {
   } catch (err) {
     res.status(500).send(`Spotify login failed: ${err.message}`);
   }
+});
+
+// ----- Photo wall -----
+// guests (joined on their phone) send a resized JPEG as the raw body
+app.post('/api/photos', async (req, res) => {
+  const p = players.get(String(req.get('x-player-id') || ''));
+  if (!p) return res.status(401).json({ error: 'join_first' });
+  try {
+    const out = await photos.addFromRequest(req, p.name);
+    broadcastPhotos();
+    io.to('screen').emit('photo:new', { id: out.id, by: p.name });
+    res.json({ ok: true, ...out });
+  } catch (err) {
+    res.status(err.message === 'too_big' ? 413 : 400).json({ ok: false, error: err.message });
+  }
+});
+app.get('/api/photos', (_req, res) => res.json(photos.list()));
+app.get('/photos/:id.jpg', (req, res) => {
+  const f = photos.file(req.params.id);
+  if (!f) return res.status(404).end();
+  res.set('Cache-Control', 'public, max-age=31536000, immutable');
+  res.sendFile(f, (err) => err && !res.headersSent && res.status(404).end());
 });
 
 // ----- Restart / shut down the bar PC (balena supervisor) -----
@@ -345,6 +382,11 @@ admin.post('/power', async (req, res) => {
 // game uploads arrive as a raw body: PUT /api/admin/games?file=&name=&system=
 admin.put('/games', (req, res) => forwardToGames(req, res, `/api/games${req.url.slice(req.url.indexOf('?')) .replace(/^[^?]*$/, '')}`));
 admin.delete('/games/:id', (req, res) => forwardToGames(req, res, `/api/games/${encodeURIComponent(req.params.id)}`));
+admin.delete('/photos/:id', (req, res) => {
+  photos.remove(req.params.id);
+  broadcastPhotos();
+  res.json({ ok: true });
+});
 admin.get('/settings', (_req, res) => res.json({ ...publicSettings(), themes: THEMES, room: room.code }));
 admin.post('/settings', (req, res) => res.json(applySettings(req.body || {})));
 admin.post('/room/new', async (_req, res) => {
@@ -395,6 +437,82 @@ io.on('connection', (socket) => {
     } catch (err) {
       ack?.({ ok: false, error: err.message });
     }
+  });
+
+  // ----- Karaoke: lyrics of the song that's playing -----
+  socket.on('lyrics:get', async (_p, ack) => {
+    if (!isScreen()) return ack?.(null);
+    const t = player.track;
+    if (!t) return ack?.({ trackId: null, synced: [], plain: null });
+    ack?.({ trackId: t.id, ...(await getLyrics(t)) });
+  });
+
+  // ----- Song requests -----
+  socket.on('request:search', async ({ q } = {}, ack) => {
+    if (!isPlayer()) return ack?.({ ok: false, error: 'join_first' });
+    if (settings.requests === 'off') return ack?.({ ok: false, error: 'off' });
+    const query = String(q || '').trim().slice(0, 80);
+    if (query.length < 2) return ack?.({ ok: true, results: [] });
+    try {
+      const found = await spotify.searchTracks(query, { count: 10 });
+      ack?.({ ok: true, results: found.slice(0, 10).map(({ uri, title, artist, art }) => ({ uri, title, artist, art })) });
+    } catch (err) {
+      ack?.({ ok: false, error: 'search' });
+    }
+  });
+  socket.on('request:add', async ({ track } = {}, ack) => {
+    if (!isPlayer()) return ack?.({ ok: false, error: 'join_first' });
+    if (settings.requests === 'off') return ack?.({ ok: false, error: 'off' });
+    const id = socket.data.playerId;
+    const res = requests.add({ playerId: id, by: players.get(id)?.name, track });
+    if (!res.ok) return ack?.(res);
+    if (settings.requests === 'auto') {
+      try {
+        await spotify.command('queue', res.request.track.uri);
+        requests.decide(res.request.id, 'queued');
+      } catch {
+        // stays pending: the screen can still approve it
+      }
+    }
+    broadcastRequests();
+    if (res.request.status === 'pending') io.to('screen').emit('request:new', res.request);
+    ack?.({ ok: true, request: res.request, mine: requests.forPlayer(id) });
+  });
+  socket.on('request:mine', (_p, ack) => ack?.(isPlayer() ? requests.forPlayer(socket.data.playerId) : []));
+  socket.on('request:decide', async ({ id, ok } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    const r = requests.pending().find((x) => x.id === id);
+    if (!r) return ack?.({ ok: false });
+    if (ok) {
+      try {
+        await spotify.command('queue', r.track.uri);
+      } catch {
+        return ack?.({ ok: false, error: 'spotify' });
+      }
+    }
+    requests.decide(id, ok ? 'queued' : 'rejected');
+    broadcastRequests();
+    const p = players.get(r.playerId);
+    if (p) for (const sid of p.sockets) io.to(sid).emit('request:update', requests.forPlayer(r.playerId));
+    setTimeout(pollSpotify, 500);
+    ack?.({ ok: true });
+  });
+
+  // ----- Games: music and game volume -----
+  socket.on('gamevol:set', ({ music, game } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    const clamp100 = (v, d) => (Number.isFinite(Number(v)) ? Math.max(0, Math.min(100, Math.round(Number(v)))) : d);
+    settings.gameVolume = { music: clamp100(music, settings.gameVolume.music), game: clamp100(game, settings.gameVolume.game) };
+    save('settings', settings);
+    ack?.({ ok: true, gameVolume: settings.gameVolume });
+  });
+
+  // ----- Photo wall (screen) -----
+  socket.on('photo:delete', ({ id, pin } = {}, ack) => {
+    if (!isScreen() || !pinOk(pin)) return ack?.({ ok: false, error: 'pin' });
+    photos.remove(String(id || ''));
+    broadcastPhotos();
+    ack?.({ ok: true });
   });
 
   socket.on('room:new', async ({ pin } = {}, ack) => {
@@ -484,7 +602,7 @@ io.on('connection', (socket) => {
     players.set(id, p);
     socket.data.playerId = id;
     socket.join('phones');
-    ack?.({ ok: true, playerId: id, settings: publicSettings(), game: game.phoneView(id) });
+    ack?.({ ok: true, playerId: id, name: cleanName, settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn() });
     broadcastPlayers();
     if (game.active) game.emit();
   });

@@ -58,6 +58,9 @@ function showTab(t) {
   tab = t;
   $('tab-game').hidden = !joined || t !== 'game';
   $('tab-cocktails').hidden = !joined || t !== 'cocktails';
+  $('tab-requests').hidden = !joined || t !== 'requests';
+  $('tab-photos').hidden = !joined || t !== 'photos';
+  if (t === 'requests' && joined) loadMine();
   document.querySelectorAll('[data-tab]').forEach((b) => b.classList.toggle('on', b.dataset.tab === t));
   if (t === 'cocktails' && joined) loadCocktails();
 }
@@ -214,6 +217,126 @@ function renderRecipe(r) {
     <ol class="p-steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>`;
   window.scrollTo(0, 0);
 }
+
+// ---------- Song requests ----------
+const REQ_ERRORS = {
+  off: 'Verzoekjes staan nu uit',
+  already: 'Dat nummer is al aangevraagd',
+  too_many: 'Je hebt al 3 verzoekjes open staan',
+  search: 'Zoeken lukt nu niet (is Spotify gekoppeld?)',
+  join_first: 'Doe eerst mee',
+};
+const STATUS = { pending: 'Wacht op goedkeuring', queued: 'In de wachtrij 🎉', rejected: 'Niet deze keer' };
+let results = [];
+let searchTimer = null;
+
+$('req-q').addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(search, 400);
+});
+$('req-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  search();
+});
+async function search() {
+  const q = $('req-q').value.trim();
+  if (q.length < 2) return ($('req-results').innerHTML = '');
+  $('req-results').innerHTML = '<p class="muted">Zoeken…</p>';
+  const res = await call(socket, 'request:search', { q });
+  if (!res?.ok) return ($('req-results').innerHTML = `<p class="muted">${esc(REQ_ERRORS[res?.error] || 'Er ging iets mis')}</p>`);
+  results = res.results;
+  $('req-results').innerHTML = results.length
+    ? results
+        .map(
+          (t, i) => `<div class="p-card">
+            ${t.art ? `<img src="${esc(t.art)}" alt="" loading="lazy">` : ''}
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
+              <strong style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(t.title)}</strong>
+              <span class="muted" style="font-size:15px">${esc(t.artist)}</span>
+            </div>
+            <button class="btn small primary" data-req="${i}">Aanvragen</button></div>`
+        )
+        .join('')
+    : '<p class="muted">Niets gevonden</p>';
+}
+$('req-results').addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-req]');
+  if (!b) return;
+  b.disabled = true;
+  const res = await call(socket, 'request:add', { track: results[Number(b.dataset.req)] });
+  if (!res?.ok) {
+    b.disabled = false;
+    return flash(REQ_ERRORS[res?.error] || 'Er ging iets mis');
+  }
+  b.textContent = '✓';
+  navigator.vibrate?.(30);
+  renderMine(res.mine);
+});
+async function loadMine() {
+  renderMine(await call(socket, 'request:mine'));
+}
+function renderMine(list = []) {
+  $('req-mine-head').hidden = !list.length;
+  $('req-mine').innerHTML = list
+    .map((r) => `<div class="p-card"><div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <strong>${esc(r.track.title)}</strong><span class="muted" style="font-size:15px">${esc(r.track.artist)} · ${esc(STATUS[r.status] || r.status)}</span>
+      </div></div>`)
+    .join('');
+}
+function flash(msg) {
+  let t = document.getElementById('toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast';
+    t.className = 'toast';
+    t.setAttribute('role', 'status');
+    document.body.append(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(flash.timer);
+  flash.timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+socket.on('request:update', renderMine);
+
+// ---------- Photo wall ----------
+// Photos are made smaller on the phone (max 1600 px, JPEG) before sending.
+function shrink(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * scale);
+      c.height = Math.round(img.height * scale);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(img.src);
+      c.toBlob((b) => (b ? resolve(b) : reject(new Error('shrink'))), 'image/jpeg', 0.85);
+    };
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
+  });
+}
+$('photo-file').addEventListener('change', async () => {
+  const files = [...$('photo-file').files].slice(0, 10);
+  $('photo-file').value = '';
+  let sent = 0;
+  for (const f of files) {
+    $('photo-status').textContent = `Versturen… (${sent + 1} van ${files.length})`;
+    try {
+      const blob = await shrink(f);
+      const res = await fetch('/api/photos', { method: 'POST', headers: { 'content-type': 'image/jpeg', 'x-player-id': store.get('playerId') || '' }, body: blob });
+      if (!res.ok) throw new Error(res.status);
+      const { id } = await res.json();
+      sent++;
+      $('my-photos').insertAdjacentHTML('afterbegin', `<img src="/photos/${esc(id)}.jpg" alt="">`);
+    } catch {
+      flash('Een foto versturen lukte niet');
+    }
+  }
+  $('photo-status').textContent = sent ? `${sent} ${sent === 1 ? 'foto staat' : "foto's staan"} op de muur 🎉` : '';
+  if (sent) navigator.vibrate?.(40);
+});
 
 // ---------- Socket ----------
 socket.on('connect', () => {

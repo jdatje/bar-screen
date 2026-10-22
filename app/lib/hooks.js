@@ -74,3 +74,35 @@ export function setHook(trackId, ms) {
   hooks[trackId] = { ms: Math.max(0, Math.round(ms)), source: 'manual' };
   save('hooks', hooks);
 }
+
+// ---------- Lyrics for karaoke mode ----------
+// Time-synced lyrics from LRCLIB (falls back to plain lyrics), cached in memory.
+const lyricsCache = new Map(); // trackId -> { synced: [{ms, text}], plain: string|null }
+
+async function lrclib(path, params) {
+  const res = await fetch(`https://lrclib.net/api/${path}?${new URLSearchParams(params)}`, {
+    headers: { 'User-Agent': 'Wexer/2.0 (https://github.com/jdatje/bar-screen)' },
+    signal: AbortSignal.timeout(6000),
+  });
+  return res.ok ? res.json() : null;
+}
+
+export async function getLyrics(track) {
+  if (!track?.id) return { synced: [], plain: null };
+  if (lyricsCache.has(track.id)) return lyricsCache.get(track.id);
+  const artist = String(track.artist || '').split(',')[0].trim();
+  let hit = null;
+  try {
+    hit = await lrclib('get', { artist_name: artist, track_name: track.title, duration: String(Math.round((track.durationMs || 0) / 1000)) });
+    if (!hit?.syncedLyrics) {
+      const list = await lrclib('search', { track_name: track.title, artist_name: artist });
+      hit = (Array.isArray(list) && (list.find((x) => x.syncedLyrics) || list[0])) || hit;
+    }
+  } catch {
+    // offline or not found
+  }
+  const out = { synced: parseLrc(hit?.syncedLyrics), plain: hit?.plainLyrics || null, instrumental: Boolean(hit?.instrumental) };
+  if (lyricsCache.size > 200) lyricsCache.clear();
+  lyricsCache.set(track.id, out);
+  return out;
+}

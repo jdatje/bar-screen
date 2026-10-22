@@ -8,6 +8,14 @@ let ctx;
 let lastTouch = Date.now();
 let on = false;
 let canSleep = () => true;
+let photos = [];
+let photoTimer = null;
+let photoTurn = false;
+let photoIndex = 0;
+
+export function setPhotos(list) {
+  photos = list || [];
+}
 
 export function init(c, { allowed } = {}) {
   ctx = c;
@@ -41,13 +49,32 @@ function check() {
 
 function show() {
   on = true;
+  photoTurn = false;
   update(ctx.state.player);
   $('saver').hidden = false;
   requestAnimationFrame(() => $('saver').classList.add('on'));
+  // with photos on the wall: switch between the song and a photo every 12 s
+  clearInterval(photoTimer);
+  photoTimer = setInterval(cycle, 12000);
+}
+
+function cycle() {
+  const usePhotos = ctx.state.settings.saverPhotos !== false && photos.length;
+  const playing = Boolean(ctx.state.player?.track && !ctx.state.player.hidden);
+  photoTurn = usePhotos ? (playing ? !photoTurn : true) : false;
+  if (photoTurn) {
+    const p = photos[photoIndex++ % photos.length];
+    $('saver-photo-img').src = `/photos/${p.id}.jpg`;
+    $('saver-photo-bg').style.backgroundImage = `url("/photos/${p.id}.jpg")`;
+    $('saver-photo-by').textContent = p.by ? `📸 ${p.by}` : '';
+  }
+  $('saver').classList.toggle('photo-mode', photoTurn);
 }
 
 function hide() {
   on = false;
+  clearInterval(photoTimer);
+  $('saver').classList.remove('photo-mode');
   wokeAt = Date.now();
   $('saver').classList.remove('on');
   $('saver').hidden = true;

@@ -42,6 +42,11 @@ export function init(c) {
 }
 
 // ================= Setup =================
+// pre-select a quiz type (from the Spelletjes hub)
+export function setType(t) {
+  if (['intro', 'popquiz', 'pubquiz'].includes(t)) type = t;
+}
+
 export async function openSetup() {
   $('setup-options').innerHTML = '<p class="muted">Laden…</p>';
   opts = await call(ctx.socket, 'quiz:options');

@@ -12,66 +12,38 @@ export const PARTY_OF_THEME = {
 };
 // what "automatic" shows on each button in a party look
 const PARTY_TILES = {
-  spooky: { quiz: 'ghosts', cocktails: 'cauldron', wheel: 'bats', join: 'web', games: 'stars' },
-  dutch: { quiz: 'flags', cocktails: 'tulips', wheel: 'windmill', join: 'confetti', games: 'pixels' },
-  summer: { quiz: 'beachball', cocktails: 'waves', wheel: 'sun', join: 'sparkle', games: 'pixels' },
-  oktoberfest: { quiz: 'pretzels', cocktails: 'beer', wheel: 'lights', join: 'rings', games: 'pixels' },
-  music: { quiz: 'eq', cocktails: 'notes', wheel: 'vinyl', join: 'sparkle', games: 'stars' },
+  spooky: { quiz: 'ghosts', cocktails: 'cauldron', karaoke: 'bats', photos: 'web', join: 'rings' },
+  dutch: { quiz: 'flags', cocktails: 'tulips', karaoke: 'windmill', photos: 'confetti', join: 'rings' },
+  summer: { quiz: 'beachball', cocktails: 'waves', karaoke: 'sun', photos: 'sparkle', join: 'rings' },
+  oktoberfest: { quiz: 'pretzels', cocktails: 'beer', karaoke: 'lights', photos: 'confetti', join: 'rings' },
+  music: { quiz: 'eq', cocktails: 'notes', karaoke: 'vinyl', photos: 'stars', join: 'sparkle' },
 };
 
-export const TILE_KEYS = ['quiz', 'cocktails', 'games', 'wheel', 'join'];
-export const TILE_LABELS = { quiz: 'Quiz', cocktails: 'Cocktails', games: 'Games', wheel: 'Draai het rad', join: 'Meedoen' };
+export const TILE_KEYS = ['quiz', 'cocktails', 'karaoke', 'photos', 'join'];
+export const TILE_LABELS = { quiz: 'Spelletjes', cocktails: 'Cocktails', karaoke: 'Karaoke', photos: 'Fotomuur', join: 'Meedoen' };
 
-// The first style of each button is its normal one; the "spooky" one is
-// picked automatically in the Halloween looks.
+// All backgrounds; any button can use any of them
+const S = {
+  marks: 'Vraagtekens', paper: 'Schrijven op papier', bulb: 'Gloeilamp', ghosts: 'Spookjes', flags: 'Vlaggetjes',
+  beachball: 'Strandbal', pretzels: 'Brezels', eq: 'Equalizer', pixels: 'Pixelmonsters', bubbles: 'Bubbels',
+  ice: 'IJsblokjes', citrus: 'Citroenschijfjes', cauldron: 'Heksenketel', tulips: 'Tulpen', waves: 'Golven',
+  beer: 'Bierpul', notes: 'Muzieknoten', vinyl: 'Plaat', sparkle: 'Sterretjes', bats: 'Vleermuizen',
+  windmill: 'Molen', sun: 'Zon', lights: 'Kermislampjes', polaroids: "Polaroids", confetti: 'Confetti',
+  stars: 'Sterrenveld', web: 'Spinnenweb', dice: 'Dobbelstenen', wheel: 'Draaiend rad', rings: 'Ringen', scan: 'Scanlijn',
+};
+const pick = (...ids) => ids.map((id) => ({ id, label: S[id] }));
+// the first one is the button's normal background; the list is what the settings offer
 export const TILE_STYLES = {
-  quiz: [
-    { id: 'marks', label: 'Vraagtekens' },
-    { id: 'paper', label: 'Schrijven op papier' },
-    { id: 'bulb', label: 'Gloeilamp' },
-    { id: 'ghosts', label: 'Spookjes', spooky: true },
-    { id: 'flags', label: 'Vlaggetjes', party: 'dutch' },
-    { id: 'beachball', label: 'Strandbal' },
-    { id: 'pretzels', label: 'Brezels' },
-    { id: 'eq', label: 'Equalizer' },
-  ],
-  cocktails: [
-    { id: 'bubbles', label: 'Bubbels' },
-    { id: 'ice', label: 'IJsblokjes' },
-    { id: 'citrus', label: 'Citroenschijfjes' },
-    { id: 'cauldron', label: 'Heksenketel', spooky: true },
-    { id: 'tulips', label: 'Tulpen', party: 'dutch' },
-    { id: 'waves', label: 'Golven' },
-    { id: 'beer', label: 'Bierpul' },
-    { id: 'notes', label: 'Muzieknoten' },
-  ],
-  games: [
-    { id: 'pixels', label: 'Pixelmonsters' },
-    { id: 'stars', label: 'Sterrenveld' },
-    { id: 'confetti', label: 'Confetti' },
-  ],
-  wheel: [
-    { id: 'wheel', label: 'Draaiend rad' },
-    { id: 'lights', label: 'Kermislampjes' },
-    { id: 'dice', label: 'Dobbelstenen' },
-    { id: 'bats', label: 'Vleermuizen', spooky: true },
-    { id: 'windmill', label: 'Molen', party: 'dutch' },
-    { id: 'sun', label: 'Zon' },
-    { id: 'vinyl', label: 'Plaat' },
-  ],
-  join: [
-    { id: 'rings', label: 'Ringen' },
-    { id: 'scan', label: 'Scanlijn' },
-    { id: 'sparkle', label: 'Sterretjes' },
-    { id: 'web', label: 'Spinnenweb', spooky: true },
-    { id: 'confetti', label: 'Confetti', party: 'dutch' },
-  ],
+  quiz: pick('marks', 'paper', 'bulb', 'pixels', 'dice', 'ghosts', 'flags', 'beachball', 'pretzels', 'eq'),
+  cocktails: pick('bubbles', 'ice', 'citrus', 'cauldron', 'tulips', 'waves', 'beer', 'notes'),
+  karaoke: pick('eq', 'notes', 'vinyl', 'sparkle', 'bats', 'windmill', 'sun', 'lights', 'wheel'),
+  photos: pick('polaroids', 'sparkle', 'confetti', 'stars', 'web', 'flags'),
+  join: pick('rings', 'scan', 'sparkle', 'web', 'confetti'),
 };
 
-export const DEFAULT_TILES = { quiz: 'auto', cocktails: 'auto', games: 'auto', wheel: 'auto', join: 'auto' };
+export const DEFAULT_TILES = { quiz: 'auto', cocktails: 'auto', karaoke: 'auto', photos: 'auto', join: 'auto' };
 
-export const validTileChoice = (key, choice) =>
-  choice === 'auto' || choice === 'off' || Boolean(TILE_STYLES[key]?.some((s) => s.id === choice));
+export const validTileChoice = (key, choice) => TILE_KEYS.includes(key) && (choice === 'auto' || choice === 'off' || choice in S);
 
 // "auto" = the normal style, or the matching one in a party look
 export function resolveTile(key, choice, theme) {
@@ -97,6 +69,7 @@ const INVADER = PIXEL(['00100000100', '00010001000', '00111111100', '01101110110
 const GHOSTY = PIXEL(['0011100', '0111110', '1101011', '1111111', '1111111', '1010101']);
 
 const MARKUP = {
+  polaroids: rep(4, '<i><b></b></i>'),
   beachball: '<i><b></b></i>',
   waves: '<i></i><i></i><i></i>',
   sun: '<i><b></b></i>',

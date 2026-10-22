@@ -7,6 +7,8 @@ import * as eggs from './eggs.js';
 import { setLang, getLang } from './i18n.js';
 import * as games from './games.js';
 import * as saver from './saver.js';
+import * as karaoke from './karaoke.js';
+import * as wall from './photowall.js';
 
 const socket = io();
 const state = { settings: { theme: 'industrial' }, themes: [], player: null, room: null, players: [], game: { active: false } };
@@ -41,6 +43,9 @@ function go(next) {
   view = next;
   document.querySelectorAll('[data-view]').forEach((v) => (v.hidden = v.dataset.view !== next));
   $('back').hidden = next === 'home' || next === 'game';
+  if (next === 'karaoke') karaoke.show();
+  else karaoke.hide();
+  if (next === 'photos') wall.render();
   if (next === 'quiz') quiz.openSetup();
   if (next === 'cocktails') bar.openMenu();
   if (next === 'stock') bar.openStock();
@@ -48,7 +53,18 @@ function go(next) {
 }
 ctx.view = () => view;
 
-$('back').addEventListener('click', () => go(view === 'stock' ? 'cocktails' : 'home'));
+const PARENT = { stock: 'cocktails', quiz: 'hub', games: 'hub' };
+$('back').addEventListener('click', () => go(PARENT[view] || 'home'));
+
+// ---------- Spelletjes hub ----------
+document.querySelectorAll('[data-hub]').forEach((b) =>
+  b.addEventListener('click', () => {
+    const h = b.dataset.hub;
+    if (h === 'games' || h === 'wheel') return go(h);
+    quiz.setType(h);
+    go('quiz');
+  })
+);
 document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => go(b.dataset.go)));
 
 // ---------- Clock ----------
@@ -160,6 +176,8 @@ function markTheme() {
   applyTheme(state.settings.theme);
   setLang(state.settings.language);
   renderSaverChoices();
+  document.querySelectorAll('#req-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.req === (state.settings.requests || 'approve')));
+  document.querySelectorAll('#saverphoto-choices .chip').forEach((c) => c.classList.toggle('on', (c.dataset.sp === '1') === (state.settings.saverPhotos !== false)));
   document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
   tickClock();
   document.querySelectorAll('.theme-card').forEach((c) => c.classList.toggle('on', c.dataset.theme === state.settings.theme));
@@ -192,6 +210,44 @@ function renderTileChoices() {
     })
   );
 }
+// ---------- Song requests ----------
+function renderRequests(list = []) {
+  state.requests = list;
+  const n = list.length;
+  $('req-pill').hidden = !n;
+  $('req-pill').textContent = `🎵 ${n} ${n === 1 ? 'verzoekje' : 'verzoekjes'}`;
+  $('req-list').innerHTML = n
+    ? list
+        .map(
+          (r) => `<div class="req-row">
+            <div class="req-art" style="background-image:url('${esc(r.track.art || '')}')"></div>
+            <div class="req-text"><strong>${esc(r.track.title)}</strong><span class="muted">${esc(r.track.artist)}</span><span class="mono accent">${esc(r.by)}</span></div>
+            <button class="btn" data-req-id="${esc(r.id)}" data-ok="0" aria-label="Afwijzen">✕</button>
+            <button class="btn primary" data-req-id="${esc(r.id)}" data-ok="1">In de wachtrij</button>
+          </div>`
+        )
+        .join('')
+    : '<p class="muted">Geen verzoekjes meer</p>';
+}
+$('req-pill').addEventListener('click', () => $('req-box').classList.add('open'));
+$('req-close').addEventListener('click', () => $('req-box').classList.remove('open'));
+$('req-list').addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-req-id]');
+  if (!b) return;
+  b.disabled = true;
+  const res = await call(socket, 'request:decide', { id: b.dataset.reqId, ok: b.dataset.ok === '1' });
+  if (!res?.ok) toast('Spotify reageert niet');
+  if (!state.requests.length) $('req-box').classList.remove('open');
+});
+$('req-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-req]');
+  if (b) setSetting({ requests: b.dataset.req });
+});
+$('saverphoto-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-sp]');
+  if (b) setSetting({ saverPhotos: b.dataset.sp === '1' });
+});
+
 // ---------- Screensaver delay ----------
 const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
 function renderSaverChoices() {
@@ -307,12 +363,23 @@ socket.on('state', (s) => {
   renderPlayer(s.player);
   eggs.onPlayer(s.player);
   renderMakeable(s.makeable);
+  renderRequests(s.requests);
+  wall.setList(s.photos);
+  saver.setPhotos(s.photos);
   onGame(s.game);
 });
+socket.on('requests', renderRequests);
+socket.on('request:new', (r) => toast(`🎵 ${r.by} vraagt: ${r.track.title}`));
+socket.on('photos', (list) => {
+  wall.setList(list);
+  saver.setPhotos(list);
+});
+socket.on('photo:new', (p) => wall.announce(p));
 socket.on('player', (p) => {
   renderPlayer(p);
   eggs.onPlayer(p);
   saver.update(p);
+  karaoke.update(p);
 });
 socket.on('players', renderPlayers);
 socket.on('makeable', renderMakeable);
@@ -323,8 +390,10 @@ socket.on('settings', (s) => {
 });
 
 quiz.init(ctx);
+karaoke.init(ctx);
+wall.init(ctx);
 games.init(ctx);
-saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !document.querySelector('.overlay.open') });
+saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !karaoke.isOpen() && !wall.slideshowOn() && !document.querySelector('.overlay.open') });
 eggs.init(ctx);
 bar.init(ctx);
 

@@ -35,10 +35,28 @@
 
   <section id="tab-game" hidden></section>
   <section id="tab-cocktails" hidden></section>
+  <section id="tab-requests" hidden>
+    <span class="mono accent">Verzoekjes</span>
+    <h1 class="display p-title">Welk nummer wil je horen?</h1>
+    <form class="field" id="req-form"><label for="req-q">Zoek een nummer of artiest</label><input id="req-q" autocomplete="off" enterkeyhint="search"></form>
+    <div class="p-list" id="req-results"></div>
+    <span class="mono muted" id="req-mine-head" hidden>Jouw verzoekjes</span>
+    <div class="p-list" id="req-mine"></div>
+  </section>
+  <section id="tab-photos" hidden>
+    <span class="mono accent">Fotomuur</span>
+    <h1 class="display p-title">Zet je foto op het scherm</h1>
+    <label class="btn primary big photo-pick" for="photo-file">📸 Foto maken of kiezen</label>
+    <input type="file" id="photo-file" accept="image/*" multiple hidden>
+    <span class="muted" id="photo-status"></span>
+    <div class="p-photos" id="my-photos"></div>
+  </section>
 </main>
 
-<nav class="p-tabs" id="tabs" hidden>
+<nav class="p-tabs four" id="tabs" hidden>
   <button data-tab="game" class="on">Spel</button>
+  <button data-tab="requests">Verzoekjes</button>
+  <button data-tab="photos">Foto's</button>
   <button data-tab="cocktails">Cocktails</button>
 </nav>
 

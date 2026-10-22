@@ -7,6 +7,8 @@ volumes:
   browser-settings:
   spotify-data:
   games-data:
+  # the shared ALSA mixer config (written by spotify, read by browser)
+  audio-config:
 
 services:
   # Wexer: screen UI, phone UI, Spotify control, game logic
@@ -30,12 +32,16 @@ services:
 
   # Full-screen Chromium kiosk on the touchscreen
   browser:
-    image: bh.cr/balenalabs/browser-amd64
+    # the balena browser block, plus the shared sound config (see browser/)
+    build: ./browser
     restart: always
     privileged: true
     network_mode: host
+    # shared memory with spotify, for the shared ALSA mixer
+    ipc: host
     volumes:
       - browser-settings:/data
+      - audio-config:/shared
     labels:
       # dbus from the host
       io.balena.features.dbus: "1"
@@ -45,6 +51,8 @@ services:
       - KIOSK=1
       # GPU rendering: needed to run N64 games smoothly in the browser
       - ENABLE_GPU=1
+      # udev in the container: controllers are recognised, also when plugged in later
+      - UDEV=1
       # No Chrome popups, bubbles or prompts on the kiosk (added to the block's defaults)
       - >-
         EXTRA_FLAGS=--no-first-run --no-default-browser-check --disable-infobars
@@ -59,9 +67,12 @@ services:
     build: ./spotify
     restart: always
     network_mode: host
+    # shared memory with the browser, for the shared ALSA mixer
+    ipc: host
     volumes:
       # Seeded from the image on first start; keeps the Spotify login across updates
       - spotify-data:/config
+      - audio-config:/shared
     labels:
       # dbus from the host (avahi/zeroconf)
       io.balena.features.dbus: "1"

@@ -33,4 +33,14 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - `games/` container (127.0.0.1:8081, volume games-data) keeps the uploaded game files and
   serves the EmulatorJS player page; EmulatorJS loads from cdn.emulatorjs.org (pinned 4.2.3).
 - The app proxies `/games/*` (GET) for the screen and `/api/admin/games` (PUT/DELETE, code).
-- Browser runs with ENABLE_GPU=1 for N64 speed. Only the user's own game files; no downloads.
+- Browser runs with ENABLE_GPU=1 for N64 speed and UDEV=1 for (hot-plugged) controllers.
+  Only the user's own game files; no downloads.
+- Sound: everything plays through the USB card. spotify/start.sh writes an ALSA dmix config to
+  the shared `audio-config` volume; the browser image (browser/) links it as /etc/asound.conf.
+  Both containers run with `ipc: host` so the mixer is shared. Game volume default 25%, music 75%.
+
+## Home screen
+- Tiles: Spelletjes (hub: pub/pop/intro quiz, retro games, draai het rad), Cocktails,
+  Karaoke (LRCLIB synced lyrics), Fotomuur (photos from phones), Meedoen.
+- Phones: tabs Spel, Verzoekjes (song requests: off / approve on screen / straight to queue),
+  Foto's, Cocktails.
