@@ -29,7 +29,11 @@
   .a-themes .theme-card span { font-size: 16px; }
   .a-tile { display: flex; flex-direction: column; gap: 8px; }
   .a-tile .chip { min-height: 44px; padding: 0 14px; font-size: 16px; }
-  #admin-tabs { grid-template-columns: repeat(3, 1fr); }
+  #admin-tabs { grid-template-columns: repeat(4, 1fr); }
+  #admin-tabs button { font-size: 15px; }
+  .guest { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 12px 14px; }
+  .guest .days { font-family: var(--font-display); font-size: 30px; color: var(--accent); line-height: 1; text-align: right; }
+  .guest small { display: block; color: var(--text-3); font-size: 14px; }
   .g-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; }
   .g-row .display { font-size: 22px; overflow-wrap: anywhere; }
   .upload { display: flex; flex-direction: column; gap: 12px; padding: 18px; }
@@ -54,6 +58,7 @@
   <button data-tab="screen" class="on">Scherm</button>
   <button data-tab="quiz">Quizvragen</button>
   <button data-tab="games">Games</button>
+  <button data-tab="guests">Gasten</button>
 </nav>
 <script src="/js/admin.js" type="module"></script>
 </body>

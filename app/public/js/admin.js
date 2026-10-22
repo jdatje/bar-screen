@@ -99,6 +99,24 @@ async function showScreen() {
     </section>`;
 }
 
+// ---------- Guests: on how many days each name checked in ----------
+async function showGuests() {
+  $('admin-title').textContent = 'Gasten';
+  const list = await api('GET', '/guests');
+  const fmt = (d) => (d ? new Date(`${d}T12:00:00`).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' }) : '');
+  $('root').innerHTML = `
+    <p class="muted" style="margin:0">Elke naam die op een telefoon meedoet, telt één keer per dag. Alleen hier te zien.</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      ${list.length
+        ? list.map((g) => `<div class="panel guest">
+            <div><strong>${esc(g.name)}</strong><small>Laatst: ${esc(fmt(g.lastDay))}</small></div>
+            <div class="days">${g.days}<small>${g.days === 1 ? 'dag' : 'dagen'}</small></div>
+            <button class="btn small" data-del-guest="${esc(g.key)}" aria-label="${esc(g.name)} verwijderen">✕</button>
+          </div>`).join('')
+        : '<p class="muted">Nog niemand ingecheckt.</p>'}
+    </div>`;
+}
+
 // ---------- Games (your own game files) ----------
 const SYSTEMS = [
   { id: 'n64', label: 'Nintendo 64', ext: ['z64', 'n64', 'v64'] },
@@ -112,7 +130,7 @@ const guessSystem = (name) => SYSTEMS.find((x) => x.ext.includes(name.split('.')
 
 async function showGames() {
   $('admin-title').textContent = 'Games';
-  const res = await fetch('/games/api/games').catch(() => null);
+  const res = await fetch('/games/api/games', { headers: { 'x-admin-pin': pin } }).catch(() => null);
   const list = res?.ok ? await res.json() : null;
   $('root').innerHTML = `
     <form class="panel upload" id="upload">
@@ -173,7 +191,7 @@ function setTab(next) {
   tab = next;
   document.querySelectorAll('#admin-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
   window.scrollTo(0, 0);
-  return (tab === 'screen' ? showScreen() : tab === 'games' ? showGames() : showList()).catch((e) => {
+  return (tab === 'screen' ? showScreen() : tab === 'games' ? showGames() : tab === 'guests' ? showGuests() : showList()).catch((e) => {
     if (!(e instanceof Locked)) throw e;
   });
 }
@@ -315,6 +333,11 @@ document.addEventListener('click', async (e) => {
     const r = await api('POST', '/power', { action: t.dataset.power });
     toast(r.ok ? (shutdown ? 'De pc gaat uit…' : 'De pc herstart… even geduld') : 'Lukt niet');
     return;
+  }
+  if (t.dataset.delGuest) {
+    if (!confirm('Deze gast uit de lijst halen?')) return;
+    await api('DELETE', `/guests/${encodeURIComponent(t.dataset.delGuest)}`);
+    return showGuests();
   }
   if (t.dataset.delGame) {
     if (!confirm('Dit spel verwijderen?')) return;

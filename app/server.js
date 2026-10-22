@@ -15,10 +15,14 @@ import { load, save } from './lib/store.js';
 import * as diag from './lib/diag.js';
 import * as requests from './lib/requests.js';
 import * as photos from './lib/photos.js';
+import * as guests from './lib/guests.js';
 import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
 const PORT = Number(process.env.PORT || 80);
+// Requests from the bar PC itself (the kiosk browser). With the public
+// address switched on, everything else may come from the internet.
+const isLocal = (addr) => ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(String(addr || ''));
 export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven', 'rock', 'synthwave', 'strand', 'zonsondergang', 'wiesn', 'bierhal'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
@@ -309,7 +313,7 @@ app.post('/api/photos', async (req, res) => {
     res.status(err.message === 'too_big' ? 413 : 400).json({ ok: false, error: err.message });
   }
 });
-app.get('/api/photos', (_req, res) => res.json(photos.list()));
+app.get('/api/photos', (req, res) => (isLocal(req.socket.remoteAddress) ? res.json(photos.list()) : res.status(403).end()));
 app.get('/photos/:id.jpg', (req, res) => {
   const f = photos.file(req.params.id);
   if (!f) return res.status(404).end();
@@ -346,7 +350,13 @@ function forwardToGames(req, res, upstreamPath) {
   req.pipe(up);
 }
 // library, player page and game files: readable for the screen
-app.use('/games', (req, res, next) => (req.method === 'GET' || req.method === 'HEAD' ? forwardToGames(req, res, req.url) : next()));
+// (the touchscreen only; the game list also for the admin page with the code)
+app.use('/games', (req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const adminList = req.path === '/api/games' && req.get('x-admin-pin') && pinOk(req.get('x-admin-pin'));
+  if (!isLocal(req.socket.remoteAddress) && !adminList) return res.status(403).json({ error: 'screen_only' });
+  forwardToGames(req, res, req.url);
+});
 
 // ----- Admin API (question sets, cocktail import) -----
 const admin = express.Router();
@@ -387,6 +397,11 @@ admin.delete('/photos/:id', (req, res) => {
   broadcastPhotos();
   res.json({ ok: true });
 });
+admin.get('/guests', (_req, res) => res.json(guests.list()));
+admin.delete('/guests/:key', (req, res) => {
+  guests.remove(req.params.key);
+  res.json({ ok: true });
+});
 admin.get('/settings', (_req, res) => res.json({ ...publicSettings(), themes: THEMES, room: room.code }));
 admin.post('/settings', (req, res) => res.json(applySettings(req.body || {})));
 admin.post('/room/new', async (_req, res) => {
@@ -396,6 +411,7 @@ admin.post('/room/new', async (_req, res) => {
 app.use('/api/admin', admin);
 
 // ---------- Sockets ----------
+let wrongCodes = []; // times of wrong room codes in the last minute
 io.on('connection', (socket) => {
   // look and language for every page, right away (also before joining)
   socket.emit('settings', publicSettings());
@@ -403,6 +419,8 @@ io.on('connection', (socket) => {
   const isPlayer = () => players.has(socket.data.playerId);
 
   socket.on('screen:hello', async () => {
+    // only the touchscreen itself may act as the screen (controls, settings)
+    if (!isLocal(socket.handshake.address)) return socket.emit('not-screen');
     socket.join('screen');
     await resolveJoinUrl();
     socket.emit('state', screenState());
@@ -592,7 +610,14 @@ io.on('connection', (socket) => {
 
   // ----- Phones -----
   socket.on('phone:join', ({ code, name, playerId } = {}, ack) => {
-    if (String(code || '').toUpperCase() !== room.code) return ack?.({ ok: false, error: 'wrong_code' });
+    // brake on guessing room codes (the join page can be public)
+    const now = Date.now();
+    wrongCodes = wrongCodes.filter((t) => now - t < 60000);
+    if (wrongCodes.length >= 30) return ack?.({ ok: false, error: 'wrong_code' });
+    if (String(code || '').toUpperCase() !== room.code) {
+      wrongCodes.push(now);
+      return ack?.({ ok: false, error: 'wrong_code' });
+    }
     const cleanName = String(name || '').trim().slice(0, 24);
     if (!cleanName) return ack?.({ ok: false, error: 'no_name' });
     const id = playerId && players.has(playerId) ? playerId : crypto.randomUUID();
@@ -602,6 +627,7 @@ io.on('connection', (socket) => {
     players.set(id, p);
     socket.data.playerId = id;
     socket.join('phones');
+    guests.checkIn(cleanName);
     ack?.({ ok: true, playerId: id, name: cleanName, settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn() });
     broadcastPlayers();
     if (game.active) game.emit();

@@ -44,3 +44,9 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   Karaoke (LRCLIB synced lyrics), Fotomuur (photos from phones), Meedoen.
 - Phones: tabs Spel, Verzoekjes (song requests: off / approve on screen / straight to queue),
   Foto's, Cocktails.
+
+## Public address and guests
+- The join page can be public (balena public device URL, PUBLIC_URL device variable for the
+  QR code). Screen control (socket `screen:hello`), `/games/*` and the photo list only work
+  from 127.0.0.1 (the kiosk); admin is behind the code; wrong room codes are rate-limited.
+- Guest check-ins (`lib/guests.js`): days per name, shown only on /admin tab Gasten.
