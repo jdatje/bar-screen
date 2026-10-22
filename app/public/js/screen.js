@@ -1,10 +1,12 @@
 // Touchscreen app: routing between views, clock, now playing, settings.
-import { $, THEMES, applyTheme, call, fmtTime, toast, askPin } from './ui.js';
+import { $, THEMES, applyTheme, call, fmtTime, toast, askPin, esc, themeGroupsHtml, confirmBox } from './ui.js';
 import * as quiz from './quiz.js';
 import * as bar from './cocktails.js';
 import { TILE_KEYS, TILE_LABELS, TILE_STYLES, resolveTile, tileMarkup } from './tiles.js';
 import * as eggs from './eggs.js';
 import { setLang, getLang } from './i18n.js';
+import * as games from './games.js';
+import * as saver from './saver.js';
 
 const socket = io();
 const state = { settings: { theme: 'industrial' }, themes: [], player: null, room: null, players: [], game: { active: false } };
@@ -42,6 +44,7 @@ function go(next) {
   if (next === 'quiz') quiz.openSetup();
   if (next === 'cocktails') bar.openMenu();
   if (next === 'stock') bar.openStock();
+  if (next === 'games') games.open();
 }
 ctx.view = () => view;
 
@@ -143,24 +146,20 @@ vol.addEventListener('change', () => {
 
 // ---------- Settings ----------
 function renderThemes() {
-  $('themes').innerHTML = '';
-  for (const id of state.themes) {
+  $('themes').innerHTML = themeGroupsHtml(state.themes, state.settings.theme, (id) => {
     const t = THEMES[id] || { label: id, bg: '#222', fg: '#fff', ac: '#fff' };
-    const b = document.createElement('button');
-    b.className = 'theme-card';
-    b.dataset.theme = id;
-    b.style.background = t.bg;
-    b.style.color = t.fg;
-    b.style.borderBottom = `10px solid ${t.ac}`;
-    b.innerHTML = `<span>${t.label}</span>`;
-    b.addEventListener('click', () => setSetting({ theme: id }));
-    $('themes').append(b);
-  }
+    return `<button class="theme-card" data-theme="${id}" style="background:${t.bg};color:${t.fg};border-bottom:10px solid ${t.ac}"><span>${esc(t.label)}</span></button>`;
+  });
   markTheme();
 }
+$('themes').addEventListener('click', (e) => {
+  const b = e.target.closest('.theme-card');
+  if (b) setSetting({ theme: b.dataset.theme });
+});
 function markTheme() {
   applyTheme(state.settings.theme);
   setLang(state.settings.language);
+  renderSaverChoices();
   document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
   tickClock();
   document.querySelectorAll('.theme-card').forEach((c) => c.classList.toggle('on', c.dataset.theme === state.settings.theme));
@@ -193,6 +192,32 @@ function renderTileChoices() {
     })
   );
 }
+// ---------- Screensaver delay ----------
+const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
+function renderSaverChoices() {
+  const cur = Number(state.settings.screensaver ?? 5);
+  $('saver-choices').innerHTML = SAVER_MINUTES.map(
+    (m) => `<button class="chip${m === cur ? ' on' : ''}" data-saver="${m}">${m ? `${m} min` : 'Uit'}</button>`
+  ).join('');
+}
+$('saver-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-saver]');
+  if (b) setSetting({ screensaver: Number(b.dataset.saver) });
+});
+
+// ---------- Restart / shut down the bar PC ----------
+async function powerAction(action) {
+  const shutdown = action === 'shutdown';
+  const ok = await confirmBox(shutdown ? 'De bar-pc uitzetten?' : 'De bar-pc herstarten?', shutdown ? 'Uitzetten' : 'Herstarten');
+  if (!ok) return;
+  const res = await call(socket, 'device:power', { pin: pinCache.pin, action });
+  if (!res?.ok) return toast(res?.error === 'pin' ? 'Code verlopen — open de instellingen opnieuw' : 'Lukt niet');
+  closeSettings();
+  toast(shutdown ? 'De pc gaat uit…' : 'De pc herstart… even geduld');
+}
+$('pc-restart').addEventListener('click', () => powerAction('reboot'));
+$('pc-shutdown').addEventListener('click', () => powerAction('shutdown'));
+
 $('lang-choices').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-lang]');
   if (b) setSetting({ language: b.dataset.lang });
@@ -261,6 +286,7 @@ function renderMakeable(n) {
 
 // ---------- Game routing ----------
 function onGame(g) {
+  if (g.active) window.dispatchEvent(new Event('wexer:activity'));
   state.game = { ...g, receivedAt: Date.now() };
   if (g.active && view !== 'game') go('game');
   if (!g.active && view === 'game') go('home');
@@ -286,6 +312,7 @@ socket.on('state', (s) => {
 socket.on('player', (p) => {
   renderPlayer(p);
   eggs.onPlayer(p);
+  saver.update(p);
 });
 socket.on('players', renderPlayers);
 socket.on('makeable', renderMakeable);
@@ -296,6 +323,8 @@ socket.on('settings', (s) => {
 });
 
 quiz.init(ctx);
+games.init(ctx);
+saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !document.querySelector('.overlay.open') });
 eggs.init(ctx);
 bar.init(ctx);
 

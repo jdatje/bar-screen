@@ -62,6 +62,31 @@ export function init(c) {
     }
   }, 30000);
 
+  // an old cheat code still works (controller or keyboard)
+  const CODE = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
+  let seq = [];
+  const press = (k) => {
+    seq = [...seq, k].slice(-CODE.length);
+    if (seq.join() === CODE.join()) {
+      seq = [];
+      fx.retro();
+    }
+  };
+  const KEYS = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', b: 'b', a: 'a' };
+  window.addEventListener('keydown', (e) => KEYS[e.key] && press(KEYS[e.key]));
+  const PAD = { 12: 'up', 13: 'down', 14: 'left', 15: 'right', 1: 'b', 0: 'a' };
+  let down = new Set();
+  setInterval(() => {
+    if (document.getElementById('game-frame')?.hidden === false || !navigator.getGamepads) return;
+    const now = new Set();
+    for (const p of navigator.getGamepads()) {
+      if (!p) continue;
+      for (const [i, k] of Object.entries(PAD)) if (p.buttons[i]?.pressed) now.add(k);
+    }
+    for (const k of now) if (!down.has(k)) press(k);
+    down = now;
+  }, 80);
+
   // the witching hour
   const witching = () => {
     const h = Number(new Intl.DateTimeFormat('nl-NL', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Amsterdam' }).format(new Date()));

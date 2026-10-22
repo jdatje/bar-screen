@@ -3,10 +3,24 @@
 
 export const SPOOKY_THEMES = ['spookhuis', 'pompoen', 'heks'];
 // party looks and which backgrounds "automatic" picks in them
-export const PARTY_OF_THEME = { spookhuis: 'spooky', pompoen: 'spooky', heks: 'spooky', oranje: 'dutch', delft: 'dutch', oranjeboven: 'dutch' };
+export const PARTY_OF_THEME = {
+  spookhuis: 'spooky', pompoen: 'spooky', heks: 'spooky',
+  oranje: 'dutch', delft: 'dutch', oranjeboven: 'dutch',
+  strand: 'summer', zonsondergang: 'summer',
+  wiesn: 'oktoberfest', bierhal: 'oktoberfest',
+  rock: 'music', synthwave: 'music',
+};
+// what "automatic" shows on each button in a party look
+const PARTY_TILES = {
+  spooky: { quiz: 'ghosts', cocktails: 'cauldron', wheel: 'bats', join: 'web', games: 'stars' },
+  dutch: { quiz: 'flags', cocktails: 'tulips', wheel: 'windmill', join: 'confetti', games: 'pixels' },
+  summer: { quiz: 'beachball', cocktails: 'waves', wheel: 'sun', join: 'sparkle', games: 'pixels' },
+  oktoberfest: { quiz: 'pretzels', cocktails: 'beer', wheel: 'lights', join: 'rings', games: 'pixels' },
+  music: { quiz: 'eq', cocktails: 'notes', wheel: 'vinyl', join: 'sparkle', games: 'stars' },
+};
 
-export const TILE_KEYS = ['quiz', 'cocktails', 'wheel', 'join'];
-export const TILE_LABELS = { quiz: 'Quiz', cocktails: 'Cocktails', wheel: 'Draai het rad', join: 'Meedoen' };
+export const TILE_KEYS = ['quiz', 'cocktails', 'games', 'wheel', 'join'];
+export const TILE_LABELS = { quiz: 'Quiz', cocktails: 'Cocktails', games: 'Games', wheel: 'Draai het rad', join: 'Meedoen' };
 
 // The first style of each button is its normal one; the "spooky" one is
 // picked automatically in the Halloween looks.
@@ -17,6 +31,9 @@ export const TILE_STYLES = {
     { id: 'bulb', label: 'Gloeilamp' },
     { id: 'ghosts', label: 'Spookjes', spooky: true },
     { id: 'flags', label: 'Vlaggetjes', party: 'dutch' },
+    { id: 'beachball', label: 'Strandbal' },
+    { id: 'pretzels', label: 'Brezels' },
+    { id: 'eq', label: 'Equalizer' },
   ],
   cocktails: [
     { id: 'bubbles', label: 'Bubbels' },
@@ -24,6 +41,14 @@ export const TILE_STYLES = {
     { id: 'citrus', label: 'Citroenschijfjes' },
     { id: 'cauldron', label: 'Heksenketel', spooky: true },
     { id: 'tulips', label: 'Tulpen', party: 'dutch' },
+    { id: 'waves', label: 'Golven' },
+    { id: 'beer', label: 'Bierpul' },
+    { id: 'notes', label: 'Muzieknoten' },
+  ],
+  games: [
+    { id: 'pixels', label: 'Pixelmonsters' },
+    { id: 'stars', label: 'Sterrenveld' },
+    { id: 'confetti', label: 'Confetti' },
   ],
   wheel: [
     { id: 'wheel', label: 'Draaiend rad' },
@@ -31,6 +56,8 @@ export const TILE_STYLES = {
     { id: 'dice', label: 'Dobbelstenen' },
     { id: 'bats', label: 'Vleermuizen', spooky: true },
     { id: 'windmill', label: 'Molen', party: 'dutch' },
+    { id: 'sun', label: 'Zon' },
+    { id: 'vinyl', label: 'Plaat' },
   ],
   join: [
     { id: 'rings', label: 'Ringen' },
@@ -41,7 +68,7 @@ export const TILE_STYLES = {
   ],
 };
 
-export const DEFAULT_TILES = { quiz: 'auto', cocktails: 'auto', wheel: 'auto', join: 'auto' };
+export const DEFAULT_TILES = { quiz: 'auto', cocktails: 'auto', games: 'auto', wheel: 'auto', join: 'auto' };
 
 export const validTileChoice = (key, choice) =>
   choice === 'auto' || choice === 'off' || Boolean(TILE_STYLES[key]?.some((s) => s.id === choice));
@@ -49,10 +76,8 @@ export const validTileChoice = (key, choice) =>
 // "auto" = the normal style, or the matching one in a party look
 export function resolveTile(key, choice, theme) {
   if (choice && choice !== 'auto') return choice;
-  const list = TILE_STYLES[key];
-  const party = PARTY_OF_THEME[theme];
-  const match = party && list.find((s) => (s.party || (s.spooky && 'spooky')) === party);
-  return (match || list[0]).id;
+  const party = PARTY_TILES[PARTY_OF_THEME[theme]];
+  return party?.[key] || TILE_STYLES[key][0].id;
 }
 
 const rep = (n, html) => Array.from({ length: n }, () => html).join('');
@@ -63,7 +88,25 @@ const BAT = `<svg viewBox="0 0 64 32"><path class="wing l" d="M32 14C26 6 14 4 2
 const FLAG = '<svg viewBox="0 0 40 46"><path d="M3 2v44" stroke="currentColor" stroke-width="2.5"/><g class="cloth"><path d="M4 3h33v8H4z" fill="#AE1C28"/><path d="M4 11h33v8H4z" fill="#FFFFFF"/><path d="M4 19h33v8H4z" fill="#21468B"/></g></svg>';
 const TULIP = (c) => `<svg viewBox="0 0 30 90"><path d="M15 34v56" stroke="#3E8E41" stroke-width="3"/><path d="M15 66c-8-2-12-10-12-16 6 2 11 7 12 16z" fill="#3E8E41"/><path d="M5 12c0 14 4 22 10 22s10-8 10-22l-5 6-5-10-5 10z" fill="${c}"/></svg>`;
 
+const PIXEL = (rows) => {
+  // tiny pixel-art monster from a few rows of 1s and 0s
+  const cells = rows.flatMap((r, y) => [...r].map((c, x) => (c === '1' ? `<rect x="${x}" y="${y}" width="1" height="1"/>` : ''))).join('');
+  return `<svg viewBox="0 0 ${rows[0].length} ${rows.length}" shape-rendering="crispEdges" fill="currentColor">${cells}</svg>`;
+};
+const INVADER = PIXEL(['00100000100', '00010001000', '00111111100', '01101110110', '11111111111', '10111111101', '10100000101', '00011011000']);
+const GHOSTY = PIXEL(['0011100', '0111110', '1101011', '1111111', '1111111', '1010101']);
+
 const MARKUP = {
+  beachball: '<i><b></b></i>',
+  waves: '<i></i><i></i><i></i>',
+  sun: '<i><b></b></i>',
+  pretzels: rep(5, '<i>🥨</i>'),
+  beer: '<i><b></b><s></s><s></s><s></s><s></s></i>',
+  eq: rep(9, '<i></i>'),
+  notes: ['♪', '♫', '♪', '♬', '♩', '♫'].map((n) => `<i>${n}</i>`).join(''),
+  vinyl: '<i></i>',
+  pixels: [INVADER, GHOSTY, INVADER, GHOSTY, INVADER].map((svg) => `<i>${svg}</i>`).join(''),
+  stars: rep(16, '<i></i>'),
   flags: Array.from({ length: 5 }, () => `<i>${FLAG}</i>`).join(''),
   tulips: ['#E8412C', '#FF8F1F', '#F7C948', '#D6336C', '#E8412C', '#FF8F1F'].map((c) => `<i>${TULIP(c)}</i>`).join(''),
   windmill: `<svg class="mill" viewBox="0 0 160 200">

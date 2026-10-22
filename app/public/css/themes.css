@@ -247,3 +247,100 @@
   100% { opacity: 0; transform: scale(1.15) translateY(14px); }
 }
 @media (prefers-reduced-motion: reduce) { .party-decor .burst { animation: none; opacity: 0; } }
+
+
+/* ---------- Muziek: Rock 'n' Roll ---------- */
+[data-theme="rock"] {
+  --bg: #0D0D0D; --panel: #171717; --panel-2: #222222; --line: #2E2E2E; --line-strong: #444444;
+  --text: #F2F2F2; --text-2: #C8C8C8; --text-3: #9A9A9A; --accent: #E10600; --accent-hover: #FF3B30; --on-accent: #FFFFFF;
+  --font-display: 'New Rocker', 'Wexer Emoji', Georgia, serif; --font-body: 'Barlow', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Barlow', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 2px;
+}
+[data-theme="rock"] body { background-image: radial-gradient(ellipse at 50% 0%, rgba(225, 6, 0, 0.18), transparent 60%); }
+[data-theme="rock"] .tile, [data-theme="rock"] .now { border-color: #2a2a2a; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03); }
+
+/* ---------- Muziek: Synthwave ---------- */
+[data-theme="synthwave"] {
+  --bg: #14002E; --panel: #1E0745; --panel-2: #2A0D5C; --line: #3D1A78; --line-strong: #5A2AA6;
+  --text: #F6EAFF; --text-2: #D7C2F2; --text-3: #A98FCF; --accent: #FF2E97; --accent-hover: #FF6FB8; --on-accent: #14002E;
+  --font-display: 'Audiowide', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Rajdhani', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Rajdhani', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: uppercase; --display-weight: 400; --radius: 6px;
+}
+[data-theme="synthwave"] body { font-weight: 600; }
+[data-theme="synthwave"] .tile .display, [data-theme="synthwave"] .brand .display, [data-theme="synthwave"] .clock { text-shadow: 0 0 12px rgba(255, 46, 151, 0.8), 0 0 30px rgba(41, 230, 255, 0.35); }
+[data-theme="synthwave"] .tile, [data-theme="synthwave"] .now { border-color: #3D1A78; box-shadow: 0 0 0 1px rgba(41, 230, 255, 0.12), 0 0 30px rgba(255, 46, 151, 0.08); }
+
+/* ---------- Zomer: Strand ---------- */
+[data-theme="strand"] {
+  --bg: #F5E6C8; --panel: #FFF9EE; --panel-2: #F1E4CA; --line: #E2CFA8; --line-strong: #C9AD7A;
+  --text: #1E3A4C; --text-2: #35566B; --text-3: #5F7A8A; --accent: #0E8FB0; --accent-hover: #0B7591; --on-accent: #FFFFFF;
+  --font-display: 'Fredoka', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Nunito', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Nunito', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 20px;
+}
+[data-theme="strand"] body { font-weight: 600; background-image: linear-gradient(#BFE6F2 0, #F5E6C8 36%); }
+[data-theme="strand"] .tag { background: #F28C38; color: #fff; }
+
+/* ---------- Zomer: Zonsondergang ---------- */
+[data-theme="zonsondergang"] {
+  --bg: #2B1B3D; --panel: #3A2350; --panel-2: #4A2A55; --line: #5B3768; --line-strong: #7A4C7E;
+  --text: #FFF1E0; --text-2: #F4D6C0; --text-3: #D2AE9E; --accent: #FFB347; --accent-hover: #FFCB7D; --on-accent: #2B1B3D;
+  --font-display: 'Righteous', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Poppins', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Poppins', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 18px;
+}
+[data-theme="zonsondergang"] body { background: linear-gradient(180deg, #24163A 0%, #5A2A5E 45%, #C2496B 75%, #F08A4B 100%); }
+
+/* ---------- Oktoberfest: Wiesn ---------- */
+[data-theme="wiesn"] {
+  --bg: #E4EFFB; --panel: #FFFFFF; --panel-2: #EEF4FB; --line: #C9DEF5; --line-strong: #8DB4E0;
+  --text: #1B2A3A; --text-2: #34485E; --text-3: #5F7186; --accent: #1F5FA8; --accent-hover: #2B74C7; --on-accent: #FFFFFF;
+  --font-display: 'Grenze Gotisch', 'Wexer Emoji', Georgia, serif; --font-body: 'Source Sans 3', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Source Sans 3', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 8px;
+}
+[data-theme="wiesn"] body { background-color: #FFFFFF; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 36'%3E%3Cpath d='M0 18L30 0 60 18 30 36z' fill='%23C9DEF5'/%3E%3C/svg%3E"); background-size: 60px 36px; font-weight: 600; }
+[data-theme="wiesn"] .tile, [data-theme="wiesn"] .now { box-shadow: 0 8px 26px rgba(31, 95, 168, 0.12); }
+[data-theme="wiesn"] .tag { background: #B5442C; color: #fff; }
+[data-theme="wiesn"] .brand .display, [data-theme="wiesn"] .clock { background: #fff; padding: 0 10px; border-radius: 8px; }
+[data-theme="wiesn"] .topbar .muted { color: var(--text); background: rgba(255, 255, 255, 0.85); padding: 2px 6px; border-radius: 6px; }
+
+/* ---------- Oktoberfest: Bierhal ---------- */
+[data-theme="bierhal"] {
+  --bg: #2A1A0E; --panel: #3A2414; --panel-2: #4A301B; --line: #5C3D22; --line-strong: #7A5430;
+  --text: #FBEBD3; --text-2: #E6CDA8; --text-3: #BFA27C; --accent: #F2A33A; --accent-hover: #F7BE6A; --on-accent: #2A1A0E;
+  --font-display: 'Alfa Slab One', 'Wexer Emoji', Georgia, serif; --font-body: 'Arvo', 'Wexer Emoji', Georgia, serif; --font-mono: 'Arvo', 'Wexer Emoji', Georgia, serif;
+  --display-case: none; --display-weight: 400; --radius: 6px;
+}
+/* wooden planks */
+[data-theme="bierhal"] body { background-image: repeating-linear-gradient(180deg, rgba(0,0,0,0.18) 0 2px, transparent 2px 64px), repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 3px, transparent 3px 11px); }
+
+/* ---------- Decor layers for the new looks (never block a tap) ---------- */
+.party-decor .grid, .party-decor .bigsun, .party-decor .sea { display: none; }
+[data-theme="synthwave"] .party-decor, [data-theme="zonsondergang"] .party-decor, [data-theme="strand"] .party-decor {
+  display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+[data-theme="synthwave"] .party-decor .bunting, [data-theme="zonsondergang"] .party-decor .bunting, [data-theme="strand"] .party-decor .bunting { display: none; }
+[data-theme="synthwave"] .screen, [data-theme="zonsondergang"] .screen, [data-theme="strand"] .screen { position: relative; z-index: 1; }
+/* synthwave: a neon sun and a perspective grid rolling towards you */
+[data-theme="synthwave"] .party-decor .bigsun, [data-theme="zonsondergang"] .party-decor .bigsun {
+  display: block; position: absolute; left: 50%; bottom: 22vh; width: 46vh; height: 46vh; margin-left: -23vh; border-radius: 50%;
+  background: linear-gradient(#FFD319, #FF2E97 70%);
+  -webkit-mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px); mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px);
+  opacity: 0.22;
+}
+[data-theme="zonsondergang"] .party-decor .bigsun { bottom: -18vh; width: 70vh; height: 70vh; margin-left: -35vh; background: linear-gradient(#FFE08A, #FF7B54 80%); opacity: 0.3; }
+[data-theme="synthwave"] .party-decor .grid {
+  display: block; position: absolute; left: -50%; right: -50%; bottom: -10vh; height: 34vh;
+  background:
+    repeating-linear-gradient(90deg, rgba(41, 230, 255, 0.5) 0 2px, transparent 2px 80px),
+    repeating-linear-gradient(180deg, rgba(255, 46, 151, 0.55) 0 2px, transparent 2px 40px);
+  transform: perspective(300px) rotateX(60deg); transform-origin: bottom; opacity: 0.35;
+  animation: grid-roll 2.5s linear infinite;
+}
+@keyframes grid-roll { to { background-position: 0 0, 0 40px; } }
+/* beach: soft waves along the bottom */
+[data-theme="strand"] .party-decor .sea {
+  display: block; position: absolute; left: -10%; right: -10%; bottom: -30px; height: 90px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpath d='M0 20Q25 5 50 20T100 20T150 20T200 20V40H0z' fill='%230E8FB0' fill-opacity='.25'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 60px;
+  animation: sea 9s linear infinite;
+}
+@keyframes sea { to { background-position: 200px 0; } }
+@media (prefers-reduced-motion: reduce) { .party-decor .grid, .party-decor .sea { animation: none; } }

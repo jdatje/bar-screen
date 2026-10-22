@@ -1,24 +1,54 @@
 // Shared helpers for the screen and phone pages.
 
+// Looks, grouped as they appear in the settings
+export const THEME_GROUPS = [
+  { id: 'algemeen', label: 'Algemeen' },
+  { id: 'muziek', label: 'Muziek' },
+  { id: 'zomer', label: 'Zomer' },
+  { id: 'oktoberfest', label: 'Oktoberfest' },
+  { id: 'halloween', label: 'Halloween' },
+  { id: 'nederland', label: 'Nederland' },
+];
+
 export const THEMES = {
-  industrial: { label: 'Industrieel', bg: '#1B1C1E', fg: '#E8E6E1', ac: '#F2A900', fonts: 'Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500' },
-  maison: { label: 'Maison', bg: '#3A0E17', fg: '#F4EAD8', ac: '#E2BE72', fonts: 'Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600' },
-  neon: { label: 'Neon', bg: '#0A0A12', fg: '#F2F2F7', ac: '#FF4FB0', fonts: 'Space+Grotesk:wght@400;500;700' },
-  bruin: { label: 'Bruin café', bg: '#2B1D14', fg: '#F1E3CC', ac: '#D9A066', fonts: 'Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600' },
-  tiki: { label: 'Tiki', bg: '#0F3B33', fg: '#F7EBD3', ac: '#F28C38', fonts: 'Lilita+One&family=Nunito:wght@400;600;700' },
-  disco: { label: 'Disco', bg: '#2A1240', fg: '#FBEFFF', ac: '#F6B93B', fonts: 'Monoton&family=Poppins:wght@400;500;600' },
-  bluenote: { label: 'Blue Note', bg: '#1C2433', fg: '#E9EEF5', ac: '#4F9BE8', fonts: 'Bebas+Neue&family=Work+Sans:wght@400;500;600' },
-  papier: { label: 'Papier', bg: '#F4F1EA', fg: '#1A1A1A', ac: '#B23A48', fonts: 'DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500' },
-  riviera: { label: 'Riviera', bg: '#F6EBDD', fg: '#1D3B4A', ac: '#1F6F8B', fonts: 'Playfair+Display:wght@500;700&family=Lato:wght@400;700' },
-  chalet: { label: 'Winterchalet', bg: '#1E2A24', fg: '#EDE3CF', ac: '#C8553D', fonts: 'Fraunces:wght@500;700&family=Karla:wght@400;500;600' },
+  // Algemeen
+  industrial: { group: 'algemeen', label: 'Industrieel', bg: '#1B1C1E', fg: '#E8E6E1', ac: '#F2A900', fonts: 'Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500' },
+  maison: { group: 'algemeen', label: 'Maison', bg: '#3A0E17', fg: '#F4EAD8', ac: '#E2BE72', fonts: 'Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600' },
+  neon: { group: 'algemeen', label: 'Neon', bg: '#0A0A12', fg: '#F2F2F7', ac: '#FF4FB0', fonts: 'Space+Grotesk:wght@400;500;700' },
+  bruin: { group: 'algemeen', label: 'Bruin café', bg: '#2B1D14', fg: '#F1E3CC', ac: '#D9A066', fonts: 'Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600' },
+  papier: { group: 'algemeen', label: 'Papier', bg: '#F4F1EA', fg: '#1A1A1A', ac: '#B23A48', fonts: 'DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500' },
+  riviera: { group: 'algemeen', label: 'Riviera', bg: '#F6EBDD', fg: '#1D3B4A', ac: '#1F6F8B', fonts: 'Playfair+Display:wght@500;700&family=Lato:wght@400;700' },
+  chalet: { group: 'algemeen', label: 'Winterchalet', bg: '#1E2A24', fg: '#EDE3CF', ac: '#C8553D', fonts: 'Fraunces:wght@500;700&family=Karla:wght@400;500;600' },
+  // Muziek
+  disco: { group: 'muziek', label: 'Disco', bg: '#2A1240', fg: '#FBEFFF', ac: '#F6B93B', fonts: 'Monoton&family=Poppins:wght@400;500;600' },
+  bluenote: { group: 'muziek', label: 'Blue Note', bg: '#1C2433', fg: '#E9EEF5', ac: '#4F9BE8', fonts: 'Bebas+Neue&family=Work+Sans:wght@400;500;600' },
+  rock: { group: 'muziek', label: "Rock 'n' Roll", bg: '#0D0D0D', fg: '#F2F2F2', ac: '#E10600', fonts: 'New+Rocker&family=Barlow:wght@400;500;600' },
+  synthwave: { group: 'muziek', label: 'Synthwave', bg: '#14002E', fg: '#F6EAFF', ac: '#FF2E97', fonts: 'Audiowide&family=Rajdhani:wght@500;600;700' },
+  // Zomer
+  tiki: { group: 'zomer', label: 'Tiki', bg: '#0F3B33', fg: '#F7EBD3', ac: '#F28C38', fonts: 'Lilita+One&family=Nunito:wght@400;600;700' },
+  strand: { group: 'zomer', label: 'Strand', bg: '#F5E6C8', fg: '#1E3A4C', ac: '#0E8FB0', fonts: 'Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700' },
+  zonsondergang: { group: 'zomer', label: 'Zonsondergang', bg: '#2B1B3D', fg: '#FFF1E0', ac: '#FFB347', fonts: 'Righteous&family=Poppins:wght@400;500;600' },
+  // Oktoberfest
+  wiesn: { group: 'oktoberfest', label: 'Wiesn', bg: '#E4EFFB', fg: '#1B2A3A', ac: '#1F5FA8', fonts: 'Grenze+Gotisch:wght@500;700&family=Source+Sans+3:wght@400;600;700' },
+  bierhal: { group: 'oktoberfest', label: 'Bierhal', bg: '#2A1A0E', fg: '#FBEBD3', ac: '#F2A33A', fonts: 'Alfa+Slab+One&family=Arvo:wght@400;700' },
   // Halloween
-  spookhuis: { label: '🎃 Spookhuis', bg: '#0E0A14', fg: '#EFE9F7', ac: '#FF7A1A', fonts: 'Creepster&family=Rubik:wght@400;500;600&family=Special+Elite', spooky: true },
-  pompoen: { label: '🎃 Pompoenveld', bg: '#1C1008', fg: '#FFEBD2', ac: '#FF8F1F', fonts: 'Griffy&family=Quicksand:wght@500;600;700', spooky: true },
-  oranje: { label: '🇳🇱 Oranjegekte', bg: '#FF7A00', fg: '#14204A', ac: '#21468B', fonts: 'Titan+One&family=Nunito:wght@500;600;700;800' },
-  delft: { label: '🇳🇱 Delfts Blauw', bg: '#F3F6FB', fg: '#12306B', ac: '#1B3F9C', fonts: 'Yeseva+One&family=Mulish:wght@400;500;600;700' },
-  oranjeboven: { label: '🇳🇱 Oranje Boven', bg: '#0B1630', fg: '#F4F6FF', ac: '#FF7A00', fonts: 'Bungee&family=Rubik:wght@400;500;600' },
-  heks: { label: '🎃 Heksenketel', bg: '#0A120D', fg: '#E6F5E1', ac: '#8CFF3F', fonts: 'Jolly+Lodger&family=Rubik:wght@400;500;600', spooky: true },
+  spookhuis: { group: 'halloween', label: '🎃 Spookhuis', bg: '#0E0A14', fg: '#EFE9F7', ac: '#FF7A1A', fonts: 'Creepster&family=Rubik:wght@400;500;600&family=Special+Elite', spooky: true },
+  pompoen: { group: 'halloween', label: '🎃 Pompoenveld', bg: '#1C1008', fg: '#FFEBD2', ac: '#FF8F1F', fonts: 'Griffy&family=Quicksand:wght@500;600;700', spooky: true },
+  heks: { group: 'halloween', label: '🎃 Heksenketel', bg: '#0A120D', fg: '#E6F5E1', ac: '#8CFF3F', fonts: 'Jolly+Lodger&family=Rubik:wght@400;500;600', spooky: true },
+  // Nederland
+  oranje: { group: 'nederland', label: '🇳🇱 Oranjegekte', bg: '#FF7A00', fg: '#14204A', ac: '#21468B', fonts: 'Titan+One&family=Nunito:wght@500;600;700;800' },
+  delft: { group: 'nederland', label: '🇳🇱 Delfts Blauw', bg: '#F3F6FB', fg: '#12306B', ac: '#1B3F9C', fonts: 'Yeseva+One&family=Mulish:wght@400;500;600;700' },
+  oranjeboven: { group: 'nederland', label: '🇳🇱 Oranje Boven', bg: '#0B1630', fg: '#F4F6FF', ac: '#FF7A00', fonts: 'Bungee&family=Rubik:wght@400;500;600' },
 };
+
+// Theme cards grouped under headings (used by the settings and /admin)
+export function themeGroupsHtml(ids, current, cardHtml) {
+  return THEME_GROUPS.map((g) => {
+    const list = ids.filter((id) => (THEMES[id]?.group || 'algemeen') === g.id);
+    if (!list.length) return '';
+    return `<div class="theme-group"><span class="mono muted">${esc(g.label)}</span><div class="theme-grid">${list.map((id) => cardHtml(id, id === current)).join('')}</div></div>`;
+  }).join('');
+}
 
 export function applyTheme(theme) {
   const t = THEMES[theme] ? theme : 'industrial';

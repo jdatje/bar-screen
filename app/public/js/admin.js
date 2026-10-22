@@ -1,6 +1,6 @@
 // /admin (phone or laptop, behind the code): the screen's settings and
 // your own pubquiz question sets.
-import { $, esc, toast, applyTheme, askPin, THEMES } from './ui.js';
+import { $, esc, toast, applyTheme, askPin, THEMES, themeGroupsHtml } from './ui.js';
 import { TILE_KEYS, TILE_LABELS, TILE_STYLES } from './tiles.js';
 import * as fx from './fx.js';
 import { setLang } from './i18n.js';
@@ -60,10 +60,10 @@ async function showScreen() {
   $('root').innerHTML = `
     <section class="panel a-sec">
       <span class="mono accent">Look</span>
-      <div class="a-themes">${s.themes.map((id) => {
+      <div class="a-themes">${themeGroupsHtml(s.themes, s.theme, (id, on) => {
         const t = THEMES[id] || { label: id, bg: '#222', fg: '#fff', ac: '#fff' };
-        return `<button class="theme-card${id === s.theme ? ' on' : ''}" data-theme-id="${id}" style="background:${t.bg};color:${t.fg};border-bottom:10px solid ${t.ac}"><span>${esc(t.label)}</span></button>`;
-      }).join('')}</div>
+        return `<button class="theme-card${on ? ' on' : ''}" data-theme-id="${id}" style="background:${t.bg};color:${t.fg};border-bottom:10px solid ${t.ac}"><span>${esc(t.label)}</span></button>`;
+      })}</div>
     </section>
     <section class="panel a-sec">
       <span class="mono accent">Taal</span>
@@ -85,7 +85,82 @@ async function showScreen() {
       <button class="btn" id="new-room">Nieuwe kamercode</button>
       <span class="mono accent">Code</span>
       <button class="btn" id="change-pin">Code wijzigen</button>
+    </section>
+    <section class="panel a-sec">
+      <span class="mono accent">Screensaver na</span>
+      <div class="chips">${[0, 1, 2, 5, 10, 15, 30, 60].map((m) => `<button class="chip${Number(s.screensaver) === m ? ' on' : ''}" data-saver-min="${m}">${m ? `${m} min` : 'Uit'}</button>`).join('')}</div>
+    </section>
+    <section class="panel a-sec">
+      <span class="mono accent">Bar-pc</span>
+      <div class="row">
+        <button class="btn" data-power="reboot">Herstarten</button>
+        <button class="btn" data-power="shutdown">Uitzetten</button>
+      </div>
     </section>`;
+}
+
+// ---------- Games (your own game files) ----------
+const SYSTEMS = [
+  { id: 'n64', label: 'Nintendo 64', ext: ['z64', 'n64', 'v64'] },
+  { id: 'snes', label: 'Super Nintendo', ext: ['sfc', 'smc'] },
+  { id: 'nes', label: 'NES', ext: ['nes'] },
+  { id: 'gba', label: 'Game Boy Advance', ext: ['gba'] },
+  { id: 'gb', label: 'Game Boy (Color)', ext: ['gb', 'gbc'] },
+  { id: 'segaMD', label: 'Sega Mega Drive', ext: ['md', 'gen', 'smd'] },
+];
+const guessSystem = (name) => SYSTEMS.find((x) => x.ext.includes(name.split('.').pop().toLowerCase()))?.id || '';
+
+async function showGames() {
+  $('admin-title').textContent = 'Games';
+  const res = await fetch('/games/api/games').catch(() => null);
+  const list = res?.ok ? await res.json() : null;
+  $('root').innerHTML = `
+    <form class="panel upload" id="upload">
+      <span class="mono accent">Spel toevoegen</span>
+      <p class="muted" style="margin:0">Alleen je eigen spelbestanden (bijvoorbeeld van je eigen cartridges). Werkt met: ${SYSTEMS.map((x) => x.label).join(', ')}.</p>
+      <input type="file" id="rom-file" required>
+      <div class="field"><label for="rom-name">Naam</label><input id="rom-name" maxlength="60" placeholder="Bijv. Mario Kart 64"></div>
+      <div class="field"><label for="rom-system">Systeem</label><select id="rom-system">
+        <option value="">Automatisch (aan de bestandsnaam)</option>
+        ${SYSTEMS.map((x) => `<option value="${x.id}">${x.label}</option>`).join('')}
+      </select></div>
+      <button class="btn primary" type="submit" id="upload-btn">Uploaden</button>
+      <span class="muted" id="upload-status"></span>
+    </form>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      ${list == null
+        ? '<p class="warn">De games-container is (nog) niet bereikbaar.</p>'
+        : list.length
+          ? list.map((g) => `<div class="panel g-row"><div><span class="mono muted">${esc(SYSTEMS.find((x) => x.id === g.system)?.label || g.system)} · ${(g.size / 1048576).toFixed(1)} MB</span>
+              <div class="display">${esc(g.name)}</div></div>
+              <button class="btn small" data-del-game="${esc(g.id)}">Verwijderen</button></div>`).join('')
+          : '<p class="muted">Nog geen spellen.</p>'}
+    </div>`;
+  $('rom-file').addEventListener('change', () => {
+    const f = $('rom-file').files[0];
+    if (!f) return;
+    if (!$('rom-name').value) $('rom-name').value = f.name.replace(/\.[^.]+$/, '').replace(/_/g, ' ').replace(/\s*[([].*?[)\]]/g, '').trim();
+    if (!$('rom-system').value) $('rom-system').value = guessSystem(f.name);
+  });
+  $('upload').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = $('rom-file').files[0];
+    if (!f) return;
+    const system = $('rom-system').value || guessSystem(f.name);
+    if (!system) return toast('Kies het systeem');
+    $('upload-btn').disabled = true;
+    $('upload-status').textContent = 'Bezig met uploaden…';
+    const q = new URLSearchParams({ file: f.name, name: $('rom-name').value || f.name, system });
+    const r = await fetch(`/api/admin/games?${q}`, { method: 'PUT', headers: { 'content-type': 'application/octet-stream', 'x-admin-pin': pin }, body: f }).catch(() => null);
+    $('upload-btn').disabled = false;
+    if (r?.status === 401) return showLocked();
+    if (!r?.ok) {
+      $('upload-status').textContent = '';
+      return toast(r?.status === 413 ? 'Bestand te groot' : 'Uploaden lukte niet');
+    }
+    toast('Spel toegevoegd');
+    showGames();
+  });
 }
 
 async function saveSettings(patch) {
@@ -98,7 +173,7 @@ function setTab(next) {
   tab = next;
   document.querySelectorAll('#admin-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
   window.scrollTo(0, 0);
-  return (tab === 'screen' ? showScreen() : showList()).catch((e) => {
+  return (tab === 'screen' ? showScreen() : tab === 'games' ? showGames() : showList()).catch((e) => {
     if (!(e instanceof Locked)) throw e;
   });
 }
@@ -228,6 +303,23 @@ document.addEventListener('click', async (e) => {
     const r = await saveSettings({ theme: t.dataset.themeId });
     if (r.ok) showScreen();
     return;
+  }
+  if (t.dataset.saverMin != null) {
+    const r = await saveSettings({ screensaver: Number(t.dataset.saverMin) });
+    if (r.ok) showScreen();
+    return;
+  }
+  if (t.dataset.power) {
+    const shutdown = t.dataset.power === 'shutdown';
+    if (!confirm(shutdown ? 'De bar-pc uitzetten?' : 'De bar-pc herstarten?')) return;
+    const r = await api('POST', '/power', { action: t.dataset.power });
+    toast(r.ok ? (shutdown ? 'De pc gaat uit…' : 'De pc herstart… even geduld') : 'Lukt niet');
+    return;
+  }
+  if (t.dataset.delGame) {
+    if (!confirm('Dit spel verwijderen?')) return;
+    await api('DELETE', `/games/${encodeURIComponent(t.dataset.delGame)}`);
+    return showGames();
   }
   if (t.dataset.langId) {
     const r = await saveSettings({ language: t.dataset.langId });

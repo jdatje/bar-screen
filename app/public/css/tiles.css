@@ -333,3 +333,107 @@
   50% { transform: translate(-16px, 200px) rotate(200deg) rotateX(180deg); }
   100% { transform: translate(10px, 420px) rotate(400deg) rotateX(360deg); opacity: 0; }
 }
+
+/* ===== Summer ===== */
+/* Strandbal: a beach ball bouncing along */
+.tbg-beachball i { left: 62%; bottom: 0; width: 70px; height: 70px; animation: tb-bounce-x 9s ease-in-out infinite alternate; }
+.tbg-beachball b {
+  display: block; width: 100%; height: 100%; border-radius: 50%; opacity: 0.4;
+  background: conic-gradient(#E8412C 0 60deg, #FFFFFF 0 120deg, #F7C948 0 180deg, #FFFFFF 0 240deg, #0E8FB0 0 300deg, #FFFFFF 0);
+  box-shadow: inset -8px -8px 14px rgba(0, 0, 0, 0.18); animation: tb-bounce 1.2s cubic-bezier(.5, 0, .5, 1) infinite alternate, tb-spin 6s linear infinite;
+}
+@keyframes tb-bounce { from { transform: translateY(0); } to { transform: translateY(-120px); } }
+@keyframes tb-bounce-x { from { left: 48%; } to { left: 84%; } }
+
+/* Golven: layered waves rolling */
+.tbg-waves i {
+  left: -40%; right: -40%; bottom: -10px; height: 70px; opacity: 0.18;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10Q12.5 0 25 10T50 10T75 10T100 10V20H0z'/%3E%3C/svg%3E") repeat-x 0 0 / 100px 70px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10Q12.5 0 25 10T50 10T75 10T100 10V20H0z'/%3E%3C/svg%3E") repeat-x 0 0 / 100px 70px;
+  animation: tb-wave-x 6s linear infinite;
+}
+.tbg-waves i:nth-child(2) { bottom: 24px; opacity: 0.11; animation-duration: 9s; animation-direction: reverse; }
+.tbg-waves i:nth-child(3) { bottom: 50px; opacity: 0.07; animation-duration: 12s; }
+@keyframes tb-wave-x { to { transform: translateX(100px); } }
+
+/* Zon: a sun with turning rays */
+.tbg-sun i {
+  right: -12%; bottom: -18%; width: 80%; aspect-ratio: 1; border-radius: 50%; opacity: 0.16;
+  background: repeating-conic-gradient(currentColor 0 8deg, transparent 8deg 22.5deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 34%, #000 35% 70%, transparent 71%); mask: radial-gradient(circle, transparent 0 34%, #000 35% 70%, transparent 71%);
+  animation: tb-spin 50s linear infinite;
+}
+.tbg-sun b { position: absolute; inset: 36%; border-radius: 50%; background: currentColor; -webkit-mask: none; }
+
+/* ===== Oktoberfest ===== */
+/* Brezels: pretzels drifting up and turning */
+.tbg-pretzels i { bottom: -60px; font-size: 44px; line-height: 1; opacity: 0; animation: tb-drift 15s linear infinite; filter: saturate(0.8); }
+.tbg-pretzels i:nth-child(1) { left: 60%; }
+.tbg-pretzels i:nth-child(2) { left: 80%; font-size: 30px; animation-delay: -4s; animation-duration: 17s; }
+.tbg-pretzels i:nth-child(3) { left: 70%; font-size: 58px; animation-delay: -8s; animation-duration: 19s; }
+.tbg-pretzels i:nth-child(4) { left: 90%; font-size: 36px; animation-delay: -11s; }
+.tbg-pretzels i:nth-child(5) { left: 50%; font-size: 26px; animation-delay: -13s; animation-duration: 16s; }
+.tbg-pretzels i { --o: 0.3; }
+.tile-bg.tbg-pretzels i { animation-name: tb-drift-strong; }
+@keyframes tb-drift-strong { 0% { transform: translateY(0) rotate(-12deg); opacity: 0; } 15%, 85% { opacity: 0.35; } 100% { transform: translateY(-340px) rotate(12deg); opacity: 0; } }
+
+/* Bierpul: a beer stein with rising bubbles and a foam head */
+.tbg-beer i {
+  right: 12%; bottom: -6px; width: 110px; height: 150px; border: 4px solid currentColor; border-bottom-width: 8px;
+  border-radius: 6px 6px 12px 12px; opacity: 0.22; overflow: hidden;
+  background: linear-gradient(transparent 22%, rgba(242, 163, 58, 0.55) 22%);
+}
+.tbg-beer i::after { content: ''; position: absolute; right: -34px; top: 34px; width: 30px; height: 60px; border: 4px solid currentColor; border-left: 0; border-radius: 0 18px 18px 0; }
+.tbg-beer b { position: absolute; left: -6px; right: -6px; top: 10%; height: 24px; border-radius: 12px; background: #FFF6E5; animation: tb-foam 3s ease-in-out infinite alternate; }
+.tbg-beer s { position: absolute; bottom: 0; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid currentColor; text-decoration: none; animation: tb-beer-bubble 3s linear infinite; }
+.tbg-beer s:nth-of-type(1) { left: 18%; } .tbg-beer s:nth-of-type(2) { left: 42%; animation-delay: -0.8s; }
+.tbg-beer s:nth-of-type(3) { left: 64%; animation-delay: -1.6s; } .tbg-beer s:nth-of-type(4) { left: 82%; animation-delay: -2.2s; }
+@keyframes tb-foam { from { transform: translateY(0) scaleY(1); } to { transform: translateY(-3px) scaleY(1.15); } }
+@keyframes tb-beer-bubble { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-100px); opacity: 0; } }
+
+/* ===== Music ===== */
+/* Equalizer: bars dancing at the bottom */
+.tbg-eq { display: flex; align-items: flex-end; justify-content: flex-end; gap: 6px; padding: 0 14px 0 45%; }
+.tbg-eq i { position: relative; flex: 1; max-width: 16px; height: 30%; background: currentColor; opacity: 0.18; border-radius: 3px 3px 0 0; animation: tb-eq 1.1s ease-in-out infinite alternate; }
+.tbg-eq i:nth-child(2) { animation-delay: -0.3s; animation-duration: 0.9s; } .tbg-eq i:nth-child(3) { animation-delay: -0.6s; animation-duration: 1.3s; }
+.tbg-eq i:nth-child(4) { animation-delay: -0.2s; } .tbg-eq i:nth-child(5) { animation-delay: -0.8s; animation-duration: 0.8s; }
+.tbg-eq i:nth-child(6) { animation-delay: -0.5s; animation-duration: 1.2s; } .tbg-eq i:nth-child(7) { animation-delay: -0.1s; animation-duration: 1s; }
+.tbg-eq i:nth-child(8) { animation-delay: -0.7s; } .tbg-eq i:nth-child(9) { animation-delay: -0.4s; animation-duration: 0.95s; }
+@keyframes tb-eq { from { height: 12%; } to { height: 62%; } }
+
+/* Muzieknoten: notes floating up */
+.tbg-notes i { bottom: -50px; font-size: 48px; line-height: 1; opacity: 0; animation: tb-drift 13s linear infinite; }
+.tbg-notes i:nth-child(1) { left: 56%; } .tbg-notes i:nth-child(2) { left: 74%; font-size: 34px; animation-delay: -3s; animation-duration: 15s; }
+.tbg-notes i:nth-child(3) { left: 88%; font-size: 60px; animation-delay: -6s; } .tbg-notes i:nth-child(4) { left: 64%; font-size: 28px; animation-delay: -8s; animation-duration: 11s; }
+.tbg-notes i:nth-child(5) { left: 94%; font-size: 40px; animation-delay: -10s; } .tbg-notes i:nth-child(6) { left: 46%; font-size: 36px; animation-delay: -12s; animation-duration: 14s; }
+
+/* Plaat: a record spinning in the corner */
+.tbg-vinyl i {
+  right: -30%; bottom: -40%; width: 95%; aspect-ratio: 1; border-radius: 50%; opacity: 0.2;
+  background: radial-gradient(circle, currentColor 0 3%, transparent 3.5% 15%, currentColor 15.5% 30%, transparent 30.5%),
+    repeating-radial-gradient(circle, currentColor 0 2px, transparent 2px 7px);
+  animation: tb-spin 4s linear infinite;
+}
+.tbg-vinyl i::after { content: ''; position: absolute; left: 50%; top: 8%; width: 6px; height: 40%; margin-left: -3px; background: linear-gradient(transparent, rgba(255, 255, 255, 0.5), transparent); }
+
+/* ===== Games ===== */
+/* Pixelmonsters: pixel aliens marching and bobbing */
+.tbg-pixels i { width: 54px; opacity: 0.2; animation: tb-march 6s steps(12) infinite alternate; }
+.tbg-pixels svg { position: static; width: 100%; animation: tb-hop 0.8s steps(2) infinite; }
+.tbg-pixels i:nth-child(1) { left: 48%; top: 40%; } .tbg-pixels i:nth-child(2) { left: 64%; top: 40%; width: 40px; }
+.tbg-pixels i:nth-child(3) { left: 78%; top: 40%; } .tbg-pixels i:nth-child(4) { left: 56%; top: 68%; width: 40px; } .tbg-pixels i:nth-child(5) { left: 72%; top: 68%; }
+@keyframes tb-march { from { transform: translateX(-30px); } to { transform: translateX(30px); } }
+@keyframes tb-hop { 50% { transform: translateY(-4px); } }
+
+/* Sterrenveld: stars rushing past */
+.tbg-stars i { left: 70%; top: 50%; width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0; animation: tb-star 3s linear infinite; }
+.tbg-stars i:nth-child(odd) { --dx: -260px; } .tbg-stars i:nth-child(even) { --dx: 220px; }
+.tbg-stars i:nth-child(3n) { --dy: -140px; } .tbg-stars i:nth-child(3n+1) { --dy: 120px; } .tbg-stars i:nth-child(3n+2) { --dy: -20px; }
+.tbg-stars i:nth-child(4n) { --dx: 60px; --dy: -170px; } .tbg-stars i:nth-child(5n) { --dx: -90px; --dy: 170px; }
+.tbg-stars i:nth-child(2) { animation-delay: -0.2s; } .tbg-stars i:nth-child(3) { animation-delay: -0.4s; } .tbg-stars i:nth-child(4) { animation-delay: -0.6s; }
+.tbg-stars i:nth-child(5) { animation-delay: -0.8s; } .tbg-stars i:nth-child(6) { animation-delay: -1s; } .tbg-stars i:nth-child(7) { animation-delay: -1.2s; }
+.tbg-stars i:nth-child(8) { animation-delay: -1.4s; } .tbg-stars i:nth-child(9) { animation-delay: -1.6s; } .tbg-stars i:nth-child(10) { animation-delay: -1.8s; }
+.tbg-stars i:nth-child(11) { animation-delay: -2s; } .tbg-stars i:nth-child(12) { animation-delay: -2.2s; } .tbg-stars i:nth-child(13) { animation-delay: -2.4s; }
+.tbg-stars i:nth-child(14) { animation-delay: -2.6s; } .tbg-stars i:nth-child(15) { animation-delay: -2.8s; } .tbg-stars i:nth-child(16) { animation-delay: -0.5s; }
+@keyframes tb-star { 0% { transform: translate(0, 0) scale(0.5); opacity: 0; } 20% { opacity: 0.5; } 100% { transform: translate(var(--dx, 200px), var(--dy, 0)) scale(1.6); opacity: 0; } }

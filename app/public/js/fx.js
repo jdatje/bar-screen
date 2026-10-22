@@ -60,6 +60,12 @@ export const banner = once((text) => {
   el.querySelector('b').textContent = text;
 }, 9000);
 
+// Old-school: scanlines and a pixel message
+export const retro = once(() => {
+  const el = layer('fx-retro', 5000);
+  el.innerHTML = '<b>+30 LEVENS</b>';
+}, 5000);
+
 // Lights out... and something is watching
 export const eyes = once(() => {
   const el = layer('fx-eyes', 6000);

@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="spooky-decor" aria-hidden="true"><span class="vignette"></span><span class="fog"></span><span class="fog f2"></span><span class="web tl"></span><span class="web br"></span></div>
-<div class="party-decor" aria-hidden="true"><span class="bunting"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="flagline"></span></div>
+<div class="party-decor" aria-hidden="true"><span class="bunting"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="flagline"></span><span class="bigsun"></span><span class="grid"></span><span class="sea"></span></div>
 <main class="screen">
   <header class="topbar">
     <div class="brand">
@@ -91,17 +91,24 @@
         <p id="makeable-line">Menu op basis van wat er staat</p>
         <span class="mono muted go">Open de kaart →</span>
       </button>
+      <button class="tile" data-go="games">
+        <span class="tile-bg" data-tile="games" aria-hidden="true"></span>
+        <span class="mono accent">04</span>
+        <span class="display">Games</span>
+        <p>Retro spelletjes met de controllers</p>
+        <span class="mono muted go">Kies een spel →</span>
+      </button>
       <button class="tile hot" data-go="wheel">
         <span class="tile-bg" data-tile="wheel" aria-hidden="true"></span>
-        <span class="mono">04</span>
+        <span class="mono">05</span>
         <span class="display">Draai het rad</span>
         <p>Laat het lot je cocktail kiezen</p>
       </button>
-      <div class="tile join">
+      <div class="tile join wide">
         <span class="tile-bg" data-tile="join" aria-hidden="true"></span>
         <img class="qr" alt="QR-code om mee te doen">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <span class="mono accent">05 — Meedoen</span>
+          <span class="mono accent">06 — Meedoen</span>
           <p>Scan voor de quiz en recepten</p>
           <span class="code room-code">····</span>
         </div>
@@ -158,6 +165,18 @@
     </aside>
   </section>
 
+  <!-- ================= GAMES ================= -->
+  <section class="view games" data-view="games" hidden>
+    <div class="games-head">
+      <div>
+        <span class="mono accent">Games</span>
+        <h2 class="display ck-title">Kies een spel</h2>
+      </div>
+      <span class="mono muted" id="games-count"></span>
+    </div>
+    <div class="games-grid" id="games-grid"></div>
+  </section>
+
   <!-- ================= STOCK ================= -->
   <section class="view stock" data-view="stock" hidden>
     <div class="stock-head">
@@ -191,7 +210,7 @@
     </div>
     <div>
       <p class="mono muted">Look</p>
-      <div class="theme-grid" id="themes"></div>
+      <div class="theme-groups" id="themes"></div>
     </div>
     <div>
       <p class="mono muted">Taal</p>
@@ -204,17 +223,49 @@
       <p class="mono muted">Achtergrond van de knoppen</p>
       <div class="tile-choices" id="tile-choices"></div>
     </div>
+    <div>
+      <p class="mono muted">Screensaver na</p>
+      <div class="chips" id="saver-choices"></div>
+    </div>
     <div class="row">
       <button class="btn" id="new-room">Nieuwe kamercode</button>
       <button class="btn" id="settings-stock">Voorraad</button>
       <button class="btn" id="set-pin">Code wijzigen</button>
       <a class="btn" href="/auth/spotify/login" style="text-decoration:none">Spotify koppelen</a>
     </div>
+    <div>
+      <p class="mono muted">Bar-pc</p>
+      <div class="row">
+        <button class="btn" id="pc-restart">Herstarten</button>
+        <button class="btn" id="pc-shutdown">Uitzetten</button>
+      </div>
+    </div>
     <div class="admin-link">
       <img class="qr" id="admin-qr" alt="QR-code naar de beheerpagina">
       <p class="notice">Scan om de instellingen en eigen quizvragen vanaf je telefoon te regelen: <span id="admin-url">/admin</span> (met dezelfde code).</p>
     </div>
   </div>
+</div>
+
+<!-- A running game, full screen -->
+<div class="game-frame" id="game-frame" hidden>
+  <iframe id="game-iframe" title="Game" allow="gamepad; fullscreen; autoplay"></iframe>
+  <button class="game-exit" id="game-exit">✕ Stoppen</button>
+  <span class="game-hint">SELECT + START vasthouden = stoppen</span>
+</div>
+
+<!-- Screensaver -->
+<div class="saver" id="saver" hidden>
+  <div class="saver-bg" id="saver-bg"></div>
+  <div class="saver-shade"></div>
+  <div class="saver-inner">
+    <div class="saver-art" id="saver-art"></div>
+    <div class="saver-idle display" id="saver-idle">Wexer 2.0</div>
+    <h2 class="display saver-title" id="saver-title"></h2>
+    <p class="saver-artist" id="saver-artist"></p>
+  </div>
+  <div class="saver-next" id="saver-next"></div>
+  <div class="saver-clock" id="saver-clock"></div>
 </div>
 
 <!-- Recipe -->

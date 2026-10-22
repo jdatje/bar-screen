@@ -16,7 +16,7 @@ import * as diag from './lib/diag.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
 const PORT = Number(process.env.PORT || 80);
-export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven'];
+export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven', 'rock', 'synthwave', 'strand', 'zonsondergang', 'wiesn', 'bierhal'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
 const app = express();
@@ -25,7 +25,8 @@ const io = new Server(server);
 
 // The settings are locked with a code; 252525 unless the admins changed it
 const DEFAULT_PIN = '252525';
-let settings = load('settings', { theme: 'industrial', language: 'nl', pin: DEFAULT_PIN });
+let settings = load('settings', { theme: 'industrial', language: 'nl', pin: DEFAULT_PIN, screensaver: 5 });
+if (settings.screensaver == null) settings.screensaver = 5; // minutes, 0 = off
 if (!settings.pin) settings.pin = DEFAULT_PIN;
 settings.tiles = { ...DEFAULT_TILES, ...(settings.tiles || {}) };
 let quizDefaults = load('quiz-settings', {
@@ -42,7 +43,8 @@ if (!quizDefaults.pubquiz.setChosen) {
 // All bundled questions have a Dutch version, so Dutch is always the default
 quizDefaults.pubquiz.lang = 'nl';
 
-const publicSettings = () => ({ theme: settings.theme, language: settings.language, tiles: settings.tiles, hasPin: Boolean(settings.pin) });
+const publicSettings = () => ({ theme: settings.theme, language: settings.language, tiles: settings.tiles, screensaver: settings.screensaver, hasPin: Boolean(settings.pin) });
+const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
 
 // Code check with a brake on guessing: 5 wrong codes = 30 s wait
 const guesses = { wrong: 0, until: 0 };
@@ -64,6 +66,7 @@ function pinOk(pin) {
 function applySettings(patch = {}) {
   if (patch.theme && THEMES.includes(patch.theme)) settings.theme = patch.theme;
   if (patch.language && ['nl', 'en'].includes(patch.language)) settings.language = patch.language;
+  if (SAVER_MINUTES.includes(Number(patch.screensaver))) settings.screensaver = Number(patch.screensaver);
   if (patch.tiles && typeof patch.tiles === 'object') {
     for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
   }
@@ -277,6 +280,37 @@ app.get(CALLBACK_PATH, async (req, res) => {
   }
 });
 
+// ----- Restart / shut down the bar PC (balena supervisor) -----
+async function power(action) {
+  const addr = process.env.BALENA_SUPERVISOR_ADDRESS;
+  const key = process.env.BALENA_SUPERVISOR_API_KEY;
+  if (!addr || !key) throw new Error('Not running on balena');
+  const res = await fetch(`${addr}/v1/${action === 'shutdown' ? 'shutdown' : 'reboot'}?apikey=${key}`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ force: true }),
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!res.ok) throw new Error(`Supervisor ${res.status}`);
+}
+
+// ----- Games (the games container, on 127.0.0.1) -----
+const GAMES_URL = process.env.GAMES_URL || 'http://127.0.0.1:8081';
+function forwardToGames(req, res, upstreamPath) {
+  const headers = {};
+  for (const h of ['content-type', 'content-length', 'range']) if (req.headers[h]) headers[h] = req.headers[h];
+  const up = http.request(new URL(upstreamPath, GAMES_URL), { method: req.method, headers }, (r) => {
+    res.writeHead(r.statusCode, r.headers);
+    r.pipe(res);
+  });
+  up.on('error', () => {
+    if (!res.headersSent) res.status(502).json({ error: 'games_offline' });
+  });
+  req.pipe(up);
+}
+// library, player page and game files: readable for the screen
+app.use('/games', (req, res, next) => (req.method === 'GET' || req.method === 'HEAD' ? forwardToGames(req, res, req.url) : next()));
+
 // ----- Admin API (question sets, cocktail import) -----
 const admin = express.Router();
 admin.use((req, res, next) => (pinOk(req.get('x-admin-pin')) ? next() : res.status(401).json({ error: 'pin' })));
@@ -300,6 +334,17 @@ admin.post('/cocktails/refresh', async (_req, res) => {
     res.status(502).json({ ok: false, error: err.message });
   }
 });
+admin.post('/power', async (req, res) => {
+  try {
+    res.json({ ok: true });
+    setTimeout(() => power(req.body?.action).catch((err) => console.warn('Power action failed:', err.message)), 800);
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+// game uploads arrive as a raw body: PUT /api/admin/games?file=&name=&system=
+admin.put('/games', (req, res) => forwardToGames(req, res, `/api/games${req.url.slice(req.url.indexOf('?')) .replace(/^[^?]*$/, '')}`));
+admin.delete('/games/:id', (req, res) => forwardToGames(req, res, `/api/games/${encodeURIComponent(req.params.id)}`));
 admin.get('/settings', (_req, res) => res.json({ ...publicSettings(), themes: THEMES, room: room.code }));
 admin.post('/settings', (req, res) => res.json(applySettings(req.body || {})));
 admin.post('/room/new', async (_req, res) => {
@@ -340,6 +385,16 @@ io.on('connection', (socket) => {
     // all settings sit behind the code
     if (!pinOk(pin)) return ack?.({ ok: false, error: 'pin' });
     ack?.(applySettings(patch));
+  });
+
+  socket.on('device:power', async ({ pin, action } = {}, ack) => {
+    if (!isScreen() || !pinOk(pin)) return ack?.({ ok: false, error: 'pin' });
+    try {
+      ack?.({ ok: true });
+      setTimeout(() => power(action).catch((err) => console.warn('Power action failed:', err.message)), 800);
+    } catch (err) {
+      ack?.({ ok: false, error: err.message });
+    }
   });
 
   socket.on('room:new', async ({ pin } = {}, ack) => {

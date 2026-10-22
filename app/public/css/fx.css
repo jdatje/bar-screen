@@ -91,3 +91,9 @@
 }
 .fx-banner span { font-size: 70px; }
 @keyframes fx-banner { to { transform: translateX(calc(-100vw - 100%)); } }
+
+/* retro cheat: scanlines and a blinking pixel message */
+.fx-retro { background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 4px); animation: fx-crt 5s steps(1) forwards; display: flex; align-items: center; justify-content: center; }
+.fx-retro b { font-family: 'Courier New', monospace; font-weight: 900; font-size: 9vw; color: #7CFF4F; text-shadow: 6px 6px 0 #000, 0 0 30px rgba(124, 255, 79, 0.8); letter-spacing: 0.1em; animation: fx-blink 0.5s steps(1) infinite; }
+@keyframes fx-crt { 0% { opacity: 1; } 96% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes fx-blink { 50% { opacity: 0.2; } }

@@ -6,6 +6,7 @@ volumes:
   app-data:
   browser-settings:
   spotify-data:
+  games-data:
 
 services:
   # Wexer: screen UI, phone UI, Spotify control, game logic
@@ -42,6 +43,8 @@ services:
       - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
       - LAUNCH_URL=http://localhost
       - KIOSK=1
+      # GPU rendering: needed to run N64 games smoothly in the browser
+      - ENABLE_GPU=1
       # No Chrome popups, bubbles or prompts on the kiosk (added to the block's defaults)
       - >-
         EXTRA_FLAGS=--no-first-run --no-default-browser-check --disable-infobars
@@ -66,3 +69,12 @@ services:
     privileged: true
     environment:
       - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+
+  # Retro games: your own game files + the EmulatorJS player page.
+  # Only reachable on 127.0.0.1; the app serves it on /games.
+  games:
+    build: ./games
+    restart: always
+    network_mode: host
+    volumes:
+      - games-data:/data
