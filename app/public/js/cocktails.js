@@ -9,6 +9,7 @@ let wheelItems = [];
 let wheelAngle = 0;
 let spinning = false;
 let pendingSpin = false;
+let spinTimer = null;
 let stockData = null;
 
 export function init(c) {
@@ -23,11 +24,12 @@ export function init(c) {
   $('recipe').addEventListener('click', onRecipeClick);
   $('stock-cols').addEventListener('click', onStockClick);
   $('stock-add').addEventListener('submit', addCustom);
-  $('wheel').addEventListener('transitionend', spinDone);
 }
 
 // ================= Menu =================
 export async function openMenu() {
+  // a spin that was cut off (screen left mid-spin) must never block the wheel
+  if (spinning) spinDone();
   await loadMenu();
   if (pendingSpin) {
     pendingSpin = false;
@@ -158,12 +160,22 @@ function spin() {
   const svg = $('wheel');
   svg.style.transition = 'transform 4.2s cubic-bezier(.15,.85,.2,1)';
   svg.style.transform = `rotate(${wheelAngle}deg)`;
+  // a timer, not 'transitionend': that event never comes when the wheel is
+  // hidden or the animation gets interrupted, and then the wheel stayed stuck
+  clearTimeout(spinTimer);
+  spinTimer = setTimeout(spinDone, 4400);
 }
 
 function spinDone() {
+  clearTimeout(spinTimer);
   if (!spinning) return;
   spinning = false;
-  if (spin.winner) openRecipe(spin.winner.id, true);
+  // park the angle back in 0–360 without a visible jump
+  const svg = $('wheel');
+  wheelAngle = ((wheelAngle % 360) + 360) % 360;
+  svg.style.transition = 'none';
+  svg.style.transform = `rotate(${wheelAngle}deg)`;
+  if (spin.winner && ctx.view() === 'cocktails') openRecipe(spin.winner.id, true);
 }
 
 // ================= Recipe =================

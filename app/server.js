@@ -16,6 +16,7 @@ import * as diag from './lib/diag.js';
 import * as requests from './lib/requests.js';
 import * as photos from './lib/photos.js';
 import * as guests from './lib/guests.js';
+import * as credits from './lib/credits.js';
 import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
@@ -98,11 +99,27 @@ function applySettings(patch = {}) {
 // ---------- Room & players ----------
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no I, O, 0, 1
 const newCode = () => Array.from({ length: 4 }, () => CODE_CHARS[crypto.randomInt(CODE_CHARS.length)]).join('');
-const room = { code: newCode(), joinUrl: null, qr: null, adminUrl: null, adminQr: null };
-const players = new Map(); // playerId -> { name, sockets: Set }
+// The room code and who joined survive a restart (update, PC reboot), so
+// phones don't have to join again every time.
+const savedRoom = load('room', { code: null, players: {} });
+const room = { code: savedRoom.code || newCode(), joinUrl: null, qr: null, adminUrl: null, adminQr: null };
+const players = new Map( // playerId -> { name, sockets: Set, manual }
+  Object.entries(savedRoom.players || {}).map(([id, p]) => [id, { name: p.name, manual: Boolean(p.manual), sockets: new Set() }])
+);
+function saveRoom() {
+  save('room', {
+    code: room.code,
+    players: Object.fromEntries([...players].map(([id, p]) => [id, { name: p.name, manual: p.manual || false }])),
+  });
+}
+saveRoom();
+// one name = one player (case and spaces ignored), so a guest who joins again
+// from another browser or after losing her phone's storage isn't counted twice
+const nameKey = (n) => String(n || '').trim().toLowerCase().replace(/\s+/g, ' ');
+const findByName = (n) => [...players].find(([, p]) => nameKey(p.name) === nameKey(n))?.[0] || null;
 
 const playerList = () =>
-  [...players.entries()].map(([id, p]) => ({ id, name: p.name, online: p.sockets.size > 0 }));
+  [...players.entries()].map(([id, p]) => ({ id, name: p.name, online: p.sockets.size > 0, manual: Boolean(p.manual) }));
 
 async function resolveJoinUrl() {
   let base = process.env.PUBLIC_URL || process.env.LAN_URL || null;
@@ -134,6 +151,7 @@ async function resolveJoinUrl() {
 async function newRoom() {
   room.code = newCode();
   players.clear();
+  saveRoom();
   await resolveJoinUrl();
   io.to('phones').emit('room:closed');
   io.to('screen').emit('state', screenState());
@@ -398,6 +416,12 @@ admin.delete('/photos/:id', (req, res) => {
   res.json({ ok: true });
 });
 admin.get('/guests', (_req, res) => res.json(guests.list()));
+admin.get('/credits', (_req, res) => res.json({ people: credits.list(), names: guests.list().map((g) => g.name) }));
+admin.post('/credits', (req, res) => res.json(credits.change(req.body?.name, req.body?.amount)));
+admin.delete('/credits/:key', (req, res) => {
+  credits.remove(req.params.key);
+  res.json({ ok: true });
+});
 admin.delete('/guests/:key', (req, res) => {
   guests.remove(req.params.key);
   res.json({ ok: true });
@@ -620,17 +644,59 @@ io.on('connection', (socket) => {
     }
     const cleanName = String(name || '').trim().slice(0, 24);
     if (!cleanName) return ack?.({ ok: false, error: 'no_name' });
-    const id = playerId && players.has(playerId) ? playerId : crypto.randomUUID();
+    // same name as someone already in the room: that's her (or him) again
+    const id = findByName(cleanName) || (playerId && players.has(playerId) ? playerId : crypto.randomUUID());
+    const prevId = socket.data.playerId;
+    if (prevId && prevId !== id) players.get(prevId)?.sockets.delete(socket.id);
+    // this phone used another entry before (renamed itself): drop it if nobody uses it
+    for (const oldId of new Set([prevId, playerId])) {
+      const old = oldId && oldId !== id ? players.get(oldId) : null;
+      if (old && !old.manual && ![...old.sockets].some((sid) => sid !== socket.id && io.sockets.sockets.has(sid))) {
+        players.delete(oldId);
+        game.removePlayer(oldId);
+      }
+    }
     const p = players.get(id) || { name: cleanName, sockets: new Set() };
     p.name = cleanName;
     p.sockets.add(socket.id);
     players.set(id, p);
     socket.data.playerId = id;
+    game.addPlayer(id);
+    saveRoom();
     socket.join('phones');
     guests.checkIn(cleanName);
     ack?.({ ok: true, playerId: id, name: cleanName, settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn() });
     broadcastPlayers();
     if (game.active) game.emit();
+  });
+
+  // ----- Players (setup screen): add someone by name, or take someone out -----
+  socket.on('players:add', ({ name } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    const clean = String(name || '').trim().slice(0, 24);
+    if (!clean) return ack?.({ ok: false, error: 'no_name' });
+    if (findByName(clean)) return ack?.({ ok: false, error: 'exists' });
+    const id = crypto.randomUUID();
+    players.set(id, { name: clean, manual: true, sockets: new Set() });
+    game.addPlayer(id);
+    saveRoom();
+    broadcastPlayers();
+    ack?.({ ok: true, id });
+  });
+  socket.on('players:remove', ({ id } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    const p = players.get(id);
+    if (!p) return ack?.({ ok: false });
+    players.delete(id);
+    game.removePlayer(id);
+    for (const sid of p.sockets) {
+      const s = io.sockets.sockets.get(sid);
+      if (s) s.data.playerId = null;
+      io.to(sid).emit('player:removed');
+    }
+    saveRoom();
+    broadcastPlayers();
+    ack?.({ ok: true });
   });
 
   socket.on('phone:answer', ({ choice } = {}, ack) => {

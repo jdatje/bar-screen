@@ -33,8 +33,9 @@ kb.addEventListener('click', (e) => {
   else if (k === '⌫') target.value = target.value.slice(0, -1);
   else if (k === 'close') return hide();
   else if (k === 'enter') {
+    const form = target.form;
     hide();
-    target.form?.requestSubmit();
+    form?.requestSubmit();
     return;
   } else {
     target.value += shift ? k.toUpperCase() : k;

@@ -52,3 +52,8 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   QR code). Screen control (socket `screen:hello`), `/games/*` and the photo list only work
   from 127.0.0.1 (the kiosk); admin is behind the code; wrong room codes are rate-limited.
 - Guest check-ins (`lib/guests.js`): days per name, shown only on /admin tab Gasten.
+- Room code and players are saved (`data/room.json`), so phones stay joined after a restart;
+  only "new room code" changes it. One name = one player (case/spaces ignored).
+- Quiz setup: players on a phone join automatically; the screen can add a name by hand
+  (no phone) or take someone out (× on the chip; that phone gets the join form again).
+- Credits (`lib/credits.js`): /admin tab Tegoed — free name, add any amount, −1 per tap.

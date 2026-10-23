@@ -135,6 +135,11 @@
       <img class="qr big" alt="QR-code om mee te doen">
       <span class="code room-code">····</span>
       <div class="player-chips" id="player-chips"></div>
+      <form class="add-player" id="add-player" autocomplete="off">
+        <label class="sr-only" for="add-player-name">Naam van de speler</label>
+        <input id="add-player-name" maxlength="24" placeholder="+ Speler zonder telefoon" inputmode="none" data-osk>
+        <button class="btn small" type="submit" aria-label="Speler toevoegen">+</button>
+      </form>
       <button class="btn primary start" id="start-quiz">Start</button>
     </aside>
   </section>

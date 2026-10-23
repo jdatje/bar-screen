@@ -36,6 +36,8 @@ export function init(c) {
     renderSetup();
   });
   $('setup-options').addEventListener('click', onOptionClick);
+  $('player-chips').addEventListener('click', onPlayerChips);
+  $('add-player').addEventListener('submit', onAddPlayer);
   $('start-quiz').addEventListener('click', start);
   $('game-root').addEventListener('click', onGameClick);
   tick();
@@ -149,13 +151,34 @@ function onOptionClick(e) {
   renderSetup();
 }
 
+// Everyone on a phone plus names added by hand; tap × to take someone out
 export function renderPlayers() {
   const el = $('player-chips');
   if (!el) return;
-  const online = (ctx?.state.players || []).filter((p) => p.online);
-  el.innerHTML = online.length
-    ? online.map((p) => `<span class="pchip">${esc(p.name)}</span>`).join('')
+  const list = (ctx?.state.players || []).filter((p) => p.online || p.manual);
+  el.innerHTML = list.length
+    ? list.map((p) => `<span class="pchip ${p.online ? '' : 'off'}">${esc(p.name)}${p.online ? '' : ' <small>📵</small>'}<button class="pchip-x" data-remove-player="${esc(p.id)}" aria-label="${esc(p.name)} eruit halen">×</button></span>`).join('')
     : '<span class="muted">Nog niemand — scan de code</span>';
+}
+
+async function onPlayerChips(e) {
+  const b = e.target.closest('[data-remove-player]');
+  if (!b) return;
+  const p = (ctx.state.players || []).find((x) => x.id === b.dataset.removePlayer);
+  if (!p) return;
+  b.closest('.pchip').classList.add('going');
+  const res = await call(ctx.socket, 'players:remove', { id: p.id });
+  if (!res?.ok) toast('Lukt niet');
+}
+
+async function onAddPlayer(e) {
+  e.preventDefault();
+  const input = $('add-player-name');
+  const name = input.value.trim();
+  if (!name) return;
+  const res = await call(ctx.socket, 'players:add', { name });
+  if (res?.ok) input.value = '';
+  else toast(res?.error === 'exists' ? 'Die naam doet al mee' : 'Lukt niet');
 }
 
 async function start() {

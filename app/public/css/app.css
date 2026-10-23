@@ -147,7 +147,14 @@ img { display: block; }
 .setup-side { padding: 22px; display: flex; flex-direction: column; gap: 14px; align-items: center; }
 .setup-side .qr.big { width: 180px; height: 180px; }
 .player-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; flex: 1; align-content: flex-start; overflow-y: auto; }
-.pchip { padding: 6px 12px; background: var(--panel-2); border-radius: var(--radius); font-size: 16px; }
+.pchip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 4px 4px 12px; background: var(--panel-2); border-radius: var(--radius); font-size: 16px; transition: opacity .2s; }
+.pchip.off { opacity: .6; }
+.pchip.going { opacity: .25; }
+.pchip small { font-size: 12px; }
+.pchip-x { width: 34px; height: 34px; border-radius: var(--radius); background: transparent; color: var(--text-3); font-size: 22px; line-height: 1; border: 0; }
+.pchip-x:active { background: var(--line); color: var(--text); }
+.add-player { display: flex; gap: 8px; }
+.add-player input { flex: 1; min-width: 0; min-height: 44px; }
 .setup-side .start { width: 100%; min-height: 76px; font-size: 24px; }
 
 /* ---------- Game ---------- */
@@ -551,3 +558,4 @@ body.phone-body { overflow: auto; user-select: auto; -webkit-user-select: auto; 
 .pads { font-size: 16px; color: var(--text-3); }
 .pads.ok { color: var(--accent); }
 .game-card.focus { outline: 4px solid var(--accent); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

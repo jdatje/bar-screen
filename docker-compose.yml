@@ -53,12 +53,6 @@ services:
       - ENABLE_GPU=1
       # udev in the container: controllers are recognised, also when plugged in later
       - UDEV=1
-      # No Chrome popups, bubbles or prompts on the kiosk (added to the block's defaults)
-      - >-
-        EXTRA_FLAGS=--no-first-run --no-default-browser-check --disable-infobars
-        --disable-notifications --deny-permission-prompts --password-store=basic
-        --disable-translate --disable-sync --check-for-update-interval=31536000
-        --disable-features=Translate,TranslateUI,MediaRouter,GlobalMediaControls,DownloadBubble,PasswordManagerOnboarding,AutofillServerCommunication,PrivacySandboxSettings4
       - PERSISTENT=1
       - SHOW_CURSOR=0
 

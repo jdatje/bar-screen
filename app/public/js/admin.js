@@ -117,6 +117,52 @@ async function showGuests() {
     </div>`;
 }
 
+// ---------- Credits: a number per name, for something in the bar ----------
+async function showCredits() {
+  $('admin-title').textContent = 'Tegoed';
+  const { people, names } = await api('GET', '/credits');
+  const known = [...new Set([...people.map((p) => p.name), ...names])].sort((a, b) => a.localeCompare(b, 'nl'));
+  const time = (t) => new Date(t).toLocaleString('nl-NL', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Amsterdam' });
+  $('root').innerHTML = `
+    <form class="panel cr-form" id="cr-form" autocomplete="off">
+      <span class="mono accent">Tegoed erbij</span>
+      <input id="cr-name" list="cr-names" maxlength="40" placeholder="Naam" required>
+      <datalist id="cr-names">${known.map((n) => `<option value="${esc(n)}">`).join('')}</datalist>
+      <div class="cr-amount">
+        <button type="button" class="chip" data-cr-amt="1">+1</button>
+        <button type="button" class="chip" data-cr-amt="5">+5</button>
+        <button type="button" class="chip" data-cr-amt="10">+10</button>
+        <input id="cr-amt" type="number" inputmode="numeric" min="1" max="1000" value="1" aria-label="Aantal">
+      </div>
+      <button class="btn primary" type="submit">Toevoegen</button>
+    </form>
+    ${people.length > 6 ? `<input class="cr-search" id="cr-search" type="search" placeholder="Zoek een naam" ">` : ''}
+    <div style="display:flex;flex-direction:column;gap:8px" id="cr-list">
+      ${people.length
+        ? people.map((p) => `<div class="panel cr-row" data-cr-name="${esc(p.name.toLowerCase())}">
+            <div><strong>${esc(p.name)}</strong>${p.last ? `<small>${p.last.d > 0 ? '+' : '−'}${Math.abs(p.last.d)} · ${esc(time(p.last.t))}</small>` : ''}</div>
+            <div class="n ${p.credits ? '' : 'zero'}">${p.credits}</div>
+            <button class="btn primary use" data-cr-use="${esc(p.name)}" ${p.credits ? '' : 'disabled'} aria-label="Eén eraf voor ${esc(p.name)}">−1</button>
+            <button class="btn small" data-cr-del="${esc(p.key)}" aria-label="${esc(p.name)} verwijderen">✕</button>
+          </div>`).join('')
+        : '<p class="muted">Nog niemand heeft tegoed.</p>'}
+    </div>`;
+  $('cr-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = $('cr-name').value.trim();
+    const amount = Number($('cr-amt').value);
+    if (!name || !(amount >= 1)) return toast('Vul een naam en een aantal in');
+    const r = await api('POST', '/credits', { name, amount });
+    if (!r.ok) return toast('Lukt niet');
+    toast(`${r.name}: ${r.credits} tegoed`);
+    showCredits();
+  });
+  $('cr-search')?.addEventListener('input', (e) => {
+    const f = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('[data-cr-name]').forEach((row) => (row.hidden = Boolean(f) && !row.dataset.crName.includes(f)));
+  });
+}
+
 // ---------- Games (your own game files) ----------
 const SYSTEMS = [
   { id: 'n64', label: 'Nintendo 64', ext: ['z64', 'n64', 'v64'] },
@@ -191,7 +237,8 @@ function setTab(next) {
   tab = next;
   document.querySelectorAll('#admin-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
   window.scrollTo(0, 0);
-  return (tab === 'screen' ? showScreen() : tab === 'games' ? showGames() : tab === 'guests' ? showGuests() : showList()).catch((e) => {
+  const show = { screen: showScreen, games: showGames, guests: showGuests, credits: showCredits }[tab] || showList;
+  return show().catch((e) => {
     if (!(e instanceof Locked)) throw e;
   });
 }
@@ -333,6 +380,22 @@ document.addEventListener('click', async (e) => {
     const r = await api('POST', '/power', { action: t.dataset.power });
     toast(r.ok ? (shutdown ? 'De pc gaat uit…' : 'De pc herstart… even geduld') : 'Lukt niet');
     return;
+  }
+  if (t.dataset.crAmt) {
+    $('cr-amt').value = t.dataset.crAmt;
+    return;
+  }
+  if (t.dataset.crUse) {
+    t.disabled = true;
+    const r = await api('POST', '/credits', { name: t.dataset.crUse, amount: -1 });
+    toast(r.ok ? `${r.name}: nog ${r.credits}` : r.error === 'empty' ? 'Geen tegoed meer' : 'Lukt niet');
+    navigator.vibrate?.(30);
+    return showCredits();
+  }
+  if (t.dataset.crDel) {
+    if (!confirm('Deze naam en het tegoed weghalen?')) return;
+    await api('DELETE', `/credits/${encodeURIComponent(t.dataset.crDel)}`);
+    return showCredits();
   }
   if (t.dataset.delGuest) {
     if (!confirm('Deze gast uit de lijst halen?')) return;

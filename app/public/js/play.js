@@ -351,6 +351,11 @@ socket.on('settings', (s) => {
   applyTheme(s.theme);
   setLang(s.language);
 });
+socket.on('player:removed', () => {
+  store.set('playerId', '');
+  $('error').textContent = 'Je bent uit het spel gehaald. Doe opnieuw mee als dat een vergissing was.';
+  setJoined(false);
+});
 socket.on('room:closed', () => {
   $('error').textContent = 'Er is een nieuwe kamercode — kijk op het scherm';
   $('code').value = '';

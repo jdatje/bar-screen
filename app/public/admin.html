@@ -29,8 +29,21 @@
   .a-themes .theme-card span { font-size: 16px; }
   .a-tile { display: flex; flex-direction: column; gap: 8px; }
   .a-tile .chip { min-height: 44px; padding: 0 14px; font-size: 16px; }
-  #admin-tabs { grid-template-columns: repeat(4, 1fr); }
-  #admin-tabs button { font-size: 15px; }
+  #admin-tabs { grid-template-columns: repeat(5, 1fr); }
+  #admin-tabs button { font-size: 13px; padding-left: 2px; padding-right: 2px; }
+  .cr-form { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .cr-form input { min-height: 52px; font-size: 18px; }
+  .cr-amount { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .cr-amount input { width: 90px; text-align: center; color: #111; font-weight: 700; }
+  .cr-amount .chip { min-height: 48px; padding: 0 16px; font-size: 17px; }
+  .cr-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 10px; align-items: center; padding: 12px 14px; }
+  .cr-row strong { display: block; font-size: 18px; overflow-wrap: anywhere; }
+  .cr-row small { display: block; color: var(--text-3); font-size: 13px; }
+  .cr-row .n { font-family: var(--font-display); font-size: 34px; color: var(--accent); line-height: 1; min-width: 1.6em; text-align: right; }
+  .cr-row .n.zero { color: var(--text-3); }
+  .cr-row .use { min-height: 52px; min-width: 64px; font-size: 20px; }
+  .cr-search { min-height: 48px; }
+  .cr-row[hidden] { display: none; }
   .guest { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 12px 14px; }
   .guest .days { font-family: var(--font-display); font-size: 30px; color: var(--accent); line-height: 1; text-align: right; }
   .guest small { display: block; color: var(--text-3); font-size: 14px; }
@@ -59,6 +72,7 @@
   <button data-tab="quiz">Quizvragen</button>
   <button data-tab="games">Games</button>
   <button data-tab="guests">Gasten</button>
+  <button data-tab="credits">Tegoed</button>
 </nav>
 <script src="/js/admin.js" type="module"></script>
 </body>

@@ -41,6 +41,7 @@ export class Game {
     this.error = null;
     this.musicSnapshot = null;
     this.hookMs = null;
+    this.hookPlaying = false;
   }
 
   get round() {
@@ -57,9 +58,22 @@ export class Game {
     return [...this.players().entries()].filter(([, p]) => p.sockets.size > 0).map(([id]) => id);
   }
 
+  // ---------- Players ----------
+  // who plays: everyone on a phone right now plus names added by hand
+  addPlayer(id) {
+    if (this.active && !this.scores.has(id)) this.scores.set(id, 0);
+  }
+  removePlayer(id) {
+    this.scores.delete(id);
+    this.roundStartScores.delete(id);
+    for (const a of this.answers) a.delete(id);
+    if (this.active) this.emit();
+  }
+
   // ---------- Lifecycle ----------
   async start(type, settings) {
     this.reset();
+    for (const [id, p] of this.players()) if (p.sockets.size > 0 || p.manual) this.scores.set(id, 0);
     this.active = true;
     this.type = type;
     this.settings = {
@@ -183,7 +197,7 @@ export class Game {
     if (next < first) return;
     if (next > last) return this.showScoreboard();
     this.revealIndex = next;
-    spotify.command('pause').catch(() => {});
+    this.stopHook();
     this.loadHookForReveal();
     this.emit();
   }
@@ -201,7 +215,16 @@ export class Game {
     const q = this.questions[this.revealIndex];
     if (this.phase !== 'reveal' || !q?.track) return;
     const ms = this.hookMs ?? (await getHook(q.track));
+    this.hookPlaying = true;
     await spotify.playTrack(q.track.uri, ms);
+  }
+
+  // Only stop the music if the walkthrough started a song itself; music
+  // that was already playing (e.g. during a pubquiz) just keeps going.
+  stopHook() {
+    if (!this.hookPlaying) return;
+    this.hookPlaying = false;
+    spotify.command('pause').catch(() => {});
   }
 
   // Correct the chorus start by ±seconds; it's remembered for next time
@@ -212,6 +235,7 @@ export class Game {
     setHook(q.track.id, ms);
     this.hookMs = ms;
     this.emit();
+    this.hookPlaying = true;
     await spotify.playTrack(q.track.uri, ms);
   }
 
@@ -221,7 +245,7 @@ export class Game {
     for (let i = first; i <= last; i++) {
       for (const [id, a] of this.answers[i]) this.scores.set(id, (this.scores.get(id) || 0) + (a.points || 0));
     }
-    spotify.command('pause').catch(() => {});
+    this.stopHook();
     const isLastRound = this.round >= this.settings.rounds - 1 || last >= this.questions.length - 1;
     this.phase = isLastRound ? 'final' : 'scoreboard';
     this.emit();
@@ -235,7 +259,6 @@ export class Game {
 
   standings() {
     const names = this.players();
-    for (const id of names.keys()) if (!this.scores.has(id)) this.scores.set(id, 0);
     return [...this.scores.entries()]
       .map(([id, score]) => ({
         id,
