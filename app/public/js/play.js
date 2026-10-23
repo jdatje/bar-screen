@@ -53,6 +53,97 @@ $('join').addEventListener('submit', (e) => {
   join(false);
 });
 
+// ---------- Saving photos from the wall ----------
+// Pick photos, then save them: on phones that can share files (iPhone,
+// Android) they go to the share sheet ("Bewaar afbeeldingen"); otherwise as
+// a zip. Picked photos are fetched right away, so the share sheet can open
+// straight from the tap.
+let wall = [];
+const picked = new Set();
+const blobs = new Map();
+const pid = () => store.get('playerId') || '';
+const canShareFiles = () => {
+  try {
+    return Boolean(navigator.canShare?.({ files: [new File([''], 'x.jpg', { type: 'image/jpeg' })] }));
+  } catch {
+    return false;
+  }
+};
+
+async function openPicker() {
+  const res = await fetch('/api/photos', { headers: { 'x-player-id': pid() } }).catch(() => null);
+  if (!res?.ok) return flash('De foto\'s laden lukte niet');
+  wall = await res.json();
+  picked.clear();
+  $('pick-grid').innerHTML = wall.length
+    ? wall.map((p) => `<button class="p-pick" data-pick="${esc(p.id)}" type="button"><img src="/photos/${esc(p.id)}.jpg" alt="Foto${p.by ? ` van ${esc(p.by)}` : ''}" loading="lazy" decoding="async"><span class="tick">✓</span></button>`).join('')
+    : '<p class="muted">Nog geen foto\'s op de muur.</p>';
+  $('picker').hidden = false;
+  $('tabs').hidden = true;
+  document.body.classList.add('picking');
+  updatePicked();
+}
+function closePicker() {
+  $('picker').hidden = true;
+  $('tabs').hidden = !joined;
+  document.body.classList.remove('picking');
+}
+function fetchBlob(id) {
+  if (!blobs.has(id)) blobs.set(id, fetch(`/photos/${id}.jpg`).then((r) => r.blob()).catch(() => null));
+  return blobs.get(id);
+}
+function updatePicked() {
+  const n = picked.size;
+  $('pick-count').textContent = `${n} gekozen`;
+  $('pick-save').disabled = !n;
+  $('pick-save').textContent = n ? `Opslaan (${n})` : 'Opslaan';
+  $('pick-all').textContent = n && n === wall.length ? 'Geen' : 'Alles';
+  document.querySelectorAll('[data-pick]').forEach((b) => b.classList.toggle('on', picked.has(b.dataset.pick)));
+}
+$('save-open').addEventListener('click', openPicker);
+$('pick-close').addEventListener('click', closePicker);
+$('pick-all').addEventListener('click', () => {
+  if (picked.size === wall.length) picked.clear();
+  else wall.forEach((p) => picked.add(p.id));
+  if (canShareFiles() && picked.size <= 30) picked.forEach(fetchBlob);
+  updatePicked();
+});
+$('pick-grid').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-pick]');
+  if (!b) return;
+  const id = b.dataset.pick;
+  if (picked.has(id)) picked.delete(id);
+  else {
+    picked.add(id);
+    if (canShareFiles()) fetchBlob(id);
+  }
+  updatePicked();
+});
+$('pick-save').addEventListener('click', async () => {
+  const ids = wall.map((p) => p.id).filter((id) => picked.has(id));
+  if (!ids.length) return;
+  if (canShareFiles() && ids.length <= 30) {
+    const got = await Promise.all(ids.map(fetchBlob));
+    const files = got.map((b, i) => b && new File([b], `wexer-${String(i + 1).padStart(2, '0')}.jpg`, { type: 'image/jpeg' })).filter(Boolean);
+    try {
+      if (files.length && navigator.canShare({ files })) {
+        await navigator.share({ files });
+        return;
+      }
+    } catch (err) {
+      if (err?.name === 'AbortError') return; // closed the share sheet
+    }
+  }
+  // fallback: one zip file
+  const a = document.createElement('a');
+  a.href = `/api/photos.zip?p=${encodeURIComponent(pid())}&ids=${ids.join(',')}`;
+  a.download = 'wexer-fotos.zip';
+  document.body.append(a);
+  a.click();
+  a.remove();
+  flash('Download gestart');
+});
+
 // ---------- Tabs ----------
 function showTab(t) {
   tab = t;

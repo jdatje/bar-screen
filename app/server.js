@@ -336,7 +336,18 @@ app.post('/api/photos', async (req, res) => {
     res.status(err.message === 'too_big' ? 413 : 400).json({ ok: false, error: err.message });
   }
 });
-app.get('/api/photos', (req, res) => (isLocal(req.socket.remoteAddress) ? res.json(photos.list()) : res.status(403).end()));
+// the photo list: the kiosk, and guests who joined on their phone
+const mayListPhotos = (req) => isLocal(req.socket.remoteAddress) || players.has(String(req.get('x-player-id') || req.query.p || ''));
+app.get('/api/photos', (req, res) => (mayListPhotos(req) ? res.json(photos.list()) : res.status(403).end()));
+// selected photos as one zip file (for phones that can't share several files)
+app.get('/api/photos.zip', (req, res) => {
+  if (!mayListPhotos(req)) return res.status(403).end();
+  const ids = String(req.query.ids || '').split(',').filter(Boolean).slice(0, 200);
+  const buf = photos.zip(ids);
+  if (!buf) return res.status(404).end();
+  res.set({ 'content-type': 'application/zip', 'content-disposition': 'attachment; filename="wexer-fotos.zip"' });
+  res.send(buf);
+});
 app.get('/photos/:id.jpg', (req, res) => {
   const f = photos.file(req.params.id);
   if (!f) return res.status(404).end();

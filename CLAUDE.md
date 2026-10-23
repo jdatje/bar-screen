@@ -57,6 +57,9 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Quiz setup: players on a phone join automatically; the screen can add a name by hand
   (no phone) or take someone out (× on the chip; that phone gets the join form again).
 - Credits (`lib/credits.js`): /admin tab Tegoed — free name, add any amount, −1 per tap.
+- Phones can save photos from the wall (Foto's tab → pick → Opslaan): share sheet with the
+  files when the phone supports it, else a zip from `/api/photos.zip` (joined players only).
+- Phones don't load the 10 MB emoji font (kiosk only); responses are gzipped.
 
 ## For the next update (from Jeroen, not built yet)
 - Phones: someone who already joined with their name gets a way into the admin panel from

@@ -49,6 +49,21 @@
     <input type="file" id="photo-file" accept="image/*" multiple hidden>
     <span class="muted" id="photo-status"></span>
     <div class="p-photos" id="my-photos"></div>
+    <div class="p-save">
+      <span class="mono accent">Foto's opslaan</span>
+      <button class="btn big" id="save-open" type="button">⬇️ Kies foto's om op te slaan</button>
+    </div>
+  </section>
+  <section class="p-picker" id="picker" hidden>
+    <div class="p-picker-head">
+      <button class="btn small" id="pick-close" type="button">Terug</button>
+      <span id="pick-count">0 gekozen</span>
+      <button class="btn small" id="pick-all" type="button">Alles</button>
+    </div>
+    <div class="p-pick-grid" id="pick-grid"></div>
+    <div class="p-picker-foot">
+      <button class="btn primary big" id="pick-save" type="button" disabled>Opslaan</button>
+    </div>
   </section>
 </main>
 
