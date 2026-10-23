@@ -71,6 +71,9 @@
         <button class="btn" data-cmd="next" aria-label="Volgende">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 9 6-9 6V6Z"/><path d="M18 6v12"/></svg>
         </button>
+        <button class="btn music-open" id="music-open" aria-label="Muziek zoeken">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        </button>
         <label class="volume">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
           <span hidden>Volume</span>
@@ -380,6 +383,26 @@
 </div>
 
 <!-- Recipe -->
+<div class="overlay music-overlay" id="music" role="dialog" aria-modal="true" aria-labelledby="music-title">
+  <div class="panel sheet wide music-sheet">
+    <div class="sheet-head">
+      <div><span class="mono accent">Spotify</span><h2 class="display" id="music-title">Muziek zoeken</h2></div>
+      <button class="btn" id="music-close">Sluiten</button>
+    </div>
+    <form class="music-form" id="music-form" autocomplete="off">
+      <label class="sr-only" for="music-q">Zoek een nummer, artiest of playlist</label>
+      <input id="music-q" maxlength="80" placeholder="Zoek een nummer, artiest of playlist" inputmode="none" data-osk>
+      <button class="btn primary" type="submit">Zoeken</button>
+    </form>
+    <div class="chips" id="music-tabs">
+      <button class="chip on" data-mtab="tracks">Nummers</button>
+      <button class="chip" data-mtab="playlists">Playlists</button>
+      <button class="chip" data-mtab="mine">Mijn playlists</button>
+    </div>
+    <div class="music-results" id="music-results"></div>
+  </div>
+</div>
+
 <div class="overlay" id="recipe" role="dialog" aria-modal="true" aria-labelledby="recipe-title">
   <div class="panel sheet wide recipe" id="recipe-body"></div>
 </div>

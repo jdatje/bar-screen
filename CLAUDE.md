@@ -44,6 +44,9 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 ## Home screen
 - Tiles: Spelletjes (hub: pub/pop/intro quiz, retro games, drankrad (all bottles in stock), draai het rad), Cocktails,
   Karaoke (LRCLIB synced lyrics), Fotomuur (photos from phones), Meedoen.
+- Music search (🔍 in the music controls, `public/js/music.js`): songs → speaker queue (play before
+  the rest of the playlist); playlists (search + the linked account's own) → play now via go-librespot.
+  Spotify's own editorial playlists can't be read by the Web API (no preview) but do play.
 - Phones: tabs Spel, Verzoekjes (song requests: off / approve on screen / straight to queue),
   Foto's, Cocktails.
 

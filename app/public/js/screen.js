@@ -9,6 +9,7 @@ import * as games from './games.js';
 import * as saver from './saver.js';
 import * as karaoke from './karaoke.js';
 import * as wall from './photowall.js';
+import * as music from './music.js';
 
 const socket = io();
 const state = { settings: { theme: 'industrial' }, themes: [], player: null, room: null, players: [], game: { active: false } };
@@ -397,6 +398,7 @@ games.init(ctx);
 saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !karaoke.isOpen() && !wall.slideshowOn() && !document.querySelector('.overlay.open') });
 eggs.init(ctx);
 bar.init(ctx);
+music.init(ctx);
 
 // Show as many upcoming songs as fit in the panel, without a half row
 function fitQueue() {

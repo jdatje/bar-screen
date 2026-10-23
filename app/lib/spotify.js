@@ -245,6 +245,52 @@ export async function getPlaylistTracks(id, max = 200) {
   return out;
 }
 
+// ---------- Music search on the screen ----------
+const mapPlaylist = (p) =>
+  p && p.id
+    ? {
+        id: p.id,
+        uri: p.uri || `spotify:playlist:${p.id}`,
+        name: p.name,
+        owner: p.owner?.display_name || p.owner?.id || '',
+        total: p.items?.total ?? p.tracks?.total ?? null,
+        art: p.images?.[0]?.url ?? null,
+      }
+    : null;
+
+// playlists by search (10 per call in dev mode, so two pages)
+export async function searchPlaylists(query, count = 20) {
+  const out = [];
+  for (let offset = 0; out.length < count && offset < count; offset += 10) {
+    const q = new URLSearchParams({ q: query, type: 'playlist', limit: '10', offset: String(offset) });
+    const res = await api('GET', `/search?${q}`);
+    const items = res?.playlists?.items || [];
+    out.push(...items.map(mapPlaylist).filter(Boolean));
+    if (items.length < 10) break;
+  }
+  return out;
+}
+
+export async function myPlaylistsFull() {
+  const res = await api('GET', '/me/playlists?limit=50');
+  return (res?.items || []).map(mapPlaylist).filter(Boolean);
+}
+
+// first songs of a playlist, for a preview (Spotify's own playlists can't be read by apps)
+export async function playlistPreview(id, max = 25) {
+  try {
+    return (await getPlaylistTracks(id, max)).slice(0, max);
+  } catch {
+    return null;
+  }
+}
+
+// play a whole playlist on the bar speaker; queued songs still come first
+export async function playPlaylist(id) {
+  if (!/^[A-Za-z0-9]+$/.test(String(id))) throw new Error('Invalid playlist');
+  return speaker('POST', '/player/play', { uri: `spotify:playlist:${id}` });
+}
+
 export async function playTrack(uri, positionMs = 0) {
   return speaker('POST', '/player/play', { uri, position: Math.max(0, Math.round(positionMs)) });
 }

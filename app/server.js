@@ -481,6 +481,44 @@ io.on('connection', (socket) => {
     }
   });
 
+  // ----- Music search on the screen: songs (to the queue) and playlists -----
+  socket.on('music:search', async ({ q } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    const query = String(q || '').trim().slice(0, 80);
+    if (!query) return ack?.({ ok: true, tracks: [], playlists: [] });
+    try {
+      const [tracks, playlists] = await Promise.all([
+        spotify.searchTracks(query, { count: 20 }),
+        spotify.searchPlaylists(query, 20).catch(() => []),
+      ]);
+      ack?.({ ok: true, tracks, playlists });
+    } catch (err) {
+      ack?.({ ok: false, error: spotify.isLoggedIn() ? 'search' : 'login' });
+    }
+  });
+  socket.on('music:mine', async (_p, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    try {
+      ack?.({ ok: true, playlists: await spotify.myPlaylistsFull() });
+    } catch {
+      ack?.({ ok: false, error: spotify.isLoggedIn() ? 'search' : 'login' });
+    }
+  });
+  socket.on('music:playlist', async ({ id } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    ack?.({ ok: true, tracks: await spotify.playlistPreview(String(id || '')) });
+  });
+  socket.on('music:playPlaylist', async ({ id } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    try {
+      await spotify.playPlaylist(String(id || ''));
+      setTimeout(pollSpotify, 600);
+      ack?.({ ok: true });
+    } catch (err) {
+      ack?.({ ok: false, error: err.message });
+    }
+  });
+
   // ----- Settings (PIN-protected when a PIN is set) -----
   socket.on('settings:unlock', ({ pin } = {}, ack) => ack?.({ ok: pinOk(pin) }));
   socket.on('settings:set', ({ pin, ...patch } = {}, ack) => {
