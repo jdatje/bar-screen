@@ -10,6 +10,7 @@ let wheelAngle = 0;
 let spinning = false;
 let pendingSpin = false;
 let spinTimer = null;
+let wheelMode = 'cocktail'; // 'cocktail' | 'bottle' (all bottles in stock)
 let stockData = null;
 
 export function init(c) {
@@ -20,6 +21,12 @@ export function init(c) {
     if (card) openRecipe(card.dataset.id);
   });
   $('spin').addEventListener('click', spin);
+  $('wheel-mode').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-wmode]');
+    if (!b || spinning) return;
+    setWheelMode(b.dataset.wmode);
+    buildWheel();
+  });
   $('open-stock').addEventListener('click', () => ctx.go('stock'));
   $('recipe').addEventListener('click', onRecipeClick);
   $('stock-cols').addEventListener('click', onStockClick);
@@ -36,12 +43,28 @@ export async function openMenu() {
     setTimeout(spin, 400);
   }
 }
+export function setWheelMode(mode) {
+  wheelMode = mode === 'bottle' ? 'bottle' : 'cocktail';
+  document.querySelectorAll('[data-wmode]').forEach((b) => b.classList.toggle('on', b.dataset.wmode === wheelMode));
+  $('wheel').setAttribute('aria-label', wheelMode === 'bottle' ? 'Drankrad' : 'Cocktailrad');
+}
+let bottles = []; // labels of every bottle that's in stock
+async function loadBottles() {
+  const res = await call(ctx.socket, 'stock:get');
+  if (!res) return;
+  const have = new Set(res.stock.have);
+  bottles = [
+    ...res.groups.flatMap((g) => g.items.filter((i) => have.has(i.id)).map((i) => ({ id: i.id, name: i.label }))),
+    ...res.stock.custom.map((c) => ({ id: c.id, name: c.name })),
+  ];
+}
+
 export function spinSoon() {
   pendingSpin = true;
 }
 
 async function loadMenu() {
-  data = await call(ctx.socket, 'cocktails:menu', filters);
+  [data] = await Promise.all([call(ctx.socket, 'cocktails:menu', filters), loadBottles()]);
   if (!data) return;
   renderFilters();
   renderGrid();
@@ -111,17 +134,19 @@ function renderShopping() {
 
 // ================= Wheel =================
 function buildWheel() {
-  const pool = [...data.list];
+  const bottleMode = wheelMode === 'bottle';
+  const pool = bottleMode ? [...bottles] : [...(data?.list || [])];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  wheelItems = pool.slice(0, 10);
+  // the bottle wheel shows every bottle; the cocktail wheel 10 at a time
+  wheelItems = bottleMode ? pool.slice(0, 40) : pool.slice(0, 10);
   const svg = $('wheel');
   const n = wheelItems.length;
   if (!n) {
     svg.innerHTML = `<circle cx="150" cy="150" r="140" fill="var(--panel-2)" stroke="var(--line-strong)" stroke-width="3"/>
-      <text x="150" y="156" text-anchor="middle" fill="var(--text-3)" font-size="16">Niets om uit te kiezen</text>`;
+      <text x="150" y="156" text-anchor="middle" fill="var(--text-3)" font-size="16">${bottleMode ? 'Vink flessen aan bij Voorraad' : 'Niets om uit te kiezen'}</text>`;
     return;
   }
   const r = 140;
@@ -138,8 +163,10 @@ function buildWheel() {
       : `<path d="M150 150 L${p(a0)} A${r} ${r} 0 ${large} 1 ${p(a1)} Z" fill="${fill}"/>`;
     const mid = ((a0 + seg / 2) * 180) / Math.PI;
     const label = d.name.length > 15 ? `${d.name.slice(0, 14)}…` : d.name;
-    out += `<text transform="rotate(${mid} 150 150) translate(${150 + r - 12} 150)" text-anchor="end" dominant-baseline="middle"
-      fill="var(--text)" font-size="13" font-family="var(--font-body)">${esc(label)}</text>`;
+    // smaller letters when there are many slices
+    const fs = n > 24 ? 8 : n > 16 ? 10 : n > 10 ? 11.5 : 13;
+    out += `<text transform="rotate(${mid} 150 150) translate(${150 + r - 10} 150)" text-anchor="end" dominant-baseline="middle"
+      fill="var(--text)" font-size="${fs}" font-family="var(--font-body)">${esc(label)}</text>`;
   });
   out += `<circle cx="150" cy="150" r="${r}" fill="none" stroke="var(--accent)" stroke-width="3"/>
     <circle cx="150" cy="150" r="20" fill="var(--accent)"/>`;
@@ -175,7 +202,25 @@ function spinDone() {
   wheelAngle = ((wheelAngle % 360) + 360) % 360;
   svg.style.transition = 'none';
   svg.style.transform = `rotate(${wheelAngle}deg)`;
-  if (spin.winner && ctx.view() === 'cocktails') openRecipe(spin.winner.id, true);
+  if (!spin.winner || ctx.view() !== 'cocktails') return;
+  if (wheelMode === 'bottle') showBottle(spin.winner);
+  else openRecipe(spin.winner.id, true);
+}
+
+// the bottle wheel's result: one big name, no recipe
+function showBottle(b) {
+  $('recipe-body').innerHTML = `
+    <div class="sheet-head">
+      <div>
+        <span class="mono accent">Het drankrad heeft gesproken</span>
+        <h2 class="display bottle-win" id="recipe-title">${esc(b.name)}</h2>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-r="again">Nog eens draaien</button>
+        <button class="btn" data-r="close">Sluiten</button>
+      </div>
+    </div>`;
+  $('recipe').classList.add('open');
 }
 
 // ================= Recipe =================

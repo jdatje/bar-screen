@@ -35,7 +35,8 @@ const ctx = { socket, state, go, getPin };
 
 // ---------- Views ----------
 function go(next) {
-  if (next === 'wheel') {
+  if (next === 'wheel' || next === 'bottlewheel') {
+    bar.setWheelMode(next === 'bottlewheel' ? 'bottle' : 'cocktail');
     go('cocktails');
     bar.spinSoon();
     return;
@@ -60,7 +61,7 @@ $('back').addEventListener('click', () => go(PARENT[view] || 'home'));
 document.querySelectorAll('[data-hub]').forEach((b) =>
   b.addEventListener('click', () => {
     const h = b.dataset.hub;
-    if (h === 'games' || h === 'wheel') return go(h);
+    if (h === 'games' || h === 'wheel' || h === 'bottlewheel') return go(h);
     quiz.setType(h);
     go('quiz');
   })
