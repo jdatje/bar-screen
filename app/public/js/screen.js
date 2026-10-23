@@ -264,12 +264,12 @@ $('saver-choices').addEventListener('click', (e) => {
 // ---------- Restart / shut down the bar PC ----------
 async function powerAction(action) {
   const shutdown = action === 'shutdown';
-  const ok = await confirmBox(shutdown ? 'De bar-pc uitzetten?' : 'De bar-pc herstarten?', shutdown ? 'Uitzetten' : 'Herstarten');
+  const ok = await confirmBox(shutdown ? 'De bar-pc uitzetten?' : 'Alles herstarten? De pc blijft aan.', shutdown ? 'Uitzetten' : 'Herstarten');
   if (!ok) return;
   const res = await call(socket, 'device:power', { pin: pinCache.pin, action });
   if (!res?.ok) return toast(res?.error === 'pin' ? 'Code verlopen — open de instellingen opnieuw' : 'Lukt niet');
   closeSettings();
-  toast(shutdown ? 'De pc gaat uit…' : 'De pc herstart… even geduld');
+  toast(shutdown ? 'De pc gaat uit…' : 'Alles herstart… het scherm is zo terug');
 }
 $('pc-restart').addEventListener('click', () => powerAction('reboot'));
 $('pc-shutdown').addEventListener('click', () => powerAction('shutdown'));

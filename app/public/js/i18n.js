@@ -348,6 +348,8 @@ const EN = {
   'Je naam of teamnaam': 'Your name or team name',
   'Spel': 'Game',
   '🔒 Beheer': '🔒 Admin',
+  'Alles herstarten? De pc blijft aan.': 'Restart everything? The PC stays on.',
+  'Alles herstart… het scherm is zo terug': 'Restarting… the screen will be back shortly',
   'Tegoed': 'Credits',
   'Tegoed erbij': 'Add credits',
   'Toevoegen': 'Add',

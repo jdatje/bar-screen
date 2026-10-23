@@ -344,10 +344,13 @@ async function power(action) {
   const addr = process.env.BALENA_SUPERVISOR_ADDRESS;
   const key = process.env.BALENA_SUPERVISOR_API_KEY;
   if (!addr || !key) throw new Error('Not running on balena');
-  const res = await fetch(`${addr}/v1/${action === 'shutdown' ? 'shutdown' : 'reboot'}?apikey=${key}`, {
+  // "Herstarten" restarts all containers (the PC itself stays on);
+  // "Uitzetten" shuts the PC down
+  const shutdown = action === 'shutdown';
+  const res = await fetch(`${addr}/v1/${shutdown ? 'shutdown' : 'restart'}?apikey=${key}`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ force: true }),
+    body: JSON.stringify(shutdown ? { force: true } : { appId: Number(process.env.BALENA_APP_ID), force: true }),
     signal: AbortSignal.timeout(10000),
   });
   if (!res.ok) throw new Error(`Supervisor ${res.status}`);

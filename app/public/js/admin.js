@@ -376,9 +376,9 @@ document.addEventListener('click', async (e) => {
   }
   if (t.dataset.power) {
     const shutdown = t.dataset.power === 'shutdown';
-    if (!confirm(shutdown ? 'De bar-pc uitzetten?' : 'De bar-pc herstarten?')) return;
+    if (!confirm(shutdown ? 'De bar-pc uitzetten?' : 'Alles herstarten? De pc blijft aan.')) return;
     const r = await api('POST', '/power', { action: t.dataset.power });
-    toast(r.ok ? (shutdown ? 'De pc gaat uit…' : 'De pc herstart… even geduld') : 'Lukt niet');
+    toast(r.ok ? (shutdown ? 'De pc gaat uit…' : 'Alles herstart… het scherm is zo terug') : 'Lukt niet');
     return;
   }
   if (t.dataset.crAmt) {
