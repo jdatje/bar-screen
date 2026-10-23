@@ -1,6 +1,7 @@
 // Wexer 2.0 — server for the touchscreen (/), guests' phones (/play)
 // and the admin page (/admin).
 import express from 'express';
+import compression from 'compression';
 import http from 'node:http';
 import crypto from 'node:crypto';
 import { Server } from 'socket.io';
@@ -269,6 +270,10 @@ const broadcastPlayers = () => {
 
 // ---------- HTTP ----------
 app.use(express.json({ limit: '2mb' }));
+// gzip text responses: much faster for phones, certainly over the public address
+app.use(compression());
+// The big emoji font (kiosk only) never changes: let browsers keep it
+app.use('/fonts', express.static('public/fonts', { maxAge: '30d', immutable: true }));
 // Always check for newer files, so an update shows up without a stale cache
 app.use(express.static('public', {
   extensions: ['html'],
