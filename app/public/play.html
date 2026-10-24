@@ -10,6 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/css/themes.css">
 <link rel="stylesheet" href="/css/app.css">
+<!-- fetch every script in the first round trip (the public address is slow per request) -->
+<link rel="preload" href="/socket.io/socket.io.js" as="script">
+<link rel="modulepreload" href="/js/play.js">
+<link rel="modulepreload" href="/js/ui.js">
+<link rel="modulepreload" href="/js/i18n.js">
 </head>
 <body class="phone-body">
 <main class="phone">

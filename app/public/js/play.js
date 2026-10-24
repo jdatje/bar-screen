@@ -2,7 +2,8 @@
 import { $, esc, call, applyTheme, LETTERS, remaining } from './ui.js';
 import { setLang } from './i18n.js';
 
-const socket = io();
+// straight to a websocket: saves a few slow round trips over the public address
+const socket = io({ transports: ['websocket', 'polling'], tryAllTransports: true });
 const store = {
   get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
   set: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
