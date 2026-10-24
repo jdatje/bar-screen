@@ -163,6 +163,44 @@ async function showCredits() {
   });
 }
 
+// ---------- Voorraad (stock) from the phone ----------
+async function showStock() {
+  $('admin-title').textContent = 'Voorraad';
+  const d = await api('GET', '/stock');
+  const have = new Set(d.stock.have);
+  const pan = new Set(d.stock.pantry);
+  const item = (id, label, on, kind) => `<button class="st-item ${on ? 'on' : ''}" data-st-kind="${kind}" data-st-id="${esc(id)}" data-st-name="${esc(label.toLowerCase())}"><span class="box">${on ? '✓' : ''}</span>${esc(label)}</button>`;
+  $('root').innerHTML = `
+    <p class="muted" style="margin:0" id="st-count">${d.stock.have.length + d.stock.custom.length} flessen aangevinkt · tik om aan of uit te zetten</p>
+    <input class="st-search" id="st-search" type="search" placeholder="Zoek een fles">
+    ${d.groups.map((g) => `<section class="panel st-group"><span class="mono accent">${esc(g.label)}</span>
+      <div class="st-items">${g.items.map((i) => item(i.id, i.label, have.has(i.id), 'have')).join('')}</div></section>`).join('')}
+    <section class="panel st-group"><span class="mono accent">Ook in huis</span>
+      <div class="st-items">${d.pantry.map((p) => item(p.id, p.label, pan.has(p.id), 'pantry')).join('')}</div></section>
+    <section class="panel st-group"><span class="mono accent">Eigen flessen</span>
+      ${d.stock.custom.length ? d.stock.custom.map((c) => `<div class="st-own"><span>${esc(c.name)}</span><button class="btn small" data-st-del="${esc(c.id)}" aria-label="${esc(c.name)} verwijderen">✕</button></div>`).join('') : '<p class="muted" style="margin:0">Nog geen eigen flessen.</p>'}
+    </section>
+    <form class="panel st-add" id="st-add" autocomplete="off">
+      <span class="mono accent">Eigen fles toevoegen</span>
+      <input id="st-name" maxlength="50" placeholder="Bijv. Plantation Pineapple" required>
+      <select id="st-cat"><option value="">Telt als… (mag leeg)</option>${d.groups.map((g) => `<optgroup label="${esc(g.label)}">${g.items.map((i) => `<option value="${esc(i.id)}">${esc(i.label)}</option>`).join('')}</optgroup>`).join('')}</select>
+      <button class="btn primary" type="submit">Toevoegen</button>
+    </form>`;
+  $('st-search').addEventListener('input', (e) => {
+    const f = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.st-item').forEach((b) => (b.hidden = Boolean(f) && !b.dataset.stName.includes(f)));
+    document.querySelectorAll('.st-group').forEach((g) => (g.hidden = Boolean(f) && g.querySelector('.st-items') && !g.querySelector('.st-item:not([hidden])')));
+  });
+  $('st-add').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = $('st-name').value.trim();
+    if (!name) return;
+    await api('POST', '/stock/custom', { name, countsAs: $('st-cat').value });
+    toast(`${name} toegevoegd`);
+    showStock();
+  });
+}
+
 // ---------- Games (your own game files) ----------
 const SYSTEMS = [
   { id: 'n64', label: 'Nintendo 64', ext: ['z64', 'n64', 'v64'] },
@@ -237,7 +275,7 @@ function setTab(next) {
   tab = next;
   document.querySelectorAll('#admin-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
   window.scrollTo(0, 0);
-  const show = { screen: showScreen, games: showGames, guests: showGuests, credits: showCredits }[tab] || showList;
+  const show = { screen: showScreen, games: showGames, guests: showGuests, credits: showCredits, stock: showStock }[tab] || showList;
   return show().catch((e) => {
     if (!(e instanceof Locked)) throw e;
   });
@@ -380,6 +418,25 @@ document.addEventListener('click', async (e) => {
     const r = await api('POST', '/power', { action: t.dataset.power });
     toast(r.ok ? (shutdown ? 'De pc gaat uit…' : 'Alles herstart… het scherm is zo terug') : 'Lukt niet');
     return;
+  }
+  if (t.dataset.stKind) {
+    const on = !t.classList.contains('on');
+    t.classList.toggle('on', on);
+    t.querySelector('.box').textContent = on ? '✓' : '';
+    const r = await api('POST', '/stock/toggle', { kind: t.dataset.stKind, id: t.dataset.stId, on });
+    if (!r.ok) {
+      t.classList.toggle('on', !on);
+      t.querySelector('.box').textContent = on ? '' : '✓';
+      return toast('Lukt niet');
+    }
+    const c = $('st-count');
+    if (c) c.textContent = `${r.stock.have.length + r.stock.custom.length} flessen aangevinkt · tik om aan of uit te zetten`;
+    return;
+  }
+  if (t.dataset.stDel) {
+    if (!confirm('Deze eigen fles weghalen?')) return;
+    await api('DELETE', `/stock/custom/${encodeURIComponent(t.dataset.stDel)}`);
+    return showStock();
   }
   if (t.dataset.crAmt) {
     $('cr-amt').value = t.dataset.crAmt;

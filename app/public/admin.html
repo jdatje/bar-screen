@@ -29,8 +29,21 @@
   .a-themes .theme-card span { font-size: 16px; }
   .a-tile { display: flex; flex-direction: column; gap: 8px; }
   .a-tile .chip { min-height: 44px; padding: 0 14px; font-size: 16px; }
-  #admin-tabs { grid-template-columns: repeat(5, 1fr); }
-  #admin-tabs button { font-size: 13px; padding-left: 2px; padding-right: 2px; }
+  #admin-tabs { grid-template-columns: repeat(6, 1fr); }
+  #admin-tabs button { font-size: 12px; padding-left: 1px; padding-right: 1px; }
+  .st-group { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .st-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .st-item { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: left; font-size: 16px;
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); }
+  .st-item .box { flex: none; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line-strong); border-radius: 6px; font-weight: 800; }
+  .st-item.on { border-color: var(--accent); }
+  .st-item.on .box { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .st-own { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 48px; }
+  .st-add { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .st-add input, .st-add select { min-height: 50px; font-size: 17px; }
+  .st-search { min-height: 48px; width: 100%; }
+  .st-search, .st-add input, .st-add select, .cr-search, #cr-name { color: #111; }
+  .st-item[hidden], .st-group[hidden] { display: none; }
   .cr-form { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
   .cr-form input { min-height: 52px; font-size: 18px; }
   .cr-amount { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -73,6 +86,7 @@
   <button data-tab="games">Games</button>
   <button data-tab="guests">Gasten</button>
   <button data-tab="credits">Tegoed</button>
+  <button data-tab="stock">Voorraad</button>
 </nav>
 <script src="/js/admin.js" type="module"></script>
 </body>

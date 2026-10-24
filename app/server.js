@@ -435,6 +435,29 @@ admin.delete('/photos/:id', (req, res) => {
   res.json({ ok: true });
 });
 admin.get('/guests', (_req, res) => res.json(guests.list()));
+// stock (Voorraad) from the phone
+const stockChanged = () => io.to('screen').emit('makeable', cocktails.menu({ status: 'now' }).counts.now);
+admin.get('/stock', (_req, res) => res.json({ ...bar.catalogue(), stock: bar.getStock() }));
+admin.post('/stock/toggle', (req, res) => {
+  const { kind, id, on } = req.body || {};
+  const key = kind === 'pantry' ? 'pantry' : 'have';
+  const list = new Set(bar.getStock()[key]);
+  if (on) list.add(String(id));
+  else list.delete(String(id));
+  const stock = bar.setStock({ [key]: [...list] });
+  stockChanged();
+  res.json({ ok: true, stock });
+});
+admin.post('/stock/custom', (req, res) => {
+  const stock = bar.addCustom(req.body?.name, req.body?.countsAs);
+  stockChanged();
+  res.json({ ok: true, stock });
+});
+admin.delete('/stock/custom/:id', (req, res) => {
+  const stock = bar.removeCustom(req.params.id);
+  stockChanged();
+  res.json({ ok: true, stock });
+});
 admin.get('/credits', (_req, res) => res.json({ people: credits.list(), names: guests.list().map((g) => g.name) }));
 admin.post('/credits', (req, res) => res.json(credits.change(req.body?.name, req.body?.amount)));
 admin.delete('/credits/:key', (req, res) => {
