@@ -67,3 +67,5 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 ## For the next update (from Jeroen, not built yet)
 - Phones: someone who already joined with their name gets a way into the admin panel from
   the phone page (e.g. a "Beheer" link/button that opens /admin; still behind the code).
+- Phone admin: a "Voorraad" tab to manage the stock from the phone (same tick list of bottles,
+  "ook in huis" and own bottles as on the screen; behind the code). Works while the bar PC is on.
