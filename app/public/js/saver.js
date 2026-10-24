@@ -11,10 +11,27 @@ let canSleep = () => true;
 let photos = [];
 let photoTimer = null;
 let photoTurn = false;
-let photoIndex = 0;
+// photos come in random order: every photo once, then a new shuffle
+let bag = [];
+let lastId = null;
+function nextPhoto() {
+  if (!bag.length) {
+    bag = photos.map((p) => p.id);
+    for (let i = bag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [bag[i], bag[j]] = [bag[j], bag[i]];
+    }
+    // never the same photo twice in a row across shuffles
+    if (bag.length > 1 && bag[bag.length - 1] === lastId) [bag[0], bag[bag.length - 1]] = [bag[bag.length - 1], bag[0]];
+  }
+  const id = bag.pop();
+  lastId = id;
+  return photos.find((p) => p.id === id) || photos[0];
+}
 
 export function setPhotos(list) {
   photos = list || [];
+  bag = bag.filter((id) => photos.some((p) => p.id === id));
 }
 
 export function init(c, { allowed } = {}) {
@@ -63,7 +80,7 @@ function cycle() {
   const playing = Boolean(ctx.state.player?.track && !ctx.state.player.hidden);
   photoTurn = usePhotos ? (playing ? !photoTurn : true) : false;
   if (photoTurn) {
-    const p = photos[photoIndex++ % photos.length];
+    const p = nextPhoto();
     $('saver-photo-img').src = `/photos/${p.id}.jpg`;
     $('saver-photo-bg').style.backgroundImage = `url("/photos/${p.id}.jpg")`;
     $('saver-photo-by').textContent = p.by ? `📸 ${p.by}` : '';
