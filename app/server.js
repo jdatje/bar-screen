@@ -457,7 +457,7 @@ admin.post('/stock/toggle', (req, res) => {
   res.json({ ok: true, stock });
 });
 admin.post('/stock/custom', (req, res) => {
-  const stock = bar.addCustom(req.body?.name, req.body?.countsAs);
+  const stock = bar.addCustom(req.body?.name, req.body?.countsAs, req.body?.kind);
   stockChanged();
   res.json({ ok: true, stock });
 });
@@ -717,7 +717,7 @@ io.on('connection', (socket) => {
     ack?.({ ok: true, stock });
   };
   socket.on('stock:set', stockChange((p) => bar.setStock(p)));
-  socket.on('stock:addCustom', stockChange((p) => bar.addCustom(p.name, p.countsAs)));
+  socket.on('stock:addCustom', stockChange((p) => bar.addCustom(p.name, p.countsAs, p.kind)));
   socket.on('stock:removeCustom', stockChange((p) => bar.removeCustom(p.id)));
 
   // ----- Phones -----

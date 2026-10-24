@@ -59,7 +59,10 @@ async function loadBottles() {
   const liquor = (id) => !NOT_LIQUOR.has(id);
   bottles = [
     ...res.groups.flatMap((g) => g.items.filter((i) => have.has(i.id) && liquor(i.id)).map((i) => ({ id: i.id, name: i.label }))),
-    ...res.stock.custom.filter((c) => !c.countsAs || liquor(c.countsAs)).map((c) => ({ id: c.id, name: c.name })),
+    // own bottles: by their kind; older ones (no kind yet) by what they count as
+    ...res.stock.custom
+      .filter((c) => (c.kind ? ['liquor', 'liqueur'].includes(c.kind) : !c.countsAs || liquor(c.countsAs)))
+      .map((c) => ({ id: c.id, name: c.name })),
   ];
 }
 
@@ -300,6 +303,8 @@ export async function openStock() {
   renderStock();
 }
 
+const kindLabel = (c) => stockData.kinds?.find((k) => k.id === c.kind)?.label || '';
+
 function renderStock() {
   const { groups, pantry, stock } = stockData;
   const have = new Set(stock.have);
@@ -312,15 +317,12 @@ function renderStock() {
       .join('') +
     `<div class="stock-col"><span class="mono accent">Ook in huis</span>${pantry.map((p) => item(p.id, p.label, pan.has(p.id), 'pantry')).join('')}
       ${stock.custom.length ? `<span class="mono accent" style="margin-top:16px">Eigen flessen</span>${stock.custom
-        .map((c) => `<div class="custom-row"><span>${esc(c.name)}</span><button class="btn small" data-remove="${c.id}" aria-label="${esc(c.name)} verwijderen">×</button></div>`)
+        .map((c) => `<div class="custom-row"><span>${esc(c.name)}${kindLabel(c) ? ` <small class="muted">· ${esc(kindLabel(c))}</small>` : ''}</span><button class="btn small" data-remove="${c.id}" aria-label="${esc(c.name)} verwijderen">×</button></div>`)
         .join('')}` : ''}
     </div>`;
   $('stock-count').textContent = `${stock.have.length + stock.custom.length} flessen aangevinkt`;
   const sel = $('custom-cat');
-  if (!sel.options.length) {
-    sel.innerHTML = '<option value="">Eigen categorie</option>' +
-      groups.map((g) => `<optgroup label="${esc(g.label)}">${g.items.map((i) => `<option value="${i.id}">${esc(i.label)}</option>`).join('')}</optgroup>`).join('');
-  }
+  if (!sel.options.length) sel.innerHTML = stockData.kinds.map((k) => `<option value="${k.id}">${esc(k.label)}</option>`).join('');
 }
 
 async function onStockClick(e) {
@@ -350,7 +352,7 @@ async function addCustom(e) {
   if (!name) return;
   const pin = await ctx.getPin();
   if (pin == null) return;
-  const res = await call(ctx.socket, 'stock:addCustom', { pin, name, countsAs: $('custom-cat').value });
+  const res = await call(ctx.socket, 'stock:addCustom', { pin, name, kind: $('custom-cat').value });
   if (res?.ok) {
     stockData.stock = res.stock;
     $('custom-name').value = '';

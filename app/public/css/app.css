@@ -614,3 +614,13 @@ body:has(.osk:not([hidden])) .music-results { max-height: 22vh; }
 .qwixx-text { display: flex; flex-direction: column; gap: 10px; }
 .qwixx-text p { margin: 0; }
 .qwixx-url { font-size: 34px; letter-spacing: 1px; }
+
+/* ---------- Scrollbars in the colours of the chosen look ---------- */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--panel-2); border-radius: var(--radius); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: var(--radius); border: 3px solid var(--panel-2); }
+::-webkit-scrollbar-thumb:active { background: var(--text); }
+::-webkit-scrollbar-corner { background: transparent; }
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-color: var(--accent) var(--panel-2); }
+}

@@ -178,12 +178,13 @@ async function showStock() {
     <section class="panel st-group"><span class="mono accent">Ook in huis</span>
       <div class="st-items">${d.pantry.map((p) => item(p.id, p.label, pan.has(p.id), 'pantry')).join('')}</div></section>
     <section class="panel st-group"><span class="mono accent">Eigen flessen</span>
-      ${d.stock.custom.length ? d.stock.custom.map((c) => `<div class="st-own"><span>${esc(c.name)}</span><button class="btn small" data-st-del="${esc(c.id)}" aria-label="${esc(c.name)} verwijderen">✕</button></div>`).join('') : '<p class="muted" style="margin:0">Nog geen eigen flessen.</p>'}
+      ${d.stock.custom.length ? d.stock.custom.map((c) => `<div class="st-own"><span>${esc(c.name)}${d.kinds.find((k) => k.id === c.kind) ? ` <small class="muted">· ${esc(d.kinds.find((k) => k.id === c.kind).label)}</small>` : ''}</span><button class="btn small" data-st-del="${esc(c.id)}" aria-label="${esc(c.name)} verwijderen">✕</button></div>`).join('') : '<p class="muted" style="margin:0">Nog geen eigen flessen.</p>'}
     </section>
     <form class="panel st-add" id="st-add" autocomplete="off">
       <span class="mono accent">Eigen fles toevoegen</span>
       <input id="st-name" maxlength="50" placeholder="Bijv. Plantation Pineapple" required>
-      <select id="st-cat"><option value="">Telt als… (mag leeg)</option>${d.groups.map((g) => `<optgroup label="${esc(g.label)}">${g.items.map((i) => `<option value="${esc(i.id)}">${esc(i.label)}</option>`).join('')}</optgroup>`).join('')}</select>
+      <label class="muted" for="st-cat" style="font-size:14px">Soort</label>
+      <select id="st-cat">${d.kinds.map((k) => `<option value="${esc(k.id)}">${esc(k.label)}</option>`).join('')}</select>
       <button class="btn primary" type="submit">Toevoegen</button>
     </form>`;
   $('st-search').addEventListener('input', (e) => {
@@ -195,7 +196,7 @@ async function showStock() {
     e.preventDefault();
     const name = $('st-name').value.trim();
     if (!name) return;
-    await api('POST', '/stock/custom', { name, countsAs: $('st-cat').value });
+    await api('POST', '/stock/custom', { name, kind: $('st-cat').value });
     toast(`${name} toegevoegd`);
     showStock();
   });

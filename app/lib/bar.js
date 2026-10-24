@@ -189,10 +189,28 @@ export function setStock(patch) {
   return stock;
 }
 
-export function addCustom(name, countsAs) {
+// what kind of drink an own bottle is (the "Soort" choice when adding one)
+export const KINDS = [
+  { id: 'liquor', label: 'Sterke drank' },
+  { id: 'liqueur', label: 'Likeur' },
+  { id: 'wine', label: 'Wijn & bubbels' },
+  { id: 'beer', label: 'Bier' },
+  { id: 'aperitif', label: 'Vermout & bitters' },
+  { id: 'soda', label: 'Fris' },
+  { id: 'juice', label: 'Sap' },
+  { id: 'syrup', label: 'Siroop' },
+  { id: 'other', label: 'Overig' },
+];
+
+export function addCustom(name, countsAs, kind) {
   const clean = String(name || '').trim().slice(0, 50);
   if (!clean) return stock;
-  stock.custom.push({ id: crypto.randomUUID().slice(0, 8), name: clean, countsAs: allBottles().some((b) => b.id === countsAs) ? countsAs : null });
+  stock.custom.push({
+    id: crypto.randomUUID().slice(0, 8),
+    name: clean,
+    countsAs: allBottles().some((b) => b.id === countsAs) ? countsAs : null,
+    kind: KINDS.some((k) => k.id === kind) ? kind : 'other',
+  });
   save('stock', stock);
   cache.clear();
   return stock;
@@ -209,6 +227,7 @@ export function catalogue() {
   return {
     groups: BOTTLE_GROUPS.map((g) => ({ id: g.id, label: g.label, items: g.items.map(({ id, label }) => ({ id, label })) })),
     pantry: PANTRY.map(({ id, label }) => ({ id, label })),
+    kinds: KINDS,
   };
 }
 

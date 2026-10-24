@@ -63,6 +63,11 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   (no phone) or take someone out (× on the chip; that phone gets the join form again).
 - Credits (`lib/credits.js`): /admin tab Tegoed — free name, add any amount, −1 per tap.
 - /admin tab Voorraad: the stock from the phone (bottles, ook in huis, own bottles), `/api/admin/stock*`.
+- Own bottles have a type (`kind`: Sterke drank, Likeur, Wijn & bubbels, Bier, Vermout & bitters, Fris,
+  Sap, Siroop, Overig); the drankrad takes own bottles of type Sterke drank and Likeur.
+- Hub card Qwixx: overlay with a QR code to https://games.maisonbaron.nl (`/qr/qwixx.png`; the
+  site can't be framed, so phones play it).
+- Scrollbars use the look's colours (app.css, end).
 - Phones can save photos from the wall (Foto's tab → pick → Opslaan): share sheet with the
   files when the phone supports it, else a zip from `/api/photos.zip` (joined players only).
 - Phones don't load the 10 MB emoji font (kiosk only); responses are gzipped.
