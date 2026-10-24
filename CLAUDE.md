@@ -71,6 +71,9 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Screensaver shows the photos in random order (shuffle bag in saver.js, no repeats in a row).
 - Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
   no Peppa Pig (protected character; asked for, made this instead).
+  Own animal crew (public/img/critters): buttons owl=previous, crocodile=play, penguin=next,
+  honey badger=search; tiles mole rat (Spelletjes), manatee (Cocktails), cat & dog (Karaoke),
+  honey badger (Fotomuur), crocodile (Meedoen).
 - Phones can save photos from the wall (Foto's tab → pick → Opslaan): share sheet with the
   files when the phone supports it, else a zip from `/api/photos.zip` (joined players only).
 - Phones don't load the 10 MB emoji font (kiosk only); responses are gzipped.

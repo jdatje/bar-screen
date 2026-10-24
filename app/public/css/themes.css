@@ -376,3 +376,26 @@
 [data-theme="modderpret"] .party-decor .cloud.c3 { top: 3vh; left: -260px; transform: scale(.55); animation-duration: 120s; animation-delay: -85s; }
 @keyframes cloud { to { translate: calc(100vw + 520px) 0; } }
 @media (prefers-reduced-motion: reduce) { [data-theme="modderpret"] .party-decor .cloud { animation: none; } }
+/* Modderpret: our own animal crew on the music buttons and the home tiles */
+[data-theme="modderpret"] .controls .btn[data-cmd], [data-theme="modderpret"] .controls #playpause, [data-theme="modderpret"] .controls #music-open {
+  position: relative; background-repeat: no-repeat; background-position: center 42%; background-size: 80%;
+}
+[data-theme="modderpret"] .controls .btn[data-cmd] svg, [data-theme="modderpret"] .controls #playpause svg, [data-theme="modderpret"] .controls #music-open svg {
+  position: absolute; right: 4px; bottom: 4px; width: 18px; height: 18px; padding: 3px; border-radius: 50%; background: #fff; color: #3A2340;
+}
+[data-theme="modderpret"] .controls .btn[data-cmd="previous"] { background-image: url("/img/critters/owl.svg"); }
+[data-theme="modderpret"] .controls #playpause { background-image: url("/img/critters/crocodile.svg"); }
+[data-theme="modderpret"] .controls .btn[data-cmd="next"] { background-image: url("/img/critters/penguin.svg"); }
+[data-theme="modderpret"] .controls #music-open { background-image: url("/img/critters/honeybadger.svg"); }
+[data-theme="modderpret"] .tile .tile-bg { display: none; }
+[data-theme="modderpret"] .tile::after {
+  content: ''; position: absolute; right: 3%; bottom: 4%; width: 36%; height: 46%; z-index: 0; pointer-events: none;
+  background: no-repeat right bottom / contain; animation: critter-bob 3.2s ease-in-out infinite alternate;
+}
+[data-theme="modderpret"] .tile[data-go="hub"]::after { background-image: url("/img/critters/molerat.svg"); }
+[data-theme="modderpret"] .tile[data-go="cocktails"]::after { background-image: url("/img/critters/manatee.svg"); animation-delay: -0.8s; }
+[data-theme="modderpret"] .tile[data-go="karaoke"]::after { background-image: url("/img/critters/catanddog.svg"); animation-delay: -1.6s; }
+[data-theme="modderpret"] .tile[data-go="photos"]::after { background-image: url("/img/critters/honeybadger.svg"); animation-delay: -2.4s; }
+[data-theme="modderpret"] .tile.join::after { background-image: url("/img/critters/crocodile.svg"); width: 22%; height: 60%; }
+@keyframes critter-bob { from { transform: translateY(0) rotate(-2deg); } to { transform: translateY(-6px) rotate(2deg); } }
+@media (prefers-reduced-motion: reduce) { [data-theme="modderpret"] .tile::after { animation: none; } }
