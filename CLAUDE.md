@@ -68,6 +68,8 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Hub card Qwixx: overlay with a QR code to https://games.maisonbaron.nl (`/qr/qwixx.png`; the
   site can't be framed, so phones play it).
 - Scrollbars use the look's colours (app.css, end).
+- Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
+  no Peppa Pig (protected character; asked for, made this instead).
 - Phones can save photos from the wall (Foto's tab → pick → Opslaan): share sheet with the
   files when the phone supports it, else a zip from `/api/photos.zip` (joined players only).
 - Phones don't load the 10 MB emoji font (kiosk only); responses are gzipped.

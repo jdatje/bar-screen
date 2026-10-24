@@ -344,3 +344,35 @@
 }
 @keyframes sea { to { background-position: 200px 0; } }
 @media (prefers-reduced-motion: reduce) { .party-decor .grid, .party-decor .sea { animation: none; } }
+
+/* ---------- Kinderfeest: Modderpret (pink, sky, green hills and muddy puddles) ---------- */
+[data-theme="modderpret"] {
+  --bg: #FFE3EE; --panel: #FFFFFF; --panel-2: #FFF0F6; --line: #F7C6DA; --line-strong: #E893B6;
+  --text: #3A2340; --text-2: #5B3F61; --text-3: #8A6C8F; --accent: #F0559A; --accent-hover: #D93E84; --on-accent: #FFFFFF;
+  --font-display: 'Fredoka', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Nunito', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Nunito', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 26px;
+}
+[data-theme="modderpret"] body { font-weight: 700; background-image: linear-gradient(#9FD8FF 0, #CFEBFF 30%, #FFE3EE 62%); }
+[data-theme="modderpret"] .tag { background: #8CCB4A; color: #fff; }
+[data-theme="modderpret"] .tile, [data-theme="modderpret"] .now, [data-theme="modderpret"] .panel { border-width: 3px; box-shadow: 0 6px 0 rgba(232, 147, 182, 0.45); }
+[data-theme="modderpret"] .btn.primary { box-shadow: 0 5px 0 #C23C78; }
+[data-theme="modderpret"] .party-decor { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+[data-theme="modderpret"] .party-decor .bunting { display: none; }
+[data-theme="modderpret"] .screen { position: relative; z-index: 1; }
+.party-decor .hill, .party-decor .cloud { display: none; }
+/* green hills with brown puddles along the bottom */
+[data-theme="modderpret"] .party-decor .hill {
+  display: block; position: absolute; left: -5%; right: -5%; bottom: -10px; height: 26vh;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' preserveAspectRatio='none'%3E%3Cpath d='M0 55Q60 20 130 45T260 40T400 50V100H0z' fill='%238CCB4A'/%3E%3Cpath d='M0 70Q80 45 170 65T330 60T400 66V100H0z' fill='%2374B53A'/%3E%3Cellipse cx='95' cy='84' rx='38' ry='7' fill='%238B5A2B'/%3E%3Cellipse cx='92' cy='82' rx='22' ry='3' fill='%23A8743F'/%3E%3Cellipse cx='290' cy='88' rx='46' ry='8' fill='%238B5A2B'/%3E%3Cellipse cx='286' cy='86' rx='28' ry='3.5' fill='%23A8743F'/%3E%3C/svg%3E") no-repeat center bottom / 100% 100%;
+  opacity: 0.9;
+}
+/* soft white clouds drifting by */
+[data-theme="modderpret"] .party-decor .cloud {
+  display: block; position: absolute; width: 180px; height: 60px; border-radius: 60px; background: #fff; opacity: 0.85;
+  box-shadow: 40px -22px 0 6px #fff, 90px -6px 0 0 #fff; animation: cloud 70s linear infinite;
+}
+[data-theme="modderpret"] .party-decor .cloud.c1 { top: 6vh; left: -260px; }
+[data-theme="modderpret"] .party-decor .cloud.c2 { top: 16vh; left: -260px; transform: scale(.7); animation-duration: 95s; animation-delay: -40s; }
+[data-theme="modderpret"] .party-decor .cloud.c3 { top: 3vh; left: -260px; transform: scale(.55); animation-duration: 120s; animation-delay: -85s; }
+@keyframes cloud { to { translate: calc(100vw + 520px) 0; } }
+@media (prefers-reduced-motion: reduce) { [data-theme="modderpret"] .party-decor .cloud { animation: none; } }

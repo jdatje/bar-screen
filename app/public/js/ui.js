@@ -8,6 +8,7 @@ export const THEME_GROUPS = [
   { id: 'oktoberfest', label: 'Oktoberfest' },
   { id: 'halloween', label: 'Halloween' },
   { id: 'nederland', label: 'Nederland' },
+  { id: 'kinderfeest', label: 'Kinderfeest' },
 ];
 
 export const THEMES = {
@@ -38,6 +39,7 @@ export const THEMES = {
   // Nederland
   oranje: { group: 'nederland', label: '🇳🇱 Oranjegekte', bg: '#FF7A00', fg: '#14204A', ac: '#21468B', fonts: 'Titan+One&family=Nunito:wght@500;600;700;800' },
   delft: { group: 'nederland', label: '🇳🇱 Delfts Blauw', bg: '#F3F6FB', fg: '#12306B', ac: '#1B3F9C', fonts: 'Yeseva+One&family=Mulish:wght@400;500;600;700' },
+  modderpret: { group: 'kinderfeest', label: 'Modderpret', bg: '#FFE3EE', fg: '#3A2340', ac: '#F0559A', fonts: 'Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800' },
   oranjeboven: { group: 'nederland', label: '🇳🇱 Oranje Boven', bg: '#0B1630', fg: '#F4F6FF', ac: '#FF7A00', fonts: 'Bungee&family=Rubik:wght@400;500;600' },
 };
 

@@ -406,6 +406,8 @@ const EN = {
   'Sap': 'Juice',
   'Siroop': 'Syrup',
   'Overig': 'Other',
+  'Kinderfeest': "Kids' party",
+  'Modderpret': 'Muddy fun',
   'Tegoed': 'Credits',
   'Tegoed erbij': 'Add credits',
   'Toevoegen': 'Add',

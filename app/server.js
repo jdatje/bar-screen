@@ -25,7 +25,7 @@ const PORT = Number(process.env.PORT || 80);
 // Requests from the bar PC itself (the kiosk browser). With the public
 // address switched on, everything else may come from the internet.
 const isLocal = (addr) => ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(String(addr || ''));
-export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven', 'rock', 'synthwave', 'strand', 'zonsondergang', 'wiesn', 'bierhal'];
+export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven', 'rock', 'synthwave', 'strand', 'zonsondergang', 'wiesn', 'bierhal', 'modderpret'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
 const app = express();
