@@ -63,11 +63,16 @@ document.querySelectorAll('[data-hub]').forEach((b) =>
   b.addEventListener('click', () => {
     const h = b.dataset.hub;
     if (h === 'games' || h === 'wheel' || h === 'bottlewheel') return go(h);
+    if (h === 'qwixx') return $('qwixx').classList.add('open');
     quiz.setType(h);
     go('quiz');
   })
 );
 document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => go(b.dataset.go)));
+
+// ---------- Qwixx: just a QR code to the game site ----------
+$('qwixx-close').addEventListener('click', () => $('qwixx').classList.remove('open'));
+$('qwixx').addEventListener('click', (e) => e.target.id === 'qwixx' && $('qwixx').classList.remove('open'));
 
 // ---------- Clock ----------
 // The bar PC runs on UTC; always show Amsterdam time (incl. summer/winter time)

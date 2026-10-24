@@ -322,6 +322,14 @@ app.get(CALLBACK_PATH, async (req, res) => {
   }
 });
 
+// ----- Qwixx (own site): a QR code on the screen -----
+const QWIXX_URL = 'https://games.maisonbaron.nl';
+const qwixxQr = QRCode.toBuffer(QWIXX_URL, { margin: 1, width: 600, color: { dark: '#111111', light: '#FFFFFF' } });
+app.get('/qr/qwixx.png', async (_req, res) => {
+  res.set({ 'content-type': 'image/png', 'cache-control': 'public, max-age=86400' });
+  res.send(await qwixxQr);
+});
+
 // ----- Photo wall -----
 // guests (joined on their phone) send a resized JPEG as the raw body
 app.post('/api/photos', async (req, res) => {
