@@ -86,6 +86,13 @@ async function showScreen() {
       <span class="mono accent">Code</span>
       <button class="btn" id="change-pin">Code wijzigen</button>
     </section>
+    <form class="panel a-sec" id="wifi-form" autocomplete="off">
+      <span class="mono accent">Wifi van de bar</span>
+      <p class="muted" style="margin:0">Voor de wifi-QR op het scherm. Gasten die hem scannen, komen meteen op de wifi (met wachtwoord).</p>
+      <input id="wifi-ssid" maxlength="32" placeholder="Netwerknaam" value="${esc(s.wifi?.ssid || '')}" style="min-height:50px;font-size:17px;color:#111">
+      <input id="wifi-pass" maxlength="63" placeholder="Wachtwoord (leeg = open netwerk)" value="${esc(s.wifi?.password || '')}" style="min-height:50px;font-size:17px;color:#111">
+      <button class="btn primary" type="submit">Wifi opslaan</button>
+    </form>
     <section class="panel a-sec">
       <span class="mono accent">Screensaver na</span>
       <div class="chips">${[0, 1, 2, 5, 10, 15, 30, 60].map((m) => `<button class="chip${Number(s.screensaver) === m ? ' on' : ''}" data-saver-min="${m}">${m ? `${m} min` : 'Uit'}</button>`).join('')}</div>
@@ -265,6 +272,13 @@ async function showGames() {
     showGames();
   });
 }
+
+document.addEventListener('submit', async (e) => {
+  if (e.target.id !== 'wifi-form') return;
+  e.preventDefault();
+  const r = await saveSettings({ wifi: { ssid: $('wifi-ssid').value, password: $('wifi-pass').value } });
+  if (r.ok) toast($('wifi-ssid').value.trim() ? 'Wifi-QR staat op het scherm' : 'Wifi-QR weggehaald');
+});
 
 async function saveSettings(patch) {
   const r = await api('POST', '/settings', patch);

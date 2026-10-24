@@ -114,7 +114,14 @@
       </button>
       <div class="tile join wide">
         <span class="tile-bg" data-tile="join" aria-hidden="true"></span>
-        <img class="qr" alt="QR-code om mee te doen">
+        <figure class="wifi-qr" id="wifi-qr" hidden>
+          <img class="qr" id="wifi-qr-img" alt="QR-code voor de wifi">
+          <figcaption><b>1</b> Wifi<span id="wifi-ssid"></span></figcaption>
+        </figure>
+        <figure class="join-qr">
+          <img class="qr" alt="QR-code om mee te doen">
+          <figcaption><b class="step2" hidden>2</b> Meedoen</figcaption>
+        </figure>
         <div style="display:flex;flex-direction:column;gap:6px">
           <span class="mono accent">06 — Meedoen</span>
           <p>Scan voor de quiz, verzoekjes, foto's en recepten</p>

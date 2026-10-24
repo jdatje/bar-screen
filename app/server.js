@@ -40,6 +40,8 @@ settings.requests ||= 'approve'; // song requests: 'off' | 'approve' | 'auto'
 if (settings.saverPhotos == null) settings.saverPhotos = true; // photo wall in the screensaver
 settings.gameVolume = { music: 75, game: 25, ...(settings.gameVolume || {}) };
 if (!settings.pin) settings.pin = DEFAULT_PIN;
+// the bar's Wi-Fi, for the Wi-Fi QR code on the screen (never sent to phones)
+settings.wifi = { ssid: '', password: '', ...(settings.wifi || {}) };
 settings.tiles = { ...DEFAULT_TILES, ...(settings.tiles || {}) };
 let quizDefaults = load('quiz-settings', {
   intro: { genres: {}, decades: [], playlists: [], rounds: 2, perRound: 8, seconds: 20, clip: 10 },
@@ -87,6 +89,13 @@ function applySettings(patch = {}) {
   if (patch.tiles && typeof patch.tiles === 'object') {
     for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
   }
+  if (patch.wifi && typeof patch.wifi === 'object') {
+    settings.wifi = {
+      ssid: String(patch.wifi.ssid ?? settings.wifi.ssid).trim().slice(0, 32),
+      password: String(patch.wifi.password ?? settings.wifi.password).slice(0, 63),
+    };
+    makeWifiQr().then(() => io.to('screen').emit('state', screenState()));
+  }
   if ('newPin' in patch) {
     const pin = String(patch.newPin || '').replace(/\D/g, '').slice(0, 8);
     if (pin.length < 4) return { ok: false, error: 'pin_too_short' };
@@ -103,7 +112,7 @@ const newCode = () => Array.from({ length: 4 }, () => CODE_CHARS[crypto.randomIn
 // The room code and who joined survive a restart (update, PC reboot), so
 // phones don't have to join again every time.
 const savedRoom = load('room', { code: null, players: {} });
-const room = { code: savedRoom.code || newCode(), joinUrl: null, qr: null, adminUrl: null, adminQr: null };
+const room = { code: savedRoom.code || newCode(), joinUrl: null, qr: null, adminUrl: null, adminQr: null, wifiSsid: '', wifiQr: null };
 const players = new Map( // playerId -> { name, sockets: Set, manual }
   Object.entries(savedRoom.players || {}).map(([id, p]) => [id, { name: p.name, manual: Boolean(p.manual), sockets: new Set() }])
 );
@@ -122,8 +131,21 @@ const findByName = (n) => [...players].find(([, p]) => nameKey(p.name) === nameK
 const playerList = () =>
   [...players.entries()].map(([id, p]) => ({ id, name: p.name, online: p.sockets.size > 0, manual: Boolean(p.manual) }));
 
+// Wi-Fi QR code: phones that scan it join the bar's network (password included)
+async function makeWifiQr() {
+  const { ssid, password } = settings.wifi;
+  room.wifiSsid = ssid;
+  if (!ssid) return (room.wifiQr = null);
+  const esc = (v) => String(v).replace(/([\\;,:"])/g, '\\$1');
+  const text = password ? `WIFI:T:WPA;S:${esc(ssid)};P:${esc(password)};;` : `WIFI:T:nopass;S:${esc(ssid)};;`;
+  room.wifiQr = await QRCode.toDataURL(text, { margin: 1, width: 320, color: { dark: '#111111', light: '#FFFFFF' } });
+}
+makeWifiQr();
+
+// Phones join over the bar's own Wi-Fi only: the QR code points at the
+// PC's address on the local network (not the public internet address).
 async function resolveJoinUrl() {
-  let base = process.env.PUBLIC_URL || process.env.LAN_URL || null;
+  let base = process.env.LAN_URL || null;
   // On balena: ask the supervisor for the device's LAN address
   if (!base && process.env.BALENA_SUPERVISOR_ADDRESS && process.env.BALENA_SUPERVISOR_API_KEY) {
     try {
@@ -252,7 +274,7 @@ const screenState = () => ({
   build: BUILD,
   settings: publicSettings(),
   themes: THEMES,
-  room: { code: room.code, joinUrl: room.joinUrl, qr: room.qr, adminUrl: room.adminUrl, adminQr: room.adminQr },
+  room: { code: room.code, joinUrl: room.joinUrl, qr: room.qr, adminUrl: room.adminUrl, adminQr: room.adminQr, wifiSsid: room.wifiSsid, wifiQr: room.wifiQr },
   players: playerList(),
   player: publicPlayer(),
   game: game.screenView(),
@@ -476,7 +498,7 @@ admin.delete('/guests/:key', (req, res) => {
   guests.remove(req.params.key);
   res.json({ ok: true });
 });
-admin.get('/settings', (_req, res) => res.json({ ...publicSettings(), themes: THEMES, room: room.code }));
+admin.get('/settings', (_req, res) => res.json({ ...publicSettings(), themes: THEMES, room: room.code, wifi: settings.wifi }));
 admin.post('/settings', (req, res) => res.json(applySettings(req.body || {})));
 admin.post('/room/new', async (_req, res) => {
   await newRoom();

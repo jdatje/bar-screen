@@ -80,6 +80,11 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 
 ## Built, waiting for the next push
 - Settings on the screen close (and lock) when you tap next to the panel.
+- Wi-Fi only (Jeroen): the join QR uses the PC's LAN address (PUBLIC_URL is ignored now).
+  When pushing: also switch OFF the balena public device URL (and remove the PUBLIC_URL
+  device variable), so there's no internet access anymore.
+- Wi-Fi QR on the Meedoen tile (step 1 Wi-Fi, step 2 Meedoen), set in /admin → Scherm → "Wifi van
+  de bar"; the password lives only in settings and the screen state, never sent to phones.
 
 ## For the next update (from Jeroen, not built yet)
 - Phones: someone who already joined with their name gets a way into the admin panel from

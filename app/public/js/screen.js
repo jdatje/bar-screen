@@ -338,6 +338,13 @@ function renderRoom(room) {
   const base = (room.joinUrl || '').replace(/\/play\?.*$/, '');
   $('admin-url').textContent = room.adminUrl || `${base}/admin`;
   if (room.adminQr) $('admin-qr').src = room.adminQr;
+  // Wi-Fi first (when set in the admin), then the join code
+  $('wifi-qr').hidden = !room.wifiQr;
+  document.querySelectorAll('.join .step2').forEach((el) => (el.hidden = !room.wifiQr));
+  if (room.wifiQr) {
+    $('wifi-qr-img').src = room.wifiQr;
+    $('wifi-ssid').textContent = room.wifiSsid ? ` · ${room.wifiSsid}` : '';
+  }
 }
 function renderPlayers(list) {
   state.players = list;
