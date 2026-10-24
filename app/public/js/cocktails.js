@@ -48,14 +48,18 @@ export function setWheelMode(mode) {
   document.querySelectorAll('[data-wmode]').forEach((b) => b.classList.toggle('on', b.dataset.wmode === wheelMode));
   $('wheel').setAttribute('aria-label', wheelMode === 'bottle' ? 'Drankrad' : 'Cocktailrad');
 }
-let bottles = []; // labels of every bottle that's in stock
+// The drankrad only spins over liquor: spirits, liqueurs and amari from the
+// stock. Wine, beer, bubbles, fortified wine, vermouth and cocktail bitters stay off.
+const NOT_LIQUOR = new Set(['port', 'sherry', 'bubbles', 'wine', 'beer', 'sweet-vermouth', 'dry-vermouth', 'lillet', 'angostura', 'orange-bitters', 'peychauds']);
+let bottles = []; // labels of every liquor bottle that's in stock
 async function loadBottles() {
   const res = await call(ctx.socket, 'stock:get');
   if (!res) return;
   const have = new Set(res.stock.have);
+  const liquor = (id) => !NOT_LIQUOR.has(id);
   bottles = [
-    ...res.groups.flatMap((g) => g.items.filter((i) => have.has(i.id)).map((i) => ({ id: i.id, name: i.label }))),
-    ...res.stock.custom.map((c) => ({ id: c.id, name: c.name })),
+    ...res.groups.flatMap((g) => g.items.filter((i) => have.has(i.id) && liquor(i.id)).map((i) => ({ id: i.id, name: i.label }))),
+    ...res.stock.custom.filter((c) => !c.countsAs || liquor(c.countsAs)).map((c) => ({ id: c.id, name: c.name })),
   ];
 }
 

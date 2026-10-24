@@ -42,7 +42,7 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   Both containers run with `ipc: host` so the mixer is shared. Game volume default 25%, music 75%.
 
 ## Home screen
-- Tiles: Spelletjes (hub: pub/pop/intro quiz, retro games, drankrad (all bottles in stock), draai het rad), Cocktails,
+- Tiles: Spelletjes (hub: pub/pop/intro quiz, retro games, drankrad (liquor in stock: no wine/beer/bubbles/port/sherry/vermouth/bitters), draai het rad), Cocktails,
   Karaoke (LRCLIB synced lyrics), Fotomuur (photos from phones), Meedoen.
 - Music search (🔍 in the music controls, `public/js/music.js`): songs → speaker queue (play before
   the rest of the playlist); playlists (search + the linked account's own) → play now via go-librespot.
