@@ -303,6 +303,8 @@ function closeSettings() {
   pinCache = { pin: '', until: 0 }; // locked again
 }
 $('close-settings').addEventListener('click', closeSettings);
+// a tap next to the settings panel closes (and locks) them too
+$('settings').addEventListener('click', (e) => e.target.id === 'settings' && closeSettings());
 async function setSetting(patch) {
   const res = await call(socket, 'settings:set', { pin: pinCache.pin, ...patch });
   if (!res?.ok) toast(res?.error === 'pin' ? 'Code verlopen — open de instellingen opnieuw' : 'Lukt niet');

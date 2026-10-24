@@ -78,6 +78,9 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   files when the phone supports it, else a zip from `/api/photos.zip` (joined players only).
 - Phones don't load the 10 MB emoji font (kiosk only); responses are gzipped.
 
+## Built, waiting for the next push
+- Settings on the screen close (and lock) when you tap next to the panel.
+
 ## For the next update (from Jeroen, not built yet)
 - Phones: someone who already joined with their name gets a way into the admin panel from
   the phone page (e.g. a "Beheer" link/button that opens /admin; still behind the code).
