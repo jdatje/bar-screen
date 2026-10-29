@@ -73,6 +73,7 @@ function show() {
   $('saver').hidden = false;
   ghosts(SPOOKY_THEMES.includes(ctx.state.settings.theme));
   pretzels(PARTY_OF_THEME[ctx.state.settings.theme] === 'oktoberfest');
+  fireworks(PARTY_OF_THEME[ctx.state.settings.theme] === 'newyear');
   requestAnimationFrame(() => $('saver').classList.add('on'));
   // with photos on the wall: switch between the song and a photo every 12 s
   clearInterval(photoTimer);
@@ -126,6 +127,26 @@ function pretzels(show) {
     return `<s class="foam" style="left:${left.toFixed(1)}%;width:${size.toFixed(0)}px;height:${size.toFixed(0)}px;animation-duration:${dur.toFixed(1)}s;animation-delay:-${(Math.random() * dur).toFixed(1)}s"></s>`;
   });
   el.innerHTML = items.join('') + foam.join('');
+}
+
+// Oud & Nieuw looks: fireworks bursting and champagne bubbles rising
+const SPARK_COLORS = ['#FFC93C', '#FF4FB0', '#40D2FF', '#7CFF78', '#FFFFFF', '#FF7A3C'];
+function fireworks(show) {
+  const el = $('saver-ghosts');
+  if (!show) return;
+  const bursts = Array.from({ length: 6 }, () => {
+    const c = SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)];
+    const dur = (2.6 + Math.random() * 1.8).toFixed(1);
+    const delay = (-Math.random() * 5).toFixed(1);
+    const sparks = Array.from({ length: 18 }, (_, i) => `<i style="--a:${i * 20}deg"></i>`).join('');
+    return `<span class="burst" style="left:${(8 + Math.random() * 84).toFixed(0)}%;top:${(8 + Math.random() * 55).toFixed(0)}%;color:${c};animation-duration:${dur}s;animation-delay:${delay}s;--d:${dur}s;--dl:${delay}s">${sparks}</span>`;
+  });
+  const bubbles = Array.from({ length: 22 }, () => {
+    const size = 4 + Math.random() * 12;
+    const dur = 7 + Math.random() * 8;
+    return `<s class="fizz" style="left:${(Math.random() * 100).toFixed(1)}%;width:${size.toFixed(0)}px;height:${size.toFixed(0)}px;animation-duration:${dur.toFixed(1)}s;animation-delay:-${(Math.random() * dur).toFixed(1)}s"></s>`;
+  });
+  el.innerHTML = bursts.join('') + bubbles.join('');
 }
 
 function hide() {

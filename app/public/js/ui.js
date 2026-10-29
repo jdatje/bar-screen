@@ -9,6 +9,7 @@ export const THEME_GROUPS = [
   { id: 'halloween', label: 'Halloween' },
   { id: 'nederland', label: 'Nederland' },
   { id: 'kinderfeest', label: 'Kinderfeest' },
+  { id: 'oudnieuw', label: 'Oud & Nieuw' },
 ];
 
 export const THEMES = {
@@ -39,6 +40,9 @@ export const THEMES = {
   // Nederland
   oranje: { group: 'nederland', label: '🇳🇱 Oranjegekte', bg: '#FF7A00', fg: '#14204A', ac: '#21468B', fonts: 'Titan+One&family=Nunito:wght@500;600;700;800' },
   delft: { group: 'nederland', label: '🇳🇱 Delfts Blauw', bg: '#F3F6FB', fg: '#12306B', ac: '#1B3F9C', fonts: 'Yeseva+One&family=Mulish:wght@400;500;600;700' },
+  champagne: { group: 'oudnieuw', label: '🥂 Champagne', bg: '#0E0C08', fg: '#F6EBD0', ac: '#E8C26A', fonts: 'Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600' },
+  vuurwerk: { group: 'oudnieuw', label: '🎆 Vuurwerk', bg: '#070B1E', fg: '#F1F4FF', ac: '#FFC93C', fonts: 'Bungee&family=Poppins:wght@400;500;600' },
+  oliebol: { group: 'oudnieuw', label: '🍩 Oliebollenkraam', bg: '#F6EBDC', fg: '#3B2614', ac: '#B8322A', fonts: 'Lilita+One&family=Nunito:wght@500;600;700;800' },
   modderpret: { group: 'kinderfeest', label: 'Modderpret', bg: '#FFE3EE', fg: '#3A2340', ac: '#F0559A', fonts: 'Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800' },
   oranjeboven: { group: 'nederland', label: '🇳🇱 Oranje Boven', bg: '#0B1630', fg: '#F4F6FF', ac: '#FF7A00', fonts: 'Bungee&family=Rubik:wght@400;500;600' },
 };

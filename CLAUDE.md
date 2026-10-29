@@ -81,6 +81,9 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   Maßkrugstemmen (hub card, stopwatch + top 10 in lib/masskrug.js / public/js/masskrug.js; clearing the
   list needs the code; `.party-only` + :root[data-party]); screensaver pretzels + rising foam.
   (The Bierrad was removed again on Jeroen's request.)
+- Oud & Nieuw looks (group "Oud & Nieuw", party `newyear`): 🥂 Champagne (black/gold), 🎆 Vuurwerk (night sky),
+  🍩 Oliebollenkraam (cream, red-white stripe). 🎆 Oudejaarsquiz (data-seed/oudnieuw.json, 32 questions);
+  screensaver fireworks bursts + champagne bubbles.
 - Screensaver shows the photos in random order (shuffle bag in saver.js, no repeats in a row).
 - Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
   no Peppa Pig (protected character; asked for, made this instead).

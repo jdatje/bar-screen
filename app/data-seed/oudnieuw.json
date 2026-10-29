@@ -1,0 +1,770 @@
+[
+ {
+  "id": "nye:7a0b5ce917",
+  "category": "aardrijkskunde",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Waar wordt als eerste ter wereld het nieuwe jaar gevierd?",
+   "options": [
+    "Op de Line-eilanden van Kiribati",
+    "In Nieuw-Zeeland",
+    "In Japan",
+    "In Australië"
+   ]
+  },
+  "en": {
+   "q": "Where is the new year celebrated first in the world?",
+   "options": [
+    "On the Line Islands of Kiribati",
+    "In New Zealand",
+    "In Japan",
+    "In Australia"
+   ]
+  }
+ },
+ {
+  "id": "nye:f3b83edcf0",
+  "category": "aardrijkskunde",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welk bewoond gebied viert als een van de laatste nieuwjaar?",
+   "options": [
+    "Amerikaans-Samoa",
+    "Hawaï",
+    "Alaska",
+    "Nieuw-Zeeland"
+   ]
+  },
+  "en": {
+   "q": "Which inhabited place is one of the last to celebrate the new year?",
+   "options": [
+    "American Samoa",
+    "Hawaii",
+    "Alaska",
+    "New Zealand"
+   ]
+  }
+ },
+ {
+  "id": "nye:752ff32890",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke Romeinse god met twee gezichten gaf januari zijn naam?",
+   "options": [
+    "Janus",
+    "Jupiter",
+    "Mars",
+    "Juno"
+   ]
+  },
+  "en": {
+   "q": "Which two-faced Roman god gave January its name?",
+   "options": [
+    "Janus",
+    "Jupiter",
+    "Mars",
+    "Juno"
+   ]
+  }
+ },
+ {
+  "id": "nye:b0498c4c99",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie liet 1 januari het begin van het jaar worden in zijn nieuwe kalender?",
+   "options": [
+    "Julius Caesar",
+    "Augustus",
+    "Nero",
+    "Constantijn"
+   ]
+  },
+  "en": {
+   "q": "Who made 1 January the start of the year in his new calendar?",
+   "options": [
+    "Julius Caesar",
+    "Augustus",
+    "Nero",
+    "Constantine"
+   ]
+  }
+ },
+ {
+  "id": "nye:c576b781ac",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke kalender gebruiken we nu?",
+   "options": [
+    "De gregoriaanse",
+    "De juliaanse",
+    "De Maya-kalender",
+    "De Chinese"
+   ]
+  },
+  "en": {
+   "q": "Which calendar do we use today?",
+   "options": [
+    "The Gregorian",
+    "The Julian",
+    "The Maya calendar",
+    "The Chinese"
+   ]
+  }
+ },
+ {
+  "id": "nye:f5986fcb47",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Op welke dag van de week valt 1 januari 2027?",
+   "options": [
+    "Vrijdag",
+    "Donderdag",
+    "Zaterdag",
+    "Maandag"
+   ]
+  },
+  "en": {
+   "q": "On which day of the week is 1 January 2027?",
+   "options": [
+    "Friday",
+    "Thursday",
+    "Saturday",
+    "Monday"
+   ]
+  }
+ },
+ {
+  "id": "nye:e28c0a7393",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is het eerste schrikkeljaar na 2027?",
+   "options": [
+    "2028",
+    "2029",
+    "2030",
+    "2032"
+   ]
+  },
+  "en": {
+   "q": "What is the first leap year after 2027?",
+   "options": [
+    "2028",
+    "2029",
+    "2030",
+    "2032"
+   ]
+  }
+ },
+ {
+  "id": "nye:b8a70fe3e5",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoeveel dagen heeft een schrikkeljaar?",
+   "options": [
+    "366",
+    "365",
+    "364",
+    "367"
+   ]
+  },
+  "en": {
+   "q": "How many days does a leap year have?",
+   "options": [
+    "366",
+    "365",
+    "364",
+    "367"
+   ]
+  }
+ },
+ {
+  "id": "nye:603b659fc9",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welk dier van de Chinese dierenriem hoort bij 2027?",
+   "options": [
+    "De geit",
+    "Het paard",
+    "De aap",
+    "De haan"
+   ]
+  },
+  "en": {
+   "q": "Which animal of the Chinese zodiac belongs to 2027?",
+   "options": [
+    "The goat",
+    "The horse",
+    "The monkey",
+    "The rooster"
+   ]
+  }
+ },
+ {
+  "id": "nye:0fb9e3d544",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welke stad zakt op oudejaarsavond een grote lichtbal omlaag op Times Square?",
+   "options": [
+    "New York",
+    "Chicago",
+    "Los Angeles",
+    "Boston"
+   ]
+  },
+  "en": {
+   "q": "In which city does a big ball drop on Times Square on New Year's Eve?",
+   "options": [
+    "New York",
+    "Chicago",
+    "Los Angeles",
+    "Boston"
+   ]
+  }
+ },
+ {
+  "id": "nye:dfaff91d66",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet het Schotse oudejaarsfeest?",
+   "options": [
+    "Hogmanay",
+    "Burns Night",
+    "Ceilidh",
+    "Samhain"
+   ]
+  },
+  "en": {
+   "q": "What is the Scottish New Year's Eve celebration called?",
+   "options": [
+    "Hogmanay",
+    "Burns Night",
+    "Ceilidh",
+    "Samhain"
+   ]
+  }
+ },
+ {
+  "id": "nye:45723fbefd",
+  "category": "muziek",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk liedje zingen ze in Engelstalige landen om middernacht?",
+   "options": [
+    "Auld Lang Syne",
+    "Jingle Bells",
+    "Silent Night",
+    "Danny Boy"
+   ]
+  },
+  "en": {
+   "q": "Which song is sung at midnight in English-speaking countries?",
+   "options": [
+    "Auld Lang Syne",
+    "Jingle Bells",
+    "Silent Night",
+    "Danny Boy"
+   ]
+  }
+ },
+ {
+  "id": "nye:8b5fb31a4c",
+  "category": "muziek",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke Schotse dichter schreef de tekst van \"Auld Lang Syne\"?",
+   "options": [
+    "Robert Burns",
+    "Walter Scott",
+    "Lord Byron",
+    "William Shakespeare"
+   ]
+  },
+  "en": {
+   "q": "Which Scottish poet wrote the words of \"Auld Lang Syne\"?",
+   "options": [
+    "Robert Burns",
+    "Walter Scott",
+    "Lord Byron",
+    "William Shakespeare"
+   ]
+  }
+ },
+ {
+  "id": "nye:8e0f69a177",
+  "category": "muziek",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Muziek van welke familie staat centraal in het Weense Nieuwjaarsconcert?",
+   "options": [
+    "Strauss",
+    "Bach",
+    "Mozart",
+    "Beethoven"
+   ]
+  },
+  "en": {
+   "q": "Music by which family is at the heart of the Vienna New Year's Concert?",
+   "options": [
+    "Strauss",
+    "Bach",
+    "Mozart",
+    "Beethoven"
+   ]
+  }
+ },
+ {
+  "id": "nye:d1098371ba",
+  "category": "muziek",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Met welke mars sluit het Weense Nieuwjaarsconcert altijd af?",
+   "options": [
+    "De Radetzkymars",
+    "De Turkse mars",
+    "De Bruiloftsmars",
+    "De Triomfmars"
+   ]
+  },
+  "en": {
+   "q": "Which march always closes the Vienna New Year's Concert?",
+   "options": [
+    "The Radetzky March",
+    "The Turkish March",
+    "The Wedding March",
+    "The Triumphal March"
+   ]
+  }
+ },
+ {
+  "id": "nye:68bbc75623",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat eten Spanjaarden bij de twaalf slagen van middernacht?",
+   "options": [
+    "Twaalf druiven",
+    "Twaalf olijven",
+    "Twaalf noten",
+    "Twaalf kersen"
+   ]
+  },
+  "en": {
+   "q": "What do Spaniards eat on the twelve strokes of midnight?",
+   "options": [
+    "Twelve grapes",
+    "Twelve olives",
+    "Twelve nuts",
+    "Twelve cherries"
+   ]
+  }
+ },
+ {
+  "id": "nye:96b06314aa",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke kleur ondergoed brengt in Italië en Spanje geluk in het nieuwe jaar?",
+   "options": [
+    "Rood",
+    "Groen",
+    "Geel",
+    "Wit"
+   ]
+  },
+  "en": {
+   "q": "Which colour of underwear brings luck for the new year in Italy and Spain?",
+   "options": [
+    "Red",
+    "Green",
+    "Yellow",
+    "White"
+   ]
+  }
+ },
+ {
+  "id": "nye:f38cac9268",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat eten Nederlanders traditioneel met oud en nieuw?",
+   "options": [
+    "Oliebollen",
+    "Pepernoten",
+    "Poffertjes",
+    "Stroopwafels"
+   ]
+  },
+  "en": {
+   "q": "What do the Dutch traditionally eat on New Year's Eve?",
+   "options": [
+    "Oliebollen",
+    "Pepernoten",
+    "Poffertjes",
+    "Stroopwafels"
+   ]
+  }
+ },
+ {
+  "id": "nye:4cb855242d",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet een gefrituurde schijf appel in beslag uit de oliebollenkraam?",
+   "options": [
+    "Appelbeignet",
+    "Appelflap",
+    "Appelbol",
+    "Appelstrudel"
+   ]
+  },
+  "en": {
+   "q": "What is a slice of apple in batter, deep-fried at the oliebollen stand, called?",
+   "options": [
+    "Appelbeignet",
+    "Appelflap",
+    "Appelbol",
+    "Apple strudel"
+   ]
+  }
+ },
+ {
+  "id": "nye:8f78cbce7a",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de duik in zee op 1 januari, met de bekendste in Scheveningen?",
+   "options": [
+    "De Nieuwjaarsduik",
+    "De Elfstedenduik",
+    "De Koningsduik",
+    "De Winterplons"
+   ]
+  },
+  "en": {
+   "q": "What is the 1 January dip in the sea, the best known at Scheveningen, called?",
+   "options": [
+    "The Nieuwjaarsduik (New Year's dive)",
+    "The Elfstedenduik",
+    "The Koningsduik",
+    "The Winterplons"
+   ]
+  }
+ },
+ {
+  "id": "nye:bddad6a67a",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de cabaretvoorstelling op oudejaarsavond op tv?",
+   "options": [
+    "De oudejaarsconference",
+    "De eindejaarsshow",
+    "De nieuwjaarsrevue",
+    "De jaaroverzichtshow"
+   ]
+  },
+  "en": {
+   "q": "What is the comedy show on Dutch TV on New Year's Eve called?",
+   "options": [
+    "The oudejaarsconference",
+    "The eindejaarsshow",
+    "The nieuwjaarsrevue",
+    "The jaaroverzichtshow"
+   ]
+  }
+ },
+ {
+  "id": "nye:0d00aef0c3",
+  "category": "nederland",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke cabaretier werd beroemd met zijn oudejaarsconferences tussen 1954 en 1983?",
+   "options": [
+    "Wim Kan",
+    "Freek de Jonge",
+    "Youp van 't Hek",
+    "Herman Finkers"
+   ]
+  },
+  "en": {
+   "q": "Which comedian became famous for his New Year's Eve shows between 1954 and 1983?",
+   "options": [
+    "Wim Kan",
+    "Freek de Jonge",
+    "Youp van 't Hek",
+    "Herman Finkers"
+   ]
+  }
+ },
+ {
+  "id": "nye:76c93db43f",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat doe je bij carbidschieten?",
+   "options": [
+    "Knallen met carbid in een melkbus",
+    "Vuurwerk afsteken op het water",
+    "Kaarsen aansteken",
+    "Schieten op een schietbaan"
+   ]
+  },
+  "en": {
+   "q": "What do you do when \"carbidschieten\"?",
+   "options": [
+    "Make bangs with carbide in a milk churn",
+    "Set off fireworks on the water",
+    "Light candles",
+    "Shoot at a shooting range"
+   ]
+  }
+ },
+ {
+  "id": "nye:2f2917d2e1",
+  "category": "geschiedenis",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welk land werd vuurwerk uitgevonden?",
+   "options": [
+    "China",
+    "Italië",
+    "India",
+    "Engeland"
+   ]
+  },
+  "en": {
+   "q": "In which country were fireworks invented?",
+   "options": [
+    "China",
+    "Italy",
+    "India",
+    "England"
+   ]
+  }
+ },
+ {
+  "id": "nye:2b44a3ba29",
+  "category": "wetenschap",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke stof geeft vuurwerk een groene kleur?",
+   "options": [
+    "Barium",
+    "Natrium",
+    "Strontium",
+    "Koper"
+   ]
+  },
+  "en": {
+   "q": "Which element gives fireworks a green colour?",
+   "options": [
+    "Barium",
+    "Sodium",
+    "Strontium",
+    "Copper"
+   ]
+  }
+ },
+ {
+  "id": "nye:83244c5ca2",
+  "category": "wetenschap",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke stof geeft vuurwerk een rode kleur?",
+   "options": [
+    "Strontium",
+    "Barium",
+    "Natrium",
+    "Koper"
+   ]
+  },
+  "en": {
+   "q": "Which element gives fireworks a red colour?",
+   "options": [
+    "Strontium",
+    "Barium",
+    "Sodium",
+    "Copper"
+   ]
+  }
+ },
+ {
+  "id": "nye:5ad407101f",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke monnik wordt vaak (ten onrechte) de uitvinder van champagne genoemd?",
+   "options": [
+    "Dom Pérignon",
+    "Dom Ruinart",
+    "Dom Bollinger",
+    "Dom Krug"
+   ]
+  },
+  "en": {
+   "q": "Which monk is often (wrongly) called the inventor of champagne?",
+   "options": [
+    "Dom Pérignon",
+    "Dom Ruinart",
+    "Dom Bollinger",
+    "Dom Krug"
+   ]
+  }
+ },
+ {
+  "id": "nye:92306a8583",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet een fles champagne van anderhalve liter?",
+   "options": [
+    "Magnum",
+    "Jeroboam",
+    "Methusalem",
+    "Balthazar"
+   ]
+  },
+  "en": {
+   "q": "What is a 1.5-litre bottle of champagne called?",
+   "options": [
+    "Magnum",
+    "Jeroboam",
+    "Methuselah",
+    "Balthazar"
+   ]
+  }
+ },
+ {
+  "id": "nye:072afc0af6",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat betekent \"brut\" op een fles champagne?",
+   "options": [
+    "Droog, met weinig suiker",
+    "Zoet",
+    "Roze",
+    "Extra oud"
+   ]
+  },
+  "en": {
+   "q": "What does \"brut\" on a bottle of champagne mean?",
+   "options": [
+    "Dry, with little sugar",
+    "Sweet",
+    "Rosé",
+    "Extra old"
+   ]
+  }
+ },
+ {
+  "id": "nye:fd1d21eb51",
+  "category": "eten-drinken",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe hoog is de druk in een fles champagne ongeveer?",
+   "options": [
+    "Zo'n 6 bar",
+    "Zo'n 1 bar",
+    "Zo'n 2 bar",
+    "Zo'n 20 bar"
+   ]
+  },
+  "en": {
+   "q": "Roughly how high is the pressure in a bottle of champagne?",
+   "options": [
+    "About 6 bar",
+    "About 1 bar",
+    "About 2 bar",
+    "About 20 bar"
+   ]
+  }
+ },
+ {
+  "id": "nye:d37272410e",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe noem je een plan dat je maakt voor het nieuwe jaar?",
+   "options": [
+    "Een goed voornemen",
+    "Een nieuwjaarsbelofte",
+    "Een jaarplan",
+    "Een wensbrief"
+   ]
+  },
+  "en": {
+   "q": "What do you call a plan you make for the new year?",
+   "options": [
+    "A New Year's resolution",
+    "A New Year's promise",
+    "A year plan",
+    "A wish letter"
+   ]
+  }
+ },
+ {
+  "id": "nye:4fc37954a2",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Bij welk beroemd bouwwerk in Sydney wordt elk jaar groot vuurwerk afgestoken?",
+   "options": [
+    "De Harbour Bridge",
+    "De Golden Gate Bridge",
+    "De Tower Bridge",
+    "De Eiffeltoren"
+   ]
+  },
+  "en": {
+   "q": "At which famous structure in Sydney are big fireworks set off every year?",
+   "options": [
+    "The Harbour Bridge",
+    "The Golden Gate Bridge",
+    "Tower Bridge",
+    "The Eiffel Tower"
+   ]
+  }
+ }
+]

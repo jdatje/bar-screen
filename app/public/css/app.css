@@ -687,3 +687,17 @@ body:has(.osk:not([hidden])) .music-results { max-height: 22vh; }
 .mk-board li.first { color: var(--accent); font-weight: 700; }
 .mk-board .btn { align-self: flex-start; }
 @media (max-width: 900px) { .mk-cols { grid-template-columns: 1fr; } }
+
+/* Oud & Nieuw screensaver: fireworks + champagne bubbles */
+.saver-ghosts .burst { position: absolute; width: 0; height: 0; }
+.saver-ghosts .burst i { position: absolute; left: 0; top: 0; width: 18px; height: 3px; margin: -1.5px 0 0 0; border-radius: 2px; background: linear-gradient(90deg, transparent, currentColor);
+  box-shadow: 0 0 10px currentColor; transform: rotate(var(--a)) translateX(0); opacity: 0;
+  animation: saver-spark var(--d) var(--dl) ease-out infinite; }
+@keyframes saver-spark {
+  0% { transform: rotate(var(--a)) translateX(0) scale(1.4); opacity: 0; }
+  8% { opacity: 1; }
+  60% { opacity: 0.9; }
+  100% { transform: rotate(var(--a)) translateX(150px) translateY(40px) scale(0.3); opacity: 0; }
+}
+.saver-ghosts .fizz { position: absolute; bottom: -20px; border-radius: 50%; border: 1.5px solid rgba(255, 226, 150, 0.8); background: rgba(255, 226, 150, 0.15);
+  animation: saver-foam linear infinite; text-decoration: none; }

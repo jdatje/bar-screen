@@ -399,3 +399,44 @@
 [data-theme="modderpret"] .tile.join::after { background-image: url("/img/critters/crocodile.svg"); width: 22%; height: 60%; }
 @keyframes critter-bob { from { transform: translateY(0) rotate(-2deg); } to { transform: translateY(-6px) rotate(2deg); } }
 @media (prefers-reduced-motion: reduce) { [data-theme="modderpret"] .tile::after { animation: none; } }
+
+/* ---------- Oud & Nieuw: Champagne (black and gold, rising bubbles) ---------- */
+[data-theme="champagne"] {
+  --bg: #0E0C08; --panel: #1A160F; --panel-2: #241E14; --line: #3A3020; --line-strong: #6B5A34;
+  --text: #F6EBD0; --text-2: #D8C9A4; --text-3: #A8977A; --accent: #E8C26A; --accent-hover: #F2D48A; --on-accent: #1A1408;
+  --font-display: 'Cormorant Garamond', 'Wexer Emoji', Georgia, serif; --font-body: 'Jost', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Jost', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700; --radius: 4px;
+}
+[data-theme="champagne"] body { background-image: radial-gradient(ellipse at 20% 0%, rgba(232, 194, 106, 0.18), transparent 55%), radial-gradient(ellipse at 90% 100%, rgba(232, 194, 106, 0.12), transparent 50%); }
+[data-theme="champagne"] .tile, [data-theme="champagne"] .now, [data-theme="champagne"] .panel { border-color: #4A3C22; box-shadow: inset 0 0 0 1px rgba(232, 194, 106, 0.08); }
+[data-theme="champagne"] .display { letter-spacing: 0.02em; }
+[data-theme="champagne"] .tag { background: linear-gradient(90deg, #B8913F, #F2D48A, #B8913F); color: #1A1408; }
+
+/* ---------- Oud & Nieuw: Vuurwerk (night sky, fireworks colours) ---------- */
+[data-theme="vuurwerk"] {
+  --bg: #070B1E; --panel: #0F1630; --panel-2: #16204A; --line: #24306A; --line-strong: #3A4A99;
+  --text: #F1F4FF; --text-2: #C3CBEA; --text-3: #8A94C0; --accent: #FFC93C; --accent-hover: #FFD970; --on-accent: #070B1E;
+  --font-display: 'Bungee', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Poppins', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Poppins', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: uppercase; --display-weight: 400; --radius: 10px;
+}
+[data-theme="vuurwerk"] body { background-image:
+  radial-gradient(circle at 12% 18%, rgba(255, 79, 176, 0.22), transparent 18%),
+  radial-gradient(circle at 82% 12%, rgba(64, 210, 255, 0.2), transparent 16%),
+  radial-gradient(circle at 70% 85%, rgba(255, 201, 60, 0.16), transparent 20%),
+  radial-gradient(circle at 30% 75%, rgba(124, 255, 120, 0.12), transparent 16%); }
+[data-theme="vuurwerk"] .tile .display, [data-theme="vuurwerk"] .clock { text-shadow: 0 0 14px rgba(255, 201, 60, 0.45); }
+[data-theme="vuurwerk"] .tag { background: #FF4FB0; color: #fff; }
+
+/* ---------- Oud & Nieuw: Oliebollenkraam (warm, red-white stripes, powdered sugar) ---------- */
+[data-theme="oliebol"] {
+  --bg: #F6EBDC; --panel: #FFF8EE; --panel-2: #F1E2CC; --line: #E2CBA8; --line-strong: #C9A77A;
+  --text: #3B2614; --text-2: #5E4026; --text-3: #8A6A4A; --accent: #B8322A; --accent-hover: #9C2820; --on-accent: #FFFFFF;
+  --font-display: 'Lilita One', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Nunito', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Nunito', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 16px;
+}
+[data-theme="oliebol"] body { font-weight: 600; background-image:
+  repeating-linear-gradient(90deg, #B8322A 0 60px, #FFF8EE 60px 120px);
+  background-size: 100% 26px; background-repeat: no-repeat; }
+[data-theme="oliebol"] .screen { padding-top: 34px; }
+[data-theme="oliebol"] .tile, [data-theme="oliebol"] .now, [data-theme="oliebol"] .panel { border-width: 2px; box-shadow: 0 5px 0 rgba(201, 167, 122, 0.45); }
+[data-theme="oliebol"] .tag { background: #3B2614; color: #FFF8EE; }

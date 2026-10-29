@@ -9,6 +9,7 @@ export const PARTY_OF_THEME = {
   strand: 'summer', zonsondergang: 'summer',
   wiesn: 'oktoberfest', bierhal: 'oktoberfest',
   rock: 'music', synthwave: 'music',
+  champagne: 'newyear', vuurwerk: 'newyear', oliebol: 'newyear',
 };
 // what "automatic" shows on each button in a party look
 const PARTY_TILES = {
@@ -17,6 +18,7 @@ const PARTY_TILES = {
   summer: { quiz: 'beachball', cocktails: 'waves', karaoke: 'sun', photos: 'sparkle', join: 'rings' },
   oktoberfest: { quiz: 'pretzels', cocktails: 'beer', karaoke: 'lights', photos: 'confetti', join: 'rings' },
   music: { quiz: 'eq', cocktails: 'notes', karaoke: 'vinyl', photos: 'stars', join: 'sparkle' },
+  newyear: { quiz: 'confetti', cocktails: 'bubbles', karaoke: 'lights', photos: 'sparkle', join: 'stars' },
 };
 
 export const TILE_KEYS = ['quiz', 'cocktails', 'karaoke', 'photos', 'join'];

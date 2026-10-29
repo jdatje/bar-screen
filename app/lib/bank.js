@@ -28,6 +28,7 @@ export const SETS = [
   // only offered while a look of that party is on (see PARTY_OF_THEME in tiles.js)
   { id: 'griezel', look: 'spooky', nl: '🎃 Griezelquiz', en: '🎃 Spooky quiz', nlInfo: 'Halloween, horrorfilms, monsters en bijgeloof', enInfo: 'Halloween, horror films, monsters and superstition' },
   { id: 'oranje', look: 'dutch', nl: '🧡 Oranjequiz', en: '🧡 Orange quiz', nlInfo: 'Koningsdag, het koningshuis, Oranje in de sport en Hollandse trots', enInfo: 'King\'s Day, the royals, Dutch sport and Dutch pride' },
+  { id: 'oudnieuw', look: 'newyear', nl: '🎆 Oudejaarsquiz', en: '🎆 New Year\'s Eve quiz', nlInfo: 'Oud & nieuw over de hele wereld, vuurwerk, champagne en 2027', enInfo: 'New Year around the world, fireworks, champagne and 2027' },
   { id: 'bier', look: 'oktoberfest', nl: '🍺 Bierquiz', en: '🍺 Beer quiz', nlInfo: 'Oktoberfest, bierstijlen, brouwen en Beierse tradities', enInfo: 'Oktoberfest, beer styles, brewing and Bavarian traditions' },
 ];
 
@@ -76,7 +77,7 @@ const HOLLANDS = readSeed('hollands.json', []).map((q) => ({
 const themed = (file, source) => readSeed(file, []).map((q) => ({
   id: q.id, q: q.nl.q, options: q.nl.options, en: q.en, answer: q.answer, category: q.category, difficulty: q.difficulty, lang: 'nl', source,
 }));
-const THEMED = { griezel: themed('griezel.json', 'griezel'), oranje: themed('oranje.json', 'oranje'), bier: themed('bier.json', 'bier') };
+const THEMED = { griezel: themed('griezel.json', 'griezel'), oranje: themed('oranje.json', 'oranje'), bier: themed('bier.json', 'bier'), oudnieuw: themed('oudnieuw.json', 'oudnieuw') };
 // Open Trivia DB categories most people at a Dutch bar will know something about
 const FAMILIAR = new Set([9, 11, 12, 17, 20, 21, 22, 23, 27]);
 const OPENTDB = readSeed('opentdb.json', []).map((r) => {
@@ -124,6 +125,7 @@ export function stats() {
     griezel: THEMED.griezel.length,
     oranje: THEMED.oranje.length,
     bier: THEMED.bier.length,
+    oudnieuw: THEMED.oudnieuw.length,
     starter: STARTER.length,
     opentdb: OPENTDB.length,
     translated: OPENTDB.filter((q) => nl[q.id]).length,
