@@ -1,6 +1,7 @@
 // Cocktail menu, spin-the-wheel, recipe view and the stock list.
 import { getLang } from './i18n.js';
 import { $, esc, call, toast } from './ui.js';
+import { PARTY_OF_THEME } from './tiles.js';
 
 let ctx;
 let filters = { status: 'now', base: '', tag: '', unknownOnly: false };
@@ -71,6 +72,8 @@ export function spinSoon() {
 }
 
 async function loadMenu() {
+  // a themed filter from a look that is no longer on
+  if (filters.tag === 'griezel' && PARTY_OF_THEME[ctx.state.settings.theme] !== 'spooky') filters.tag = '';
   [data] = await Promise.all([call(ctx.socket, 'cocktails:menu', filters), loadBottles()]);
   if (!data) return;
   renderFilters();
@@ -91,7 +94,8 @@ function renderFilters() {
     '<span class="chip-sep"></span>',
     ...data.bases.map((b) => chip(b.label, `data-base="${b.id}"`, filters.base === b.id)),
     '<span class="chip-sep"></span>',
-    ...data.tags.map((t) => chip(t.label, `data-tag="${t.id}"`, filters.tag === t.id)),
+    // themed tags (e.g. Griezelig) only while a look of that party is on
+    ...data.tags.filter((t) => !t.look || t.look === PARTY_OF_THEME[ctx.state.settings.theme]).map((t) => chip(t.label, `data-tag="${t.id}"`, filters.tag === t.id)),
     chip('Onbekend terrein', 'data-unknown="1"', filters.unknownOnly),
   ].join('');
 }

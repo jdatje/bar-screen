@@ -94,6 +94,11 @@ async function showScreen() {
       <button class="btn primary" type="submit">Wifi opslaan</button>
     </form>
     <section class="panel a-sec">
+      <span class="mono accent">Griezelgeluiden</span>
+      <p class="muted" style="margin:0">In de Halloween-looks speelt af en toe een griezelgeluid (elke 6 tot 15 minuten).</p>
+      <div class="chips">${[[true, 'Aan'], [false, 'Uit']].map(([v, l]) => `<button class="chip${(s.spookySounds !== false) === v ? ' on' : ''}" data-spooky="${v ? 1 : 0}">${l}</button>`).join('')}</div>
+    </section>
+    <section class="panel a-sec">
       <span class="mono accent">Screensaver na</span>
       <div class="chips">${[0, 1, 2, 5, 10, 15, 30, 60].map((m) => `<button class="chip${Number(s.screensaver) === m ? ' on' : ''}" data-saver-min="${m}">${m ? `${m} min` : 'Uit'}</button>`).join('')}</div>
     </section>
@@ -419,6 +424,11 @@ document.addEventListener('click', async (e) => {
   if (t.dataset.edit) return showEditor(t.dataset.edit);
   if (t.dataset.themeId) {
     const r = await saveSettings({ theme: t.dataset.themeId });
+    if (r.ok) showScreen();
+    return;
+  }
+  if (t.dataset.spooky != null) {
+    const r = await saveSettings({ spookySounds: t.dataset.spooky === '1' });
     if (r.ok) showScreen();
     return;
   }

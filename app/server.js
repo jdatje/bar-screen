@@ -38,6 +38,7 @@ let settings = load('settings', { theme: 'industrial', language: 'nl', pin: DEFA
 if (settings.screensaver == null) settings.screensaver = 5; // minutes, 0 = off
 settings.requests ||= 'approve'; // song requests: 'off' | 'approve' | 'auto'
 if (settings.saverPhotos == null) settings.saverPhotos = true; // photo wall in the screensaver
+if (settings.spookySounds == null) settings.spookySounds = true; // random spooky sounds in Halloween looks
 settings.gameVolume = { music: 75, game: 25, ...(settings.gameVolume || {}) };
 if (!settings.pin) settings.pin = DEFAULT_PIN;
 // the bar's Wi-Fi, for the Wi-Fi QR code on the screen (never sent to phones)
@@ -59,7 +60,7 @@ quizDefaults.pubquiz.lang = 'nl';
 
 const publicSettings = () => ({
   theme: settings.theme, language: settings.language, tiles: settings.tiles, screensaver: settings.screensaver,
-  requests: settings.requests, saverPhotos: settings.saverPhotos, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
+  requests: settings.requests, saverPhotos: settings.saverPhotos, spookySounds: settings.spookySounds, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
 });
 const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
 
@@ -86,6 +87,7 @@ function applySettings(patch = {}) {
   if (SAVER_MINUTES.includes(Number(patch.screensaver))) settings.screensaver = Number(patch.screensaver);
   if (['off', 'approve', 'auto'].includes(patch.requests)) settings.requests = patch.requests;
   if (typeof patch.saverPhotos === 'boolean') settings.saverPhotos = patch.saverPhotos;
+  if (typeof patch.spookySounds === 'boolean') settings.spookySounds = patch.spookySounds;
   if (patch.tiles && typeof patch.tiles === 'object') {
     for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
   }

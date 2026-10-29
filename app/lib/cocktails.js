@@ -75,9 +75,13 @@ const BASES = [
 ];
 const baseOf = (bottleIds) => BASES.find((b) => bottleIds.some((id) => b.bottles.includes(id)))?.id || 'overig';
 
+// spooky names for the Halloween looks' "Griezelig" filter
+const SPOOKY_NAME = /\b(zombie|vampir\w*|corpse|devil\w*|diablo|ghost\w*|witch\w*|blood\w*|bloody|widow|skull|grave\w*|death|dead|satan\w*|demon\w*|monster|hell\w*|voodoo|nightmare|scream\w*|spider|poison\w*|black|dark|evil|halloween|pumpkin|haunt\w*|reaper|coffin|bat|bats|graveyard|phantom|spook\w*|creep\w*|undead|wicked)\b/i;
+
 function tags(d, kinds) {
   const ids = kinds.map((k) => k.id);
   const t = [];
+  if (SPOOKY_NAME.test(d.name)) t.push('griezel');
   if (ids.some((id) => ['campari', 'aperol', 'amaro', 'fernet'].includes(id))) t.push('bitter');
   if (ids.some((id) => ['lemon', 'lime', 'grapefruit'].includes(id))) t.push('zuur');
   if (ids.some((id) => ['cream', 'irish-cream', 'egg', 'coconut-cream'].includes(id))) t.push('romig');
@@ -159,6 +163,7 @@ export function menu(filters = {}) {
       { id: 'sterk', label: 'Sterk' },
       { id: 'lang', label: 'Lang & fris' },
       { id: 'romig', label: 'Romig' },
+      { id: 'griezel', label: '🎃 Griezelig', look: 'spooky' },
     ],
     library: libraryInfo(),
   };

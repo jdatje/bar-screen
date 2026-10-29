@@ -10,6 +10,7 @@ import * as saver from './saver.js';
 import * as karaoke from './karaoke.js';
 import * as wall from './photowall.js';
 import * as music from './music.js';
+import * as spooky from './spooky.js';
 
 const socket = io();
 const state = { settings: { theme: 'industrial' }, themes: [], player: null, room: null, players: [], game: { active: false } };
@@ -185,6 +186,8 @@ function markTheme() {
   renderSaverChoices();
   document.querySelectorAll('#req-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.req === (state.settings.requests || 'approve')));
   document.querySelectorAll('#saverphoto-choices .chip').forEach((c) => c.classList.toggle('on', (c.dataset.sp === '1') === (state.settings.saverPhotos !== false)));
+  document.querySelectorAll('#spooky-choices [data-ss="1"], #spooky-choices [data-ss="0"]').forEach((c) => c.classList.toggle('on', (c.dataset.ss === '1') === (state.settings.spookySounds !== false)));
+  spooky.update();
   document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
   tickClock();
   document.querySelectorAll('.theme-card').forEach((c) => c.classList.toggle('on', c.dataset.theme === state.settings.theme));
@@ -249,6 +252,12 @@ $('req-list').addEventListener('click', async (e) => {
 $('req-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-req]');
   if (b) setSetting({ requests: b.dataset.req });
+});
+$('spooky-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-ss]');
+  if (!b) return;
+  if (b.dataset.ss === 'test') return spooky.playRandom();
+  setSetting({ spookySounds: b.dataset.ss === '1' });
 });
 $('saverphoto-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-sp]');
@@ -413,6 +422,8 @@ saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !karao
 eggs.init(ctx);
 bar.init(ctx);
 music.init(ctx);
+// not during a quiz question, a retro game or karaoke
+spooky.init(ctx, { quiet: () => games.isPlaying() || karaoke.isOpen() || (state.game?.active && ['question', 'between'].includes(state.game.phase)) });
 
 // Show as many upcoming songs as fit in the panel, without a half row
 function fitQueue() {

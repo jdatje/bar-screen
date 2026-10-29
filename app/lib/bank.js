@@ -25,6 +25,8 @@ export const SETS = [
   { id: 'opentdb', nl: 'Internationaal', en: 'International', nlInfo: 'Open Trivia DB: ruim 5000 vragen, vaak lastig', enInfo: 'Open Trivia DB: 5000+ questions, often tricky' },
   { id: 'own', nl: 'Eigen sets', en: 'Own sets', nlInfo: 'Jullie eigen vragen (/admin)', enInfo: 'Your own questions (/admin)' },
   { id: 'mix', nl: 'Alles', en: 'Everything', nlInfo: 'Alle bronnen door elkaar', enInfo: 'All sources mixed' },
+  // only offered while a look of that party is on (see PARTY_OF_THEME in tiles.js)
+  { id: 'griezel', look: 'spooky', nl: '🎃 Griezelquiz', en: '🎃 Spooky quiz', nlInfo: 'Halloween, horrorfilms, monsters en bijgeloof', enInfo: 'Halloween, horror films, monsters and superstition' },
 ];
 
 export const CATEGORIES = [
@@ -67,6 +69,9 @@ const readSeed = (name, fallback) => {
 const STARTER = readSeed('starter-questions.json', []).map((q) => ({ ...q, lang: 'nl', source: 'starter' }));
 const HOLLANDS = readSeed('hollands.json', []).map((q) => ({
   id: q.id, q: q.nl.q, options: q.nl.options, en: q.en, answer: q.answer, category: q.category, difficulty: q.difficulty, lang: 'nl', source: 'hollands',
+}));
+const GRIEZEL = readSeed('griezel.json', []).map((q) => ({
+  id: q.id, q: q.nl.q, options: q.nl.options, en: q.en, answer: q.answer, category: q.category, difficulty: q.difficulty, lang: 'nl', source: 'griezel',
 }));
 // Open Trivia DB categories most people at a Dutch bar will know something about
 const FAMILIAR = new Set([9, 11, 12, 17, 20, 21, 22, 23, 27]);
@@ -112,6 +117,7 @@ export function stats() {
   return {
     own: own_,
     hollands: HOLLANDS.length,
+    griezel: GRIEZEL.length,
     starter: STARTER.length,
     opentdb: OPENTDB.length,
     translated: OPENTDB.filter((q) => nl[q.id]).length,
@@ -235,6 +241,7 @@ export async function getQuestions({ source = 'cafe', categories = [], difficult
   if (source === 'hollands' || source === 'cafe' || source === 'mix') candidates.push(...HOLLANDS);
   if (source === 'starter' || source === 'cafe' || source === 'mix') candidates.push(...STARTER);
   if (source === 'opentdb' || source === 'mix') candidates.push(...OPENTDB);
+  if (source === 'griezel') candidates.push(...GRIEZEL);
   if (source === 'cafe') candidates.push(...OPENTDB.filter((q) => q.familiar));
   candidates = candidates.filter((q) => catOk(q) && diffOk(q) && langOk(q));
 

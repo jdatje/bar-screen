@@ -1,5 +1,6 @@
 // Quiz on the touchscreen: setup (type + options) and the running game.
 import { $, esc, call, toast, LETTERS, remaining, confirmBox } from './ui.js';
+import { PARTY_OF_THEME } from './tiles.js';
 
 let ctx;
 let opts = null; // options from the server
@@ -91,7 +92,11 @@ function renderSetup() {
       </div></div>`;
     }
   } else {
-    html += setPicker('Vragenset', opts.sets.filter((x) => x.id !== 'own' || opts.bank.own), 'data-source', s.source || 'cafe');
+    // themed sets (e.g. the Griezelquiz) only show while a look of that party is on
+    const party = PARTY_OF_THEME[ctx.state.settings.theme];
+    const sets = opts.sets.filter((x) => (x.id !== 'own' || opts.bank.own) && (!x.look || x.look === party));
+    if (!sets.some((x) => x.id === s.source)) s.source = 'cafe';
+    html += setPicker('Vragenset', sets, 'data-source', s.source || 'cafe');
     html += `<div class="opt"><span class="mono muted">Categorieën · niets gekozen = alles</span><div class="chips">
       ${opts.categories.map((c) => chip(c.label, `data-cat="${c.id}"`, s.categories?.includes(c.id))).join('')}
     </div></div>`;

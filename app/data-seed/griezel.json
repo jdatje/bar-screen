@@ -1,0 +1,1010 @@
+[
+ {
+  "id": "spook:da67499e92",
+  "category": "geschiedenis",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Op welke datum valt Halloween?",
+   "options": [
+    "31 oktober",
+    "1 november",
+    "30 oktober",
+    "2 november"
+   ]
+  },
+  "en": {
+   "q": "On which date is Halloween?",
+   "options": [
+    "31 October",
+    "1 November",
+    "30 October",
+    "2 November"
+   ]
+  }
+ },
+ {
+  "id": "spook:2cd1e496df",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Waar komt de naam \"Halloween\" van?",
+   "options": [
+    "All Hallows' Eve, de avond vóór Allerheiligen",
+    "Een Schots woord voor pompoen",
+    "De naam van een Ierse heks",
+    "Hollow Wind, de holle wind"
+   ]
+  },
+  "en": {
+   "q": "Where does the name \"Halloween\" come from?",
+   "options": [
+    "All Hallows' Eve, the evening before All Saints' Day",
+    "A Scottish word for pumpkin",
+    "The name of an Irish witch",
+    "Hollow Wind"
+   ]
+  }
+ },
+ {
+  "id": "spook:34186577ff",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welk Keltisch feest geldt als voorloper van Halloween?",
+   "options": [
+    "Samhain",
+    "Beltane",
+    "Imbolc",
+    "Yule"
+   ]
+  },
+  "en": {
+   "q": "Which Celtic festival is seen as the forerunner of Halloween?",
+   "options": [
+    "Samhain",
+    "Beltane",
+    "Imbolc",
+    "Yule"
+   ]
+  }
+ },
+ {
+  "id": "spook:f3ddb99cff",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat vieren katholieken op 1 november, de dag na Halloween?",
+   "options": [
+    "Allerheiligen",
+    "Allerzielen",
+    "Driekoningen",
+    "Sint-Maarten"
+   ]
+  },
+  "en": {
+   "q": "What do Catholics celebrate on 1 November, the day after Halloween?",
+   "options": [
+    "All Saints' Day",
+    "All Souls' Day",
+    "Epiphany",
+    "St Martin's Day"
+   ]
+  }
+ },
+ {
+  "id": "spook:d32f428d77",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke groente werd in Ierland uitgehold als lantaarn, lang vóór de pompoen?",
+   "options": [
+    "Knolraap",
+    "Aardappel",
+    "Ui",
+    "Komkommer"
+   ]
+  },
+  "en": {
+   "q": "Which vegetable was hollowed out as a lantern in Ireland, long before the pumpkin?",
+   "options": [
+    "Turnip",
+    "Potato",
+    "Onion",
+    "Cucumber"
+   ]
+  }
+ },
+ {
+  "id": "spook:9be0511393",
+  "category": "geschiedenis",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Naar welke figuur uit een Ierse legende is de jack-o'-lantern vernoemd?",
+   "options": [
+    "Stingy Jack",
+    "Jack Frost",
+    "Jack the Ripper",
+    "Jack Sparrow"
+   ]
+  },
+  "en": {
+   "q": "Which figure from an Irish legend gave the jack-o'-lantern its name?",
+   "options": [
+    "Stingy Jack",
+    "Jack Frost",
+    "Jack the Ripper",
+    "Jack Sparrow"
+   ]
+  }
+ },
+ {
+  "id": "spook:f66e0ebba0",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de Mexicaanse feestdagen waarop overleden dierbaren worden herdacht?",
+   "options": [
+    "Día de los Muertos",
+    "Cinco de Mayo",
+    "Las Posadas",
+    "Semana Santa"
+   ]
+  },
+  "en": {
+   "q": "What are the Mexican days on which deceased loved ones are remembered called?",
+   "options": [
+    "Día de los Muertos",
+    "Cinco de Mayo",
+    "Las Posadas",
+    "Semana Santa"
+   ]
+  }
+ },
+ {
+  "id": "spook:f86724388a",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welk land ligt Transsylvanië, het land van Dracula?",
+   "options": [
+    "Roemenië",
+    "Hongarije",
+    "Bulgarije",
+    "Servië"
+   ]
+  },
+  "en": {
+   "q": "In which country is Transylvania, the land of Dracula?",
+   "options": [
+    "Romania",
+    "Hungary",
+    "Bulgaria",
+    "Serbia"
+   ]
+  }
+ },
+ {
+  "id": "spook:178fb7e5cc",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welk Schots meer zou een beroemd monster leven?",
+   "options": [
+    "Loch Ness",
+    "Loch Lomond",
+    "Loch Tay",
+    "Loch Awe"
+   ]
+  },
+  "en": {
+   "q": "In which Scottish lake is a famous monster said to live?",
+   "options": [
+    "Loch Ness",
+    "Loch Lomond",
+    "Loch Tay",
+    "Loch Awe"
+   ]
+  }
+ },
+ {
+  "id": "spook:1ba650f0f6",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wie schreef de roman \"Dracula\" (1897)?",
+   "options": [
+    "Bram Stoker",
+    "Mary Shelley",
+    "Edgar Allan Poe",
+    "Oscar Wilde"
+   ]
+  },
+  "en": {
+   "q": "Who wrote the novel \"Dracula\" (1897)?",
+   "options": [
+    "Bram Stoker",
+    "Mary Shelley",
+    "Edgar Allan Poe",
+    "Oscar Wilde"
+   ]
+  }
+ },
+ {
+  "id": "spook:408bcc5990",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wie schreef \"Frankenstein\"?",
+   "options": [
+    "Mary Shelley",
+    "Bram Stoker",
+    "Jane Austen",
+    "Charlotte Brontë"
+   ]
+  },
+  "en": {
+   "q": "Who wrote \"Frankenstein\"?",
+   "options": [
+    "Mary Shelley",
+    "Bram Stoker",
+    "Jane Austen",
+    "Charlotte Brontë"
+   ]
+  }
+ },
+ {
+  "id": "spook:eb0e775a02",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet in het boek eigenlijk het monster van Frankenstein?",
+   "options": [
+    "Het heeft geen naam: Frankenstein is de maker",
+    "Igor",
+    "Adam Frankenstein",
+    "Victor"
+   ]
+  },
+  "en": {
+   "q": "What is Frankenstein's monster actually called in the book?",
+   "options": [
+    "It has no name: Frankenstein is its maker",
+    "Igor",
+    "Adam Frankenstein",
+    "Victor"
+   ]
+  }
+ },
+ {
+  "id": "spook:c631bef625",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke schrijver kreeg de bijnaam \"King of Horror\" en schreef \"It\"?",
+   "options": [
+    "Stephen King",
+    "Dean Koontz",
+    "Clive Barker",
+    "Anne Rice"
+   ]
+  },
+  "en": {
+   "q": "Which writer is nicknamed the \"King of Horror\" and wrote \"It\"?",
+   "options": [
+    "Stephen King",
+    "Dean Koontz",
+    "Clive Barker",
+    "Anne Rice"
+   ]
+  }
+ },
+ {
+  "id": "spook:c3757c9987",
+  "category": "film-tv",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke regisseur maakte \"Psycho\" (1960)?",
+   "options": [
+    "Alfred Hitchcock",
+    "Stanley Kubrick",
+    "Steven Spielberg",
+    "John Carpenter"
+   ]
+  },
+  "en": {
+   "q": "Who directed \"Psycho\" (1960)?",
+   "options": [
+    "Alfred Hitchcock",
+    "Stanley Kubrick",
+    "Steven Spielberg",
+    "John Carpenter"
+   ]
+  }
+ },
+ {
+  "id": "spook:d9ccd97037",
+  "category": "film-tv",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welke Kubrick-film speelt het Overlook Hotel de hoofdrol?",
+   "options": [
+    "The Shining",
+    "A Clockwork Orange",
+    "Eyes Wide Shut",
+    "Barry Lyndon"
+   ]
+  },
+  "en": {
+   "q": "In which Kubrick film does the Overlook Hotel play a central role?",
+   "options": [
+    "The Shining",
+    "A Clockwork Orange",
+    "Eyes Wide Shut",
+    "Barry Lyndon"
+   ]
+  }
+ },
+ {
+  "id": "spook:280607348c",
+  "category": "film-tv",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke regisseur maakte de film \"Halloween\" (1978)?",
+   "options": [
+    "John Carpenter",
+    "Wes Craven",
+    "George A. Romero",
+    "Sam Raimi"
+   ]
+  },
+  "en": {
+   "q": "Who directed the film \"Halloween\" (1978)?",
+   "options": [
+    "John Carpenter",
+    "Wes Craven",
+    "George A. Romero",
+    "Sam Raimi"
+   ]
+  }
+ },
+ {
+  "id": "spook:7e36a8944f",
+  "category": "film-tv",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welke filmreeks speelt Freddy Krueger?",
+   "options": [
+    "A Nightmare on Elm Street",
+    "Friday the 13th",
+    "Halloween",
+    "Saw"
+   ]
+  },
+  "en": {
+   "q": "Which film series features Freddy Krueger?",
+   "options": [
+    "A Nightmare on Elm Street",
+    "Friday the 13th",
+    "Halloween",
+    "Saw"
+   ]
+  }
+ },
+ {
+  "id": "spook:c06e67bed0",
+  "category": "film-tv",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke moordenaar met hockeymasker hoort bij de \"Friday the 13th\"-films?",
+   "options": [
+    "Jason Voorhees",
+    "Michael Myers",
+    "Freddy Krueger",
+    "Ghostface"
+   ]
+  },
+  "en": {
+   "q": "Which hockey-masked killer belongs to the \"Friday the 13th\" films?",
+   "options": [
+    "Jason Voorhees",
+    "Michael Myers",
+    "Freddy Krueger",
+    "Ghostface"
+   ]
+  }
+ },
+ {
+  "id": "spook:e8a73ca9f5",
+  "category": "film-tv",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie regisseerde \"Scream\" (1996)?",
+   "options": [
+    "Wes Craven",
+    "John Carpenter",
+    "Sam Raimi",
+    "Tobe Hooper"
+   ]
+  },
+  "en": {
+   "q": "Who directed \"Scream\" (1996)?",
+   "options": [
+    "Wes Craven",
+    "John Carpenter",
+    "Sam Raimi",
+    "Tobe Hooper"
+   ]
+  }
+ },
+ {
+  "id": "spook:cfabd904ec",
+  "category": "film-tv",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke film uit 1999 werd een hit als zogenaamd \"gevonden beeldmateriaal\" uit een bos?",
+   "options": [
+    "The Blair Witch Project",
+    "Paranormal Activity",
+    "Cloverfield",
+    "[REC]"
+   ]
+  },
+  "en": {
+   "q": "Which 1999 film became a hit as supposedly \"found footage\" from a forest?",
+   "options": [
+    "The Blair Witch Project",
+    "Paranormal Activity",
+    "Cloverfield",
+    "[REC]"
+   ]
+  }
+ },
+ {
+  "id": "spook:75c7749111",
+  "category": "film-tv",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wie regisseerde de zombieklassieker \"Night of the Living Dead\" (1968)?",
+   "options": [
+    "George A. Romero",
+    "John Carpenter",
+    "Wes Craven",
+    "Tobe Hooper"
+   ]
+  },
+  "en": {
+   "q": "Who directed the zombie classic \"Night of the Living Dead\" (1968)?",
+   "options": [
+    "George A. Romero",
+    "John Carpenter",
+    "Wes Craven",
+    "Tobe Hooper"
+   ]
+  }
+ },
+ {
+  "id": "spook:836ce57df7",
+  "category": "film-tv",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke acteur speelde Dracula in de bekende film uit 1931?",
+   "options": [
+    "Bela Lugosi",
+    "Boris Karloff",
+    "Christopher Lee",
+    "Vincent Price"
+   ]
+  },
+  "en": {
+   "q": "Which actor played Dracula in the famous 1931 film?",
+   "options": [
+    "Bela Lugosi",
+    "Boris Karloff",
+    "Christopher Lee",
+    "Vincent Price"
+   ]
+  }
+ },
+ {
+  "id": "spook:53e3ee2387",
+  "category": "film-tv",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke acteur speelde het monster in \"Frankenstein\" (1931)?",
+   "options": [
+    "Boris Karloff",
+    "Bela Lugosi",
+    "Lon Chaney Jr.",
+    "Peter Cushing"
+   ]
+  },
+  "en": {
+   "q": "Which actor played the monster in \"Frankenstein\" (1931)?",
+   "options": [
+    "Boris Karloff",
+    "Bela Lugosi",
+    "Lon Chaney Jr.",
+    "Peter Cushing"
+   ]
+  }
+ },
+ {
+  "id": "spook:fa9f205304",
+  "category": "film-tv",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de pop met het mes uit de \"Child's Play\"-films?",
+   "options": [
+    "Chucky",
+    "Annabelle",
+    "Billy",
+    "Brahms"
+   ]
+  },
+  "en": {
+   "q": "What is the knife-wielding doll from the \"Child's Play\" films called?",
+   "options": [
+    "Chucky",
+    "Annabelle",
+    "Billy",
+    "Brahms"
+   ]
+  }
+ },
+ {
+  "id": "spook:b3fade3d24",
+  "category": "muziek",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wie bracht in 1982 het nummer \"Thriller\" uit?",
+   "options": [
+    "Michael Jackson",
+    "Prince",
+    "Lionel Richie",
+    "Stevie Wonder"
+   ]
+  },
+  "en": {
+   "q": "Who released the song \"Thriller\" in 1982?",
+   "options": [
+    "Michael Jackson",
+    "Prince",
+    "Lionel Richie",
+    "Stevie Wonder"
+   ]
+  }
+ },
+ {
+  "id": "spook:d65e3dd687",
+  "category": "muziek",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie zong het nummer \"Ghostbusters\" uit 1984?",
+   "options": [
+    "Ray Parker Jr.",
+    "Huey Lewis",
+    "Kenny Loggins",
+    "Phil Collins"
+   ]
+  },
+  "en": {
+   "q": "Who sang the 1984 song \"Ghostbusters\"?",
+   "options": [
+    "Ray Parker Jr.",
+    "Huey Lewis",
+    "Kenny Loggins",
+    "Phil Collins"
+   ]
+  }
+ },
+ {
+  "id": "spook:98aa1101af",
+  "category": "muziek",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke componist schreef het griezelige orkeststuk \"Danse macabre\"?",
+   "options": [
+    "Camille Saint-Saëns",
+    "Edvard Grieg",
+    "Johann Sebastian Bach",
+    "Antonio Vivaldi"
+   ]
+  },
+  "en": {
+   "q": "Which composer wrote the spooky orchestral piece \"Danse macabre\"?",
+   "options": [
+    "Camille Saint-Saëns",
+    "Edvard Grieg",
+    "Johann Sebastian Bach",
+    "Antonio Vivaldi"
+   ]
+  }
+ },
+ {
+  "id": "spook:f72d2ecc4c",
+  "category": "muziek",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Van welke componist is het orgelwerk dat vaak in griezelfilms klinkt, de \"Toccata en fuga in d-klein\"?",
+   "options": [
+    "Johann Sebastian Bach",
+    "Wolfgang Amadeus Mozart",
+    "Ludwig van Beethoven",
+    "Frédéric Chopin"
+   ]
+  },
+  "en": {
+   "q": "Which composer wrote the organ piece often heard in horror films, the \"Toccata and Fugue in D minor\"?",
+   "options": [
+    "Johann Sebastian Bach",
+    "Wolfgang Amadeus Mozart",
+    "Ludwig van Beethoven",
+    "Frédéric Chopin"
+   ]
+  }
+ },
+ {
+  "id": "spook:bf97f4fd56",
+  "category": "dieren-natuur",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heten vleermuizen die van bloed leven?",
+   "options": [
+    "Vampiervleermuizen",
+    "Bloedvleermuizen",
+    "Draculavleermuizen",
+    "Rode vleermuizen"
+   ]
+  },
+  "en": {
+   "q": "What are bats that feed on blood called?",
+   "options": [
+    "Vampire bats",
+    "Blood bats",
+    "Dracula bats",
+    "Red bats"
+   ]
+  }
+ },
+ {
+  "id": "spook:60a7e0fe68",
+  "category": "dieren-natuur",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe vinden vleermuizen hun weg in het donker?",
+   "options": [
+    "Met echolocatie",
+    "Met infraroodogen",
+    "Op het magneetveld",
+    "Alleen op de reuk"
+   ]
+  },
+  "en": {
+   "q": "How do bats find their way in the dark?",
+   "options": [
+    "With echolocation",
+    "With infrared eyes",
+    "By the magnetic field",
+    "By smell only"
+   ]
+  }
+ },
+ {
+  "id": "spook:b426e298b1",
+  "category": "dieren-natuur",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoeveel poten heeft een spin?",
+   "options": [
+    "8",
+    "6",
+    "10",
+    "12"
+   ]
+  },
+  "en": {
+   "q": "How many legs does a spider have?",
+   "options": [
+    "8",
+    "6",
+    "10",
+    "12"
+   ]
+  }
+ },
+ {
+  "id": "spook:afc443cb49",
+  "category": "dieren-natuur",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is arachnofobie?",
+   "options": [
+    "Angst voor spinnen",
+    "Angst voor hoogte",
+    "Angst voor het donker",
+    "Angst voor clowns"
+   ]
+  },
+  "en": {
+   "q": "What is arachnophobia?",
+   "options": [
+    "Fear of spiders",
+    "Fear of heights",
+    "Fear of the dark",
+    "Fear of clowns"
+   ]
+  }
+ },
+ {
+  "id": "spook:11bd1f3899",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is triskaidekafobie?",
+   "options": [
+    "Angst voor het getal 13",
+    "Angst voor spoken",
+    "Angst voor katten",
+    "Angst voor spiegels"
+   ]
+  },
+  "en": {
+   "q": "What is triskaidekaphobia?",
+   "options": [
+    "Fear of the number 13",
+    "Fear of ghosts",
+    "Fear of cats",
+    "Fear of mirrors"
+   ]
+  }
+ },
+ {
+  "id": "spook:1290466ff8",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welk getal geldt in China en Japan als ongeluksgetal, omdat het klinkt als \"dood\"?",
+   "options": [
+    "4",
+    "13",
+    "7",
+    "9"
+   ]
+  },
+  "en": {
+   "q": "Which number is unlucky in China and Japan because it sounds like \"death\"?",
+   "options": [
+    "4",
+    "13",
+    "7",
+    "9"
+   ]
+  }
+ },
+ {
+  "id": "spook:f1d1909093",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk metaal zou volgens de legende een weerwolf kunnen verslaan?",
+   "options": [
+    "Zilver",
+    "Goud",
+    "Koper",
+    "Lood"
+   ]
+  },
+  "en": {
+   "q": "Which metal can defeat a werewolf, according to legend?",
+   "options": [
+    "Silver",
+    "Gold",
+    "Copper",
+    "Lead"
+   ]
+  }
+ },
+ {
+  "id": "spook:efc7d6b4a7",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke plant zou vampiers op afstand houden?",
+   "options": [
+    "Knoflook",
+    "Basilicum",
+    "Munt",
+    "Peterselie"
+   ]
+  },
+  "en": {
+   "q": "Which plant is said to keep vampires away?",
+   "options": [
+    "Garlic",
+    "Basil",
+    "Mint",
+    "Parsley"
+   ]
+  }
+ },
+ {
+  "id": "spook:04fef3e36a",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Waarop vliegt een heks traditioneel?",
+   "options": [
+    "Een bezem",
+    "Een vliegend tapijt",
+    "Een draak",
+    "Een ladder"
+   ]
+  },
+  "en": {
+   "q": "What does a witch traditionally fly on?",
+   "options": [
+    "A broomstick",
+    "A flying carpet",
+    "A dragon",
+    "A ladder"
+   ]
+  }
+ },
+ {
+  "id": "spook:f3cf67c7a1",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk dier hoort volgens de traditie bij een heks?",
+   "options": [
+    "Een zwarte kat",
+    "Een goudvis",
+    "Een papegaai",
+    "Een hamster"
+   ]
+  },
+  "en": {
+   "q": "Which animal traditionally belongs to a witch?",
+   "options": [
+    "A black cat",
+    "A goldfish",
+    "A parrot",
+    "A hamster"
+   ]
+  }
+ },
+ {
+  "id": "spook:53160e040a",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is De Vliegende Hollander volgens de legende?",
+   "options": [
+    "Een spookschip",
+    "Een spooktrein",
+    "Een spookkasteel",
+    "Een vliegende heks"
+   ]
+  },
+  "en": {
+   "q": "According to legend, what is the Flying Dutchman?",
+   "options": [
+    "A ghost ship",
+    "A ghost train",
+    "A haunted castle",
+    "A flying witch"
+   ]
+  }
+ },
+ {
+  "id": "spook:0b74b28555",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welk Nederlands pretpark staat het Spookslot?",
+   "options": [
+    "Efteling",
+    "Walibi Holland",
+    "Toverland",
+    "Duinrell"
+   ]
+  },
+  "en": {
+   "q": "Which Dutch theme park has the Spookslot (haunted castle)?",
+   "options": [
+    "Efteling",
+    "Walibi Holland",
+    "Toverland",
+    "Duinrell"
+   ]
+  }
+ },
+ {
+  "id": "spook:8e94d1a8a2",
+  "category": "wetenschap",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet het als levende wezens, zoals vuurvliegjes, zelf licht maken?",
+   "options": [
+    "Bioluminescentie",
+    "Fotosynthese",
+    "Fluorescentie",
+    "Radioactiviteit"
+   ]
+  },
+  "en": {
+   "q": "What is it called when living things such as fireflies make their own light?",
+   "options": [
+    "Bioluminescence",
+    "Photosynthesis",
+    "Fluorescence",
+    "Radioactivity"
+   ]
+  }
+ },
+ {
+  "id": "spook:221061f6da",
+  "category": "wetenschap",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Waar bestaat een pompoen voor het grootste deel uit?",
+   "options": [
+    "Water",
+    "Suiker",
+    "Zetmeel",
+    "Vezels"
+   ]
+  },
+  "en": {
+   "q": "What is a pumpkin mostly made of?",
+   "options": [
+    "Water",
+    "Sugar",
+    "Starch",
+    "Fibre"
+   ]
+  }
+ }
+]
