@@ -178,6 +178,7 @@
       <div class="chips wheel-mode" id="wheel-mode">
         <button class="chip on" data-wmode="cocktail">Cocktail</button>
         <button class="chip" data-wmode="bottle">Fles</button>
+        <button class="chip party-only party-oktoberfest" data-wmode="beer">Bier</button>
       </div>
       <div class="wheel-wrap">
         <div class="wheel-pointer" aria-hidden="true"></div>
@@ -202,6 +203,7 @@
       <button class="hub-card" data-hub="qwixx"><span class="hub-icon" aria-hidden="true">🎲</span><span class="display">Qwixx</span><p>Dobbelspel op je telefoon — scan de code</p></button>
       <button class="hub-card" data-hub="games"><span class="hub-icon" aria-hidden="true">🕹️</span><span class="display">Retro games</span><p>N64, SNES en meer met de controllers</p></button>
       <button class="hub-card" data-hub="bottlewheel"><span class="hub-icon" aria-hidden="true">🍾</span><span class="display">Drankrad</span><p>Welke fles wordt het? Alle flessen van de bar</p></button>
+      <button class="hub-card party-only party-oktoberfest" data-hub="beerwheel"><span class="hub-icon" aria-hidden="true">🍺</span><span class="display">Bierrad</span><p>Welk bier wordt het? Alle bieren uit de voorraad</p></button>
       <button class="hub-card" data-hub="wheel"><span class="hub-icon" aria-hidden="true">🎡</span><span class="display">Draai het rad</span><p>Laat het lot je cocktail kiezen</p></button>
     </div>
   </section>
@@ -310,6 +312,14 @@
           <button class="chip" data-ss="test">▶ Test</button>
         </div>
       </div>
+      <div>
+        <p class="mono muted">Prost-momenten (Oktoberfest-looks)</p>
+        <div class="chips" id="prost-choices">
+          <button class="chip" data-pm="1">Aan</button>
+          <button class="chip" data-pm="0">Uit</button>
+          <button class="chip" data-pm="now">▶ Nu proosten</button>
+        </div>
+      </div>
     </div>
     <div class="row">
       <button class="btn" id="new-room">Nieuwe kamercode</button>
@@ -385,6 +395,8 @@
 </div>
 
 <!-- Screensaver -->
+<div class="prost" id="prost" hidden aria-live="assertive"><span class="prost-mugs" aria-hidden="true">🍺🍺</span><span class="prost-word display" id="prost-word"></span></div>
+
 <div class="saver" id="saver" hidden>
   <div class="saver-bg" id="saver-bg"></div>
   <div class="saver-shade"></div>

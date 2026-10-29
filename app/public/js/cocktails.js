@@ -45,14 +45,15 @@ export async function openMenu() {
   }
 }
 export function setWheelMode(mode) {
-  wheelMode = mode === 'bottle' ? 'bottle' : 'cocktail';
+  wheelMode = ['bottle', 'beer'].includes(mode) ? mode : 'cocktail';
   document.querySelectorAll('[data-wmode]').forEach((b) => b.classList.toggle('on', b.dataset.wmode === wheelMode));
-  $('wheel').setAttribute('aria-label', wheelMode === 'bottle' ? 'Drankrad' : 'Cocktailrad');
+  $('wheel').setAttribute('aria-label', { bottle: 'Drankrad', beer: 'Bierrad' }[wheelMode] || 'Cocktailrad');
 }
 // The drankrad only spins over liquor: spirits, liqueurs and amari from the
 // stock. Wine, beer, bubbles, fortified wine, vermouth and cocktail bitters stay off.
 const NOT_LIQUOR = new Set(['port', 'sherry', 'bubbles', 'wine', 'beer', 'sweet-vermouth', 'dry-vermouth', 'lillet', 'angostura', 'orange-bitters', 'peychauds']);
 let bottles = []; // labels of every liquor bottle that's in stock
+let beers = []; // the Bierrad: own bottles of type Bier (plus "Bier" when ticked)
 async function loadBottles() {
   const res = await call(ctx.socket, 'stock:get');
   if (!res) return;
@@ -65,6 +66,10 @@ async function loadBottles() {
       .filter((c) => (c.kind ? ['liquor', 'liqueur'].includes(c.kind) : !c.countsAs || liquor(c.countsAs)))
       .map((c) => ({ id: c.id, name: c.name })),
   ];
+  beers = [
+    ...res.stock.custom.filter((c) => c.kind === 'beer' || c.countsAs === 'beer').map((c) => ({ id: c.id, name: c.name })),
+  ];
+  if (!beers.length && have.has('beer')) beers = [{ id: 'beer', name: 'Bier' }];
 }
 
 export function spinSoon() {
@@ -145,8 +150,8 @@ function renderShopping() {
 
 // ================= Wheel =================
 function buildWheel() {
-  const bottleMode = wheelMode === 'bottle';
-  const pool = bottleMode ? [...bottles] : [...(data?.list || [])];
+  const bottleMode = wheelMode !== 'cocktail';
+  const pool = wheelMode === 'beer' ? [...beers] : bottleMode ? [...bottles] : [...(data?.list || [])];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -157,7 +162,7 @@ function buildWheel() {
   const n = wheelItems.length;
   if (!n) {
     svg.innerHTML = `<circle cx="150" cy="150" r="140" fill="var(--panel-2)" stroke="var(--line-strong)" stroke-width="3"/>
-      <text x="150" y="156" text-anchor="middle" fill="var(--text-3)" font-size="16">${bottleMode ? 'Vink flessen aan bij Voorraad' : 'Niets om uit te kiezen'}</text>`;
+      <text x="150" y="156" text-anchor="middle" fill="var(--text-3)" font-size="16">${wheelMode === 'beer' ? 'Zet bieren in Voorraad (soort Bier)' : bottleMode ? 'Vink flessen aan bij Voorraad' : 'Niets om uit te kiezen'}</text>`;
     return;
   }
   const r = 140;
@@ -214,7 +219,7 @@ function spinDone() {
   svg.style.transition = 'none';
   svg.style.transform = `rotate(${wheelAngle}deg)`;
   if (!spin.winner || ctx.view() !== 'cocktails') return;
-  if (wheelMode === 'bottle') showBottle(spin.winner);
+  if (wheelMode !== 'cocktail') showBottle(spin.winner);
   else openRecipe(spin.winner.id, true);
 }
 
@@ -223,7 +228,7 @@ function showBottle(b) {
   $('recipe-body').innerHTML = `
     <div class="sheet-head">
       <div>
-        <span class="mono accent">Het drankrad heeft gesproken</span>
+        <span class="mono accent">${wheelMode === 'beer' ? 'Het bierrad heeft gesproken' : 'Het drankrad heeft gesproken'}</span>
         <h2 class="display bottle-win" id="recipe-title">${esc(b.name)}</h2>
       </div>
       <div class="row">

@@ -74,6 +74,12 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Halloween extras: Griezelquiz (data-seed/griezel.json, 42 bilingual questions), cocktail tag
   "Griezelig" (spooky names), spooky sounds every 6–15 min (public/js/spooky.js, Web Audio, not during
   a quiz question/game/karaoke); switch: settings "Griezelgeluiden" + /admin Scherm (`spookySounds`).
+- Nederland looks: only the 🧡 Oranjequiz (data-seed/oranje.json). Jeroen wants no other Dutch extras.
+- Oktoberfest looks: 🍺 Bierquiz (data-seed/bier.json); Prost-moment every 30–50 min (public/js/prost.js:
+  "OANS! ZWOA! DREI! G'SUFFA!" with synthesized brass + clinking glasses — no recording of the song;
+  switch "Prost-momenten" in settings + /admin, `prostMoments`; "▶ Nu proosten" button); Bierrad
+  (hub card + "Bier" wheel chip, own bottles of type Bier; `.party-only` + :root[data-party]);
+  screensaver pretzels + rising foam.
 - Screensaver shows the photos in random order (shuffle bag in saver.js, no repeats in a row).
 - Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
   no Peppa Pig (protected character; asked for, made this instead).

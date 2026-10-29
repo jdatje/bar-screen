@@ -642,3 +642,28 @@ body:has(.osk:not([hidden])) .music-results { max-height: 22vh; }
 @keyframes saver-ghost-back { from { transform: translateX(calc(100vw + 60px)) scaleX(-1) rotate(-6deg); } to { transform: translateX(-260px) scaleX(-1) rotate(5deg); } }
 @keyframes saver-ghost-bob { from { transform: translateY(-30px); } to { transform: translateY(30px); } }
 @media (prefers-reduced-motion: reduce) { .saver-ghosts { display: none; } }
+
+/* party-only buttons (e.g. the Bierrad): only in a look of that party */
+.party-only { display: none !important; }
+:root[data-party="oktoberfest"] .party-oktoberfest { display: revert !important; }
+:root[data-party="oktoberfest"] .hub-card.party-oktoberfest { display: flex !important; }
+:root[data-party="oktoberfest"] .hub-grid { grid-template-columns: repeat(12, 1fr); }
+/* 8 hub cards in an Oktoberfest look: 4 + 4 */
+:root[data-party="oktoberfest"] .hub-card:nth-child(n+5) { grid-column: span 3; }
+
+/* Oktoberfest screensaver: pretzels + rising foam */
+.saver-ghosts .foam { position: absolute; bottom: -40px; border-radius: 50%; background: rgba(255, 248, 230, 0.55); box-shadow: inset -3px -3px 0 rgba(255, 255, 255, 0.5); animation: saver-foam linear infinite; text-decoration: none; }
+@keyframes saver-foam { from { transform: translate(0, 0); opacity: 0; } 10% { opacity: 0.9; } to { transform: translate(20px, -110vh); opacity: 0; } }
+.saver-ghosts i.pretzel { filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5)); }
+
+/* Prost moment (Oktoberfest looks) */
+.prost { position: fixed; inset: 0; z-index: 70; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vh;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 200, 60, 0.92), rgba(120, 60, 0, 0.94)); color: #fff; opacity: 0; transition: opacity .5s ease; pointer-events: none; }
+.prost.on { opacity: 1; }
+.prost[hidden] { display: none; }
+.prost-mugs { font-size: 18vh; line-height: 1; animation: prost-clink 1s ease-in-out infinite; }
+@keyframes prost-clink { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg) scale(1.06); } }
+.prost-word { font-size: 16vh; line-height: 1; text-shadow: 0 0.6vh 0 rgba(90, 40, 0, 0.6), 0 0 4vh rgba(255, 255, 255, 0.4); letter-spacing: 0.4vw; }
+.prost-word.last { font-size: 20vh; color: #FFF6C8; }
+.prost-word.pop { animation: prost-pop .45s cubic-bezier(.2, 1.8, .4, 1); }
+@keyframes prost-pop { from { transform: scale(2.2); opacity: 0; } }

@@ -1,0 +1,722 @@
+[
+ {
+  "id": "bier:6c933ef4c2",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welke stad wordt het Oktoberfest gehouden?",
+   "options": [
+    "München",
+    "Berlijn",
+    "Keulen",
+    "Hamburg"
+   ]
+  },
+  "en": {
+   "q": "In which city is Oktoberfest held?",
+   "options": [
+    "Munich",
+    "Berlin",
+    "Cologne",
+    "Hamburg"
+   ]
+  }
+ },
+ {
+  "id": "bier:fb517f91b8",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe noemen inwoners van München het Oktoberfest zelf?",
+   "options": [
+    "De Wiesn",
+    "De Dult",
+    "De Kirta",
+    "Het Bierfest"
+   ]
+  },
+  "en": {
+   "q": "What do Munich locals call Oktoberfest?",
+   "options": [
+    "The Wiesn",
+    "The Dult",
+    "The Kirta",
+    "The Bierfest"
+   ]
+  }
+ },
+ {
+  "id": "bier:ba66d08e2a",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Ter ere waarvan werd het eerste Oktoberfest in 1810 gehouden?",
+   "options": [
+    "Het huwelijk van kroonprins Ludwig en Therese",
+    "De graanoogst",
+    "Een gewonnen veldslag",
+    "De verjaardag van de koning"
+   ]
+  },
+  "en": {
+   "q": "What was the first Oktoberfest in 1810 held in honour of?",
+   "options": [
+    "The wedding of Crown Prince Ludwig and Therese",
+    "The grain harvest",
+    "A battle won",
+    "The king's birthday"
+   ]
+  }
+ },
+ {
+  "id": "bier:b4f6e8d21a",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welk jaar werd het eerste Oktoberfest gehouden?",
+   "options": [
+    "1810",
+    "1910",
+    "1750",
+    "1871"
+   ]
+  },
+  "en": {
+   "q": "In which year was the first Oktoberfest held?",
+   "options": [
+    "1810",
+    "1910",
+    "1750",
+    "1871"
+   ]
+  }
+ },
+ {
+  "id": "bier:2ca45ee2c4",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welke maand begint het Oktoberfest meestal?",
+   "options": [
+    "September",
+    "Oktober",
+    "Augustus",
+    "November"
+   ]
+  },
+  "en": {
+   "q": "In which month does Oktoberfest usually begin?",
+   "options": [
+    "September",
+    "October",
+    "August",
+    "November"
+   ]
+  }
+ },
+ {
+  "id": "bier:1cc1abf6a6",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de literpul bier op het Oktoberfest?",
+   "options": [
+    "Een Maß",
+    "Een Halbe",
+    "Een Stange",
+    "Een Pint"
+   ]
+  },
+  "en": {
+   "q": "What is the one-litre beer mug at Oktoberfest called?",
+   "options": [
+    "A Maß",
+    "A Halbe",
+    "A Stange",
+    "A pint"
+   ]
+  }
+ },
+ {
+  "id": "bier:507253ebcb",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoeveel bier zit er in een Maß?",
+   "options": [
+    "1 liter",
+    "0,5 liter",
+    "0,75 liter",
+    "2 liter"
+   ]
+  },
+  "en": {
+   "q": "How much beer is in a Maß?",
+   "options": [
+    "1 litre",
+    "0.5 litre",
+    "0.75 litre",
+    "2 litres"
+   ]
+  }
+ },
+ {
+  "id": "bier:d76878af9c",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie tapt traditioneel het eerste vat aan op het Oktoberfest?",
+   "options": [
+    "De burgemeester van München",
+    "De minister-president van Beieren",
+    "De bondskanselier",
+    "De oudste brouwer"
+   ]
+  },
+  "en": {
+   "q": "Who traditionally taps the first keg at Oktoberfest?",
+   "options": [
+    "The mayor of Munich",
+    "The Bavarian minister-president",
+    "The German chancellor",
+    "The oldest brewer"
+   ]
+  }
+ },
+ {
+  "id": "bier:ea8a832db1",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat betekent \"O'zapft is!\"?",
+   "options": [
+    "Het is aangetapt!",
+    "Proost!",
+    "Laatste ronde!",
+    "Op de gezondheid!"
+   ]
+  },
+  "en": {
+   "q": "What does \"O'zapft is!\" mean?",
+   "options": [
+    "It's tapped!",
+    "Cheers!",
+    "Last round!",
+    "To your health!"
+   ]
+  }
+ },
+ {
+  "id": "bier:50a92ddcaf",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Van welke brouwerijen mag er bier geschonken worden op het Oktoberfest?",
+   "options": [
+    "Alleen van brouwerijen uit München",
+    "Van alle Duitse brouwerijen",
+    "Van alle Beierse brouwerijen",
+    "Van brouwerijen uit heel Europa"
+   ]
+  },
+  "en": {
+   "q": "Which breweries may serve beer at Oktoberfest?",
+   "options": [
+    "Only breweries from Munich",
+    "All German breweries",
+    "All Bavarian breweries",
+    "Breweries from all over Europe"
+   ]
+  }
+ },
+ {
+  "id": "bier:80ecc2aaeb",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de traditionele Beierse jurk?",
+   "options": [
+    "Dirndl",
+    "Kimono",
+    "Sari",
+    "Kilt"
+   ]
+  },
+  "en": {
+   "q": "What is the traditional Bavarian dress called?",
+   "options": [
+    "Dirndl",
+    "Kimono",
+    "Sari",
+    "Kilt"
+   ]
+  }
+ },
+ {
+  "id": "bier:9478eeaf91",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de traditionele Beierse leren broek?",
+   "options": [
+    "Lederhose",
+    "Knickerbocker",
+    "Dirndl",
+    "Jodhpur"
+   ]
+  },
+  "en": {
+   "q": "What are the traditional Bavarian leather trousers called?",
+   "options": [
+    "Lederhosen",
+    "Knickerbockers",
+    "Dirndl",
+    "Jodhpurs"
+   ]
+  }
+ },
+ {
+  "id": "bier:d082f0c3a4",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Van welke deelstaat is München de hoofdstad?",
+   "options": [
+    "Beieren",
+    "Baden-Württemberg",
+    "Saksen",
+    "Hessen"
+   ]
+  },
+  "en": {
+   "q": "Munich is the capital of which German state?",
+   "options": [
+    "Bavaria",
+    "Baden-Württemberg",
+    "Saxony",
+    "Hesse"
+   ]
+  }
+ },
+ {
+  "id": "bier:1bc00a6e2e",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke kleuren heeft de Beierse ruitenvlag?",
+   "options": [
+    "Wit en blauw",
+    "Rood en wit",
+    "Zwart en geel",
+    "Groen en wit"
+   ]
+  },
+  "en": {
+   "q": "What colours does the Bavarian diamond flag have?",
+   "options": [
+    "White and blue",
+    "Red and white",
+    "Black and yellow",
+    "Green and white"
+   ]
+  }
+ },
+ {
+  "id": "bier:5195e2ef07",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is het Reinheitsgebot?",
+   "options": [
+    "Een Beierse bierwet uit 1516 over de ingrediënten",
+    "Een wet uit 1810 over het Oktoberfest",
+    "Een Duitse wijnwet",
+    "Een EU-regel voor bierglazen"
+   ]
+  },
+  "en": {
+   "q": "What is the Reinheitsgebot?",
+   "options": [
+    "A Bavarian beer law from 1516 about ingredients",
+    "An 1810 law about Oktoberfest",
+    "A German wine law",
+    "An EU rule for beer glasses"
+   ]
+  }
+ },
+ {
+  "id": "bier:81493a180c",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke plant geeft bier zijn bitterheid?",
+   "options": [
+    "Hop",
+    "Gerst",
+    "Tarwe",
+    "Mais"
+   ]
+  },
+  "en": {
+   "q": "Which plant gives beer its bitterness?",
+   "options": [
+    "Hops",
+    "Barley",
+    "Wheat",
+    "Maize"
+   ]
+  }
+ },
+ {
+  "id": "bier:83141b39a6",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat zet bij het brouwen suiker om in alcohol?",
+   "options": [
+    "Gist",
+    "Hop",
+    "Mout",
+    "Water"
+   ]
+  },
+  "en": {
+   "q": "What turns sugar into alcohol when brewing?",
+   "options": [
+    "Yeast",
+    "Hops",
+    "Malt",
+    "Water"
+   ]
+  }
+ },
+ {
+  "id": "bier:ccfa5087db",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Waarvan wordt een Weizenbier voor een groot deel gemaakt?",
+   "options": [
+    "Tarwe",
+    "Rogge",
+    "Rijst",
+    "Mais"
+   ]
+  },
+  "en": {
+   "q": "What is a Weizenbier largely made from?",
+   "options": [
+    "Wheat",
+    "Rye",
+    "Rice",
+    "Maize"
+   ]
+  }
+ },
+ {
+  "id": "bier:3fdef4e2cc",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Naar welke stad is de pilsner (pils) vernoemd?",
+   "options": [
+    "Plzeň in Tsjechië",
+    "Pilsen in Beieren",
+    "Pilsum in Oost-Friesland",
+    "Pils in Oostenrijk"
+   ]
+  },
+  "en": {
+   "q": "Which city is the pilsner named after?",
+   "options": [
+    "Plzeň in the Czech Republic",
+    "Pilsen in Bavaria",
+    "Pilsum in East Frisia",
+    "Pils in Austria"
+   ]
+  }
+ },
+ {
+  "id": "bier:a5b455d75f",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is een Radler?",
+   "options": [
+    "Bier met limonade",
+    "Bier met cola",
+    "Bier met wijn",
+    "Alcoholvrij bier"
+   ]
+  },
+  "en": {
+   "q": "What is a Radler?",
+   "options": [
+    "Beer mixed with lemonade",
+    "Beer with cola",
+    "Beer with wine",
+    "Alcohol-free beer"
+   ]
+  }
+ },
+ {
+  "id": "bier:2505b9f1d7",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat wordt gemeten in IBU bij bier?",
+   "options": [
+    "De bitterheid",
+    "Het alcoholpercentage",
+    "De kleur",
+    "De hoeveelheid schuim"
+   ]
+  },
+  "en": {
+   "q": "What is measured in IBU in beer?",
+   "options": [
+    "Bitterness",
+    "Alcohol content",
+    "Colour",
+    "Amount of foam"
+   ]
+  }
+ },
+ {
+  "id": "bier:a7ef9df17a",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is een bokbier meestal?",
+   "options": [
+    "Een sterker, vaak donker bier",
+    "Een tarwebier",
+    "Een alcoholvrij bier",
+    "Een zuur bier"
+   ]
+  },
+  "en": {
+   "q": "What is a bock beer usually?",
+   "options": [
+    "A stronger, often dark beer",
+    "A wheat beer",
+    "An alcohol-free beer",
+    "A sour beer"
+   ]
+  }
+ },
+ {
+  "id": "bier:fedb6b6ff4",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de gevlochten zoute koek die bij het Oktoberfest hoort?",
+   "options": [
+    "Brezel",
+    "Strudel",
+    "Krapfen",
+    "Spätzle"
+   ]
+  },
+  "en": {
+   "q": "What is the twisted salty bread that belongs to Oktoberfest called?",
+   "options": [
+    "Brezel (pretzel)",
+    "Strudel",
+    "Krapfen",
+    "Spätzle"
+   ]
+  }
+ },
+ {
+  "id": "bier:4da029e07b",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Waarvan wordt een Beierse Weißwurst vooral gemaakt?",
+   "options": [
+    "Kalfsvlees",
+    "Rundvlees",
+    "Kip",
+    "Lamsvlees"
+   ]
+  },
+  "en": {
+   "q": "What is a Bavarian Weißwurst mainly made of?",
+   "options": [
+    "Veal",
+    "Beef",
+    "Chicken",
+    "Lamb"
+   ]
+  }
+ },
+ {
+  "id": "bier:acf67e48f7",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Vóór welk tijdstip hoort je volgens de traditie een Weißwurst te eten?",
+   "options": [
+    "12 uur 's middags",
+    "10 uur 's ochtends",
+    "6 uur 's avonds",
+    "Middernacht"
+   ]
+  },
+  "en": {
+   "q": "According to tradition, before what time should you eat a Weißwurst?",
+   "options": [
+    "Noon",
+    "10 in the morning",
+    "6 in the evening",
+    "Midnight"
+   ]
+  }
+ },
+ {
+  "id": "bier:699547c9a1",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welk land drinken mensen al jaren het meeste bier per persoon?",
+   "options": [
+    "Tsjechië",
+    "Duitsland",
+    "België",
+    "Ierland"
+   ]
+  },
+  "en": {
+   "q": "In which country have people drunk the most beer per person for years?",
+   "options": [
+    "Czech Republic",
+    "Germany",
+    "Belgium",
+    "Ireland"
+   ]
+  }
+ },
+ {
+  "id": "bier:4b8bdce921",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat betekent \"Gemütlichkeit\"?",
+   "options": [
+    "Gezelligheid",
+    "Dorst",
+    "Vriendschap",
+    "Feest"
+   ]
+  },
+  "en": {
+   "q": "What does \"Gemütlichkeit\" mean?",
+   "options": [
+    "Cosiness, conviviality",
+    "Thirst",
+    "Friendship",
+    "Party"
+   ]
+  }
+ },
+ {
+  "id": "bier:240cb890a2",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat roep je in het Duits als je proost?",
+   "options": [
+    "Prost!",
+    "Danke!",
+    "Guten Tag!",
+    "Tschüss!"
+   ]
+  },
+  "en": {
+   "q": "What do you shout in German when you toast?",
+   "options": [
+    "Prost!",
+    "Danke!",
+    "Guten Tag!",
+    "Tschüss!"
+   ]
+  }
+ },
+ {
+  "id": "bier:4e6a0a51b8",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is mout?",
+   "options": [
+    "Gekiemd en gedroogd graan",
+    "Gedroogde hop",
+    "Een soort gist",
+    "Gebrande suiker"
+   ]
+  },
+  "en": {
+   "q": "What is malt?",
+   "options": [
+    "Sprouted and dried grain",
+    "Dried hops",
+    "A kind of yeast",
+    "Burnt sugar"
+   ]
+  }
+ },
+ {
+  "id": "bier:01fbc0a793",
+  "category": "algemeen",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet een halve liter bier in Beieren?",
+   "options": [
+    "Een Halbe",
+    "Een Maß",
+    "Een Seidel",
+    "Een Stange"
+   ]
+  },
+  "en": {
+   "q": "What is half a litre of beer called in Bavaria?",
+   "options": [
+    "A Halbe",
+    "A Maß",
+    "A Seidel",
+    "A Stange"
+   ]
+  }
+ }
+]

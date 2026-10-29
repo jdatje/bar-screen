@@ -1,0 +1,818 @@
+[
+ {
+  "id": "oranje:77205061f2",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Op welke datum is Koningsdag?",
+   "options": [
+    "27 april",
+    "30 april",
+    "5 mei",
+    "26 april"
+   ]
+  },
+  "en": {
+   "q": "On which date is King's Day?",
+   "options": [
+    "27 April",
+    "30 April",
+    "5 May",
+    "26 April"
+   ]
+  }
+ },
+ {
+  "id": "oranje:52c94bf5ac",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Op welke datum was Koninginnedag tot en met 2013?",
+   "options": [
+    "30 april",
+    "27 april",
+    "31 augustus",
+    "5 mei"
+   ]
+  },
+  "en": {
+   "q": "On which date was Queen's Day up to and including 2013?",
+   "options": [
+    "30 April",
+    "27 April",
+    "31 August",
+    "5 May"
+   ]
+  }
+ },
+ {
+  "id": "oranje:223786a764",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welk jaar werd Willem-Alexander koning?",
+   "options": [
+    "2013",
+    "2010",
+    "2015",
+    "2005"
+   ]
+  },
+  "en": {
+   "q": "In which year did Willem-Alexander become king?",
+   "options": [
+    "2013",
+    "2010",
+    "2015",
+    "2005"
+   ]
+  }
+ },
+ {
+  "id": "oranje:4aa1f5932e",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Uit welk land komt koningin Máxima?",
+   "options": [
+    "Argentinië",
+    "Spanje",
+    "Chili",
+    "Uruguay"
+   ]
+  },
+  "en": {
+   "q": "Which country is Queen Máxima from?",
+   "options": [
+    "Argentina",
+    "Spain",
+    "Chile",
+    "Uruguay"
+   ]
+  }
+ },
+ {
+  "id": "oranje:69953b0242",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de prinses van Oranje, de troonopvolger?",
+   "options": [
+    "Catharina-Amalia",
+    "Alexia",
+    "Ariane",
+    "Eloise"
+   ]
+  },
+  "en": {
+   "q": "What is the name of the Princess of Orange, heir to the throne?",
+   "options": [
+    "Catharina-Amalia",
+    "Alexia",
+    "Ariane",
+    "Eloise"
+   ]
+  }
+ },
+ {
+  "id": "oranje:eb12d6ca67",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke koningin trad in 2013 af?",
+   "options": [
+    "Beatrix",
+    "Juliana",
+    "Wilhelmina",
+    "Máxima"
+   ]
+  },
+  "en": {
+   "q": "Which queen abdicated in 2013?",
+   "options": [
+    "Beatrix",
+    "Juliana",
+    "Wilhelmina",
+    "Máxima"
+   ]
+  }
+ },
+ {
+  "id": "oranje:c2a37484c2",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Waarom is oranje de kleur van Nederland?",
+   "options": [
+    "Naar het koningshuis Oranje-Nassau",
+    "Naar de kleur van tulpen",
+    "Naar de Nederlandse kaas",
+    "Naar de kleur van de vlag"
+   ]
+  },
+  "en": {
+   "q": "Why is orange the colour of the Netherlands?",
+   "options": [
+    "After the royal House of Orange-Nassau",
+    "After the colour of tulips",
+    "After Dutch cheese",
+    "After the colour of the flag"
+   ]
+  }
+ },
+ {
+  "id": "oranje:d0c4ca6ffb",
+  "category": "nederland",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoeveel coupletten telt het Wilhelmus?",
+   "options": [
+    "15",
+    "8",
+    "10",
+    "2"
+   ]
+  },
+  "en": {
+   "q": "How many verses does the Wilhelmus have?",
+   "options": [
+    "15",
+    "8",
+    "10",
+    "2"
+   ]
+  }
+ },
+ {
+  "id": "oranje:29af005596",
+  "category": "nederland",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat betekent \"Je maintiendrai\", de wapenspreuk van Nederland?",
+   "options": [
+    "Ik zal handhaven",
+    "Eendracht maakt macht",
+    "God zij met ons",
+    "Ik worstel en kom boven"
+   ]
+  },
+  "en": {
+   "q": "What does \"Je maintiendrai\", the Dutch national motto, mean?",
+   "options": [
+    "I will maintain",
+    "Unity makes strength",
+    "God be with us",
+    "I struggle and emerge"
+   ]
+  }
+ },
+ {
+  "id": "oranje:c7447d6f0c",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke kleur heeft de bovenste baan van de Nederlandse vlag?",
+   "options": [
+    "Rood",
+    "Blauw",
+    "Wit",
+    "Oranje"
+   ]
+  },
+  "en": {
+   "q": "What colour is the top stripe of the Dutch flag?",
+   "options": [
+    "Red",
+    "Blue",
+    "White",
+    "Orange"
+   ]
+  }
+ },
+ {
+  "id": "oranje:2df1b6e031",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat vieren we op 5 mei?",
+   "options": [
+    "Bevrijdingsdag",
+    "Koningsdag",
+    "Prinsjesdag",
+    "Dodenherdenking"
+   ]
+  },
+  "en": {
+   "q": "What is celebrated on 5 May?",
+   "options": [
+    "Liberation Day",
+    "King's Day",
+    "Prince's Day",
+    "Remembrance Day"
+   ]
+  }
+ },
+ {
+  "id": "oranje:02cb1b6a99",
+  "category": "nederland",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wanneer is Prinsjesdag?",
+   "options": [
+    "De derde dinsdag van september",
+    "De eerste maandag van oktober",
+    "27 april",
+    "De laatste vrijdag van augustus"
+   ]
+  },
+  "en": {
+   "q": "When is Prince's Day (Prinsjesdag)?",
+   "options": [
+    "The third Tuesday of September",
+    "The first Monday of October",
+    "27 April",
+    "The last Friday of August"
+   ]
+  }
+ },
+ {
+  "id": "oranje:f8b2260d68",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk gebakje wordt rond Koningsdag oranje geglazuurd?",
+   "options": [
+    "Tompouce",
+    "Stroopwafel",
+    "Bossche bol",
+    "Oliebol"
+   ]
+  },
+  "en": {
+   "q": "Which pastry gets orange icing around King's Day?",
+   "options": [
+    "Tompouce",
+    "Stroopwafel",
+    "Bossche bol",
+    "Oliebol"
+   ]
+  }
+ },
+ {
+  "id": "oranje:a6b6594dbc",
+  "category": "nederland",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk oranje drankje hoort traditioneel bij Koningsdag?",
+   "options": [
+    "Oranjebitter",
+    "Advocaat",
+    "Beerenburg",
+    "Jenever"
+   ]
+  },
+  "en": {
+   "q": "Which orange drink traditionally belongs to King's Day?",
+   "options": [
+    "Oranjebitter",
+    "Advocaat",
+    "Beerenburg",
+    "Jenever"
+   ]
+  }
+ },
+ {
+  "id": "oranje:1bc7a16169",
+  "category": "sport",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welke stad begint en eindigt de Elfstedentocht?",
+   "options": [
+    "Leeuwarden",
+    "Sneek",
+    "Dokkum",
+    "Bolsward"
+   ]
+  },
+  "en": {
+   "q": "In which city does the Elfstedentocht (Eleven Cities Tour) start and finish?",
+   "options": [
+    "Leeuwarden",
+    "Sneek",
+    "Dokkum",
+    "Bolsward"
+   ]
+  }
+ },
+ {
+  "id": "oranje:4fa45a7f22",
+  "category": "sport",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welk jaar werd de laatste Elfstedentocht op natuurijs verreden?",
+   "options": [
+    "1997",
+    "1986",
+    "2005",
+    "1963"
+   ]
+  },
+  "en": {
+   "q": "In which year was the last Elfstedentocht on natural ice held?",
+   "options": [
+    "1997",
+    "1986",
+    "2005",
+    "1963"
+   ]
+  }
+ },
+ {
+  "id": "oranje:2f6b0a4fcf",
+  "category": "sport",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe lang is de Elfstedentocht ongeveer?",
+   "options": [
+    "200 km",
+    "100 km",
+    "300 km",
+    "50 km"
+   ]
+  },
+  "en": {
+   "q": "Roughly how long is the Elfstedentocht?",
+   "options": [
+    "200 km",
+    "100 km",
+    "300 km",
+    "50 km"
+   ]
+  }
+ },
+ {
+  "id": "oranje:7b82715c0c",
+  "category": "sport",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk toernooi won het Nederlands elftal in 1988?",
+   "options": [
+    "Het EK",
+    "Het WK",
+    "De Olympische Spelen",
+    "De Nations League"
+   ]
+  },
+  "en": {
+   "q": "Which tournament did the Dutch national football team win in 1988?",
+   "options": [
+    "The European Championship",
+    "The World Cup",
+    "The Olympics",
+    "The Nations League"
+   ]
+  }
+ },
+ {
+  "id": "oranje:dc5fcc05bc",
+  "category": "sport",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie scoorde de beroemde volley in de EK-finale van 1988?",
+   "options": [
+    "Marco van Basten",
+    "Ruud Gullit",
+    "Frank Rijkaard",
+    "Ronald Koeman"
+   ]
+  },
+  "en": {
+   "q": "Who scored the famous volley in the 1988 European Championship final?",
+   "options": [
+    "Marco van Basten",
+    "Ruud Gullit",
+    "Frank Rijkaard",
+    "Ronald Koeman"
+   ]
+  }
+ },
+ {
+  "id": "oranje:6e07ff8a97",
+  "category": "sport",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Tegen welk land verloor Oranje de WK-finale van 2010?",
+   "options": [
+    "Spanje",
+    "Duitsland",
+    "Argentinië",
+    "Brazilië"
+   ]
+  },
+  "en": {
+   "q": "Which country beat the Netherlands in the 2010 World Cup final?",
+   "options": [
+    "Spain",
+    "Germany",
+    "Argentina",
+    "Brazil"
+   ]
+  }
+ },
+ {
+  "id": "oranje:146d26c04e",
+  "category": "sport",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Tegen welk land verloor Oranje de WK-finale van 1974?",
+   "options": [
+    "West-Duitsland",
+    "Argentinië",
+    "Italië",
+    "Brazilië"
+   ]
+  },
+  "en": {
+   "q": "Which country beat the Netherlands in the 1974 World Cup final?",
+   "options": [
+    "West Germany",
+    "Argentina",
+    "Italy",
+    "Brazil"
+   ]
+  }
+ },
+ {
+  "id": "oranje:844a631101",
+  "category": "sport",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke bondscoach heette \"de Generaal\" en staat bekend als vader van het totaalvoetbal?",
+   "options": [
+    "Rinus Michels",
+    "Louis van Gaal",
+    "Guus Hiddink",
+    "Dick Advocaat"
+   ]
+  },
+  "en": {
+   "q": "Which coach was nicknamed \"the General\" and is known as the father of Total Football?",
+   "options": [
+    "Rinus Michels",
+    "Louis van Gaal",
+    "Guus Hiddink",
+    "Dick Advocaat"
+   ]
+  }
+ },
+ {
+  "id": "oranje:7730986ec3",
+  "category": "sport",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke Nederlandse coureur werd vanaf 2021 meerdere keren wereldkampioen Formule 1?",
+   "options": [
+    "Max Verstappen",
+    "Jos Verstappen",
+    "Nyck de Vries",
+    "Giedo van der Garde"
+   ]
+  },
+  "en": {
+   "q": "Which Dutch driver became Formula 1 world champion several times from 2021?",
+   "options": [
+    "Max Verstappen",
+    "Jos Verstappen",
+    "Nyck de Vries",
+    "Giedo van der Garde"
+   ]
+  }
+ },
+ {
+  "id": "oranje:4b0c597309",
+  "category": "kunst-cultuur",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wie schilderde \"De Nachtwacht\"?",
+   "options": [
+    "Rembrandt",
+    "Vermeer",
+    "Van Gogh",
+    "Frans Hals"
+   ]
+  },
+  "en": {
+   "q": "Who painted \"The Night Watch\"?",
+   "options": [
+    "Rembrandt",
+    "Vermeer",
+    "Van Gogh",
+    "Frans Hals"
+   ]
+  }
+ },
+ {
+  "id": "oranje:cadf5a68bb",
+  "category": "kunst-cultuur",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wie schilderde \"Meisje met de parel\"?",
+   "options": [
+    "Johannes Vermeer",
+    "Rembrandt",
+    "Jan Steen",
+    "Piet Mondriaan"
+   ]
+  },
+  "en": {
+   "q": "Who painted \"Girl with a Pearl Earring\"?",
+   "options": [
+    "Johannes Vermeer",
+    "Rembrandt",
+    "Jan Steen",
+    "Piet Mondrian"
+   ]
+  }
+ },
+ {
+  "id": "oranje:e44e232982",
+  "category": "kunst-cultuur",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke Nederlandse schilder sneed een deel van zijn eigen oor af?",
+   "options": [
+    "Vincent van Gogh",
+    "Rembrandt",
+    "Piet Mondriaan",
+    "Karel Appel"
+   ]
+  },
+  "en": {
+   "q": "Which Dutch painter cut off part of his own ear?",
+   "options": [
+    "Vincent van Gogh",
+    "Rembrandt",
+    "Piet Mondrian",
+    "Karel Appel"
+   ]
+  }
+ },
+ {
+  "id": "oranje:82b141699c",
+  "category": "muziek",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Met welk nummer won Duncan Laurence in 2019 het Songfestival?",
+   "options": [
+    "Arcade",
+    "Ding-a-dong",
+    "Calm After the Storm",
+    "Birds"
+   ]
+  },
+  "en": {
+   "q": "With which song did Duncan Laurence win Eurovision in 2019?",
+   "options": [
+    "Arcade",
+    "Ding-a-dong",
+    "Calm After the Storm",
+    "Birds"
+   ]
+  }
+ },
+ {
+  "id": "oranje:39d53c6806",
+  "category": "wetenschap",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke Nederlander werd beroemd door zijn microscopen en zag als eerste bacteriën?",
+   "options": [
+    "Antoni van Leeuwenhoek",
+    "Christiaan Huygens",
+    "Hugo de Groot",
+    "Herman Boerhaave"
+   ]
+  },
+  "en": {
+   "q": "Which Dutchman became famous for his microscopes and was the first to see bacteria?",
+   "options": [
+    "Antonie van Leeuwenhoek",
+    "Christiaan Huygens",
+    "Hugo Grotius",
+    "Herman Boerhaave"
+   ]
+  }
+ },
+ {
+  "id": "oranje:3f942e5998",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoeveel provincies heeft Nederland?",
+   "options": [
+    "12",
+    "11",
+    "10",
+    "13"
+   ]
+  },
+  "en": {
+   "q": "How many provinces does the Netherlands have?",
+   "options": [
+    "12",
+    "11",
+    "10",
+    "13"
+   ]
+  }
+ },
+ {
+  "id": "oranje:9b5926e230",
+  "category": "aardrijkskunde",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is de jongste provincie van Nederland?",
+   "options": [
+    "Flevoland",
+    "Zeeland",
+    "Drenthe",
+    "Limburg"
+   ]
+  },
+  "en": {
+   "q": "Which is the youngest province of the Netherlands?",
+   "options": [
+    "Flevoland",
+    "Zeeland",
+    "Drenthe",
+    "Limburg"
+   ]
+  }
+ },
+ {
+  "id": "oranje:6b713dce61",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is het hoogste punt van Europees Nederland?",
+   "options": [
+    "De Vaalserberg",
+    "De Posbank",
+    "De Tafelberg",
+    "De Holterberg"
+   ]
+  },
+  "en": {
+   "q": "What is the highest point of the European Netherlands?",
+   "options": [
+    "The Vaalserberg",
+    "The Posbank",
+    "The Tafelberg",
+    "The Holterberg"
+   ]
+  }
+ },
+ {
+  "id": "oranje:54d864b4ca",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de dijk die in 1932 de Zuiderzee afsloot?",
+   "options": [
+    "De Afsluitdijk",
+    "De Houtribdijk",
+    "De Oosterscheldekering",
+    "De Brouwersdam"
+   ]
+  },
+  "en": {
+   "q": "What is the dyke called that closed off the Zuiderzee in 1932?",
+   "options": [
+    "The Afsluitdijk",
+    "The Houtribdijk",
+    "The Oosterschelde barrier",
+    "The Brouwersdam"
+   ]
+  }
+ },
+ {
+  "id": "oranje:6dd090150e",
+  "category": "geschiedenis",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "In welk jaar trof de watersnoodramp Zeeland en Zuid-Holland?",
+   "options": [
+    "1953",
+    "1945",
+    "1962",
+    "1916"
+   ]
+  },
+  "en": {
+   "q": "In which year did the great North Sea flood hit Zeeland and South Holland?",
+   "options": [
+    "1953",
+    "1945",
+    "1962",
+    "1916"
+   ]
+  }
+ },
+ {
+  "id": "oranje:d3e528847a",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie wordt de \"Vader des Vaderlands\" genoemd?",
+   "options": [
+    "Willem van Oranje",
+    "Michiel de Ruyter",
+    "Johan van Oldenbarnevelt",
+    "Johan de Witt"
+   ]
+  },
+  "en": {
+   "q": "Who is called the \"Father of the Fatherland\"?",
+   "options": [
+    "William of Orange",
+    "Michiel de Ruyter",
+    "Johan van Oldenbarnevelt",
+    "Johan de Witt"
+   ]
+  }
+ }
+]

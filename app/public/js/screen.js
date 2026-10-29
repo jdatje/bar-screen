@@ -11,6 +11,8 @@ import * as karaoke from './karaoke.js';
 import * as wall from './photowall.js';
 import * as music from './music.js';
 import * as spooky from './spooky.js';
+import * as prost from './prost.js';
+import { PARTY_OF_THEME } from './tiles.js';
 
 const socket = io();
 const state = { settings: { theme: 'industrial' }, themes: [], player: null, room: null, players: [], game: { active: false } };
@@ -37,8 +39,8 @@ const ctx = { socket, state, go, getPin };
 
 // ---------- Views ----------
 function go(next) {
-  if (next === 'wheel' || next === 'bottlewheel') {
-    bar.setWheelMode(next === 'bottlewheel' ? 'bottle' : 'cocktail');
+  if (next === 'wheel' || next === 'bottlewheel' || next === 'beerwheel') {
+    bar.setWheelMode({ bottlewheel: 'bottle', beerwheel: 'beer' }[next] || 'cocktail');
     go('cocktails');
     bar.spinSoon();
     return;
@@ -63,7 +65,7 @@ $('back').addEventListener('click', () => go(PARENT[view] || 'home'));
 document.querySelectorAll('[data-hub]').forEach((b) =>
   b.addEventListener('click', () => {
     const h = b.dataset.hub;
-    if (h === 'games' || h === 'wheel' || h === 'bottlewheel') return go(h);
+    if (h === 'games' || h === 'wheel' || h === 'bottlewheel' || h === 'beerwheel') return go(h);
     if (h === 'qwixx') return $('qwixx').classList.add('open');
     quiz.setType(h);
     go('quiz');
@@ -187,7 +189,11 @@ function markTheme() {
   document.querySelectorAll('#req-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.req === (state.settings.requests || 'approve')));
   document.querySelectorAll('#saverphoto-choices .chip').forEach((c) => c.classList.toggle('on', (c.dataset.sp === '1') === (state.settings.saverPhotos !== false)));
   document.querySelectorAll('#spooky-choices [data-ss="1"], #spooky-choices [data-ss="0"]').forEach((c) => c.classList.toggle('on', (c.dataset.ss === '1') === (state.settings.spookySounds !== false)));
+  document.querySelectorAll('#prost-choices [data-pm="1"], #prost-choices [data-pm="0"]').forEach((c) => c.classList.toggle('on', (c.dataset.pm === '1') === (state.settings.prostMoments !== false)));
   spooky.update();
+  prost.update();
+  // buttons that only exist in a party look (e.g. the Bierrad in Oktoberfest)
+  document.documentElement.dataset.party = PARTY_OF_THEME[state.settings.theme] || '';
   document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
   tickClock();
   document.querySelectorAll('.theme-card').forEach((c) => c.classList.toggle('on', c.dataset.theme === state.settings.theme));
@@ -252,6 +258,15 @@ $('req-list').addEventListener('click', async (e) => {
 $('req-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-req]');
   if (b) setSetting({ requests: b.dataset.req });
+});
+$('prost-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-pm]');
+  if (!b) return;
+  if (b.dataset.pm === 'now') {
+    closeSettings();
+    return prost.prost();
+  }
+  setSetting({ prostMoments: b.dataset.pm === '1' });
 });
 $('spooky-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-ss]');
@@ -423,7 +438,9 @@ eggs.init(ctx);
 bar.init(ctx);
 music.init(ctx);
 // not during a quiz question, a retro game or karaoke
-spooky.init(ctx, { quiet: () => games.isPlaying() || karaoke.isOpen() || (state.game?.active && ['question', 'between'].includes(state.game.phase)) });
+const quietNow = () => games.isPlaying() || karaoke.isOpen() || (state.game?.active && ['question', 'between'].includes(state.game.phase));
+spooky.init(ctx, { quiet: quietNow });
+prost.init(ctx, { quiet: quietNow });
 
 // Show as many upcoming songs as fit in the panel, without a half row
 function fitQueue() {
