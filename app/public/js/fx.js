@@ -1,7 +1,7 @@
 // Full-screen effects (used by the surprises). Each one cleans itself up
 // and never blocks a tap.
 
-const GHOST = `<svg viewBox="0 0 48 56"><path d="M6 52V24a18 18 0 0 1 36 0v28l-6-5-6 5-6-5-6 5-6-5z" fill="currentColor"/><circle cx="18" cy="24" r="3.4" fill="#111"/><circle cx="30" cy="24" r="3.4" fill="#111"/><ellipse cx="24" cy="34" rx="3" ry="4.4" fill="#111"/></svg>`;
+export const GHOST = `<svg viewBox="0 0 48 56"><path d="M6 52V24a18 18 0 0 1 36 0v28l-6-5-6 5-6-5-6 5-6-5z" fill="currentColor"/><circle cx="18" cy="24" r="3.4" fill="#111"/><circle cx="30" cy="24" r="3.4" fill="#111"/><ellipse cx="24" cy="34" rx="3" ry="4.4" fill="#111"/></svg>`;
 
 function layer(cls, ms) {
   const el = document.createElement('div');

@@ -3,6 +3,8 @@
 // A tap wakes the screen; that tap does nothing else.
 import { $, esc } from './ui.js';
 import { getLang } from './i18n.js';
+import { GHOST } from './fx.js';
+import { SPOOKY_THEMES } from './tiles.js';
 
 let ctx;
 let lastTouch = Date.now();
@@ -69,6 +71,7 @@ function show() {
   photoTurn = false;
   update(ctx.state.player);
   $('saver').hidden = false;
+  ghosts(SPOOKY_THEMES.includes(ctx.state.settings.theme));
   requestAnimationFrame(() => $('saver').classList.add('on'));
   // with photos on the wall: switch between the song and a photo every 12 s
   clearInterval(photoTimer);
@@ -88,8 +91,24 @@ function cycle() {
   $('saver').classList.toggle('photo-mode', photoTurn);
 }
 
+// Halloween looks: friendly ghosts drift through the screensaver
+function ghosts(show) {
+  const el = $('saver-ghosts');
+  if (!show) return (el.innerHTML = '');
+  el.innerHTML = Array.from({ length: 7 }, (_, i) => {
+    const top = 6 + Math.random() * 70;
+    const size = 70 + Math.random() * 120;
+    const dur = 18 + Math.random() * 22;
+    const delay = -Math.random() * dur;
+    const back = i % 3 === 2 ? ' back' : '';
+    const bob = (1.4 + Math.random() * 1.4).toFixed(1);
+    return `<i class="${back.trim()}" style="top:${top.toFixed(0)}%;width:${size.toFixed(0)}px;animation-duration:${dur.toFixed(0)}s;animation-delay:${delay.toFixed(1)}s;opacity:${(0.35 + Math.random() * 0.45).toFixed(2)}"><b style="animation-duration:${bob}s">${GHOST}</b></i>`;
+  }).join('');
+}
+
 function hide() {
   on = false;
+  ghosts(false);
   clearInterval(photoTimer);
   $('saver').classList.remove('photo-mode');
   wokeAt = Date.now();

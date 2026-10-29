@@ -68,6 +68,7 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Hub card Qwixx: overlay with a QR code to https://games.maisonbaron.nl (`/qr/qwixx.png`; the
   site can't be framed, so phones play it).
 - Scrollbars use the look's colours (app.css, end).
+- Halloween looks (SPOOKY_THEMES): the screensaver gets 7 drifting ghosts (`#saver-ghosts`, saver.js).
 - Screensaver shows the photos in random order (shuffle bag in saver.js, no repeats in a row).
 - Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
   no Peppa Pig (protected character; asked for, made this instead).
