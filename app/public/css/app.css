@@ -667,3 +667,23 @@ body:has(.osk:not([hidden])) .music-results { max-height: 22vh; }
 .prost-word.last { font-size: 20vh; color: #FFF6C8; }
 .prost-word.pop { animation: prost-pop .45s cubic-bezier(.2, 1.8, .4, 1); }
 @keyframes prost-pop { from { transform: scale(2.2); opacity: 0; } }
+
+/* Maßkrugstemmen (Oktoberfest looks) */
+.mk-sheet { width: min(1100px, 94vw); max-height: 94vh; overflow-y: auto; }
+.mk-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.mk-play { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+.mk-rules { margin: 0; font-size: 17px; }
+.mk-name input { width: 100%; min-height: 56px; padding: 0 16px; font-size: 20px; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--radius); box-sizing: border-box; }
+.mk-players { max-height: 110px; overflow-y: auto; }
+.mk-time { font-size: clamp(64px, 11vw, 150px); line-height: 1; text-align: center; font-variant-numeric: tabular-nums; margin: 8px 0; }
+.mk-go { min-height: 110px; font-size: 40px; }
+.mk-go.running { background: #C0392B; border-color: #C0392B; color: #fff; }
+#masskrug.timing .mk-time { color: var(--accent); }
+#masskrug.timing .mk-board, #masskrug.timing .mk-name, #masskrug.timing .mk-players, #masskrug.timing .mk-rules { opacity: 0.35; pointer-events: none; }
+.mk-board { display: flex; flex-direction: column; gap: 10px; background: var(--panel-2); border-radius: var(--radius); padding: 18px; }
+.mk-board ol { margin: 0; padding-left: 28px; display: flex; flex-direction: column; gap: 8px; font-size: 20px; }
+.mk-board li span { display: inline-block; min-width: 55%; }
+.mk-board li b { float: right; font-variant-numeric: tabular-nums; }
+.mk-board li.first { color: var(--accent); font-weight: 700; }
+.mk-board .btn { align-self: flex-start; }
+@media (max-width: 900px) { .mk-cols { grid-template-columns: 1fr; } }

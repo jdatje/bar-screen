@@ -18,6 +18,7 @@ import * as requests from './lib/requests.js';
 import * as photos from './lib/photos.js';
 import * as guests from './lib/guests.js';
 import * as credits from './lib/credits.js';
+import * as masskrug from './lib/masskrug.js';
 import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
@@ -783,6 +784,11 @@ io.on('connection', (socket) => {
     broadcastPlayers();
     if (game.active) game.emit();
   });
+
+  // ----- Maßkrugstemmen (Oktoberfest looks) -----
+  socket.on('mk:list', (_p, ack) => ack?.(isScreen() ? masskrug.list() : null));
+  socket.on('mk:add', ({ name, ms } = {}, ack) => ack?.(isScreen() ? masskrug.add(name, ms) : { ok: false }));
+  socket.on('mk:clear', ({ pin } = {}, ack) => ack?.(isScreen() && pinOk(pin) ? masskrug.clear() : { ok: false }));
 
   // ----- Players (setup screen): add someone by name, or take someone out -----
   socket.on('players:add', ({ name } = {}, ack) => {

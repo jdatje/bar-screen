@@ -178,7 +178,6 @@
       <div class="chips wheel-mode" id="wheel-mode">
         <button class="chip on" data-wmode="cocktail">Cocktail</button>
         <button class="chip" data-wmode="bottle">Fles</button>
-        <button class="chip party-only party-oktoberfest" data-wmode="beer">Bier</button>
       </div>
       <div class="wheel-wrap">
         <div class="wheel-pointer" aria-hidden="true"></div>
@@ -203,7 +202,7 @@
       <button class="hub-card" data-hub="qwixx"><span class="hub-icon" aria-hidden="true">🎲</span><span class="display">Qwixx</span><p>Dobbelspel op je telefoon — scan de code</p></button>
       <button class="hub-card" data-hub="games"><span class="hub-icon" aria-hidden="true">🕹️</span><span class="display">Retro games</span><p>N64, SNES en meer met de controllers</p></button>
       <button class="hub-card" data-hub="bottlewheel"><span class="hub-icon" aria-hidden="true">🍾</span><span class="display">Drankrad</span><p>Welke fles wordt het? Alle flessen van de bar</p></button>
-      <button class="hub-card party-only party-oktoberfest" data-hub="beerwheel"><span class="hub-icon" aria-hidden="true">🍺</span><span class="display">Bierrad</span><p>Welk bier wordt het? Alle bieren uit de voorraad</p></button>
+      <button class="hub-card party-only party-oktoberfest" data-hub="masskrug"><span class="hub-icon" aria-hidden="true">💪</span><span class="display">Maßkrugstemmen</span><p>Wie houdt de volle pul het langst gestrekt?</p></button>
       <button class="hub-card" data-hub="wheel"><span class="hub-icon" aria-hidden="true">🎡</span><span class="display">Draai het rad</span><p>Laat het lot je cocktail kiezen</p></button>
     </div>
   </section>
@@ -395,6 +394,32 @@
 </div>
 
 <!-- Screensaver -->
+<div class="overlay" id="masskrug" role="dialog" aria-modal="true" aria-labelledby="mk-title">
+  <div class="panel sheet wide mk-sheet">
+    <div class="sheet-head">
+      <div><span class="mono accent">Oktoberfest</span><h2 class="display" id="mk-title">Maßkrugstemmen</h2></div>
+      <button class="btn" id="mk-close">Sluiten</button>
+    </div>
+    <div class="mk-cols">
+      <div class="mk-play">
+        <p class="muted mk-rules">Volle pul, arm gestrekt voor je uit. Wie zakt of morst, is af. Tik op de grote knop om te starten en weer om te stoppen.</p>
+        <form class="mk-name" id="mk-form" autocomplete="off">
+          <label class="sr-only" for="mk-name">Naam</label>
+          <input id="mk-name" maxlength="24" placeholder="Naam van de stemmer" inputmode="none" data-osk>
+        </form>
+        <div class="chips mk-players" id="mk-players"></div>
+        <div class="mk-time display" id="mk-time">0:00.0</div>
+        <button class="btn primary mk-go" id="mk-go">Start</button>
+      </div>
+      <div class="mk-board">
+        <span class="mono accent">Top 10</span>
+        <ol id="mk-top"></ol>
+        <button class="btn small" id="mk-reset">Lijst leegmaken</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="prost" id="prost" hidden aria-live="assertive"><span class="prost-mugs" aria-hidden="true">🍺🍺</span><span class="prost-word display" id="prost-word"></span></div>
 
 <div class="saver" id="saver" hidden>

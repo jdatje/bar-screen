@@ -12,6 +12,7 @@ import * as wall from './photowall.js';
 import * as music from './music.js';
 import * as spooky from './spooky.js';
 import * as prost from './prost.js';
+import * as masskrug from './masskrug.js';
 import { PARTY_OF_THEME } from './tiles.js';
 
 const socket = io();
@@ -39,8 +40,8 @@ const ctx = { socket, state, go, getPin };
 
 // ---------- Views ----------
 function go(next) {
-  if (next === 'wheel' || next === 'bottlewheel' || next === 'beerwheel') {
-    bar.setWheelMode({ bottlewheel: 'bottle', beerwheel: 'beer' }[next] || 'cocktail');
+  if (next === 'wheel' || next === 'bottlewheel') {
+    bar.setWheelMode(next === 'bottlewheel' ? 'bottle' : 'cocktail');
     go('cocktails');
     bar.spinSoon();
     return;
@@ -65,7 +66,8 @@ $('back').addEventListener('click', () => go(PARENT[view] || 'home'));
 document.querySelectorAll('[data-hub]').forEach((b) =>
   b.addEventListener('click', () => {
     const h = b.dataset.hub;
-    if (h === 'games' || h === 'wheel' || h === 'bottlewheel' || h === 'beerwheel') return go(h);
+    if (h === 'games' || h === 'wheel' || h === 'bottlewheel') return go(h);
+    if (h === 'masskrug') return masskrug.open();
     if (h === 'qwixx') return $('qwixx').classList.add('open');
     quiz.setType(h);
     go('quiz');
@@ -441,6 +443,7 @@ music.init(ctx);
 const quietNow = () => games.isPlaying() || karaoke.isOpen() || (state.game?.active && ['question', 'between'].includes(state.game.phase));
 spooky.init(ctx, { quiet: quietNow });
 prost.init(ctx, { quiet: quietNow });
+masskrug.init(ctx);
 
 // Show as many upcoming songs as fit in the panel, without a half row
 function fitQueue() {
