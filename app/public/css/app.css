@@ -764,3 +764,63 @@ body:has(.osk:not([hidden])) .music-results { max-height: 22vh; }
 .p-olie { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 6px; font-size: 17px; }
 .p-olie li { display: flex; justify-content: space-between; }
 body.has-ticker .screen { padding-bottom: 52px; }
+
+/* ---------- Tiki extras ---------- */
+:root[data-party="tiki"] .party-tiki { display: revert !important; }
+:root[data-party="tiki"] .hub-card.party-tiki { display: flex !important; }
+:root[data-party="tiki"] .hub-grid { grid-template-rows: repeat(3, 1fr); }
+:root[data-party="tiki"] .hub-card { grid-column: span 4 !important; padding: 20px 24px; }
+:root[data-party="tiki"] .hub-card .display { font-size: clamp(26px, 2.4vw, 40px); }
+:root[data-party="tiki"] .hub-icon { font-size: 46px; top: 14px; right: 18px; }
+/* volcano moment */
+.volcano { position: fixed; inset: 0; z-index: 70; display: flex; align-items: flex-end; justify-content: center; opacity: 0; transition: opacity .6s ease; pointer-events: none; overflow: hidden; background: #1A0A2E; }
+.volcano[hidden] { display: none; }
+.volcano.on { opacity: 1; }
+.volcano .vc-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.volcano.shake .vc-scene { animation: vc-shake .12s linear infinite; }
+@keyframes vc-shake { 0% { transform: translate(0, 0); } 25% { transform: translate(-4px, 2px); } 50% { transform: translate(3px, -2px); } 75% { transform: translate(-2px, -3px); } }
+.vc-glow { opacity: .3; transition: opacity .4s; }
+.volcano.erupt .vc-glow { opacity: 1; animation: vc-glow 1s ease-in-out infinite alternate; }
+@keyframes vc-glow { to { opacity: .6; } }
+.vc-smoke { opacity: 0; transform-origin: 400px 250px; }
+.volcano.erupt .vc-smoke { animation: vc-smoke 5s ease-out forwards; }
+@keyframes vc-smoke { from { opacity: 0; transform: translateY(40px) scale(.4); } 30% { opacity: .85; } to { opacity: .5; transform: translateY(-80px) scale(1.4); } }
+.vc-blobs circle { opacity: 0; }
+.volcano.erupt .vc-blobs circle { animation: vc-blob 1.6s cubic-bezier(.2, .7, .5, 1) infinite; }
+.volcano.erupt .vc-blobs .b1 { --x: -160px; --y: -230px; }
+.volcano.erupt .vc-blobs .b2 { --x: 120px; --y: -260px; animation-delay: .25s; }
+.volcano.erupt .vc-blobs .b3 { --x: -40px; --y: -300px; animation-delay: .5s; }
+.volcano.erupt .vc-blobs .b4 { --x: 200px; --y: -180px; animation-delay: .75s; }
+.volcano.erupt .vc-blobs .b5 { --x: -220px; --y: -160px; animation-delay: 1s; }
+.volcano.erupt .vc-blobs .b6 { --x: 60px; --y: -320px; animation-delay: 1.25s; }
+@keyframes vc-blob { 0% { opacity: 1; transform: translate(0, 0); } 60% { opacity: 1; transform: translate(calc(var(--x) * .7), var(--y)); } 100% { opacity: 0; transform: translate(var(--x), calc(var(--y) * .3)); } }
+.vc-flow { opacity: .3; }
+.volcano.erupt .vc-flow { opacity: 1; animation: vc-glow .8s ease-in-out infinite alternate; }
+.vc-text { position: relative; margin: 0 0 10vh; font-size: 10vh; color: #FFE7A0; text-align: center; text-shadow: 0 0 30px #FF8A2A, 0 6px 0 rgba(0, 0, 0, .5); opacity: 0; transform: scale(.4); transition: all .6s cubic-bezier(.2, 1.6, .4, 1); padding: 0 4vw; }
+.volcano.erupt .vc-text { opacity: 1; transform: scale(1); }
+/* limbo */
+.limbo-sheet { width: min(1100px, 94vw); max-height: 94vh; overflow-y: auto; }
+.limbo-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 28px; }
+.limbo-pole { position: relative; height: min(56vh, 460px); border-bottom: 6px solid #8A5A2A; background: repeating-linear-gradient(0deg, transparent 0 calc(100% / 14 - 1px), rgba(255, 255, 255, .08) calc(100% / 14 - 1px) calc(100% / 14)); border-radius: var(--radius) var(--radius) 0 0; }
+.limbo-post { position: absolute; bottom: 0; width: 14px; height: 100%; background: repeating-linear-gradient(0deg, #C8A05A 0 30px, #8A6A30 30px 34px); border-radius: 6px; }
+.limbo-post.l { left: 8%; } .limbo-post.r { right: 8%; }
+.limbo-bar { position: absolute; left: 6%; right: 6%; height: 16px; margin-bottom: -8px; border-radius: 8px; background: repeating-linear-gradient(90deg, #E8C26A 0 36px, #A8813A 36px 40px); box-shadow: 0 0 18px rgba(255, 177, 58, .6); transition: bottom .8s cubic-bezier(.3, 1.5, .5, 1); }
+.limbo-bar.drop { animation: limbo-wobble .8s ease; }
+@keyframes limbo-wobble { 30% { transform: rotate(-2deg); } 60% { transform: rotate(1.5deg); } }
+.limbo-h { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: clamp(40px, 6vw, 80px); color: var(--accent); }
+.limbo-side { display: flex; flex-direction: column; gap: 12px; }
+.limbo-p.out { opacity: .4; text-decoration: line-through; }
+.limbo-form { display: flex; gap: 8px; }
+.limbo-form input { flex: 1; min-width: 0; min-height: 48px; padding: 0 14px; font-size: 18px; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--radius); }
+.limbo-lower { min-height: 80px; font-size: 32px; }
+.limbo-winner { margin: 0; font-size: 34px; color: var(--accent); display: none; }
+#limbo.won .limbo-winner { display: block; animation: prost-pop .5s cubic-bezier(.2, 1.8, .4, 1); }
+@media (max-width: 900px) { .limbo-cols { grid-template-columns: 1fr; } }
+/* tiki screensaver */
+.saver-ghosts .tk-moon { position: absolute; top: 8%; right: 12%; width: 16vh; height: 16vh; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #FFF8E0, #F2E2B0 60%, #D8C48A); box-shadow: 0 0 60px rgba(255, 240, 200, .5), 0 0 160px rgba(255, 240, 200, .25); opacity: .85; }
+.saver-ghosts .tk-sea { position: absolute; left: -10%; right: -10%; bottom: 0; height: 40%; opacity: .55;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpath d='M0 20Q25 8 50 20T100 20T150 20T200 20V40H0z' fill='%23103A5A'/%3E%3C/svg%3E") repeat-x 0 0 / 300px 60px;
+  animation: sea 14s linear infinite; }
+.saver-ghosts .tk-sea.w2 { height: 30%; opacity: .6; background-size: 260px 50px; animation-duration: 10s; animation-direction: reverse; }
+.saver-ghosts .tk-sea.w3 { height: 18%; opacity: .7; background-size: 220px 40px; animation-duration: 8s; }
+.saver-ghosts i.fish { filter: drop-shadow(0 0 10px currentColor); }

@@ -42,6 +42,7 @@ settings.requests ||= 'approve'; // song requests: 'off' | 'approve' | 'auto'
 if (settings.saverPhotos == null) settings.saverPhotos = true; // photo wall in the screensaver
 if (settings.spookySounds == null) settings.spookySounds = true; // random spooky sounds in Halloween looks
 if (settings.prostMoments == null) settings.prostMoments = true; // prost moments in Oktoberfest looks
+if (settings.volcanoMoments == null) settings.volcanoMoments = true; // volcano moments in Tiki looks
 settings.gameVolume = { music: 75, game: 25, ...(settings.gameVolume || {}) };
 if (!settings.pin) settings.pin = DEFAULT_PIN;
 // the bar's Wi-Fi, for the Wi-Fi QR code on the screen (never sent to phones)
@@ -63,7 +64,7 @@ quizDefaults.pubquiz.lang = 'nl';
 
 const publicSettings = () => ({
   theme: settings.theme, language: settings.language, tiles: settings.tiles, screensaver: settings.screensaver,
-  requests: settings.requests, saverPhotos: settings.saverPhotos, spookySounds: settings.spookySounds, prostMoments: settings.prostMoments, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
+  requests: settings.requests, saverPhotos: settings.saverPhotos, spookySounds: settings.spookySounds, prostMoments: settings.prostMoments, volcanoMoments: settings.volcanoMoments, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
 });
 const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
 
@@ -92,6 +93,7 @@ function applySettings(patch = {}) {
   if (typeof patch.saverPhotos === 'boolean') settings.saverPhotos = patch.saverPhotos;
   if (typeof patch.spookySounds === 'boolean') settings.spookySounds = patch.spookySounds;
   if (typeof patch.prostMoments === 'boolean') settings.prostMoments = patch.prostMoments;
+  if (typeof patch.volcanoMoments === 'boolean') settings.volcanoMoments = patch.volcanoMoments;
   if (patch.tiles && typeof patch.tiles === 'object') {
     for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
   }
@@ -816,9 +818,9 @@ io.on('connection', (socket) => {
   });
 
   // ----- Maßkrugstemmen (Oktoberfest looks) -----
-  socket.on('mk:list', (_p, ack) => ack?.(isScreen() ? masskrug.list() : null));
-  socket.on('mk:add', ({ name, ms } = {}, ack) => ack?.(isScreen() ? masskrug.add(name, ms) : { ok: false }));
-  socket.on('mk:clear', ({ pin } = {}, ack) => ack?.(isScreen() && pinOk(pin) ? masskrug.clear() : { ok: false }));
+  socket.on('mk:list', ({ kind } = {}, ack) => ack?.(isScreen() ? masskrug.list(kind) : null));
+  socket.on('mk:add', ({ name, ms, kind } = {}, ack) => ack?.(isScreen() ? masskrug.add(name, ms, kind) : { ok: false }));
+  socket.on('mk:clear', ({ pin, kind } = {}, ack) => ack?.(isScreen() && pinOk(pin) ? masskrug.clear(kind) : { ok: false }));
 
   // ----- Players (setup screen): add someone by name, or take someone out -----
   socket.on('players:add', ({ name } = {}, ack) => {

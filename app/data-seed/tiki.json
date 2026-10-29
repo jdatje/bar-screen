@@ -1,0 +1,698 @@
+[
+ {
+  "id": "tiki:813ba5a0d2",
+  "category": "kunst-cultuur",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat stelt een tiki-beeld in de Polynesische cultuur voor?",
+   "options": [
+    "Een mensachtige figuur, vaak een voorouder of god",
+    "Een vis",
+    "Een vulkaan",
+    "Een kano"
+   ]
+  },
+  "en": {
+   "q": "What does a tiki carving represent in Polynesian culture?",
+   "options": [
+    "A human-like figure, often an ancestor or god",
+    "A fish",
+    "A volcano",
+    "A canoe"
+   ]
+  }
+ },
+ {
+  "id": "tiki:206a0af356",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wie opende begin jaren 30 in Hollywood \"Don the Beachcomber\", de eerste bekende tiki-bar?",
+   "options": [
+    "Donn Beach",
+    "Victor Bergeron",
+    "Ernest Hemingway",
+    "Frank Sinatra"
+   ]
+  },
+  "en": {
+   "q": "Who opened \"Don the Beachcomber\" in Hollywood in the early 1930s, the first well-known tiki bar?",
+   "options": [
+    "Donn Beach",
+    "Victor Bergeron",
+    "Ernest Hemingway",
+    "Frank Sinatra"
+   ]
+  }
+ },
+ {
+  "id": "tiki:8aafec2f7b",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke barman zei in 1944 de Mai Tai te hebben bedacht?",
+   "options": [
+    "Trader Vic",
+    "Jerry Thomas",
+    "Harry Craddock",
+    "Dale DeGroff"
+   ]
+  },
+  "en": {
+   "q": "Which bartender claimed to have invented the Mai Tai in 1944?",
+   "options": [
+    "Trader Vic",
+    "Jerry Thomas",
+    "Harry Craddock",
+    "Dale DeGroff"
+   ]
+  }
+ },
+ {
+  "id": "tiki:d106752f98",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat betekent \"maita'i\" in het Tahitiaans?",
+   "options": [
+    "Goed, uitstekend",
+    "Zee",
+    "Zon",
+    "Proost"
+   ]
+  },
+  "en": {
+   "q": "What does \"maita'i\" mean in Tahitian?",
+   "options": [
+    "Good, excellent",
+    "Sea",
+    "Sun",
+    "Cheers"
+   ]
+  }
+ },
+ {
+  "id": "tiki:1a8a9d2c6c",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke amandelsiroop hoort in een Mai Tai?",
+   "options": [
+    "Orgeat",
+    "Grenadine",
+    "Falernum",
+    "Agavesiroop"
+   ]
+  },
+  "en": {
+   "q": "Which almond syrup belongs in a Mai Tai?",
+   "options": [
+    "Orgeat",
+    "Grenadine",
+    "Falernum",
+    "Agave syrup"
+   ]
+  }
+ },
+ {
+  "id": "tiki:64eb3cf498",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is de hoofddrank van de meeste tiki-cocktails?",
+   "options": [
+    "Rum",
+    "Gin",
+    "Wodka",
+    "Whisky"
+   ]
+  },
+  "en": {
+   "q": "What is the main spirit of most tiki cocktails?",
+   "options": [
+    "Rum",
+    "Gin",
+    "Vodka",
+    "Whisky"
+   ]
+  }
+ },
+ {
+  "id": "tiki:6480e9dda4",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Uit welk gewas wordt rum gemaakt?",
+   "options": [
+    "Suikerriet",
+    "Aardappel",
+    "Gerst",
+    "Agave"
+   ]
+  },
+  "en": {
+   "q": "Which crop is rum made from?",
+   "options": [
+    "Sugar cane",
+    "Potato",
+    "Barley",
+    "Agave"
+   ]
+  }
+ },
+ {
+  "id": "tiki:a7be549223",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is melasse?",
+   "options": [
+    "Stroop die overblijft bij het maken van suiker",
+    "Een soort kokosmelk",
+    "Een Hawaiiaanse vrucht",
+    "Gefermenteerde ananas"
+   ]
+  },
+  "en": {
+   "q": "What is molasses?",
+   "options": [
+    "Syrup left over when making sugar",
+    "A kind of coconut milk",
+    "A Hawaiian fruit",
+    "Fermented pineapple"
+   ]
+  }
+ },
+ {
+  "id": "tiki:b69fb200eb",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Van welk land is de Piña Colada de nationale drank?",
+   "options": [
+    "Puerto Rico",
+    "Cuba",
+    "Mexico",
+    "Jamaica"
+   ]
+  },
+  "en": {
+   "q": "Of which country is the Piña Colada the national drink?",
+   "options": [
+    "Puerto Rico",
+    "Cuba",
+    "Mexico",
+    "Jamaica"
+   ]
+  }
+ },
+ {
+  "id": "tiki:d85f6530f5",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke tiki-cocktail met een monsternaam kreeg bij Don the Beachcomber een limiet van twee per gast?",
+   "options": [
+    "De Zombie",
+    "De Hurricane",
+    "De Scorpion",
+    "De Painkiller"
+   ]
+  },
+  "en": {
+   "q": "Which tiki cocktail with a monster's name was limited to two per guest at Don the Beachcomber?",
+   "options": [
+    "The Zombie",
+    "The Hurricane",
+    "The Scorpion",
+    "The Painkiller"
+   ]
+  }
+ },
+ {
+  "id": "tiki:f3411d3477",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke cocktail met rum, ananas, sinaasappel en kokos komt van de Britse Maagdeneilanden?",
+   "options": [
+    "Painkiller",
+    "Mojito",
+    "Daiquiri",
+    "Cuba Libre"
+   ]
+  },
+  "en": {
+   "q": "Which cocktail with rum, pineapple, orange and coconut comes from the British Virgin Islands?",
+   "options": [
+    "Painkiller",
+    "Mojito",
+    "Daiquiri",
+    "Cuba Libre"
+   ]
+  }
+ },
+ {
+  "id": "tiki:5b06a949d5",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Naar welk weerfenomeen is een bekende rumcocktail uit New Orleans vernoemd?",
+   "options": [
+    "Hurricane",
+    "Tornado",
+    "Monsoon",
+    "Typhoon"
+   ]
+  },
+  "en": {
+   "q": "Which weather phenomenon is a famous rum cocktail from New Orleans named after?",
+   "options": [
+    "Hurricane",
+    "Tornado",
+    "Monsoon",
+    "Typhoon"
+   ]
+  }
+ },
+ {
+  "id": "tiki:dc461253e6",
+  "category": "eten-drinken",
+  "difficulty": "moeilijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is falernum?",
+   "options": [
+    "Een kruidige likeur of siroop met limoen, gember en kruidnagel",
+    "Een soort rum",
+    "Een tropische vrucht",
+    "Een tikimok"
+   ]
+  },
+  "en": {
+   "q": "What is falernum?",
+   "options": [
+    "A spiced liqueur or syrup with lime, ginger and clove",
+    "A kind of rum",
+    "A tropical fruit",
+    "A tiki mug"
+   ]
+  }
+ },
+ {
+  "id": "tiki:a8ab781b55",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de Hawaiiaanse bloemenkrans die je om je nek krijgt?",
+   "options": [
+    "Lei",
+    "Aloha",
+    "Hula",
+    "Poi"
+   ]
+  },
+  "en": {
+   "q": "What is the Hawaiian flower garland you get around your neck called?",
+   "options": [
+    "Lei",
+    "Aloha",
+    "Hula",
+    "Poi"
+   ]
+  }
+ },
+ {
+  "id": "tiki:a054226ce9",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke dans hoort bij Hawaii?",
+   "options": [
+    "Hula",
+    "Salsa",
+    "Tango",
+    "Haka"
+   ]
+  },
+  "en": {
+   "q": "Which dance belongs to Hawaii?",
+   "options": [
+    "Hula",
+    "Salsa",
+    "Tango",
+    "Haka"
+   ]
+  }
+ },
+ {
+  "id": "tiki:ddeb64e85a",
+  "category": "muziek",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welk instrument met vier snaren wordt met Hawaii verbonden?",
+   "options": [
+    "Ukelele",
+    "Banjo",
+    "Mandoline",
+    "Sitar"
+   ]
+  },
+  "en": {
+   "q": "Which four-stringed instrument is linked with Hawaii?",
+   "options": [
+    "Ukulele",
+    "Banjo",
+    "Mandolin",
+    "Sitar"
+   ]
+  }
+ },
+ {
+  "id": "tiki:c1b2e4defa",
+  "category": "algemeen",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat betekent \"aloha\"?",
+   "options": [
+    "Hallo, tot ziens en liefde",
+    "Proost",
+    "Dank je wel",
+    "Strand"
+   ]
+  },
+  "en": {
+   "q": "What does \"aloha\" mean?",
+   "options": [
+    "Hello, goodbye and love",
+    "Cheers",
+    "Thank you",
+    "Beach"
+   ]
+  }
+ },
+ {
+  "id": "tiki:2df73abed4",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is de hoofdstad van Hawaii?",
+   "options": [
+    "Honolulu",
+    "Hilo",
+    "Maui",
+    "Kailua"
+   ]
+  },
+  "en": {
+   "q": "What is the capital of Hawaii?",
+   "options": [
+    "Honolulu",
+    "Hilo",
+    "Maui",
+    "Kailua"
+   ]
+  }
+ },
+ {
+  "id": "tiki:a0b68f0b80",
+  "category": "aardrijkskunde",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Op welk eiland ligt Honolulu?",
+   "options": [
+    "Oahu",
+    "Maui",
+    "Kauai",
+    "Molokai"
+   ]
+  },
+  "en": {
+   "q": "On which island is Honolulu?",
+   "options": [
+    "Oahu",
+    "Maui",
+    "Kauai",
+    "Molokai"
+   ]
+  }
+ },
+ {
+  "id": "tiki:9f616de858",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "In welk jaar werd Hawaii de 50e staat van de VS?",
+   "options": [
+    "1959",
+    "1898",
+    "1945",
+    "1969"
+   ]
+  },
+  "en": {
+   "q": "In which year did Hawaii become the 50th US state?",
+   "options": [
+    "1959",
+    "1898",
+    "1945",
+    "1969"
+   ]
+  }
+ },
+ {
+  "id": "tiki:6774cbefea",
+  "category": "sport",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke sport maakte de Hawaiiaan Duke Kahanamoku wereldberoemd?",
+   "options": [
+    "Surfen",
+    "Golf",
+    "Honkbal",
+    "Tennis"
+   ]
+  },
+  "en": {
+   "q": "Which sport did Hawaiian Duke Kahanamoku make world-famous?",
+   "options": [
+    "Surfing",
+    "Golf",
+    "Baseball",
+    "Tennis"
+   ]
+  }
+ },
+ {
+  "id": "tiki:e2a1d3f8e0",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Bij welk land hoort Tahiti?",
+   "options": [
+    "Frankrijk",
+    "Verenigde Staten",
+    "Nieuw-Zeeland",
+    "Australië"
+   ]
+  },
+  "en": {
+   "q": "Which country does Tahiti belong to?",
+   "options": [
+    "France",
+    "United States",
+    "New Zealand",
+    "Australia"
+   ]
+  }
+ },
+ {
+  "id": "tiki:21025fd1a5",
+  "category": "aardrijkskunde",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Op welk eiland staan de beroemde Moai-beelden?",
+   "options": [
+    "Paaseiland",
+    "Tahiti",
+    "Fiji",
+    "Samoa"
+   ]
+  },
+  "en": {
+   "q": "On which island are the famous Moai statues?",
+   "options": [
+    "Easter Island",
+    "Tahiti",
+    "Fiji",
+    "Samoa"
+   ]
+  }
+ },
+ {
+  "id": "tiki:e601f4a93c",
+  "category": "geschiedenis",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Welke Noorse onderzoeker stak in 1947 met het vlot Kon-Tiki de Stille Oceaan over?",
+   "options": [
+    "Thor Heyerdahl",
+    "Roald Amundsen",
+    "Fridtjof Nansen",
+    "Leif Eriksson"
+   ]
+  },
+  "en": {
+   "q": "Which Norwegian explorer crossed the Pacific on the raft Kon-Tiki in 1947?",
+   "options": [
+    "Thor Heyerdahl",
+    "Roald Amundsen",
+    "Fridtjof Nansen",
+    "Leif Erikson"
+   ]
+  }
+ },
+ {
+  "id": "tiki:505ae21d86",
+  "category": "aardrijkskunde",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe heet de zeer actieve vulkaan op het grootste eiland van Hawaii?",
+   "options": [
+    "Kilauea",
+    "Etna",
+    "Krakatau",
+    "Fuji"
+   ]
+  },
+  "en": {
+   "q": "What is the very active volcano on the biggest island of Hawaii called?",
+   "options": [
+    "Kilauea",
+    "Etna",
+    "Krakatoa",
+    "Fuji"
+   ]
+  }
+ },
+ {
+  "id": "tiki:1657bb1437",
+  "category": "algemeen",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Wat is een outrigger-kano?",
+   "options": [
+    "Een kano met een drijver aan de zijkant",
+    "Een kano zonder peddels",
+    "Een kano van glas",
+    "Een kano met een zeil van bladeren"
+   ]
+  },
+  "en": {
+   "q": "What is an outrigger canoe?",
+   "options": [
+    "A canoe with a float at the side",
+    "A canoe without paddles",
+    "A glass canoe",
+    "A canoe with a leaf sail"
+   ]
+  }
+ },
+ {
+  "id": "tiki:ca4eef12e8",
+  "category": "eten-drinken",
+  "difficulty": "makkelijk",
+  "answer": 0,
+  "nl": {
+   "q": "Welke vrucht geldt in de tiki-wereld als teken van gastvrijheid?",
+   "options": [
+    "De ananas",
+    "De banaan",
+    "De kokosnoot",
+    "De mango"
+   ]
+  },
+  "en": {
+   "q": "Which fruit stands for hospitality in the tiki world?",
+   "options": [
+    "The pineapple",
+    "The banana",
+    "The coconut",
+    "The mango"
+   ]
+  }
+ },
+ {
+  "id": "tiki:6eaab3a516",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Waarvan wordt kokosmelk gemaakt?",
+   "options": [
+    "Van geraspt vruchtvlees van de kokosnoot",
+    "Van kokoswater alleen",
+    "Van melk met kokossmaak",
+    "Van de bast"
+   ]
+  },
+  "en": {
+   "q": "What is coconut milk made from?",
+   "options": [
+    "Grated coconut flesh",
+    "Only coconut water",
+    "Milk with coconut flavour",
+    "The husk"
+   ]
+  }
+ },
+ {
+  "id": "tiki:96669898f0",
+  "category": "eten-drinken",
+  "difficulty": "gemiddeld",
+  "answer": 0,
+  "nl": {
+   "q": "Hoe wordt een Hawaiiaans kalua-varken traditioneel gegaard?",
+   "options": [
+    "In een ondergrondse oven",
+    "Aan het spit",
+    "In de pan",
+    "Rauw gemarineerd"
+   ]
+  },
+  "en": {
+   "q": "How is Hawaiian kalua pig traditionally cooked?",
+   "options": [
+    "In an underground oven",
+    "On a spit",
+    "In a pan",
+    "Raw and marinated"
+   ]
+  }
+ }
+]

@@ -90,7 +90,12 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   Oliebollenteller (hub card, +1/−1 per name, phones see top 5; reset needs the code); "🥂 Bubbels"
   cocktail filter; Vuurwerk! hub card (canvas show + synthesized bangs). Test buttons in the settings.
 - Tiki group: 🌺 Tiki Bar look (party `tiki`): dark wood, bamboo frames, swaying palm leaves, flickering
-  torches. No extras yet (suggestions offered). The older "Tiki" look in Zomer is unchanged.
+  torches. The older "Tiki" look in Zomer is unchanged. Extras: 🌴 Tikiquiz (data-seed/tiki.json, 29 questions);
+  "🍹 Tiki" cocktail filter (tiki names, orgeat/falernum, rum + pineapple/coconut/passion); Vulkaanmoment every
+  30–50 min (public/js/volcano.js, switch "Vulkaanmomenten" `volcanoMoments`, "▶ Nu uitbarsten"); Limbo (hub
+  card, public/js/limbo.js: bar drops 5/10 cm per round, tap names out, winner's height in a top 10, lowest
+  wins); Hula-hoop (hub card, same stopwatch as Maßkrugstemmen, kind `hula`); screensaver moon, waves, fish.
+  Top lists for masskrug/hula/limbo live in lib/masskrug.js (`kind`).
 - Screensaver shows the photos in random order (shuffle bag in saver.js, no repeats in a row).
 - Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
   no Peppa Pig (protected character; asked for, made this instead).

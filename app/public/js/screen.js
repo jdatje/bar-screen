@@ -14,6 +14,8 @@ import * as spooky from './spooky.js';
 import * as prost from './prost.js';
 import * as masskrug from './masskrug.js';
 import * as newyear from './newyear.js';
+import * as volcano from './volcano.js';
+import * as limbo from './limbo.js';
 import { PARTY_OF_THEME } from './tiles.js';
 
 const socket = io();
@@ -71,6 +73,8 @@ document.querySelectorAll('[data-hub]').forEach((b) =>
     if (h === 'masskrug') return masskrug.open();
     if (h === 'vuurwerk') return newyear.fireworks();
     if (h === 'oliebollen') return newyear.openOlie();
+    if (h === 'limbo') return limbo.open();
+    if (h === 'hula') return masskrug.open('hula');
     if (h === 'qwixx') return $('qwixx').classList.add('open');
     quiz.setType(h);
     go('quiz');
@@ -198,6 +202,8 @@ function markTheme() {
   spooky.update();
   prost.update();
   newyear.update();
+  volcano.update();
+  document.querySelectorAll('#volcano-choices [data-vm="1"], #volcano-choices [data-vm="0"]').forEach((c) => c.classList.toggle('on', (c.dataset.vm === '1') === (state.settings.volcanoMoments !== false)));
   // buttons that only exist in a party look (e.g. the Bierrad in Oktoberfest)
   document.documentElement.dataset.party = PARTY_OF_THEME[state.settings.theme] || '';
   document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
@@ -264,6 +270,15 @@ $('req-list').addEventListener('click', async (e) => {
 $('req-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-req]');
   if (b) setSetting({ requests: b.dataset.req });
+});
+$('volcano-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-vm]');
+  if (!b) return;
+  if (b.dataset.vm === 'now') {
+    closeSettings();
+    return volcano.erupt();
+  }
+  setSetting({ volcanoMoments: b.dataset.vm === '1' });
 });
 $('ny-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-ny]');
@@ -456,6 +471,8 @@ spooky.init(ctx, { quiet: quietNow });
 prost.init(ctx, { quiet: quietNow });
 masskrug.init(ctx);
 newyear.init(ctx);
+volcano.init(ctx, { quiet: quietNow });
+limbo.init(ctx);
 
 // Show as many upcoming songs as fit in the panel, without a half row
 function fitQueue() {

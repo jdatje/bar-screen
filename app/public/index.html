@@ -205,6 +205,8 @@
       <button class="hub-card party-only party-oktoberfest" data-hub="masskrug"><span class="hub-icon" aria-hidden="true">💪</span><span class="display">Maßkrugstemmen</span><p>Wie houdt de volle pul het langst gestrekt?</p></button>
       <button class="hub-card party-only party-newyear" data-hub="vuurwerk"><span class="hub-icon" aria-hidden="true">🎆</span><span class="display">Vuurwerk!</span><p>Een vuurwerkshow op het scherm</p></button>
       <button class="hub-card party-only party-newyear" data-hub="oliebollen"><span class="hub-icon" aria-hidden="true">🍩</span><span class="display">Oliebollenteller</span><p>Wie eet er de meeste?</p></button>
+      <button class="hub-card party-only party-tiki" data-hub="limbo"><span class="hub-icon" aria-hidden="true">🎋</span><span class="display">Limbo</span><p>Hoe laag kun jij? De stok zakt elke ronde</p></button>
+      <button class="hub-card party-only party-tiki" data-hub="hula"><span class="hub-icon" aria-hidden="true">⭕</span><span class="display">Hula-hoop</span><p>Wie houdt de hoepel het langst draaiende?</p></button>
       <button class="hub-card" data-hub="wheel"><span class="hub-icon" aria-hidden="true">🎡</span><span class="display">Draai het rad</span><p>Laat het lot je cocktail kiezen</p></button>
     </div>
   </section>
@@ -328,6 +330,14 @@
           <button class="chip" data-ny="fw">▶ Vuurwerk</button>
         </div>
       </div>
+      <div>
+        <p class="mono muted">Vulkaanmomenten (Tiki-looks)</p>
+        <div class="chips" id="volcano-choices">
+          <button class="chip" data-vm="1">Aan</button>
+          <button class="chip" data-vm="0">Uit</button>
+          <button class="chip" data-vm="now">▶ Nu uitbarsten</button>
+        </div>
+      </div>
     </div>
     <div class="row">
       <button class="btn" id="new-room">Nieuwe kamercode</button>
@@ -406,12 +416,12 @@
 <div class="overlay" id="masskrug" role="dialog" aria-modal="true" aria-labelledby="mk-title">
   <div class="panel sheet wide mk-sheet">
     <div class="sheet-head">
-      <div><span class="mono accent">Oktoberfest</span><h2 class="display" id="mk-title">Maßkrugstemmen</h2></div>
+      <div><span class="mono accent" id="mk-party">Oktoberfest</span><h2 class="display" id="mk-title">Maßkrugstemmen</h2></div>
       <button class="btn" id="mk-close">Sluiten</button>
     </div>
     <div class="mk-cols">
       <div class="mk-play">
-        <p class="muted mk-rules">Volle pul, arm gestrekt voor je uit. Wie zakt of morst, is af. Tik op de grote knop om te starten en weer om te stoppen.</p>
+        <p class="muted mk-rules" id="mk-rules">Volle pul, arm gestrekt voor je uit. Wie zakt of morst, is af. Tik op de grote knop om te starten en weer om te stoppen.</p>
         <form class="mk-name" id="mk-form" autocomplete="off">
           <label class="sr-only" for="mk-name">Naam</label>
           <input id="mk-name" maxlength="24" placeholder="Naam van de stemmer" inputmode="none" data-osk>
@@ -452,6 +462,55 @@
     <div class="chips" id="olie-players"></div>
     <div class="olie-list" id="olie-list"></div>
     <button class="btn small" id="olie-reset">Teller op nul</button>
+  </div>
+</div>
+
+<div class="volcano" id="volcano" hidden aria-live="assertive">
+  <svg class="vc-scene" viewBox="0 0 800 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="vc-sky" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1A0A2E"/><stop offset=".7" stop-color="#5A1A2A"/><stop offset="1" stop-color="#A0341E"/></linearGradient>
+      <linearGradient id="vc-rock" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4A2A1A"/><stop offset="1" stop-color="#1E1008"/></linearGradient>
+      <linearGradient id="vc-lava" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFF1A0"/><stop offset=".4" stop-color="#FF8A2A"/><stop offset="1" stop-color="#C0261A"/></linearGradient>
+      <radialGradient id="vc-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FF8A2A" stop-opacity=".9"/><stop offset="1" stop-color="#FF8A2A" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="800" height="600" fill="url(#vc-sky)"/>
+    <ellipse class="vc-glow" cx="400" cy="250" rx="260" ry="200" fill="url(#vc-glow)"/>
+    <g class="vc-smoke" fill="#3A2A2A" opacity=".85"><circle cx="380" cy="190" r="40"/><circle cx="420" cy="160" r="50"/><circle cx="395" cy="110" r="60"/><circle cx="440" cy="70" r="55"/></g>
+    <g class="vc-blobs" fill="url(#vc-lava)">
+      <circle class="b1" cx="400" cy="250" r="16"/><circle class="b2" cx="400" cy="250" r="12"/><circle class="b3" cx="400" cy="250" r="20"/>
+      <circle class="b4" cx="400" cy="250" r="10"/><circle class="b5" cx="400" cy="250" r="14"/><circle class="b6" cx="400" cy="250" r="9"/>
+    </g>
+    <path d="M130 600L340 260Q400 240 460 260L670 600Z" fill="url(#vc-rock)"/>
+    <path class="vc-flow" d="M352 262Q400 250 448 262L470 330Q450 300 436 340L428 300Q412 360 400 300Q388 380 376 300L366 350Q356 300 334 320Z" fill="url(#vc-lava)"/>
+    <path d="M0 600V540Q120 510 240 540T480 535T800 545V600Z" fill="#0E1A12"/>
+    <g fill="#0B140E"><path d="M90 545l8-70 6 70z"/><path d="M60 480q30-18 44-4-24-2-44 4zM104 476q26-14 46 2-24-6-46-2zM98 474q-6-26 10-34-2 22-10 34z"/><path d="M700 548l8-80 6 80z"/><path d="M670 476q32-18 46-4-26-2-46 4zM716 472q28-14 48 2-26-6-48-2zM708 470q-6-28 10-36-2 24-10 36z"/></g>
+  </svg>
+  <p class="vc-text display">Vulkaan! Tijd voor een rondje!</p>
+</div>
+
+<div class="overlay" id="limbo" role="dialog" aria-modal="true" aria-labelledby="limbo-title">
+  <div class="panel sheet wide limbo-sheet">
+    <div class="sheet-head">
+      <div><span class="mono accent">Tiki · <span id="limbo-round">Ronde 1</span></span><h2 class="display" id="limbo-title">Limbo</h2></div>
+      <button class="btn" id="limbo-close">Sluiten</button>
+    </div>
+    <div class="limbo-cols">
+      <div class="limbo-pole" aria-hidden="true"><span class="limbo-post l"></span><span class="limbo-post r"></span><span class="limbo-bar" id="limbo-bar"></span><span class="limbo-h display" id="limbo-height">120 cm</span></div>
+      <div class="limbo-side">
+        <p class="limbo-winner display" id="limbo-winner"></p>
+        <p class="muted" style="margin:0">Tik op een naam als iemand de stok raakt of valt.</p>
+        <div class="chips" id="limbo-players"></div>
+        <form class="limbo-form" id="limbo-form" autocomplete="off">
+          <label class="sr-only" for="limbo-name">Naam</label>
+          <input id="limbo-name" maxlength="24" placeholder="+ Speler" inputmode="none" data-osk>
+          <button class="btn" type="submit">+</button>
+        </form>
+        <div class="row"><span class="mono muted">Per ronde lager:</span><div class="chips" id="limbo-step"><button class="chip" data-step="5">5 cm</button><button class="chip on" data-step="10">10 cm</button></div></div>
+        <button class="btn primary limbo-lower" id="limbo-lower">Lager!</button>
+        <button class="btn" id="limbo-new">Nieuw spel</button>
+        <div class="mk-board"><span class="mono accent">Top 10 · laagste stok</span><ol id="limbo-top"></ol><button class="btn small" id="limbo-reset">Lijst leegmaken</button></div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -99,6 +99,11 @@ async function showScreen() {
       <div class="chips">${[[true, 'Aan'], [false, 'Uit']].map(([v, l]) => `<button class="chip${(s.spookySounds !== false) === v ? ' on' : ''}" data-spooky="${v ? 1 : 0}">${l}</button>`).join('')}</div>
     </section>
     <section class="panel a-sec">
+      <span class="mono accent">Vulkaanmomenten</span>
+      <p class="muted" style="margin:0">In de Tiki-looks barst af en toe een vulkaan uit op het scherm: tijd voor een rondje (elke 30 tot 50 minuten).</p>
+      <div class="chips">${[[true, 'Aan'], [false, 'Uit']].map(([v, l]) => `<button class="chip${(s.volcanoMoments !== false) === v ? ' on' : ''}" data-volcano="${v ? 1 : 0}">${l}</button>`).join('')}</div>
+    </section>
+    <section class="panel a-sec">
       <span class="mono accent">Prost-momenten</span>
       <p class="muted" style="margin:0">In de Oktoberfest-looks telt het scherm af en toe af: Oans, zwoa, drei… g'suffa! (elke 30 tot 50 minuten).</p>
       <div class="chips">${[[true, 'Aan'], [false, 'Uit']].map(([v, l]) => `<button class="chip${(s.prostMoments !== false) === v ? ' on' : ''}" data-prost="${v ? 1 : 0}">${l}</button>`).join('')}</div>
@@ -434,6 +439,11 @@ document.addEventListener('click', async (e) => {
   if (t.dataset.edit) return showEditor(t.dataset.edit);
   if (t.dataset.themeId) {
     const r = await saveSettings({ theme: t.dataset.themeId });
+    if (r.ok) showScreen();
+    return;
+  }
+  if (t.dataset.volcano != null) {
+    const r = await saveSettings({ volcanoMoments: t.dataset.volcano === '1' });
     if (r.ok) showScreen();
     return;
   }

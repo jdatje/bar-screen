@@ -78,11 +78,16 @@ const baseOf = (bottleIds) => BASES.find((b) => bottleIds.some((id) => b.bottles
 // spooky names for the Halloween looks' "Griezelig" filter
 const SPOOKY_NAME = /\b(zombie|vampir\w*|corpse|devil\w*|diablo|ghost\w*|witch\w*|blood\w*|bloody|widow|skull|grave\w*|death|dead|satan\w*|demon\w*|monster|hell\w*|voodoo|nightmare|scream\w*|spider|poison\w*|black|dark|evil|halloween|pumpkin|haunt\w*|reaper|coffin|bat|bats|graveyard|phantom|spook\w*|creep\w*|undead|wicked)\b/i;
 
+// tiki classics by name, and tropical rum drinks by their ingredients
+const TIKI_NAME = /\b(mai tai|zombie|painkiller|jungle bird|hurricane|navy grog|scorpion|pi[ñn]a colada|planter'?s punch|fog cutter|blue hawaii|suffering bastard|tiki|bahama|aloha|volcano|polynesian|missionary|three dots|singapore sling|bahia|lapu|mana)\b/i;
+
 function tags(d, kinds) {
   const ids = kinds.map((k) => k.id);
   const t = [];
   if (SPOOKY_NAME.test(d.name)) t.push('griezel');
   if (ids.includes('bubbles')) t.push('bubbels');
+  const rum = ids.some((id) => ['light-rum', 'dark-rum', 'spiced-rum', 'rum-any', 'coconut-rum'].includes(id));
+  if (TIKI_NAME.test(d.name) || ids.includes('orgeat') || ids.includes('falernum') || (rum && ids.some((id) => ['pineapple', 'coconut-cream', 'passion'].includes(id)))) t.push('tiki');
   if (ids.some((id) => ['campari', 'aperol', 'amaro', 'fernet'].includes(id))) t.push('bitter');
   if (ids.some((id) => ['lemon', 'lime', 'grapefruit'].includes(id))) t.push('zuur');
   if (ids.some((id) => ['cream', 'irish-cream', 'egg', 'coconut-cream'].includes(id))) t.push('romig');
@@ -166,6 +171,7 @@ export function menu(filters = {}) {
       { id: 'romig', label: 'Romig' },
       { id: 'griezel', label: '🎃 Griezelig', look: 'spooky' },
       { id: 'bubbels', label: '🥂 Bubbels', look: 'newyear' },
+      { id: 'tiki', label: '🍹 Tiki', look: 'tiki' },
     ],
     library: libraryInfo(),
   };

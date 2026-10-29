@@ -74,6 +74,7 @@ function show() {
   ghosts(SPOOKY_THEMES.includes(ctx.state.settings.theme));
   pretzels(PARTY_OF_THEME[ctx.state.settings.theme] === 'oktoberfest');
   fireworks(PARTY_OF_THEME[ctx.state.settings.theme] === 'newyear');
+  tikiNight(PARTY_OF_THEME[ctx.state.settings.theme] === 'tiki');
   requestAnimationFrame(() => $('saver').classList.add('on'));
   // with photos on the wall: switch between the song and a photo every 12 s
   clearInterval(photoTimer);
@@ -147,6 +148,19 @@ function fireworks(show) {
     return `<s class="fizz" style="left:${(Math.random() * 100).toFixed(1)}%;width:${size.toFixed(0)}px;height:${size.toFixed(0)}px;animation-duration:${dur.toFixed(1)}s;animation-delay:-${(Math.random() * dur).toFixed(1)}s"></s>`;
   });
   el.innerHTML = bursts.join('') + bubbles.join('');
+}
+
+// Tiki looks: a full moon over a dark sea, slow waves and glowing fish
+const FISH = `<svg viewBox="0 0 60 30"><path d="M4 15C14 2 34 2 44 15 34 28 14 28 4 15Z" fill="currentColor"/><path d="M44 15L58 4V26Z" fill="currentColor"/><circle cx="14" cy="13" r="2.4" fill="#0A1A2A"/></svg>`;
+function tikiNight(show) {
+  const el = $('saver-ghosts');
+  if (!show) return;
+  const fish = Array.from({ length: 7 }, (_, i) => {
+    const c = ['#40D2FF', '#7CFFD6', '#FFB13A', '#FF7AC8'][i % 4];
+    const dur = 22 + Math.random() * 20;
+    return `<i class="fish${i % 2 ? '' : ' back'}" style="top:${(62 + Math.random() * 30).toFixed(0)}%;width:${(40 + Math.random() * 50).toFixed(0)}px;color:${c};animation-duration:${dur.toFixed(0)}s;animation-delay:-${(Math.random() * dur).toFixed(1)}s"><b style="animation-duration:${(1.2 + Math.random()).toFixed(1)}s">${FISH}</b></i>`;
+  });
+  el.innerHTML = '<span class="tk-moon"></span><span class="tk-sea w1"></span><span class="tk-sea w2"></span><span class="tk-sea w3"></span>' + fish.join('');
 }
 
 function hide() {

@@ -1,10 +1,16 @@
-// Maßkrugstemmen (Oktoberfest looks): hold a full stein at arm's length as long
-// as you can. The screen is the stopwatch; the server keeps a top 10.
+// Stopwatch games with a top 10 (the server keeps the lists):
+//  - Maßkrugstemmen (Oktoberfest looks): hold a full stein at arm's length
+//  - Hula-hoop (Tiki looks): keep the hoop going as long as you can
 import { $, esc, call, toast, confirmBox } from './ui.js';
 
 let ctx;
 let startedAt = 0;
 let tick = null;
+let kind = 'masskrug';
+const KINDS = {
+  masskrug: { party: 'Oktoberfest', title: 'Maßkrugstemmen', rules: 'Volle pul, arm gestrekt voor je uit. Wie zakt of morst, is af. Tik op de grote knop om te starten en weer om te stoppen.', who: 'Naam van de stemmer' },
+  hula: { party: 'Tiki', title: 'Hula-hoop', rules: 'Hoepel om je heupen en draaien maar. Valt hij op de grond, dan is het klaar. Tik op de grote knop om te starten en weer om te stoppen.', who: 'Naam van de hoepelaar' },
+};
 
 const fmt = (ms) => {
   const s = ms / 1000;
@@ -24,14 +30,20 @@ export function init(c) {
   $('mk-reset').addEventListener('click', reset);
 }
 
-export async function open() {
+export async function open(which = 'masskrug') {
+  kind = KINDS[which] ? which : 'masskrug';
+  const k = KINDS[kind];
+  $('mk-party').textContent = k.party;
+  $('mk-title').textContent = k.title;
+  $('mk-rules').textContent = k.rules;
+  $('mk-name').placeholder = k.who;
   $('masskrug').classList.add('open');
   stop(false);
   $('mk-time').textContent = fmt(0);
   // quick pick: everyone who joined on a phone
   const names = (ctx.state.players || []).filter((p) => p.online || p.manual).map((p) => p.name);
   $('mk-players').innerHTML = names.map((n) => `<button class="chip" data-mk-name="${esc(n)}">${esc(n)}</button>`).join('');
-  render(await call(ctx.socket, 'mk:list'));
+  render(await call(ctx.socket, 'mk:list', { kind }));
 }
 
 function close() {
@@ -65,7 +77,7 @@ async function toggle() {
   const ms = Math.round(performance.now() - startedAt);
   stop(true);
   $('mk-time').textContent = fmt(ms);
-  const res = await call(ctx.socket, 'mk:add', { name: $('mk-name').value.trim(), ms });
+  const res = await call(ctx.socket, 'mk:add', { name: $('mk-name').value.trim(), ms, kind });
   if (res?.ok) {
     render(res);
     if (res.rank === 1) toast(`Nieuw record: ${$('mk-name').value.trim()}!`);
@@ -87,7 +99,7 @@ async function reset() {
   if (!(await confirmBox('Deze lijst leegmaken?', 'Leegmaken'))) return;
   const pin = await ctx.getPin();
   if (pin == null) return;
-  const res = await call(ctx.socket, 'mk:clear', { pin });
+  const res = await call(ctx.socket, 'mk:clear', { pin, kind });
   if (res?.ok) render(res);
 }
 

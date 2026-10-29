@@ -74,7 +74,8 @@ export function spinSoon() {
 async function loadMenu() {
   // a themed filter from a look that is no longer on
   const look = PARTY_OF_THEME[ctx.state.settings.theme];
-  if ((filters.tag === 'griezel' && look !== 'spooky') || (filters.tag === 'bubbels' && look !== 'newyear')) filters.tag = '';
+  const tagLook = { griezel: 'spooky', bubbels: 'newyear', tiki: 'tiki' }[filters.tag];
+  if (tagLook && tagLook !== look) filters.tag = '';
   [data] = await Promise.all([call(ctx.socket, 'cocktails:menu', filters), loadBottles()]);
   if (!data) return;
   renderFilters();
