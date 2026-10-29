@@ -13,6 +13,7 @@ import * as music from './music.js';
 import * as spooky from './spooky.js';
 import * as prost from './prost.js';
 import * as masskrug from './masskrug.js';
+import * as newyear from './newyear.js';
 import { PARTY_OF_THEME } from './tiles.js';
 
 const socket = io();
@@ -68,6 +69,8 @@ document.querySelectorAll('[data-hub]').forEach((b) =>
     const h = b.dataset.hub;
     if (h === 'games' || h === 'wheel' || h === 'bottlewheel') return go(h);
     if (h === 'masskrug') return masskrug.open();
+    if (h === 'vuurwerk') return newyear.fireworks();
+    if (h === 'oliebollen') return newyear.openOlie();
     if (h === 'qwixx') return $('qwixx').classList.add('open');
     quiz.setType(h);
     go('quiz');
@@ -194,6 +197,7 @@ function markTheme() {
   document.querySelectorAll('#prost-choices [data-pm="1"], #prost-choices [data-pm="0"]').forEach((c) => c.classList.toggle('on', (c.dataset.pm === '1') === (state.settings.prostMoments !== false)));
   spooky.update();
   prost.update();
+  newyear.update();
   // buttons that only exist in a party look (e.g. the Bierrad in Oktoberfest)
   document.documentElement.dataset.party = PARTY_OF_THEME[state.settings.theme] || '';
   document.querySelectorAll('#lang-choices .chip').forEach((c) => c.classList.toggle('on', c.dataset.lang === getLang()));
@@ -260,6 +264,13 @@ $('req-list').addEventListener('click', async (e) => {
 $('req-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-req]');
   if (b) setSetting({ requests: b.dataset.req });
+});
+$('ny-choices').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-ny]');
+  if (!b) return;
+  closeSettings();
+  if (b.dataset.ny === 'count') newyear.testCountdown();
+  else newyear.fireworks();
 });
 $('prost-choices').addEventListener('click', (e) => {
   const b = e.target.closest('[data-pm]');
@@ -444,6 +455,7 @@ const quietNow = () => games.isPlaying() || karaoke.isOpen() || (state.game?.act
 spooky.init(ctx, { quiet: quietNow });
 prost.init(ctx, { quiet: quietNow });
 masskrug.init(ctx);
+newyear.init(ctx);
 
 // Show as many upcoming songs as fit in the panel, without a half row
 function fitQueue() {

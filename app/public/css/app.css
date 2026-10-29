@@ -701,3 +701,66 @@ body:has(.osk:not([hidden])) .music-results { max-height: 22vh; }
 }
 .saver-ghosts .fizz { position: absolute; bottom: -20px; border-radius: 50%; border: 1.5px solid rgba(255, 226, 150, 0.8); background: rgba(255, 226, 150, 0.15);
   animation: saver-foam linear infinite; text-decoration: none; }
+
+/* ---------- Oud & Nieuw ---------- */
+:root[data-party="newyear"] .party-newyear { display: revert !important; }
+:root[data-party="newyear"] .hub-card.party-newyear { display: flex !important; }
+:root[data-party="newyear"] .hub-grid { grid-template-rows: repeat(3, 1fr); }
+:root[data-party="newyear"] .hub-card { grid-column: span 4 !important; padding: 20px 24px; }
+:root[data-party="newyear"] .hub-card .display { font-size: clamp(26px, 2.4vw, 40px); }
+:root[data-party="newyear"] .hub-icon { font-size: 46px; top: 14px; right: 18px; }
+/* good resolutions ticker */
+.ny-ticker { position: fixed; left: 0; right: 0; bottom: 0; z-index: 8; display: flex; align-items: center; height: 44px; background: rgba(0, 0, 0, 0.55); color: #fff; backdrop-filter: blur(4px); overflow: hidden; }
+.ny-ticker[hidden] { display: none; }
+.ny-ticker-tag { flex: none; padding: 0 16px; height: 100%; display: flex; align-items: center; background: var(--accent); color: var(--on-accent); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+.ny-ticker-track { flex: 1; overflow: hidden; }
+.ny-ticker-run { display: inline-flex; gap: 28px; white-space: nowrap; font-size: 18px; animation: ny-ticker linear infinite; padding-left: 28px; }
+.ny-ticker-run i { font-style: normal; color: var(--accent); }
+@keyframes ny-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* countdown */
+.ny-count { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 75; display: flex; align-items: baseline; gap: 10px; padding: 8px 22px; border-radius: 40px;
+  background: rgba(0, 0, 0, 0.7); color: #fff; box-shadow: 0 0 0 2px var(--accent), 0 8px 30px rgba(0, 0, 0, 0.5); pointer-events: none; }
+.ny-count[hidden] { display: none; }
+.ny-count-num { font-size: 34px; font-variant-numeric: tabular-nums; }
+.ny-count.minute { top: 30px; padding: 14px 34px; }
+.ny-count.minute .ny-count-num { font-size: 64px; color: var(--accent); }
+.ny-count.final { inset: 0; top: 0; left: 0; transform: none; border-radius: 0; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.85); box-shadow: none; }
+.ny-count.final .ny-count-num { font-size: 60vh; line-height: 1; color: var(--accent); animation: ny-pulse 1s ease-out infinite; }
+@keyframes ny-pulse { from { transform: scale(1.25); opacity: 0.4; } 20% { opacity: 1; } to { transform: scale(0.9); opacity: 1; } }
+/* fireworks + midnight show */
+.ny-fw { position: fixed; inset: 0; z-index: 80; pointer-events: none; }
+.ny-fw[hidden] { display: none; }
+.ny-show { position: fixed; inset: 0; z-index: 79; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  background: radial-gradient(circle at 50% 40%, #1a1a3a, #000 70%); color: #fff; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
+.ny-show[hidden] { display: none; }
+.ny-show.on { opacity: 1; }
+.ny-show-hello { font-size: 9vh; margin: 0; color: #FFE7A0; text-shadow: 0 0 30px rgba(255, 201, 60, 0.6); }
+.ny-show-year { font-size: 34vh; line-height: 0.9; margin: 0; background: linear-gradient(180deg, #FFF6D0, #E8C26A 55%, #B8913F); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 30px rgba(232, 194, 106, 0.5)); }
+.ny-show.on .ny-show-year { animation: ny-year 1.2s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes ny-year { from { transform: scale(0.2); opacity: 0; } }
+.ny-show-res { max-width: 80vw; max-height: 0; overflow: hidden; transition: max-height 1s ease; }
+.ny-show.res .ny-show-hello, .ny-show.res .ny-show-year { font-size: 6vh; }
+.ny-show.res .ny-show-res { max-height: 70vh; animation: ny-roll 34s linear 1.5s both; }
+.ny-show-res .mono { display: block; color: #E8C26A; margin: 3vh 0 1vh; font-size: 2.4vh; }
+.ny-show-res p { margin: 1.4vh 0; font-size: 3.4vh; }
+.ny-show-res b { color: #E8C26A; }
+@keyframes ny-roll { from { transform: translateY(40vh); } to { transform: translateY(-100%); } }
+/* oliebollenteller */
+.olie-sheet { width: min(900px, 94vw); max-height: 94vh; overflow-y: auto; }
+.olie-form { display: flex; gap: 10px; }
+.olie-form input { flex: 1; min-width: 0; min-height: 52px; padding: 0 16px; font-size: 19px; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--radius); }
+.olie-list { display: flex; flex-direction: column; gap: 8px; }
+.olie-row { display: grid; grid-template-columns: minmax(0, 1fr) auto 70px auto; gap: 12px; align-items: center; padding: 10px 14px; background: var(--panel-2); border-radius: var(--radius); }
+.olie-row.first { box-shadow: 0 0 0 2px var(--accent); }
+.olie-name { font-size: 22px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.olie-n { font-family: var(--font-display); font-size: 40px; text-align: center; color: var(--accent); }
+.olie-row .btn { min-height: 60px; min-width: 64px; font-size: 22px; }
+.olie-row .btn.primary { min-width: 120px; }
+#olie-reset { align-self: flex-start; }
+
+/* phone: Oud & Nieuw card on the Spel tab */
+.p-ny { padding: 14px; display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.p-ny input { min-height: 52px; font-size: 17px; padding: 0 14px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line-strong); border-radius: var(--radius); }
+.p-olie { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 6px; font-size: 17px; }
+.p-olie li { display: flex; justify-content: space-between; }
+body.has-ticker .screen { padding-bottom: 52px; }

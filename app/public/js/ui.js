@@ -10,6 +10,7 @@ export const THEME_GROUPS = [
   { id: 'nederland', label: 'Nederland' },
   { id: 'kinderfeest', label: 'Kinderfeest' },
   { id: 'oudnieuw', label: 'Oud & Nieuw' },
+  { id: 'tiki', label: 'Tiki' },
 ];
 
 export const THEMES = {
@@ -40,6 +41,7 @@ export const THEMES = {
   // Nederland
   oranje: { group: 'nederland', label: '🇳🇱 Oranjegekte', bg: '#FF7A00', fg: '#14204A', ac: '#21468B', fonts: 'Titan+One&family=Nunito:wght@500;600;700;800' },
   delft: { group: 'nederland', label: '🇳🇱 Delfts Blauw', bg: '#F3F6FB', fg: '#12306B', ac: '#1B3F9C', fonts: 'Yeseva+One&family=Mulish:wght@400;500;600;700' },
+  tikibar: { group: 'tiki', label: '🌺 Tiki Bar', bg: '#1E1208', fg: '#FBEBD0', ac: '#FF8A2A', fonts: 'Lilita+One&family=Nunito:wght@500;600;700;800' },
   champagne: { group: 'oudnieuw', label: '🥂 Champagne', bg: '#0E0C08', fg: '#F6EBD0', ac: '#E8C26A', fonts: 'Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600' },
   vuurwerk: { group: 'oudnieuw', label: '🎆 Vuurwerk', bg: '#070B1E', fg: '#F1F4FF', ac: '#FFC93C', fonts: 'Bungee&family=Poppins:wght@400;500;600' },
   oliebol: { group: 'oudnieuw', label: '🍩 Oliebollenkraam', bg: '#F6EBDC', fg: '#3B2614', ac: '#B8322A', fonts: 'Lilita+One&family=Nunito:wght@500;600;700;800' },

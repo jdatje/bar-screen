@@ -84,6 +84,13 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Oud & Nieuw looks (group "Oud & Nieuw", party `newyear`): 🥂 Champagne (black/gold), 🎆 Vuurwerk (night sky),
   🍩 Oliebollenkraam (cream, red-white stripe). 🎆 Oudejaarsquiz (data-seed/oudnieuw.json, 32 questions);
   screensaver fireworks bursts + champagne bubbles.
+  Extras (public/js/newyear.js, lib/newyear.js): countdown from 23:50 Amsterdam every night in these looks
+  (last 10 s full screen, 00:00 "Gelukkig nieuwjaar <year>" + fireworks + resolutions roll); good resolutions
+  from phones (Spel tab, max 5 per name, ticker at the bottom of the screen, remove in /admin Gasten);
+  Oliebollenteller (hub card, +1/−1 per name, phones see top 5; reset needs the code); "🥂 Bubbels"
+  cocktail filter; Vuurwerk! hub card (canvas show + synthesized bangs). Test buttons in the settings.
+- Tiki group: 🌺 Tiki Bar look (party `tiki`): dark wood, bamboo frames, swaying palm leaves, flickering
+  torches. No extras yet (suggestions offered). The older "Tiki" look in Zomer is unchanged.
 - Screensaver shows the photos in random order (shuffle bag in saver.js, no repeats in a row).
 - Look "Modderpret" (group Kinderfeest): pink, sky, green hills with mud puddles, clouds. Original design —
   no Peppa Pig (protected character; asked for, made this instead).

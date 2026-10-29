@@ -120,6 +120,7 @@ async function showScreen() {
 async function showGuests() {
   $('admin-title').textContent = 'Gasten';
   const list = await api('GET', '/guests');
+  const res = await api('GET', '/resolutions');
   const fmt = (d) => (d ? new Date(`${d}T12:00:00`).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' }) : '');
   $('root').innerHTML = `
     <p class="muted" style="margin:0">Elke naam die op een telefoon meedoet, telt één keer per dag. Alleen hier te zien.</p>
@@ -131,7 +132,11 @@ async function showGuests() {
             <button class="btn small" data-del-guest="${esc(g.key)}" aria-label="${esc(g.name)} verwijderen">✕</button>
           </div>`).join('')
         : '<p class="muted">Nog niemand ingecheckt.</p>'}
-    </div>`;
+    </div>
+    ${res.length ? `<span class="mono accent">Goede voornemens (Oud &amp; Nieuw)</span>
+    <div style="display:flex;flex-direction:column;gap:8px">${res.map((r) => `<div class="panel guest">
+        <div><strong>${esc(r.name)}</strong><small>${esc(r.text)}</small></div><div></div>
+        <button class="btn small" data-del-res="${esc(r.id)}" aria-label="Voornemen weghalen">✕</button></div>`).join('')}</div>` : ''}`;
 }
 
 // ---------- Credits: a number per name, for something in the bar ----------
@@ -488,6 +493,10 @@ document.addEventListener('click', async (e) => {
     if (!confirm('Deze naam en het tegoed weghalen?')) return;
     await api('DELETE', `/credits/${encodeURIComponent(t.dataset.crDel)}`);
     return showCredits();
+  }
+  if (t.dataset.delRes) {
+    await api('DELETE', `/resolutions/${encodeURIComponent(t.dataset.delRes)}`);
+    return showGuests();
   }
   if (t.dataset.delGuest) {
     if (!confirm('Deze gast uit de lijst halen?')) return;

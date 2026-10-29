@@ -19,6 +19,7 @@ import * as photos from './lib/photos.js';
 import * as guests from './lib/guests.js';
 import * as credits from './lib/credits.js';
 import * as masskrug from './lib/masskrug.js';
+import * as newyear from './lib/newyear.js';
 import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
@@ -26,7 +27,7 @@ const PORT = Number(process.env.PORT || 80);
 // Requests from the bar PC itself (the kiosk browser). With the public
 // address switched on, everything else may come from the internet.
 const isLocal = (addr) => ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(String(addr || ''));
-export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven', 'rock', 'synthwave', 'strand', 'zonsondergang', 'wiesn', 'bierhal', 'modderpret', 'champagne', 'vuurwerk', 'oliebol'];
+export const THEMES = ['industrial', 'maison', 'neon', 'bruin', 'tiki', 'disco', 'bluenote', 'papier', 'riviera', 'chalet', 'spookhuis', 'pompoen', 'heks', 'oranje', 'delft', 'oranjeboven', 'rock', 'synthwave', 'strand', 'zonsondergang', 'wiesn', 'bierhal', 'modderpret', 'champagne', 'vuurwerk', 'oliebol', 'tikibar'];
 const CALLBACK_PATH = '/auth/spotify/callback';
 
 const app = express();
@@ -493,6 +494,13 @@ admin.delete('/stock/custom/:id', (req, res) => {
   stockChanged();
   res.json({ ok: true, stock });
 });
+// good resolutions (Oud & Nieuw): see and remove from the phone admin
+admin.get('/resolutions', (_req, res) => res.json(newyear.resolutions()));
+admin.delete('/resolutions/:id', (req, res) => {
+  newyear.removeResolution(req.params.id);
+  io.to('screen').emit('ny:removed', req.params.id);
+  res.json({ ok: true });
+});
 admin.get('/credits', (_req, res) => res.json({ people: credits.list(), names: guests.list().map((g) => g.name) }));
 admin.post('/credits', (req, res) => res.json(credits.change(req.body?.name, req.body?.amount)));
 admin.delete('/credits/:key', (req, res) => {
@@ -783,6 +791,28 @@ io.on('connection', (socket) => {
     ack?.({ ok: true, playerId: id, name: cleanName, settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn() });
     broadcastPlayers();
     if (game.active) game.emit();
+  });
+
+  // ----- Oud & Nieuw: good resolutions (phones) and the oliebollen counter -----
+  socket.on('ny:get', (_p, ack) => ack?.(isScreen() || isPlayer() ? { resolutions: newyear.resolutions(), oliebollen: newyear.oliebollen() } : null));
+  socket.on('ny:resolution', ({ text } = {}, ack) => {
+    if (!isPlayer()) return ack?.({ ok: false });
+    const res = newyear.addResolution(players.get(socket.data.playerId)?.name, text);
+    if (res.ok) io.to('screen').emit('ny:resolution', res.resolution);
+    ack?.(res);
+  });
+  socket.on('ny:olie', ({ name, delta } = {}, ack) => {
+    if (!isScreen()) return ack?.({ ok: false });
+    const res = newyear.countOliebol(name, Number(delta));
+    if (res.ok) io.emit('ny:olie', res.list);
+    ack?.(res);
+  });
+  socket.on('ny:clear', ({ pin, what } = {}, ack) => {
+    if (!isScreen() || !pinOk(pin)) return ack?.({ ok: false });
+    if (what === 'oliebollen') newyear.clearOliebollen();
+    else newyear.clearResolutions();
+    io.emit('ny:olie', newyear.oliebollen());
+    ack?.({ ok: true });
   });
 
   // ----- Maßkrugstemmen (Oktoberfest looks) -----

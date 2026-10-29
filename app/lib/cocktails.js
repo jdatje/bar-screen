@@ -82,6 +82,7 @@ function tags(d, kinds) {
   const ids = kinds.map((k) => k.id);
   const t = [];
   if (SPOOKY_NAME.test(d.name)) t.push('griezel');
+  if (ids.includes('bubbles')) t.push('bubbels');
   if (ids.some((id) => ['campari', 'aperol', 'amaro', 'fernet'].includes(id))) t.push('bitter');
   if (ids.some((id) => ['lemon', 'lime', 'grapefruit'].includes(id))) t.push('zuur');
   if (ids.some((id) => ['cream', 'irish-cream', 'egg', 'coconut-cream'].includes(id))) t.push('romig');
@@ -164,6 +165,7 @@ export function menu(filters = {}) {
       { id: 'lang', label: 'Lang & fris' },
       { id: 'romig', label: 'Romig' },
       { id: 'griezel', label: '🎃 Griezelig', look: 'spooky' },
+      { id: 'bubbels', label: '🥂 Bubbels', look: 'newyear' },
     ],
     library: libraryInfo(),
   };

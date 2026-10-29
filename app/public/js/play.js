@@ -1,6 +1,7 @@
 // Guest phone: join with the room code, answer quiz questions, browse recipes.
 import { $, esc, call, applyTheme, LETTERS, remaining } from './ui.js';
 import { setLang } from './i18n.js';
+import { PARTY_OF_THEME } from './tiles.js';
 
 // straight to a websocket: saves a few slow round trips over the public address
 const socket = io({ transports: ['websocket', 'polling'], tryAllTransports: true });
@@ -15,6 +16,8 @@ let tab = 'game';
 let game = { active: false };
 let playerCount = 0;
 let recipeOpen = null;
+let theme = 'industrial';
+let olie = [];
 
 const params = new URLSearchParams(location.search);
 $('code').value = (params.get('code') || store.get('code') || '').toUpperCase();
@@ -35,7 +38,9 @@ async function join(silent) {
   store.set('name', name);
   store.set('playerId', res.playerId);
   applyTheme(res.settings?.theme);
+  theme = res.settings?.theme || theme;
   setLang(res.settings?.language);
+  loadNewYear();
   $('me').textContent = name;
   setJoined(true);
   onGame(res.game);
@@ -145,6 +150,43 @@ $('pick-save').addEventListener('click', async () => {
   flash('Download gestart');
 });
 
+// ---------- Oud & Nieuw looks: good resolution + oliebollen top 5 ----------
+const isNewYear = () => PARTY_OF_THEME[theme] === 'newyear';
+async function loadNewYear() {
+  if (!isNewYear() || !joined) return;
+  const res = await call(socket, 'ny:get');
+  olie = res?.oliebollen || [];
+  if (!game.active) renderGame();
+}
+function newYearCard() {
+  if (!isNewYear()) return '';
+  return `<form class="panel p-ny" id="ny-form" autocomplete="off">
+      <span class="mono accent">Jouw goede voornemen</span>
+      <input id="ny-text" maxlength="140" placeholder="Bijv. vaker naar de bar">
+      <button class="btn primary" type="submit">Op het scherm</button>
+    </form>
+    ${olie.length ? `<div class="panel p-ny"><span class="mono accent">Oliebollen-top 5</span><ol class="p-olie">${olie.slice(0, 5).map((o) => `<li><span>${esc(o.name)}</span><b>${o.n} 🍩</b></li>`).join('')}</ol></div>` : ''}`;
+}
+document.addEventListener('submit', async (e) => {
+  if (e.target.id !== 'ny-form') return;
+  e.preventDefault();
+  const text = $('ny-text').value.trim();
+  if (!text) return;
+  const res = await call(socket, 'ny:resolution', { text });
+  if (res?.ok) {
+    $('ny-text').value = '';
+    flash('Staat op het scherm!');
+    navigator.vibrate?.(40);
+  } else flash(res?.error === 'max' ? 'Je hebt er al 5, mooi zo' : 'Iets langer graag');
+});
+socket.on('ny:olie', (list) => {
+  olie = list || [];
+  if (isNewYear() && !game.active && tab === 'game') {
+    const typing = document.activeElement?.id === 'ny-text';
+    if (!typing) renderGame();
+  }
+});
+
 // ---------- Tabs ----------
 function showTab(t) {
   tab = t;
@@ -178,7 +220,7 @@ function renderGame() {
     el.innerHTML = `<span class="mono accent">Verbonden</span>
       <h1 class="display p-title">Hoi ${esc(store.get('name') || '')}</h1>
       <p class="big-text" style="margin:0;color:var(--text-2)">Hou dit scherm open. Zodra er een quiz start, verschijnen de vragen hier.</p>
-      <p class="mono muted">${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</p>`;
+      <p class="mono muted">${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</p>${newYearCard()}`;
     return;
   }
   const head = `<span class="mono accent">${esc(g.typeLabel)} · ronde ${g.round} van ${g.rounds}</span>`;
@@ -441,6 +483,12 @@ socket.on('players', (n) => {
 });
 socket.on('settings', (s) => {
   applyTheme(s.theme);
+  const was = theme;
+  theme = s.theme || theme;
+  if (was !== theme) {
+    loadNewYear();
+    if (!game.active) renderGame();
+  }
   setLang(s.language);
 });
 socket.on('player:removed', () => {

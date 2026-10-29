@@ -440,3 +440,41 @@
 [data-theme="oliebol"] .screen { padding-top: 34px; }
 [data-theme="oliebol"] .tile, [data-theme="oliebol"] .now, [data-theme="oliebol"] .panel { border-width: 2px; box-shadow: 0 5px 0 rgba(201, 167, 122, 0.45); }
 [data-theme="oliebol"] .tag { background: #3B2614; color: #FFF8EE; }
+
+/* ---------- Tiki: Tiki Bar (dark wood, bamboo, torchlight, palm leaves) ---------- */
+[data-theme="tikibar"] {
+  --bg: #1E1208; --panel: #2B1A0C; --panel-2: #3A2412; --line: #5A3A1C; --line-strong: #8A5A2A;
+  --text: #FBEBD0; --text-2: #E6CFA6; --text-3: #B89A72; --accent: #FF8A2A; --accent-hover: #FFA552; --on-accent: #1E1208;
+  --font-display: 'Lilita One', 'Wexer Emoji', system-ui, sans-serif; --font-body: 'Nunito', 'Wexer Emoji', system-ui, sans-serif; --font-mono: 'Nunito', 'Wexer Emoji', system-ui, sans-serif;
+  --display-case: none; --display-weight: 400; --radius: 14px;
+}
+[data-theme="tikibar"] body { font-weight: 600; background-image:
+  radial-gradient(ellipse at 6% 100%, rgba(255, 138, 42, 0.28), transparent 35%),
+  radial-gradient(ellipse at 94% 100%, rgba(255, 138, 42, 0.28), transparent 35%),
+  repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0 3px, transparent 3px 46px); }
+/* bamboo frames around the panels */
+[data-theme="tikibar"] .tile, [data-theme="tikibar"] .now, [data-theme="tikibar"] .panel {
+  border: 6px solid transparent; border-image: repeating-linear-gradient(90deg, #C8A05A 0 38px, #8A6A30 38px 42px) 6;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45); }
+[data-theme="tikibar"] .tile.hot { background: linear-gradient(160deg, #FF8A2A, #E2552A); }
+[data-theme="tikibar"] .tag { background: #2BB3A6; color: #1E1208; }
+[data-theme="tikibar"] .display { text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35); }
+/* palm leaves in the top corners, torches at the bottom */
+[data-theme="tikibar"] .party-decor { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+[data-theme="tikibar"] .party-decor .bunting { display: none; }
+[data-theme="tikibar"] .screen { position: relative; z-index: 1; }
+.party-decor .palm, .party-decor .torch { display: none; }
+[data-theme="tikibar"] .party-decor .palm { display: block; position: absolute; top: -20px; width: 26vh; height: 26vh; opacity: 0.9;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='%23215C2E'%3E%3Cpath d='M0 0C60 10 110 40 150 90C110 70 70 60 0 60z'/%3E%3Cpath d='M0 20C50 50 80 100 90 170C60 120 30 100 0 95z' fill='%232E7A3C'/%3E%3Cpath d='M10 0C80 0 150 20 200 60C150 50 90 45 20 40z' fill='%23194A24'/%3E%3C/g%3E%3Cg stroke='%23103018' stroke-width='2' fill='none' opacity='.6'%3E%3Cpath d='M0 0L140 85M0 20L85 160M10 0L190 58'/%3E%3C/g%3E%3C/svg%3E") no-repeat 0 0 / contain; animation: palm-sway 6s ease-in-out infinite alternate; transform-origin: 0 0; }
+[data-theme="tikibar"] .party-decor .palm.pl { left: -20px; }
+[data-theme="tikibar"] .party-decor .palm.pr { right: -20px; transform: scaleX(-1); animation-name: palm-sway-r; transform-origin: 100% 0; }
+@keyframes palm-sway { from { rotate: -2deg; } to { rotate: 3deg; } }
+@keyframes palm-sway-r { from { rotate: 2deg; } to { rotate: -3deg; } }
+[data-theme="tikibar"] .party-decor .torch { display: block; position: absolute; bottom: 0; width: 14px; height: 22vh; background: linear-gradient(#8A5A2A, #4A2E12); border-radius: 4px; }
+[data-theme="tikibar"] .party-decor .torch::before { content: ''; position: absolute; left: 50%; top: -46px; width: 34px; height: 54px; margin-left: -17px;
+  border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%; background: radial-gradient(circle at 50% 70%, #FFF1A0, #FFB13A 40%, #FF5A1A 70%, transparent 72%);
+  filter: blur(1px) drop-shadow(0 0 18px #FF8A2A); animation: torch-flicker .18s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+[data-theme="tikibar"] .party-decor .torch.tl { left: 1.2vw; }
+[data-theme="tikibar"] .party-decor .torch.tr { right: 1.2vw; }
+@keyframes torch-flicker { from { transform: scale(1, 1) rotate(-2deg); opacity: .9; } to { transform: scale(.92, 1.08) rotate(2deg); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { [data-theme="tikibar"] .party-decor * { animation: none !important; } }

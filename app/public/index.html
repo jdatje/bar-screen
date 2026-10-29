@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="spooky-decor" aria-hidden="true"><span class="vignette"></span><span class="fog"></span><span class="fog f2"></span><span class="web tl"></span><span class="web br"></span></div>
-<div class="party-decor" aria-hidden="true"><span class="bunting"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="flagline"></span><span class="bigsun"></span><span class="grid"></span><span class="sea"></span><span class="hill"></span><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span></div>
+<div class="party-decor" aria-hidden="true"><span class="bunting"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="burst"></span><span class="flagline"></span><span class="bigsun"></span><span class="grid"></span><span class="sea"></span><span class="hill"></span><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span><span class="palm pl"></span><span class="palm pr"></span><span class="torch tl"></span><span class="torch tr"></span></div>
 <main class="screen">
   <header class="topbar">
     <div class="brand">
@@ -203,6 +203,8 @@
       <button class="hub-card" data-hub="games"><span class="hub-icon" aria-hidden="true">🕹️</span><span class="display">Retro games</span><p>N64, SNES en meer met de controllers</p></button>
       <button class="hub-card" data-hub="bottlewheel"><span class="hub-icon" aria-hidden="true">🍾</span><span class="display">Drankrad</span><p>Welke fles wordt het? Alle flessen van de bar</p></button>
       <button class="hub-card party-only party-oktoberfest" data-hub="masskrug"><span class="hub-icon" aria-hidden="true">💪</span><span class="display">Maßkrugstemmen</span><p>Wie houdt de volle pul het langst gestrekt?</p></button>
+      <button class="hub-card party-only party-newyear" data-hub="vuurwerk"><span class="hub-icon" aria-hidden="true">🎆</span><span class="display">Vuurwerk!</span><p>Een vuurwerkshow op het scherm</p></button>
+      <button class="hub-card party-only party-newyear" data-hub="oliebollen"><span class="hub-icon" aria-hidden="true">🍩</span><span class="display">Oliebollenteller</span><p>Wie eet er de meeste?</p></button>
       <button class="hub-card" data-hub="wheel"><span class="hub-icon" aria-hidden="true">🎡</span><span class="display">Draai het rad</span><p>Laat het lot je cocktail kiezen</p></button>
     </div>
   </section>
@@ -319,6 +321,13 @@
           <button class="chip" data-pm="now">▶ Nu proosten</button>
         </div>
       </div>
+      <div>
+        <p class="mono muted">Oud &amp; Nieuw-looks</p>
+        <div class="chips" id="ny-choices">
+          <button class="chip" data-ny="count">▶ Test aftellen (15 s)</button>
+          <button class="chip" data-ny="fw">▶ Vuurwerk</button>
+        </div>
+      </div>
     </div>
     <div class="row">
       <button class="btn" id="new-room">Nieuwe kamercode</button>
@@ -417,6 +426,32 @@
         <button class="btn small" id="mk-reset">Lijst leegmaken</button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="ny-ticker" id="ny-ticker" hidden aria-label="Goede voornemens"><span class="ny-ticker-tag">Voornemens</span><div class="ny-ticker-track"><div class="ny-ticker-run" id="ny-ticker-run"></div></div></div>
+<div class="ny-count" id="ny-count" hidden aria-live="polite"><span class="ny-count-num display" id="ny-count-num"></span><span class="ny-count-label" id="ny-count-label"></span></div>
+<canvas class="ny-fw" id="ny-fw" hidden aria-hidden="true"></canvas>
+<div class="ny-show" id="ny-show" hidden aria-live="assertive">
+  <p class="ny-show-hello display">Gelukkig nieuwjaar</p>
+  <p class="ny-show-year display" id="ny-show-year"></p>
+  <div class="ny-show-res" id="ny-show-res"></div>
+</div>
+
+<div class="overlay" id="oliebollen" role="dialog" aria-modal="true" aria-labelledby="olie-title">
+  <div class="panel sheet wide olie-sheet">
+    <div class="sheet-head">
+      <div><span class="mono accent">Oud &amp; Nieuw · <span id="olie-total">0</span> oliebollen</span><h2 class="display" id="olie-title">Oliebollenteller</h2></div>
+      <button class="btn" id="olie-close">Sluiten</button>
+    </div>
+    <form class="olie-form" id="olie-form" autocomplete="off">
+      <label class="sr-only" for="olie-name">Naam</label>
+      <input id="olie-name" maxlength="24" placeholder="+ Naam toevoegen" inputmode="none" data-osk>
+      <button class="btn" type="submit">Toevoegen</button>
+    </form>
+    <div class="chips" id="olie-players"></div>
+    <div class="olie-list" id="olie-list"></div>
+    <button class="btn small" id="olie-reset">Teller op nul</button>
   </div>
 </div>
 
