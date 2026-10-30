@@ -20,7 +20,7 @@ let theme = 'industrial';
 let olie = [];
 let inQuiz = null; // quiz waiting room (pubquiz, popquiz, intro) or null: tap a tile in the Spel tab
 let quizRooms = {};
-let botc = { phase: 'setup', seated: [] }; // Blood on the Clocktower: is there a game with me in it?
+let botc = null; // Blood on the Clocktower: { url, code, ok, phase, players }
 
 const params = new URLSearchParams(location.search);
 $('code').value = (params.get('code') || store.get('code') || '').toUpperCase();
@@ -233,23 +233,21 @@ socket.on('quiz:out', () => {
   renderGame();
 });
 
-const inBotc = () => botc.seated.includes(store.get('playerId'));
+// Blood on the Clocktower runs in its own container; the link takes you straight
+// into the bar's game with the name you joined with
 function botcCard() {
-  const n = botc.seated.length;
-  const line = inBotc()
-    ? botc.phase === 'setup' ? 'Je doet mee · wacht op de verteller' : 'Het spel loopt'
-    : botc.phase === 'setup' ? `De verteller zet klaar · ${n} ${n === 1 ? 'speler' : 'spelers'}` : botc.phase === 'ended' ? 'Klaar voor een nieuw spel' : 'Er loopt een spel';
-  return `<a class="panel p-botc" href="/clocktower"><span class="mono">🩸 Blood on the Clocktower</span>
-    <b class="display">${inBotc() ? 'Je doet mee' : 'Clocktower'}</b><span>${line} →</span></a>`;
+  if (!botc?.url) return '';
+  const n = botc.players || 0;
+  const line = !botc.ok ? 'Het spel start nog op, probeer zo weer' : botc.phase === 'setup' ? `De verteller zet klaar · ${n} ${n === 1 ? 'speler' : 'spelers'}` : botc.phase === 'ended' ? 'Klaar voor een nieuw spel' : 'Er loopt een spel';
+  const href = `${botc.url}/?code=${encodeURIComponent(botc.code)}&name=${encodeURIComponent(store.get('name') || '')}`;
+  return `<a class="panel p-botc" href="${esc(href)}"><span class="mono">🩸 Blood on the Clocktower</span>
+    <b class="display">Clocktower</b><span>${line} →</span></a>`;
 }
 socket.on('botc:status', (b) => {
-  const was = botc.phase;
-  const wasIn = inBotc();
   botc = b || botc;
-  // the storyteller starts the game: straight to your token
-  if (inBotc() && was === 'setup' && botc.phase === 'night' && tab === 'game' && !game.active) return location.assign('/clocktower');
-  if (wasIn !== inBotc() || was !== botc.phase) if (!game.active) renderGame();
+  if (!game.active || !playing()) renderGame();
 });
+
 
 // ---------- Tabs ----------
 function showTab(t) {

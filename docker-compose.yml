@@ -4,6 +4,7 @@ version: "2.1"
 
 volumes:
   app-data:
+  botc-data:
   browser-settings:
   spotify-data:
   games-data:
@@ -89,3 +90,19 @@ services:
     network_mode: host
     volumes:
       - games-data:/data
+
+  # Blood on the Clocktower: the jdatje/botc repo (latest main at every start), port 8090.
+  # Phones and the kiosk open it on the bar's LAN address; the app keeps the bar's
+  # fixed game room ("house room") and its storyteller code (= the admin code) in sync.
+  botc:
+    build: ./botc
+    restart: always
+    network_mode: host
+    volumes:
+      - botc-data:/data
+    environment:
+      - PORT=8090
+      - DATA_DIR=/data
+      - HOUSE_CODE=WEXER
+      # same as BOTC_HOST_SECRET in the app (default there: wexer-house-room)
+      - HOST_SECRET=wexer-house-room

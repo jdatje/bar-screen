@@ -20,7 +20,6 @@ import * as guests from './lib/guests.js';
 import * as credits from './lib/credits.js';
 import * as masskrug from './lib/masskrug.js';
 import * as newyear from './lib/newyear.js';
-import * as botc from './lib/botc.js';
 import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
@@ -109,11 +108,44 @@ function applySettings(patch = {}) {
     const pin = String(patch.newPin || '').replace(/\D/g, '').slice(0, 8);
     if (pin.length < 4) return { ok: false, error: 'pin_too_short' };
     settings.pin = pin;
+    setTimeout(syncBotc, 100); // the Clocktower storyteller code follows the admin code
   }
   save('settings', settings);
   io.emit('settings', publicSettings());
   return { ok: true, settings: publicSettings() };
 }
+
+// ---------- Blood on the Clocktower ----------
+// Runs as its own container (service "botc", the jdatje/botc repo, latest main) on BOTC_PORT.
+// The bar has one fixed "house room"; its storyteller code is the admin code.
+const BOTC_PORT = Number(process.env.BOTC_PORT || 8090);
+const BOTC_HOUSE = process.env.BOTC_HOUSE || 'WEXER';
+const BOTC_SECRET = process.env.BOTC_HOST_SECRET || 'wexer-house-room';
+let botc = { ok: false, phase: 'setup', players: 0 };
+const botcState = () => ({ url: room?.botcUrl || null, code: BOTC_HOUSE, ...botc });
+async function syncBotc() {
+  try {
+    const res = await fetch(`http://127.0.0.1:${BOTC_PORT}/host/house`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-host-secret': BOTC_SECRET },
+      body: JSON.stringify({ code: BOTC_HOUSE, stCode: settings.pin }),
+      signal: AbortSignal.timeout(4000),
+    });
+    const next = res.ok ? await res.json() : { ok: false };
+    const was = botc;
+    botc = { ok: Boolean(next.ok), phase: next.phase || 'setup', players: next.players || 0 };
+    if (was.phase !== botc.phase || was.players !== botc.players || was.ok !== botc.ok) {
+      io.to('phones').emit('botc:status', botcState());
+      io.to('screen').emit('botc:status', botcState());
+      // the storyteller starts a game: the screen shows the table view
+      if (was.phase === 'setup' && botc.phase === 'night') io.to('screen').emit('botc:started');
+    }
+  } catch {
+    botc = { ...botc, ok: false };
+  }
+}
+setInterval(syncBotc, 10000);
+setTimeout(syncBotc, 2000);
 
 // ---------- Room & players ----------
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no I, O, 0, 1
@@ -173,6 +205,11 @@ async function resolveJoinUrl() {
     }
   }
   base = (base || `http://localhost:${PORT}`).replace(/\/$/, '');
+  try {
+    const u = new URL(base);
+    u.port = String(BOTC_PORT);
+    room.botcUrl = u.origin;
+  } catch {}
   const url = `${base}/play?code=${room.code}`;
   if (url !== room.joinUrl) {
     room.joinUrl = url;
@@ -287,6 +324,7 @@ const screenState = () => ({
   build: BUILD,
   settings: publicSettings(),
   themes: THEMES,
+  botc: botcState(),
   room: { code: room.code, joinUrl: room.joinUrl, qr: room.qr, adminUrl: room.adminUrl, adminQr: room.adminQr, wifiSsid: room.wifiSsid, wifiQr: room.wifiQr },
   players: playerList(),
   player: publicPlayer(),
@@ -317,8 +355,6 @@ app.use(express.static('public', {
 }));
 
 
-// Blood on the Clocktower: homebrew character images downloaded at import
-app.use('/botc/custom', express.static(botc.CUSTOM_IMG_DIR, { maxAge: '30d', immutable: true }));
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 // look and language, for pages that aren't unlocked yet
@@ -543,14 +579,12 @@ function addManualPlayer(name, forQuiz = false) {
   broadcastPlayers();
   return { ok: true, id };
 }
-botc.attach(io, { pinOk, roomPlayers: playerList, addManual: addManualPlayer });
 let wrongCodes = []; // times of wrong room codes in the last minute
 io.on('connection', (socket) => {
   // look and language for every page, right away (also before joining)
   socket.emit('settings', publicSettings());
   const isScreen = () => socket.rooms.has('screen');
   const isPlayer = () => players.has(socket.data.playerId);
-  botc.register(socket);
 
   socket.on('screen:hello', async () => {
     // only the touchscreen itself may act as the screen (controls, settings)
@@ -811,10 +845,8 @@ io.on('connection', (socket) => {
     socket.data.playerId = id;
     saveRoom();
     socket.join('phones');
-    socket.join(`botc-p:${id}`);
     guests.checkIn(cleanName);
-    botc.playerRenamed(id, cleanName);
-    ack?.({ ok: true, playerId: id, name: cleanName, quiz: p.quiz || null, quizRooms: quizRooms(), settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn(), botc: botc.status() });
+    ack?.({ ok: true, playerId: id, name: cleanName, quiz: p.quiz || null, quizRooms: quizRooms(), settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn(), botc: botcState() });
     broadcastPlayers();
     if (game.active) game.emit();
   });
@@ -857,7 +889,6 @@ io.on('connection', (socket) => {
     if (!p) return ack?.({ ok: false });
     players.delete(id);
     game.removePlayer(id);
-    botc.playerRemoved(id);
     for (const sid of p.sockets) {
       const s = io.sockets.sockets.get(sid);
       if (s) s.data.playerId = null;
@@ -886,8 +917,7 @@ io.on('connection', (socket) => {
     if (!p) return ack?.({ ok: false });
     if (p.manual) {
       players.delete(id);
-      botc.playerRemoved(id);
-    } else p.quiz = null;
+      } else p.quiz = null;
     game.removePlayer(id);
     for (const sid of p.sockets) io.to(sid).emit('quiz:out');
     saveRoom();

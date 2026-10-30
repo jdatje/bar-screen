@@ -44,7 +44,7 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   Both containers run with `ipc: host` so the mixer is shared. Game volume default 25%, music 75%.
 
 ## Home screen
-- Tiles: Spelletjes (hub: pub/pop/intro quiz, Clocktower, retro games, drankrad (liquor in stock: no wine/beer/bubbles/port/sherry/vermouth/bitters), draai het rad), Cocktails,
+- Tiles: Spelletjes (hub: pub/pop/intro quiz, Clocktower (botc container), retro games, drankrad (liquor in stock: no wine/beer/bubbles/port/sherry/vermouth/bitters), draai het rad), Cocktails,
   Karaoke (LRCLIB synced lyrics), Fotomuur (photos from phones), Meedoen.
 - Music search (🔍 in the music controls, `public/js/music.js`): songs → speaker queue (play before
   the rest of the playlist); playlists (search + the linked account's own) → play now via go-librespot.
@@ -117,34 +117,20 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Wi-Fi QR on the Meedoen tile (step 1 Wi-Fi, step 2 Meedoen), set in /admin → Scherm → "Wifi van
   de bar"; the password lives only in settings and the screen state, never sent to phones.
 
-## Blood on the Clocktower (live since 30 Oct 2026)
-**Jeroen: every BotC change goes into BOTH the Wexer and the standalone repo jdatje/botc (public site, Gregor);
-in jdatje/botc it must end up merged to `main`. Pushing the Wexer still needs Jeroen's go.**
-Played in person at the big table; phones joined via the Wexer QR. All in English.
-- Data: TPI toolmaker resources (github ThePandemoniumInstitute/botc-release `resources/`, commit f10cd02, Aug 2026):
-  `data-seed/botc/{roles,nightsheet,jinxes}.json`, icons in `public/botc/icons` (_g/_e), edition logos +
-  CCC logo in `public/botc/img` (the CCC logo must stay visible). Built-in scripts TB/BMR/S&V; import any
-  script JSON (official ids resolve locally, homebrew images downloaded once to DATA_DIR/botc-img, served at
-  /botc/custom). Travellers & Fabled are in the data (storyteller can pick them) but not used yet.
-- Server: `lib/botc.js` (state in data/botc.json, imported scripts botc-scripts.json, storyteller tokens
-  botc-st.json); socket events `botc:*`; rooms botc-st / botc-pub / botc-p:<playerId>.
-- Page `/clocktower` (`public/clocktower.html`, `public/botc/app.js`, `botc.css`, `rules.js` = own rules text).
-  Player tabs Token (hold to see, hides on app switch), Town (oval, private guesses + notes), Chats (truly
-  private, storyteller pinned on top, unread badge, vibrate; player chats locked at night, option to lock
-  the storyteller chat too), Notes, Script (+ jinxes), Rules.
-  Storyteller (admin code; token per device, ⏏/Log out): Setup (script, players + seat order, random or
-  chosen characters with counts table, Baron-style setup notes, Drunk/Lunatic auto "sees", bluffs, start),
-  Grimoire (oval, DEMON/MINION markers, seat sheet: die/ghost vote/change character/what they see/alignment/
-  reminders/show "You are"), Night order (only characters in play, tap to tick), Chats, Notes + game log.
-  "🃏 Show" = full-screen info cards (+ bluffs). Day/night switch; day timer (auto at dawn, length in ⚙).
-- Wexer: hub card "Clocktower" opens the page in a full-screen frame (`?mode=screen`): table view with
-  town square + big day timer (bell at 0), night scene; "Storyteller" button (code) for the grimoire on the
-  screen, ⏏ back to table view; opens by itself when a game starts. Grimoire revealed at game end.
-- Styles: 6 (Gothic, Parchment, Blood Moon, Ravenswood, Midnight, Candlelight), chosen per device and per
-  role (player / storyteller / screen) in ⚙.
-- Phones: players join themselves (Spel tab → Clocktower → Join; Leave while setting up); the storyteller can
-  still tick/untick in Setup. Seated phones jump to /clocktower when the game starts.
-- Nominations, voting and first-night info happen in real life on purpose.
+## Blood on the Clocktower
+**Jeroen: BotC changes are made in the jdatje/botc repo (also botc.maisonbaron.nl, Gregor) and merged to `main`
+there. The Wexer runs that repo; nothing BotC-specific lives in app/ any more.**
+- Service `botc` (docker-compose, folder `botc/`): clones jdatje/botc at build; `start.sh` fetches the newest
+  `main` at every container start (falls back to the copy it has without internet). So a merge in the repo
+  reaches the bar at its next boot or container restart, without a Wexer push. Port 8090, volume botc-data.
+- The bar plays in a fixed "house room" WEXER (HOUSE_CODE, HOST_SECRET=wexer-house-room in compose; the app's
+  BOTC_HOST_SECRET default matches). The app calls POST http://127.0.0.1:8090/host/house every 10 s with the admin
+  code as storyteller code (also right after the code changes) and gets phase/players back (`botc:status`).
+- Screen: hub card "Clocktower" opens `<LAN-IP>:8090/?code=WEXER&watch=1&embed=1` in a full-screen frame (table
+  view, join QR, day timer); 🔑 Storyteller + admin code = grimoire on the screen, ⏏ back to the table view,
+  ✕ Close (postMessage). Opens by itself when a game starts.
+- Phones: Spel tab tile "Clocktower" links to `<LAN-IP>:8090/?code=WEXER&name=<Wexer name>`: in the game at once.
+  Storyteller on a phone: 🔑 "I'm the storyteller" + admin code.
 
 ## For the next update (from Jeroen, not built yet)
 - Phones: someone who already joined with their name gets a way into the admin panel from

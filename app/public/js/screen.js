@@ -87,21 +87,28 @@ document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click'
 $('qwixx-close').addEventListener('click', () => $('qwixx').classList.remove('open'));
 $('qwixx').addEventListener('click', (e) => e.target.id === 'qwixx' && $('qwixx').classList.remove('open'));
 
-// ---------- Blood on the Clocktower: its own page in a frame over the screen ----------
+// ---------- Blood on the Clocktower: the botc container (jdatje/botc) in a frame over the screen ----------
+// Opened on the bar's LAN address, so the join QR in the table view works for phones.
+const botcOrigin = () => state.botc?.url || `${location.protocol}//${location.hostname}:8090`;
 function openBotc() {
   const box = $('botc');
-  if (!box.firstChild) box.innerHTML = '<iframe src="/clocktower?mode=screen" title="Blood on the Clocktower" allow="autoplay"></iframe>';
+  const src = `${botcOrigin()}/?code=${encodeURIComponent(state.botc?.code || 'WEXER')}&watch=1&embed=1`;
+  if (!box.firstChild || box.dataset.src !== src) {
+    box.dataset.src = src;
+    box.innerHTML = `<iframe src="${src}" title="Blood on the Clocktower" allow="autoplay"></iframe>`;
+  }
   box.hidden = false;
 }
 const botcOpen = () => !$('botc').hidden;
 window.addEventListener('message', (e) => {
-  if (e.origin === location.origin && e.data?.botc === 'close') {
+  if (e.data?.botc === 'close' && (e.origin === botcOrigin() || e.origin.endsWith(':8090'))) {
     $('botc').hidden = true;
     window.dispatchEvent(new Event('wexer:activity'));
   }
 });
 // the storyteller starts a game: show the table view (day timer) right away
 socket.on('botc:started', openBotc);
+socket.on('botc:status', (b) => (state.botc = b));
 
 // ---------- Clock ----------
 // The bar PC runs on UTC; always show Amsterdam time (incl. summer/winter time)
@@ -441,7 +448,7 @@ socket.on('state', (s) => {
   // the app was updated or restarted: load the new screen code
   if (loadedBuild && s.build && s.build !== loadedBuild) return location.reload();
   loadedBuild = s.build;
-  Object.assign(state, { settings: s.settings, themes: s.themes });
+  Object.assign(state, { settings: s.settings, themes: s.themes, botc: s.botc });
   renderThemes();
   renderRoom(s.room);
   renderPlayers(s.players);
