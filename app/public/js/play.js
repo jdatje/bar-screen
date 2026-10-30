@@ -237,6 +237,9 @@ socket.on('quiz:out', () => {
 // into the bar's game with the name you joined with
 function botcCard() {
   if (!botc?.url) return '';
+  if (botc.source !== 'local')
+    return `<a class="panel p-botc" href="${esc(botc.url)}/" target="_blank" rel="noopener"><span class="mono">🩸 Blood on the Clocktower</span>
+    <b class="display">Clocktower</b><span>Log in met je Boardpass-account en vul de spelcode in →</span></a>`;
   const n = botc.players || 0;
   const line = !botc.ok ? 'Het spel start nog op, probeer zo weer' : botc.phase === 'setup' ? `De verteller zet klaar · ${n} ${n === 1 ? 'speler' : 'spelers'}` : botc.phase === 'ended' ? 'Klaar voor een nieuw spel' : 'Er loopt een spel';
   const href = `${botc.url}/?code=${encodeURIComponent(botc.code)}&name=${encodeURIComponent(store.get('name') || '')}`;

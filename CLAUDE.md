@@ -61,7 +61,7 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   only "new room code" changes it. One name = one player (case/spaces ignored).
 - Phone Spel tab = game picker: separate waiting rooms 🧠 Pubquiz, 🎤 Popquiz, 🎧 Intro raden (opt-in: `quiz:join
   {type}`, player field `quiz` = room in room.json; only that room plays when that quiz type starts; counts via
-  `quizRooms`), 🩸 Clocktower (link to /clocktower, "Join this game") and 🎲 Qwixx (opens boardpass.maisonbaron.nl).
+  `quizRooms`), 🩸 Clocktower (website or the bar's own copy, see Blood on the Clocktower) and 🎲 Qwixx (opens boardpass.maisonbaron.nl).
 - Quiz setup: shows only phones in that quiz's room; the screen can add a name by hand (no phone, joins that
   room) or take someone out (× on the chip, `quiz:out`; the phone goes back to the picker).
 - Credits (`lib/credits.js`): /admin tab Tegoed — free name, add any amount, −1 per tap.
@@ -126,10 +126,14 @@ there. The Wexer runs that repo; nothing BotC-specific lives in app/ any more.**
 - The bar plays in a fixed "house room" WEXER (HOUSE_CODE, HOST_SECRET=wexer-house-room in compose; the app's
   BOTC_HOST_SECRET default matches). The app calls POST http://127.0.0.1:8090/host/house every 10 s with the admin
   code as storyteller code (also right after the code changes) and gets phase/players back (`botc:status`).
-- Screen: hub card "Clocktower" opens `<LAN-IP>:8090/?code=WEXER&watch=1&embed=1` in a full-screen frame (table
+- Setting `botcSource` (/admin → Scherm → Blood on the Clocktower): `web` (default, since 30 Oct 2026) or `local`.
+  web: the screen frames https://botc.maisonbaron.nl/?embed=1 (Boardpass allows framing from localhost and
+  *.maisonbaron.nl; the kiosk signs in once, which needs a USB keyboard) — a letter pad for the game code, then the
+  table view; phones' tile opens the website (Boardpass account + game code). local: the bar's own copy below.
+- local: hub card "Clocktower" opens `<LAN-IP>:8090/?code=WEXER&watch=1&embed=1` in a full-screen frame (table
   view, join QR, day timer); 🔑 Storyteller + admin code = grimoire on the screen, ⏏ back to the table view,
   ✕ Close (postMessage). Opens by itself when a game starts.
-- Phones: Spel tab tile "Clocktower" links to `<LAN-IP>:8090/?code=WEXER&name=<Wexer name>`: in the game at once.
+- local, phones: Spel tab tile "Clocktower" links to `<LAN-IP>:8090/?code=WEXER&name=<Wexer name>`: in the game at once.
   Storyteller on a phone: 🔑 "I'm the storyteller" + admin code.
 
 ## For the next update (from Jeroen, not built yet)

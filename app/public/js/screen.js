@@ -88,11 +88,12 @@ $('qwixx-close').addEventListener('click', () => $('qwixx').classList.remove('op
 $('qwixx').addEventListener('click', (e) => e.target.id === 'qwixx' && $('qwixx').classList.remove('open'));
 
 // ---------- Blood on the Clocktower: the botc container (jdatje/botc) in a frame over the screen ----------
-// Opened on the bar's LAN address, so the join QR in the table view works for phones.
-const botcOrigin = () => state.botc?.url || `${location.protocol}//${location.hostname}:8090`;
+// Either the website (botc.maisonbaron.nl) or the bar's own copy on its LAN address (setting botcSource).
+const botcOrigin = () => (state.botc?.url ? new URL(state.botc.url).origin : `${location.protocol}//${location.hostname}:8090`);
 function openBotc() {
   const box = $('botc');
-  const src = `${botcOrigin()}/?code=${encodeURIComponent(state.botc?.code || 'WEXER')}&watch=1&embed=1`;
+  // the website: its own start page with a letter pad for the game code; the bar's own copy: the house room
+  const src = state.botc?.source === 'local' ? `${botcOrigin()}/?code=${encodeURIComponent(state.botc?.code || 'WEXER')}&watch=1&embed=1` : `${state.botc?.url || 'https://botc.maisonbaron.nl'}/?embed=1`;
   if (!box.firstChild || box.dataset.src !== src) {
     box.dataset.src = src;
     box.innerHTML = `<iframe src="${src}" title="Blood on the Clocktower" allow="autoplay"></iframe>`;

@@ -43,6 +43,8 @@ if (settings.saverPhotos == null) settings.saverPhotos = true; // photo wall in 
 if (settings.spookySounds == null) settings.spookySounds = true; // random spooky sounds in Halloween looks
 if (settings.prostMoments == null) settings.prostMoments = true; // prost moments in Oktoberfest looks
 if (settings.volcanoMoments == null) settings.volcanoMoments = true; // volcano moments in Tiki looks
+// Blood on the Clocktower: the website (botc.maisonbaron.nl, Boardpass accounts) or the bar's own copy
+if (!['web', 'local'].includes(settings.botcSource)) settings.botcSource = 'web';
 settings.gameVolume = { music: 75, game: 25, ...(settings.gameVolume || {}) };
 if (!settings.pin) settings.pin = DEFAULT_PIN;
 // the bar's Wi-Fi, for the Wi-Fi QR code on the screen (never sent to phones)
@@ -64,7 +66,7 @@ quizDefaults.pubquiz.lang = 'nl';
 
 const publicSettings = () => ({
   theme: settings.theme, language: settings.language, tiles: settings.tiles, screensaver: settings.screensaver,
-  requests: settings.requests, saverPhotos: settings.saverPhotos, spookySounds: settings.spookySounds, prostMoments: settings.prostMoments, volcanoMoments: settings.volcanoMoments, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
+  requests: settings.requests, saverPhotos: settings.saverPhotos, spookySounds: settings.spookySounds, prostMoments: settings.prostMoments, volcanoMoments: settings.volcanoMoments, botcSource: settings.botcSource, gameVolume: settings.gameVolume, hasPin: Boolean(settings.pin),
 });
 const SAVER_MINUTES = [0, 1, 2, 5, 10, 15, 30, 60];
 
@@ -94,6 +96,13 @@ function applySettings(patch = {}) {
   if (typeof patch.spookySounds === 'boolean') settings.spookySounds = patch.spookySounds;
   if (typeof patch.prostMoments === 'boolean') settings.prostMoments = patch.prostMoments;
   if (typeof patch.volcanoMoments === 'boolean') settings.volcanoMoments = patch.volcanoMoments;
+  if (['web', 'local'].includes(patch.botcSource) && patch.botcSource !== settings.botcSource) {
+    settings.botcSource = patch.botcSource;
+    setTimeout(() => {
+      io.to('phones').emit('botc:status', botcState());
+      io.to('screen').emit('botc:status', botcState());
+    }, 0);
+  }
   if (patch.tiles && typeof patch.tiles === 'object') {
     for (const key of TILE_KEYS) if (validTileChoice(key, patch.tiles[key])) settings.tiles[key] = patch.tiles[key];
   }
@@ -122,7 +131,11 @@ const BOTC_PORT = Number(process.env.BOTC_PORT || 8090);
 const BOTC_HOUSE = process.env.BOTC_HOUSE || 'WEXER';
 const BOTC_SECRET = process.env.BOTC_HOST_SECRET || 'wexer-house-room';
 let botc = { ok: false, phase: 'setup', players: 0 };
-const botcState = () => ({ url: room?.botcUrl || null, code: BOTC_HOUSE, ...botc });
+const BOTC_WEB = (process.env.BOTC_WEB_URL || 'https://botc.maisonbaron.nl').replace(/\/$/, '');
+// web: the website in a frame on the screen, phones sign in with Boardpass and type the game code;
+// local: the bar's own copy (container), fixed house room, phones in at once
+const botcState = () =>
+  settings.botcSource === 'local' ? { source: 'local', url: room?.botcUrl || null, code: BOTC_HOUSE, ...botc } : { source: 'web', url: BOTC_WEB, ok: true };
 async function syncBotc() {
   try {
     const res = await fetch(`http://127.0.0.1:${BOTC_PORT}/host/house`, {
@@ -132,6 +145,7 @@ async function syncBotc() {
       signal: AbortSignal.timeout(4000),
     });
     const next = res.ok ? await res.json() : { ok: false };
+    if (settings.botcSource !== 'local') return;
     const was = botc;
     botc = { ok: Boolean(next.ok), phase: next.phase || 'setup', players: next.players || 0 };
     if (was.phase !== botc.phase || was.players !== botc.players || was.ok !== botc.ok) {
