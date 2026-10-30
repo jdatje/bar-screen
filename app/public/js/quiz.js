@@ -156,14 +156,14 @@ function onOptionClick(e) {
   renderSetup();
 }
 
-// Everyone on a phone plus names added by hand; tap × to take someone out
+// Phones that tapped "Quiz" plus names added by hand; tap × to take someone out of the quiz
 export function renderPlayers() {
   const el = $('player-chips');
   if (!el) return;
-  const list = (ctx?.state.players || []).filter((p) => p.online || p.manual);
+  const list = (ctx?.state.players || []).filter((p) => p.quiz && (p.online || p.manual));
   el.innerHTML = list.length
     ? list.map((p) => `<span class="pchip ${p.online ? '' : 'off'}">${esc(p.name)}${p.online ? '' : ' <small>📵</small>'}<button class="pchip-x" data-remove-player="${esc(p.id)}" aria-label="${esc(p.name)} eruit halen">×</button></span>`).join('')
-    : '<span class="muted">Nog niemand — scan de code</span>';
+    : '<span class="muted">Nog niemand — scan de code en tik op Quiz</span>';
 }
 
 async function onPlayerChips(e) {
@@ -172,7 +172,7 @@ async function onPlayerChips(e) {
   const p = (ctx.state.players || []).find((x) => x.id === b.dataset.removePlayer);
   if (!p) return;
   b.closest('.pchip').classList.add('going');
-  const res = await call(ctx.socket, 'players:remove', { id: p.id });
+  const res = await call(ctx.socket, 'quiz:out', { id: p.id });
   if (!res?.ok) toast('Lukt niet');
 }
 

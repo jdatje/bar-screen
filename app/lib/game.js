@@ -55,13 +55,13 @@ export class Game {
     return MUSIC_TYPES.includes(this.type);
   }
   onlineIds() {
-    return [...this.players().entries()].filter(([, p]) => p.sockets.size > 0).map(([id]) => id);
+    return [...this.players().entries()].filter(([, p]) => p.quiz && p.sockets.size > 0).map(([id]) => id);
   }
 
   // ---------- Players ----------
-  // who plays: everyone on a phone right now plus names added by hand
+  // who plays: phones that tapped "Quiz" plus names added by hand on the screen
   addPlayer(id) {
-    if (this.active && !this.scores.has(id)) this.scores.set(id, 0);
+    if (this.active && !this.scores.has(id) && this.players().get(id)?.quiz) this.scores.set(id, 0);
   }
   removePlayer(id) {
     this.scores.delete(id);
@@ -73,7 +73,7 @@ export class Game {
   // ---------- Lifecycle ----------
   async start(type, settings) {
     this.reset();
-    for (const [id, p] of this.players()) if (p.sockets.size > 0 || p.manual) this.scores.set(id, 0);
+    for (const [id, p] of this.players()) if (p.quiz && (p.sockets.size > 0 || p.manual)) this.scores.set(id, 0);
     this.active = true;
     this.type = type;
     this.settings = {

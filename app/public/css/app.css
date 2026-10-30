@@ -837,3 +837,10 @@ body.has-ticker .screen { padding-bottom: 52px; }
 /* phone: link to Blood on the Clocktower */
 .p-botc { display: flex; flex-direction: column; gap: 6px; padding: 18px; text-decoration: none; color: #f3e3c3; background: linear-gradient(135deg, #4a0d0d, #160808); border-color: #7a1a1a; }
 .p-botc .display { font-size: 30px; }
+
+/* phone: game picker in the Spel tab */
+.p-games { display: flex; flex-direction: column; gap: 12px; }
+.p-game { display: flex; flex-direction: column; gap: 6px; padding: 18px; text-align: left; color: var(--text); font: inherit; }
+.p-game .display { font-size: 30px; }
+.p-game.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.p-game .btn { align-self: flex-start; margin-top: 4px; }

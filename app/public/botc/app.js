@@ -275,7 +275,7 @@ function playerHeader() {
 const P_BODY = {
   token() {
     const m = me.me;
-    if (me.phase === 'setup') return `<div class="center"><div class="tk-back huge"></div><h2 class="h">Waiting for the storyteller</h2><p class="muted">You're in the game. Your character arrives here when the game starts.</p></div>`;
+    if (me.phase === 'setup') return `<div class="center"><div class="tk-back huge"></div><h2 class="h">Waiting for the storyteller</h2><p class="muted">You're in the game (${me.total} ${me.total === 1 ? 'player' : 'players'} so far). Your character arrives here when the game starts.</p><button class="btn small" data-act="leave">Leave this game</button></div>`;
     const r = m.role;
     const dead = m.dead
       ? `<div class="dead-note">☠ You are dead. ${m.ghost ? 'You still have your <b>ghost vote</b>: one vote for the rest of the game.' : 'You have used your ghost vote.'}</div>`
@@ -581,8 +581,11 @@ function renderNoJoin() {
 }
 function renderWaiting() {
   const v = me || pub;
+  const setup = v?.phase === 'setup';
   $('#app').innerHTML = `<div class="center pad"><div class="tk-back huge"></div><h1 class="h">Blood on the Clocktower</h1>
-    <p>${v?.phase === 'setup' ? "The storyteller is setting up. Ask them to add you; your token shows up here." : 'A game is running, but you are not in it.'}</p>
+    <p>${setup ? `The storyteller is setting up · ${v.total} ${v.total === 1 ? 'player' : 'players'} so far.` : 'A game is running. You can join the next one.'}</p>
+    ${setup ? `<button class="btn primary big" data-act="join">🩸 Join this game</button>` : ''}
+    <a class="btn" href="/play">← Back to the other games</a>
     <button class="btn" data-act="settings">⚙ Style</button>
     <button class="btn" data-act="login">🔑 I'm the storyteller</button></div>`;
 }
@@ -927,6 +930,13 @@ const ACT = {
     render();
   },
   settings: openSettings,
+  join: async () => {
+    const res = await call('botc:join', { on: true });
+    if (!res?.ok) toast(res?.error || 'Could not join');
+  },
+  leave: async () => {
+    if (await confirmSheet('Leave this game?', 'Leave')) await call('botc:join', { on: false });
+  },
   login,
   logout,
   close: () => window.parent?.postMessage({ botc: 'close' }, location.origin),

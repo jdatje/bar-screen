@@ -59,13 +59,15 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Guest check-ins (`lib/guests.js`): days per name, shown only on /admin tab Gasten.
 - Room code and players are saved (`data/room.json`), so phones stay joined after a restart;
   only "new room code" changes it. One name = one player (case/spaces ignored).
-- Quiz setup: players on a phone join automatically; the screen can add a name by hand
-  (no phone) or take someone out (× on the chip; that phone gets the join form again).
+- Phone Spel tab = game picker: 🧠 Quiz (opt-in: `quiz:join`, player flag `quiz` in room.json; only those
+  play) and 🩸 Clocktower (link to /clocktower, where players tap "Join this game" while the storyteller sets up).
+- Quiz setup: shows only phones that tapped Quiz; the screen can add a name by hand (no phone, plays the quiz)
+  or take someone out of the quiz (× on the chip, `quiz:out`; the phone goes back to the picker).
 - Credits (`lib/credits.js`): /admin tab Tegoed — free name, add any amount, −1 per tap.
 - /admin tab Voorraad: the stock from the phone (bottles, ook in huis, own bottles), `/api/admin/stock*`.
 - Own bottles have a type (`kind`: Sterke drank, Likeur, Wijn & bubbels, Bier, Vermout & bitters, Fris,
   Sap, Siroop, Overig); the drankrad takes own bottles of type Sterke drank and Likeur.
-- Hub card Qwixx: overlay with a QR code to https://games.maisonbaron.nl (`/qr/qwixx.png`; the
+- Hub card Qwixx: overlay with a QR code to https://boardpass.maisonbaron.nl (`/qr/qwixx.png`; the
   site can't be framed, so phones play it).
 - Scrollbars use the look's colours (app.css, end).
 - Halloween looks (SPOOKY_THEMES): the screensaver gets 7 drifting ghosts (`#saver-ghosts`, saver.js).
@@ -114,7 +116,7 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Wi-Fi QR on the Meedoen tile (step 1 Wi-Fi, step 2 Meedoen), set in /admin → Scherm → "Wifi van
   de bar"; the password lives only in settings and the screen state, never sent to phones.
 
-## Blood on the Clocktower (built, waiting for Jeroen's push)
+## Blood on the Clocktower (live since 30 Oct 2026)
 Played in person at the big table; phones joined via the Wexer QR. All in English.
 - Data: TPI toolmaker resources (github ThePandemoniumInstitute/botc-release `resources/`, commit f10cd02, Aug 2026):
   `data-seed/botc/{roles,nightsheet,jinxes}.json`, icons in `public/botc/icons` (_g/_e), edition logos +
@@ -137,7 +139,8 @@ Played in person at the big table; phones joined via the Wexer QR. All in Englis
   screen, ⏏ back to table view; opens by itself when a game starts. Grimoire revealed at game end.
 - Styles: 6 (Gothic, Parchment, Blood Moon, Ravenswood, Midnight, Candlelight), chosen per device and per
   role (player / storyteller / screen) in ⚙.
-- Phones: Spel tab shows a link card when you're seated; jumps to /clocktower when the game starts.
+- Phones: players join themselves (Spel tab → Clocktower → Join; Leave while setting up); the storyteller can
+  still tick/untick in Setup. Seated phones jump to /clocktower when the game starts.
 - Nominations, voting and first-night info happen in real life on purpose.
 
 ## For the next update (from Jeroen, not built yet)

@@ -18,6 +18,7 @@ let playerCount = 0;
 let recipeOpen = null;
 let theme = 'industrial';
 let olie = [];
+let inQuiz = false; // the quiz is opt-in: tap "Quiz" in the Spel tab
 let botc = { phase: 'setup', seated: [] }; // Blood on the Clocktower: is there a game with me in it?
 
 const params = new URLSearchParams(location.search);
@@ -45,6 +46,7 @@ async function join(silent) {
   $('me').textContent = name;
   setJoined(true);
   if (res.botc) botc = res.botc;
+  inQuiz = Boolean(res.quiz);
   onGame(res.game);
 }
 
@@ -189,12 +191,37 @@ socket.on('ny:olie', (list) => {
   }
 });
 
-// ---------- Blood on the Clocktower: its own page (/clocktower) ----------
+// ---------- Game picker: the quiz and Blood on the Clocktower are opt-in ----------
+function quizCard() {
+  if (inQuiz)
+    return `<div class="panel p-game on"><span class="mono">🧠 Quiz</span><b class="display">Je doet mee</b>
+      <span>${game.active ? 'De quiz loopt, de vraag komt zo.' : 'Wacht tot de quiz start: de vragen verschijnen hier.'}</span>
+      <button class="btn small" type="button" data-quiz="off">Niet meer meedoen</button></div>`;
+  return `<button class="panel p-game" type="button" data-quiz="on"><span class="mono">🧠 Quiz</span><b class="display">${game.active ? 'Er loopt een quiz' : 'Quiz'}</b>
+    <span>${game.active ? 'Tik om mee te doen →' : 'Pubquiz, popquiz of intro raden. Tik om in de wachtkamer te gaan →'}</span></button>`;
+}
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-quiz]');
+  if (!b) return;
+  const res = await call(socket, 'quiz:join', { on: b.dataset.quiz === 'on' });
+  if (!res?.ok) return flash('Lukt niet');
+  inQuiz = res.quiz;
+  navigator.vibrate?.(30);
+  onGame(res.game);
+});
+socket.on('quiz:out', () => {
+  inQuiz = false;
+  renderGame();
+});
+
 const inBotc = () => botc.seated.includes(store.get('playerId'));
 function botcCard() {
-  if (!inBotc()) return '';
+  const n = botc.seated.length;
+  const line = inBotc()
+    ? botc.phase === 'setup' ? 'Je doet mee · wacht op de verteller' : 'Het spel loopt'
+    : botc.phase === 'setup' ? `De verteller zet klaar · ${n} ${n === 1 ? 'speler' : 'spelers'}` : botc.phase === 'ended' ? 'Klaar voor een nieuw spel' : 'Er loopt een spel';
   return `<a class="panel p-botc" href="/clocktower"><span class="mono">🩸 Blood on the Clocktower</span>
-    <b class="display">${botc.phase === 'setup' ? 'Je doet mee' : 'Het spel loopt'}</b><span>Open je token, chats en notities →</span></a>`;
+    <b class="display">${inBotc() ? 'Je doet mee' : 'Clocktower'}</b><span>${line} →</span></a>`;
 }
 socket.on('botc:status', (b) => {
   const was = botc.phase;
@@ -227,18 +254,18 @@ function onGame(g) {
   const wasActive = game.active;
   game = { ...g, receivedAt: Date.now() };
   // jump to the game tab when a quiz starts or a question appears
-  if ((g.active && !wasActive) || g.phase === 'question') showTab('game');
+  if (inQuiz && ((g.active && !wasActive) || g.phase === 'question')) showTab('game');
   renderGame();
 }
 
 function renderGame() {
   const el = $('tab-game');
   const g = game;
-  if (!g.active) {
-    el.innerHTML = `<span class="mono accent">Verbonden</span>
+  if (!g.active || !inQuiz) {
+    el.innerHTML = `<span class="mono accent">Verbonden · ${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</span>
       <h1 class="display p-title">Hoi ${esc(store.get('name') || '')}</h1>
-      <p class="big-text" style="margin:0;color:var(--text-2)">Hou dit scherm open. Zodra er een quiz start, verschijnen de vragen hier.</p>
-      <p class="mono muted">${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</p>${botcCard()}${newYearCard()}`;
+      <p class="big-text" style="margin:0;color:var(--text-2)">Kies waar je aan meedoet.</p>
+      <div class="p-games">${quizCard()}${botcCard()}</div>${newYearCard()}`;
     return;
   }
   const head = `<span class="mono accent">${esc(g.typeLabel)} · ronde ${g.round} van ${g.rounds}</span>`;

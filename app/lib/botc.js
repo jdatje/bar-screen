@@ -364,7 +364,8 @@ export function broadcast() {
   if (!io) return;
   io.to('botc-st').emit('botc:st', stView());
   io.to('botc-pub').emit('botc:pub', publicView());
-  for (const s of g.seats) if (s.playerId) io.to(`botc-p:${s.playerId}`).emit('botc:me', playerView(s.playerId));
+  // every phone in the room: seated players get their token, the others the join button
+  for (const p of helpers.roomPlayers?.() || []) io.to(`botc-p:${p.id}`).emit('botc:me', playerView(p.id));
   // phones that aren't seated still see the public state (and the join banner)
   io.to('phones').emit('botc:status', { phase: g.phase, seated: g.seats.map((s) => s.playerId).filter(Boolean) });
   persist();
@@ -495,6 +496,22 @@ export function register(socket) {
     });
     for (const s of g.seats) s.name = room.get(s.playerId)?.name || s.name;
   }));
+  // players join (or leave) the game themselves while the storyteller sets up
+  socket.on('botc:join', ({ on } = {}, ack) => {
+    const id = pid();
+    if (!id) return ack?.({ ok: false });
+    if (g.phase !== 'setup') return ack?.({ ok: false, error: 'The game has already started' });
+    const room = helpers.roomPlayers().find((p) => p.id === id);
+    if (!room) return ack?.({ ok: false });
+    const seated = g.seats.some((s) => s.playerId === id);
+    if (on !== false && !seated) {
+      if (g.seats.length >= 20) return ack?.({ ok: false, error: 'The table is full' });
+      g.seats.push({ id: crypto.randomBytes(4).toString('hex'), playerId: id, name: room.name, role: null, shown: null, align: 'good', dead: false, ghost: true, reminders: [] });
+    }
+    if (on === false) g.seats = g.seats.filter((s) => s.playerId !== id);
+    broadcast();
+    ack?.({ ok: true });
+  });
   socket.on('botc:addName', (p = {}, ack) => {
     if (!isST()) return ack?.({ ok: false });
     ack?.(helpers.addManual(String(p.name || '')));
