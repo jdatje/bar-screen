@@ -122,13 +122,15 @@ const newCode = () => Array.from({ length: 4 }, () => CODE_CHARS[crypto.randomIn
 // phones don't have to join again every time.
 const savedRoom = load('room', { code: null, players: {} });
 const room = { code: savedRoom.code || newCode(), joinUrl: null, qr: null, adminUrl: null, adminQr: null, wifiSsid: '', wifiQr: null };
-const players = new Map( // playerId -> { name, sockets: Set, manual }
-  Object.entries(savedRoom.players || {}).map(([id, p]) => [id, { name: p.name, manual: Boolean(p.manual), quiz: Boolean(p.quiz), sockets: new Set() }])
+const QUIZ_TYPES = ['pubquiz', 'popquiz', 'intro'];
+const quizType = (t) => (QUIZ_TYPES.includes(t) ? t : null);
+const players = new Map( // playerId -> { name, sockets: Set, manual, quiz: waiting room or null }
+  Object.entries(savedRoom.players || {}).map(([id, p]) => [id, { name: p.name, manual: Boolean(p.manual), quiz: quizType(p.quiz), sockets: new Set() }])
 );
 function saveRoom() {
   save('room', {
     code: room.code,
-    players: Object.fromEntries([...players].map(([id, p]) => [id, { name: p.name, manual: p.manual || false, quiz: Boolean(p.quiz) }])),
+    players: Object.fromEntries([...players].map(([id, p]) => [id, { name: p.name, manual: p.manual || false, quiz: p.quiz || null }])),
   });
 }
 saveRoom();
@@ -138,7 +140,9 @@ const nameKey = (n) => String(n || '').trim().toLowerCase().replace(/\s+/g, ' ')
 const findByName = (n) => [...players].find(([, p]) => nameKey(p.name) === nameKey(n))?.[0] || null;
 
 const playerList = () =>
-  [...players.entries()].map(([id, p]) => ({ id, name: p.name, online: p.sockets.size > 0, manual: Boolean(p.manual), quiz: Boolean(p.quiz) }));
+  [...players.entries()].map(([id, p]) => ({ id, name: p.name, online: p.sockets.size > 0, manual: Boolean(p.manual), quiz: p.quiz || null }));
+// how many phones wait in each quiz room
+const quizRooms = () => Object.fromEntries(QUIZ_TYPES.map((t) => [t, [...players.values()].filter((p) => p.quiz === t && (p.sockets.size > 0 || p.manual)).length]));
 
 // Wi-Fi QR code: phones that scan it join the bar's network (password included)
 async function makeWifiQr() {
@@ -297,6 +301,7 @@ const broadcastPhotos = () => io.to('screen').emit('photos', photos.list());
 const broadcastPlayers = () => {
   io.to('screen').emit('players', playerList());
   io.to('phones').emit('players', playerList().length);
+  io.to('phones').emit('quizRooms', quizRooms());
 };
 
 // ---------- HTTP ----------
@@ -532,7 +537,7 @@ function addManualPlayer(name, forQuiz = false) {
   if (!clean) return { ok: false, error: 'no_name' };
   if (findByName(clean)) return { ok: false, error: 'exists' };
   const id = crypto.randomUUID();
-  players.set(id, { name: clean, manual: true, quiz: Boolean(forQuiz), sockets: new Set() });
+  players.set(id, { name: clean, manual: true, quiz: quizType(forQuiz), sockets: new Set() });
   if (forQuiz) game.addPlayer(id);
   saveRoom();
   broadcastPlayers();
@@ -809,7 +814,7 @@ io.on('connection', (socket) => {
     socket.join(`botc-p:${id}`);
     guests.checkIn(cleanName);
     botc.playerRenamed(id, cleanName);
-    ack?.({ ok: true, playerId: id, name: cleanName, quiz: Boolean(p.quiz), settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn(), botc: botc.status() });
+    ack?.({ ok: true, playerId: id, name: cleanName, quiz: p.quiz || null, quizRooms: quizRooms(), settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn(), botc: botc.status() });
     broadcastPlayers();
     if (game.active) game.emit();
   });
@@ -842,9 +847,9 @@ io.on('connection', (socket) => {
   socket.on('mk:clear', ({ pin, kind } = {}, ack) => ack?.(isScreen() && pinOk(pin) ? masskrug.clear(kind) : { ok: false }));
 
   // ----- Players (setup screen): add someone by name, or take someone out -----
-  socket.on('players:add', ({ name } = {}, ack) => {
+  socket.on('players:add', ({ name, type } = {}, ack) => {
     if (!isScreen()) return ack?.({ ok: false });
-    ack?.(addManualPlayer(name, true));
+    ack?.(addManualPlayer(name, quizType(type) || 'pubquiz'));
   });
   socket.on('players:remove', ({ id } = {}, ack) => {
     if (!isScreen()) return ack?.({ ok: false });
@@ -863,12 +868,12 @@ io.on('connection', (socket) => {
     ack?.({ ok: true });
   });
 
-  // the quiz is opt-in: a phone taps "Quiz" in its Spel tab (or leaves again)
-  socket.on('quiz:join', ({ on } = {}, ack) => {
+  // the quizzes are opt-in: a phone taps Pubquiz, Popquiz or Intro raden in its Spel tab (or leaves again)
+  socket.on('quiz:join', ({ type } = {}, ack) => {
     const p = players.get(socket.data.playerId);
     if (!p) return ack?.({ ok: false });
-    p.quiz = on !== false;
-    if (p.quiz) game.addPlayer(socket.data.playerId);
+    p.quiz = quizType(type);
+    if (p.quiz && game.active && game.type === p.quiz) game.addPlayer(socket.data.playerId);
     else game.removePlayer(socket.data.playerId);
     saveRoom();
     broadcastPlayers();
@@ -882,7 +887,7 @@ io.on('connection', (socket) => {
     if (p.manual) {
       players.delete(id);
       botc.playerRemoved(id);
-    } else p.quiz = false;
+    } else p.quiz = null;
     game.removePlayer(id);
     for (const sid of p.sockets) io.to(sid).emit('quiz:out');
     saveRoom();
@@ -891,7 +896,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('phone:answer', ({ choice } = {}, ack) => {
-    if (!isPlayer() || !players.get(socket.data.playerId)?.quiz) return ack?.({ ok: false });
+    if (!isPlayer() || players.get(socket.data.playerId)?.quiz !== game.type) return ack?.({ ok: false });
     ack?.(game.answer(socket.data.playerId, Number(choice)));
   });
 

@@ -6,6 +6,7 @@ let ctx;
 let opts = null; // options from the server
 let type = 'intro';
 let draft = {}; // settings per type being edited
+const TYPE_NAMES = { pubquiz: 'Pubquiz', popquiz: 'Popquiz', intro: 'Intro raden' };
 
 const STEPPERS = {
   rounds: { label: 'Rondes', min: 1, max: 6, step: 1 },
@@ -160,7 +161,7 @@ function onOptionClick(e) {
 export function renderPlayers() {
   const el = $('player-chips');
   if (!el) return;
-  const list = (ctx?.state.players || []).filter((p) => p.quiz && (p.online || p.manual));
+  const list = (ctx?.state.players || []).filter((p) => p.quiz === type && (p.online || p.manual));
   el.innerHTML = list.length
     ? list.map((p) => `<span class="pchip ${p.online ? '' : 'off'}">${esc(p.name)}${p.online ? '' : ' <small>📵</small>'}<button class="pchip-x" data-remove-player="${esc(p.id)}" aria-label="${esc(p.name)} eruit halen">×</button></span>`).join('')
     : '<span class="muted">Nog niemand — scan de code en tik op Quiz</span>';
@@ -181,7 +182,7 @@ async function onAddPlayer(e) {
   const input = $('add-player-name');
   const name = input.value.trim();
   if (!name) return;
-  const res = await call(ctx.socket, 'players:add', { name });
+  const res = await call(ctx.socket, 'players:add', { name, type });
   if (res?.ok) input.value = '';
   else toast(res?.error === 'exists' ? 'Die naam doet al mee' : 'Lukt niet');
 }

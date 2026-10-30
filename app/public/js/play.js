@@ -18,7 +18,8 @@ let playerCount = 0;
 let recipeOpen = null;
 let theme = 'industrial';
 let olie = [];
-let inQuiz = false; // the quiz is opt-in: tap "Quiz" in the Spel tab
+let inQuiz = null; // quiz waiting room (pubquiz, popquiz, intro) or null: tap a tile in the Spel tab
+let quizRooms = {};
 let botc = { phase: 'setup', seated: [] }; // Blood on the Clocktower: is there a game with me in it?
 
 const params = new URLSearchParams(location.search);
@@ -46,7 +47,8 @@ async function join(silent) {
   $('me').textContent = name;
   setJoined(true);
   if (res.botc) botc = res.botc;
-  inQuiz = Boolean(res.quiz);
+  inQuiz = res.quiz || null;
+  quizRooms = res.quizRooms || {};
   onGame(res.game);
 }
 
@@ -192,25 +194,42 @@ socket.on('ny:olie', (list) => {
 });
 
 // ---------- Game picker: the quiz and Blood on the Clocktower are opt-in ----------
-function quizCard() {
-  if (inQuiz)
-    return `<div class="panel p-game on"><span class="mono">🧠 Quiz</span><b class="display">Je doet mee</b>
-      <span>${game.active ? 'De quiz loopt, de vraag komt zo.' : 'Wacht tot de quiz start: de vragen verschijnen hier.'}</span>
-      <button class="btn small" type="button" data-quiz="off">Niet meer meedoen</button></div>`;
-  return `<button class="panel p-game" type="button" data-quiz="on"><span class="mono">🧠 Quiz</span><b class="display">${game.active ? 'Er loopt een quiz' : 'Quiz'}</b>
-    <span>${game.active ? 'Tik om mee te doen →' : 'Pubquiz, popquiz of intro raden. Tik om in de wachtkamer te gaan →'}</span></button>`;
+const QUIZZES = [
+  { id: 'pubquiz', icon: '🧠', name: 'Pubquiz', desc: 'Algemene kennis in categorieën' },
+  { id: 'popquiz', icon: '🎤', name: 'Popquiz', desc: 'Jaartallen, artiesten en wat kwam eerst' },
+  { id: 'intro', icon: '🎧', name: 'Intro raden', desc: 'Herken het nummer aan de eerste seconden' },
+];
+// you play when you're in the room of the quiz that's running
+const playing = () => game.active && inQuiz && inQuiz === game.type;
+function quizCard(q) {
+  const n = quizRooms[q.id] || 0;
+  const running = game.active && game.type === q.id;
+  const count = `${n} ${n === 1 ? 'speler' : 'spelers'} in de wachtkamer`;
+  if (inQuiz === q.id)
+    return `<div class="panel p-game on"><span class="mono">${q.icon} ${q.name}</span><b class="display">Je doet mee</b>
+      <span>${running ? 'De quiz loopt, de vraag komt zo.' : 'Wacht tot de quiz start: de vragen verschijnen hier.'}</span>
+      <span class="muted">${count}</span>
+      <button class="btn small" type="button" data-quiz="">Niet meer meedoen</button></div>`;
+  return `<button class="panel p-game" type="button" data-quiz="${q.id}"><span class="mono">${q.icon} ${q.name}${running ? ' · loopt nu' : ''}</span><b class="display">${q.name}</b>
+    <span>${esc(q.desc)}</span><span class="muted">${count} · tik om mee te doen →</span></button>`;
 }
+const qwixxCard = () =>
+  `<a class="panel p-game" href="https://boardpass.maisonbaron.nl" target="_blank" rel="noopener"><span class="mono">🎲 Qwixx</span><b class="display">Qwixx</b><span>Dobbelspel op je telefoon. Opent de spelsite →</span></a>`;
+socket.on('quizRooms', (r) => {
+  quizRooms = r || {};
+  if (tab === 'game' && !playing() && document.activeElement?.id !== 'ny-text') renderGame();
+});
 document.addEventListener('click', async (e) => {
   const b = e.target.closest('[data-quiz]');
   if (!b) return;
-  const res = await call(socket, 'quiz:join', { on: b.dataset.quiz === 'on' });
+  const res = await call(socket, 'quiz:join', { type: b.dataset.quiz || null });
   if (!res?.ok) return flash('Lukt niet');
-  inQuiz = res.quiz;
+  inQuiz = res.quiz || null;
   navigator.vibrate?.(30);
   onGame(res.game);
 });
 socket.on('quiz:out', () => {
-  inQuiz = false;
+  inQuiz = null;
   renderGame();
 });
 
@@ -254,18 +273,18 @@ function onGame(g) {
   const wasActive = game.active;
   game = { ...g, receivedAt: Date.now() };
   // jump to the game tab when a quiz starts or a question appears
-  if (inQuiz && ((g.active && !wasActive) || g.phase === 'question')) showTab('game');
+  if (playing() && ((g.active && !wasActive) || g.phase === 'question')) showTab('game');
   renderGame();
 }
 
 function renderGame() {
   const el = $('tab-game');
   const g = game;
-  if (!g.active || !inQuiz) {
+  if (!playing()) {
     el.innerHTML = `<span class="mono accent">Verbonden · ${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</span>
       <h1 class="display p-title">Hoi ${esc(store.get('name') || '')}</h1>
       <p class="big-text" style="margin:0;color:var(--text-2)">Kies waar je aan meedoet.</p>
-      <div class="p-games">${quizCard()}${botcCard()}</div>${newYearCard()}`;
+      <div class="p-games">${QUIZZES.map(quizCard).join('')}${botcCard()}${qwixxCard()}</div>${newYearCard()}`;
     return;
   }
   const head = `<span class="mono accent">${esc(g.typeLabel)} · ronde ${g.round} van ${g.rounds}</span>`;

@@ -59,10 +59,11 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
 - Guest check-ins (`lib/guests.js`): days per name, shown only on /admin tab Gasten.
 - Room code and players are saved (`data/room.json`), so phones stay joined after a restart;
   only "new room code" changes it. One name = one player (case/spaces ignored).
-- Phone Spel tab = game picker: 🧠 Quiz (opt-in: `quiz:join`, player flag `quiz` in room.json; only those
-  play) and 🩸 Clocktower (link to /clocktower, where players tap "Join this game" while the storyteller sets up).
-- Quiz setup: shows only phones that tapped Quiz; the screen can add a name by hand (no phone, plays the quiz)
-  or take someone out of the quiz (× on the chip, `quiz:out`; the phone goes back to the picker).
+- Phone Spel tab = game picker: separate waiting rooms 🧠 Pubquiz, 🎤 Popquiz, 🎧 Intro raden (opt-in: `quiz:join
+  {type}`, player field `quiz` = room in room.json; only that room plays when that quiz type starts; counts via
+  `quizRooms`), 🩸 Clocktower (link to /clocktower, "Join this game") and 🎲 Qwixx (opens boardpass.maisonbaron.nl).
+- Quiz setup: shows only phones in that quiz's room; the screen can add a name by hand (no phone, joins that
+  room) or take someone out (× on the chip, `quiz:out`; the phone goes back to the picker).
 - Credits (`lib/credits.js`): /admin tab Tegoed — free name, add any amount, −1 per tap.
 - /admin tab Voorraad: the stock from the phone (bottles, ook in huis, own bottles), `/api/admin/stock*`.
 - Own bottles have a type (`kind`: Sterke drank, Likeur, Wijn & bubbels, Bier, Vermout & bitters, Fris,
