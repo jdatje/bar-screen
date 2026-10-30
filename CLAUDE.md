@@ -118,6 +118,8 @@ Current total: 10 (all in `app/public/js/eggs.js` + `fx.js`):
   de bar"; the password lives only in settings and the screen state, never sent to phones.
 
 ## Blood on the Clocktower (live since 30 Oct 2026)
+**Jeroen: every BotC change goes into BOTH the Wexer and the standalone repo jdatje/botc (public site, Gregor);
+in jdatje/botc it must end up merged to `main`. Pushing the Wexer still needs Jeroen's go.**
 Played in person at the big table; phones joined via the Wexer QR. All in English.
 - Data: TPI toolmaker resources (github ThePandemoniumInstitute/botc-release `resources/`, commit f10cd02, Aug 2026):
   `data-seed/botc/{roles,nightsheet,jinxes}.json`, icons in `public/botc/icons` (_g/_e), edition logos +
