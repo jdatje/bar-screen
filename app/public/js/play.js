@@ -18,6 +18,7 @@ let playerCount = 0;
 let recipeOpen = null;
 let theme = 'industrial';
 let olie = [];
+let botc = { phase: 'setup', seated: [] }; // Blood on the Clocktower: is there a game with me in it?
 
 const params = new URLSearchParams(location.search);
 $('code').value = (params.get('code') || store.get('code') || '').toUpperCase();
@@ -43,6 +44,7 @@ async function join(silent) {
   loadNewYear();
   $('me').textContent = name;
   setJoined(true);
+  if (res.botc) botc = res.botc;
   onGame(res.game);
 }
 
@@ -187,6 +189,22 @@ socket.on('ny:olie', (list) => {
   }
 });
 
+// ---------- Blood on the Clocktower: its own page (/clocktower) ----------
+const inBotc = () => botc.seated.includes(store.get('playerId'));
+function botcCard() {
+  if (!inBotc()) return '';
+  return `<a class="panel p-botc" href="/clocktower"><span class="mono">🩸 Blood on the Clocktower</span>
+    <b class="display">${botc.phase === 'setup' ? 'Je doet mee' : 'Het spel loopt'}</b><span>Open je token, chats en notities →</span></a>`;
+}
+socket.on('botc:status', (b) => {
+  const was = botc.phase;
+  const wasIn = inBotc();
+  botc = b || botc;
+  // the storyteller starts the game: straight to your token
+  if (inBotc() && was === 'setup' && botc.phase === 'night' && tab === 'game' && !game.active) return location.assign('/clocktower');
+  if (wasIn !== inBotc() || was !== botc.phase) if (!game.active) renderGame();
+});
+
 // ---------- Tabs ----------
 function showTab(t) {
   tab = t;
@@ -220,7 +238,7 @@ function renderGame() {
     el.innerHTML = `<span class="mono accent">Verbonden</span>
       <h1 class="display p-title">Hoi ${esc(store.get('name') || '')}</h1>
       <p class="big-text" style="margin:0;color:var(--text-2)">Hou dit scherm open. Zodra er een quiz start, verschijnen de vragen hier.</p>
-      <p class="mono muted">${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</p>${newYearCard()}`;
+      <p class="mono muted">${playerCount} ${playerCount === 1 ? 'speler' : 'spelers'} in de kamer</p>${botcCard()}${newYearCard()}`;
     return;
   }
   const head = `<span class="mono accent">${esc(g.typeLabel)} · ronde ${g.round} van ${g.rounds}</span>`;

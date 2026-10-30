@@ -53,7 +53,7 @@ function hide() {
 
 document.addEventListener('focusin', (e) => {
   const el = e.target;
-  if (el.matches?.('input[data-osk]')) {
+  if (el.matches?.('input[data-osk], textarea[data-osk]')) {
     target = el;
     shift = el.value.length === 0;
     render();

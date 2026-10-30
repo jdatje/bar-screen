@@ -20,6 +20,7 @@ import * as guests from './lib/guests.js';
 import * as credits from './lib/credits.js';
 import * as masskrug from './lib/masskrug.js';
 import * as newyear from './lib/newyear.js';
+import * as botc from './lib/botc.js';
 import { getLyrics } from './lib/hooks.js';
 import { TILE_KEYS, DEFAULT_TILES, validTileChoice } from './public/js/tiles.js';
 
@@ -311,6 +312,9 @@ app.use(express.static('public', {
 }));
 
 
+// Blood on the Clocktower: homebrew character images downloaded at import
+app.use('/botc/custom', express.static(botc.CUSTOM_IMG_DIR, { maxAge: '30d', immutable: true }));
+
 app.get('/health', (_req, res) => res.json({ ok: true }));
 // look and language, for pages that aren't unlocked yet
 app.get('/api/look', (_req, res) => res.json({ theme: settings.theme, language: settings.language }));
@@ -522,12 +526,26 @@ admin.post('/room/new', async (_req, res) => {
 app.use('/api/admin', admin);
 
 // ---------- Sockets ----------
+// a name added by hand (no phone), for the quiz setup and the storyteller
+function addManualPlayer(name) {
+  const clean = String(name || '').trim().slice(0, 24);
+  if (!clean) return { ok: false, error: 'no_name' };
+  if (findByName(clean)) return { ok: false, error: 'exists' };
+  const id = crypto.randomUUID();
+  players.set(id, { name: clean, manual: true, sockets: new Set() });
+  game.addPlayer(id);
+  saveRoom();
+  broadcastPlayers();
+  return { ok: true, id };
+}
+botc.attach(io, { pinOk, roomPlayers: playerList, addManual: addManualPlayer });
 let wrongCodes = []; // times of wrong room codes in the last minute
 io.on('connection', (socket) => {
   // look and language for every page, right away (also before joining)
   socket.emit('settings', publicSettings());
   const isScreen = () => socket.rooms.has('screen');
   const isPlayer = () => players.has(socket.data.playerId);
+  botc.register(socket);
 
   socket.on('screen:hello', async () => {
     // only the touchscreen itself may act as the screen (controls, settings)
@@ -789,8 +807,10 @@ io.on('connection', (socket) => {
     game.addPlayer(id);
     saveRoom();
     socket.join('phones');
+    socket.join(`botc-p:${id}`);
     guests.checkIn(cleanName);
-    ack?.({ ok: true, playerId: id, name: cleanName, settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn() });
+    botc.playerRenamed(id, cleanName);
+    ack?.({ ok: true, playerId: id, name: cleanName, settings: publicSettings(), game: game.phoneView(id), spotify: spotify.isLoggedIn(), botc: botc.status() });
     broadcastPlayers();
     if (game.active) game.emit();
   });
@@ -825,15 +845,7 @@ io.on('connection', (socket) => {
   // ----- Players (setup screen): add someone by name, or take someone out -----
   socket.on('players:add', ({ name } = {}, ack) => {
     if (!isScreen()) return ack?.({ ok: false });
-    const clean = String(name || '').trim().slice(0, 24);
-    if (!clean) return ack?.({ ok: false, error: 'no_name' });
-    if (findByName(clean)) return ack?.({ ok: false, error: 'exists' });
-    const id = crypto.randomUUID();
-    players.set(id, { name: clean, manual: true, sockets: new Set() });
-    game.addPlayer(id);
-    saveRoom();
-    broadcastPlayers();
-    ack?.({ ok: true, id });
+    ack?.(addManualPlayer(name));
   });
   socket.on('players:remove', ({ id } = {}, ack) => {
     if (!isScreen()) return ack?.({ ok: false });
@@ -841,6 +853,7 @@ io.on('connection', (socket) => {
     if (!p) return ack?.({ ok: false });
     players.delete(id);
     game.removePlayer(id);
+    botc.playerRemoved(id);
     for (const sid of p.sockets) {
       const s = io.sockets.sockets.get(sid);
       if (s) s.data.playerId = null;

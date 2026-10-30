@@ -76,6 +76,7 @@ document.querySelectorAll('[data-hub]').forEach((b) =>
     if (h === 'limbo') return limbo.open();
     if (h === 'hula') return masskrug.open('hula');
     if (h === 'qwixx') return $('qwixx').classList.add('open');
+    if (h === 'botc') return openBotc();
     quiz.setType(h);
     go('quiz');
   })
@@ -85,6 +86,22 @@ document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click'
 // ---------- Qwixx: just a QR code to the game site ----------
 $('qwixx-close').addEventListener('click', () => $('qwixx').classList.remove('open'));
 $('qwixx').addEventListener('click', (e) => e.target.id === 'qwixx' && $('qwixx').classList.remove('open'));
+
+// ---------- Blood on the Clocktower: its own page in a frame over the screen ----------
+function openBotc() {
+  const box = $('botc');
+  if (!box.firstChild) box.innerHTML = '<iframe src="/clocktower?mode=screen" title="Blood on the Clocktower" allow="autoplay"></iframe>';
+  box.hidden = false;
+}
+const botcOpen = () => !$('botc').hidden;
+window.addEventListener('message', (e) => {
+  if (e.origin === location.origin && e.data?.botc === 'close') {
+    $('botc').hidden = true;
+    window.dispatchEvent(new Event('wexer:activity'));
+  }
+});
+// the storyteller starts a game: show the table view (day timer) right away
+socket.on('botc:started', openBotc);
 
 // ---------- Clock ----------
 // The bar PC runs on UTC; always show Amsterdam time (incl. summer/winter time)
@@ -461,12 +478,12 @@ quiz.init(ctx);
 karaoke.init(ctx);
 wall.init(ctx);
 games.init(ctx);
-saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !karaoke.isOpen() && !wall.slideshowOn() && !document.querySelector('.overlay.open') });
+saver.init(ctx, { allowed: () => !games.isPlaying() && view !== 'game' && !karaoke.isOpen() && !wall.slideshowOn() && !document.querySelector('.overlay.open') && !botcOpen() });
 eggs.init(ctx);
 bar.init(ctx);
 music.init(ctx);
 // not during a quiz question, a retro game or karaoke
-const quietNow = () => games.isPlaying() || karaoke.isOpen() || (state.game?.active && ['question', 'between'].includes(state.game.phase));
+const quietNow = () => botcOpen() || games.isPlaying() || karaoke.isOpen() || (state.game?.active && ['question', 'between'].includes(state.game.phase));
 spooky.init(ctx, { quiet: quietNow });
 prost.init(ctx, { quiet: quietNow });
 masskrug.init(ctx);
